@@ -4,7 +4,6 @@ const cors = require("cors");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
 var mongoose = require("mongoose");
-const config = require("config");
 const app = express();
 const mongoURL = "mongodb://localhost:27017/headStocks";
 const users = require("./routes/api/Users");

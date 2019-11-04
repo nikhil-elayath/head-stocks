@@ -1,0 +1,225 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Login Component should mount the component 1`] = `
+<div>
+  <div
+    id="loginMainContainer"
+  >
+    <div
+      id="loginLeftContainer"
+    >
+      <h1
+        className="w3-container w3-center w3-animate-left"
+        id="loginwelcome"
+      >
+        Welcome ,
+      </h1>
+      <p
+        className="w3-container w3-center w3-animate-left"
+      >
+        An Investment in Knowledge 
+        <br />
+        pays the best Interest
+      </p>
+    </div>
+    <div
+      id="loginRightContainer"
+    >
+      <div>
+        <Link
+          to="/login"
+        >
+          <button
+            id="loginComponentButton-active"
+            onClick={[Function]}
+          >
+            Login
+          </button>
+        </Link>
+        <Link
+          to="/register"
+        >
+          <button
+            id="registerComponentButton"
+          >
+            Sign Up
+          </button>
+        </Link>
+      </div>
+      <form
+        id="loginForm"
+      >
+        <p>
+           
+          <input
+            id="loginInput"
+            name="email"
+            onChange={[Function]}
+            placeholder="Email"
+            type="text"
+            value=""
+          />
+        </p>
+        <p
+          id="loginErrorMessage"
+        />
+        <p>
+          <input
+            id="loginInput"
+            name="password"
+            onChange={[Function]}
+            placeholder="Password"
+            type="password"
+            value=""
+          />
+        </p>
+        <p
+          id="loginErrorMessage"
+        />
+        <p
+          style={
+            Object {
+              "display": "none",
+            }
+          }
+        >
+          Hello
+        </p>
+        <Link
+          to="/resetpassword"
+        >
+          <p
+            style={
+              Object {
+                "color": "#39abf7",
+              }
+            }
+          >
+            Forgot Password ?
+          </p>
+        </Link>
+        <p>
+          <button
+            id="loginFormButton"
+            onClick={[Function]}
+          >
+            Login
+          </button>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Testing Register Component should mount the component 1`] = `
+<div>
+  <div
+    id="loginMainContainer"
+  >
+    <div
+      id="loginLeftContainer"
+    >
+      <h1
+        className="w3-container w3-center w3-animate-left"
+        id="loginwelcome"
+      >
+        Welcome ,
+      </h1>
+      <p
+        className="w3-container w3-center w3-animate-left"
+      >
+        An Investment in Knowledge 
+        <br />
+        pays the best Interest
+      </p>
+    </div>
+    <div
+      id="loginRightContainer"
+    >
+      <div>
+        <Link
+          to="/login"
+        >
+          <button
+            id="loginComponentButton-active"
+            onClick={[Function]}
+          >
+            Login
+          </button>
+        </Link>
+        <Link
+          to="/register"
+        >
+          <button
+            id="registerComponentButton"
+          >
+            Sign Up
+          </button>
+        </Link>
+      </div>
+      <form
+        id="loginForm"
+      >
+        <p>
+           
+          <input
+            id="loginInput"
+            name="email"
+            onChange={[Function]}
+            placeholder="Email"
+            type="text"
+            value=""
+          />
+        </p>
+        <p
+          id="loginErrorMessage"
+        />
+        <p>
+          <input
+            id="loginInput"
+            name="password"
+            onChange={[Function]}
+            placeholder="Password"
+            type="password"
+            value=""
+          />
+        </p>
+        <p
+          id="loginErrorMessage"
+        />
+        <p
+          style={
+            Object {
+              "display": "none",
+            }
+          }
+        >
+          Hello
+        </p>
+        <Link
+          to="/resetpassword"
+        >
+          <p
+            style={
+              Object {
+                "color": "#39abf7",
+              }
+            }
+          >
+            Forgot Password ?
+          </p>
+        </Link>
+        <p>
+          <button
+            id="loginFormButton"
+            onClick={[Function]}
+          >
+            Login
+          </button>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
+`;
