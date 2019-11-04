@@ -1,6 +1,9 @@
 import { combineReducers } from "redux";
 import users from "./usersReducer";
-
+import company from "./CompanyDetailReducer";
 export default combineReducers({
-  usersReducer: users
+  //bhavana
+  usersReducer: users,
+  //nikhil
+  CompanyDetailReducer: company,
 });
