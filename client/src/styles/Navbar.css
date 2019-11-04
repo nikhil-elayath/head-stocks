@@ -1,0 +1,62 @@
+@import url(https://fonts.googleapis.com/css?family=Karla);
+* {
+    font-family: Karla;
+  }
+
+  .navbarHS {
+    overflow: hidden;
+    background-color: #2c3e50;
+   }
+  
+  .navbarHS span {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  .navbarHS .linkdecornone{
+    text-decoration: none;
+  }
+  .navbarlogoimage {
+    float: left;
+    margin: 10px 0px 10px 10px;
+  }
+  .navbarHS span:hover {
+    background-color: #ffffff;
+    color: black;
+  }
+  
+  .navbarHS span.active {
+    background-color: #39abf7;
+    color: white;
+
+  }
+  
+  .navbarHS .icon {
+    display: none;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .navbarHS span:not(:first-child) {display: none;}
+    .navbarHS span.icon {
+      float: right;
+      display: block;
+    }
+  }
+  
+  @media screen and (max-width: 600px) {
+    .navbarHS.responsiveHS {position: relative;}
+    .navbarHS.responsiveHS .icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .navbarHS.responsiveHS span {
+      float: none;
+      display: block;
+      text-align: left;
+    }
+  }
