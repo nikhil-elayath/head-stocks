@@ -16,30 +16,30 @@ describe("Testing Users API", () => {
   });
 
   // To create a new user and return a status of 200
-    it("(Create a new user) should return a status of 200 and a success message on creation of a new user", done => {
-      let data = {
-        name: "Piyush Gupta",
-        email: "guptapiyush@gmail.com",
-        phone: "7418529635",
-        password: "guptapiyush03",
-        isAdmin: false
-      };
-      let payload = JSON.stringify(data);
-      console.log(payload);
-      request(app)
-        .post("/api/users/signup")
-        .send(payload)
-        .set("Content-type", "application/json")
-        .then(response => {
-          console.log("response.body", response);
-          expect(response.status).toBe(200);
-          expect(response.body).toEqual(expect.any(Object));
-          expect(response.body.message).toBe("Created One user Successfully");
-          done();
-        });
-    });
+  // it("(Create a new user) should return a status of 200 and a success message on creation of a new user", done => {
+  //   let data = {
+  //     name: "Piyush",
+  //     email: "guptapiyush@gmail.com",
+  //     phone: "7418529635",
+  //     password: "piyush",
+  //     isAdmin: false
+  //   };
+  //   let payload = JSON.stringify(data);
+  //   console.log(payload);
+  //   request(app)
+  //     .post("/api/users/signup")
+  //     .send(payload)
+  //     .set("Content-type", "application/json")
+  //     .then(response => {
+  //       console.log("response.body", response);
+  //       expect(response.status).toBe(200);
+  //       expect(response.body).toEqual(expect.any(Object));
+  //       expect(response.body.message).toBe("Created One user Successfully");
+  //       done();
+  //     });
+  // });
 
-    // Successfull login should return status of 200
+  // Successfull login should return status of 200
   it("(Successful Login) should return a status of 200  when user logs in successfully", done => {
     let data = {
       email: "guptabhavana49@gmail.com",
@@ -72,7 +72,7 @@ describe("Testing Users API", () => {
       .then(response => {
         expect(response.status).toBe(400);
         expect(response.body).toEqual(expect.any(Object));
-        expect(response.body.message).toBe("Account not found");
+        expect(response.body.message).toBe("*Account not found");
         done();
       });
   });
@@ -301,7 +301,7 @@ describe("Testing Users API", () => {
       });
   });
 
-// Should not send the email if the user is not registered
+  // Should not send the email if the user is not registered
   it("Should not send the mail to the user if the email specified is incorrect", done => {
     let data = {
       email: "guptabhana49@gmail.com"
@@ -322,7 +322,7 @@ describe("Testing Users API", () => {
   // Verify the otp if the otp entered is correct
   it("Should verify the otp and return a success message if the otp is valid", done => {
     let data = {
-      otp=1234
+      otp: 1234
     };
     let payload = JSON.stringify(data);
     request(app)
@@ -340,7 +340,7 @@ describe("Testing Users API", () => {
   // Show an error if the otp entered is invalid
   it("Should verify the otp and return a error message if the otp is invalid", done => {
     let data = {
-      otp=1238
+      otp: "1238"
     };
     let payload = JSON.stringify(data);
     request(app)
