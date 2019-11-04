@@ -31,14 +31,19 @@ router.get("/:id", async (req, res, next) => {
       let id = req.params.id;
       var dbo = db.db("headstock");
       dbo.collection("news").findOne({ new_id: +id }, function(err, result) {
-        if (err) return res.status(400).send("News not found");
-        console.log(result);
-        res.status(200).json({
-          status: 200,
-          data: result,
-          message: "Retrieved news Successfully"
-        });
-        db.close();
+        if (!result) {
+          return res.status(400).send({ message: "News not found" });
+        } else {
+          if (err) throw err;
+
+          //   console.log(result);
+          res.status(200).json({
+            status: 200,
+            data: result,
+            message: "Retrieved news Successfully"
+          });
+          db.close();
+        }
       });
     } catch (err) {
       next(err);
