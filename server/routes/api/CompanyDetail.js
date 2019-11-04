@@ -19,20 +19,24 @@ MongoClient.connect(url, function(err, client) {
 
   const db = client.db(dbName);
   router.get("/all", async (req, response) => {
-    var collection = db.collection("CompanyDetails");
+    try {
+      var collection = db.collection("CompanyDetails");
 
-    //fetching the data from the collectoin and converting them into an array
-    collection.find().toArray(function(err, items) {
-      // storing the data which is present in items into a variable result
-      result = items;
-      console.log("Printing result", result);
-      response.status(200).json({
-        status: 200,
-        //passing result
-        data: result,
-        message: "Company Details retreived successfully",
+      //fetching the data from the collectoin and converting them into an array
+      collection.find().toArray(function(err, items) {
+        // storing the data which is present in items into a variable result
+        result = items;
+        console.log("Printing result", result);
+        response.status(200).json({
+          status: 200,
+          //passing result
+          data: result,
+          message: "Company Details retreived successfully",
+        });
       });
-    });
+    } catch (err) {
+      console.log(err);
+    }
   });
 
   //closing the connect method
