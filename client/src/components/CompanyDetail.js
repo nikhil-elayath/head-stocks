@@ -15,7 +15,6 @@ export class CompanyDetail extends Component {
         <div id="company-detail-grid-container">
           {this.props.company.map(company => (
             <div id="company-detail-profile">
-              {/* <h3> {company.name}</h3> */}
               <h3>
                 Sector :<span>{company.sector}</span>
               </h3>
@@ -35,11 +34,13 @@ export class CompanyDetail extends Component {
             </div>
           ))}
           {/* recommendation */}
-          {/* <div id="company-detail-recommendation">
+
+          <div id="company-detail-recommendation">
             {this.props.company.map(company => (
               <h3> {company.sector}</h3>
             ))}
-          </div> */}
+            <div id="test"></div>
+          </div>
         </div>
       </div>
     );
