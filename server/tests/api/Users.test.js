@@ -40,7 +40,7 @@ describe("Testing Users API", () => {
   it("(Successful Login) should return a status of 200  when user logs in successfully", done => {
     let data = {
       email: "guptabhavana49@gmail.com",
-      password: "bhavanagupta"
+      password: "bhavanagupta",
     };
     let payload = JSON.stringify(data);
     request(app)
@@ -58,7 +58,7 @@ describe("Testing Users API", () => {
   it("(Invalid Credentials) should return a status of 400", done => {
     let data = {
       name: "bhavanagupta250",
-      password: "bhavanagupta2"
+      password: "bhavanagupta2",
     };
     let payload = JSON.stringify(data);
     request(app)
@@ -78,7 +78,7 @@ describe("Testing Users API", () => {
       name: "",
       email: "helloworld@gmail.com",
       phone: "5461237894",
-      password: "helloworld123"
+      password: "helloworld123",
     };
     let payload = JSON.stringify(data);
     request(app)
@@ -97,7 +97,7 @@ describe("Testing Users API", () => {
       name: "helloworld",
       email: "",
       phone: "5461237894",
-      password: "helloworld123"
+      password: "helloworld123",
     };
     let payload = JSON.stringify(data);
     request(app)
@@ -116,7 +116,7 @@ describe("Testing Users API", () => {
       name: "helloworld",
       email: "helloworld@gmail.com",
       phone: "",
-      password: "helloworld123"
+      password: "helloworld123",
     };
     let payload = JSON.stringify(data);
     request(app)
@@ -135,7 +135,7 @@ describe("Testing Users API", () => {
       name: "helloworld",
       email: "helloworld@gmail.com",
       phone: "5461237894",
-      password: ""
+      password: "",
     };
     let payload = JSON.stringify(data);
     request(app)
@@ -154,7 +154,7 @@ describe("Testing Users API", () => {
       name: "helloworld",
       email: "helloworld@gmail.com",
       phone: "5461237894",
-      password: "test1"
+      password: "test1",
     };
     let payload = JSON.stringify(data);
     request(app)
@@ -175,7 +175,7 @@ describe("Testing Users API", () => {
       name: "Bg",
       email: "helloworld@gmail.com",
       phone: "5461237894",
-      password: "testcase123"
+      password: "testcase123",
     };
     let payload = JSON.stringify(data);
     request(app)
@@ -196,7 +196,7 @@ describe("Testing Users API", () => {
       name: "HelloWorld",
       email: "helloworld@gmail.com",
       phone: "5461237",
-      password: "testcase123"
+      password: "testcase123",
     };
     let payload = JSON.stringify(data);
     request(app)
@@ -217,7 +217,7 @@ describe("Testing Users API", () => {
       name: "HelloWorld",
       email: "hellowor",
       phone: "7418529635",
-      password: "testcase123"
+      password: "testcase123",
     };
     let payload = JSON.stringify(data);
     request(app)

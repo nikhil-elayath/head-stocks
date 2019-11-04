@@ -1,5 +1,6 @@
 const express = require("express");
 const users = require("./routes/api/Users");
+const companydetail = require("./routes/api/ComapnyDetail");
 const cors = require("cors");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
@@ -14,16 +15,17 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
-    extended: false
+    extended: false,
   })
 );
 
 app.use(logger("common"));
 app.use("/api/users/", users);
+app.use("/api/companydetail/", companydetail);
 
 const port = process.env.port || 2001;
 
-// if (process.env.NODE_ENV !== "test")
-app.listen(port, () => console.log(`Server is listening on port ${port}`));
+if (process.env.NODE_ENV !== "test")
+  app.listen(port, () => console.log(`Server is listening on port ${port}`));
 
 module.exports = app;
