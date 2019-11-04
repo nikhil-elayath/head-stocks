@@ -16,15 +16,22 @@ export class CompanyDetail extends Component {
           {this.props.company.map(company => (
             <div id="company-detail-profile">
               {/* <h3> {company.name}</h3> */}
-              <h3> Sector :</h3>
-              <p>{company.sector}</p>
-              <h3>Market Cap:</h3>
-              <p>{company.marketcap}</p>
-              <h3>Industry:</h3>
-              <p>{company.industry}</p>
-              <h3>Employees:</h3>
-              <h3>{company.employees}</h3>
-              <h3>{company.bio} </h3>
+              <h3>
+                Sector :<span>{company.sector}</span>
+              </h3>
+
+              <h3>
+                Market Cap: <span> {company.marketcap}</span>
+              </h3>
+              <h3>
+                Industry: <span> {company.industry}</span>
+              </h3>
+              <h3>
+                Employees: <span> {company.employees}</span>
+              </h3>
+              <h3>
+                <span>{company.bio}</span>{" "}
+              </h3>
             </div>
           ))}
           {/* recommendation */}
