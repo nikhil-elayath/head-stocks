@@ -1,0 +1,133 @@
+@import url(https://fonts.googleapis.com/css?family=Karla);
+@import url("https://www.w3schools.com/w3css/4/w3.css");
+* {
+  font-family: Karla;
+}
+
+#registerMainContainer {
+  width: 100%;
+  margin: 0px auto;
+  height: auto;
+  grid-template-columns: "side1";
+  background-color: #2c3e50;
+  display: grid;
+  text-align: center;
+}
+
+#registerLeftContainer {
+  color: #fff;
+  font-size: 20px;
+}
+
+#welcome {
+  font-size: 40px;
+}
+
+#registerRightContainer {
+  color: #fff;
+  padding: 20px;
+}
+
+#registerInput {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #fff;
+  border-bottom: 1px solid #cacaca;
+  padding: 8px;
+  width: 70%;
+  font-size: 16px;
+}
+
+#registerInput:focus,
+#registerInput:active {
+  transform: scaleX(1.1);
+  border-bottom: 2px solid #39abf7;
+}
+
+#registerFormButton {
+  padding: 15px;
+  background: transparent;
+  outline: none;
+  font-size: 16px;
+  border: 3px solid #39abf7;
+  color: #39abf7;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+#registerErrorMessage {
+  color: #ff4d4d;
+  font-size: 14px;
+}
+
+#loginButton {
+  background: transparent;
+  color: #cacaca;
+  outline: none;
+  padding: 20px;
+  font-weight: 500;
+  font-size: 20px;
+  border: none;
+}
+
+#loginButton-active {
+  background: transparent;
+  color: #fff;
+  outline: none;
+  padding: 20px;
+  font-size: 20px;
+  border: none;
+  border-bottom: 2px solid #39abf7;
+}
+
+#registerButton-active {
+  background: transparent;
+  color: #fff;
+  outline: none;
+  padding: 20px;
+  font-size: 20px;
+  border: none;
+  border-bottom: 2px solid #39abf7;
+}
+
+#registerButton {
+  background: transparent;
+  color: #cacaca;
+  outline: none;
+  padding: 20px;
+  font-weight: 500;
+  font-size: 20px;
+  border: none;
+}
+
+#registerResetPassword {
+  margin-left: 310px;
+  color: #39abf7;
+}
+
+@media screen and (min-width: 430px) {
+  #registerMainContainer {
+    grid-template-rows: 657px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  #registerMainContainer > div:nth-child(2) > form input {
+    width: 50%;
+  }
+
+  #registerMainContainer > div:nth-child(2) {
+    margin: auto 0px;
+  }
+
+  #registerMainContainer > div:nth-child(1) {
+    margin: auto 10px auto 10px;
+  }
+
+  #registerLeftContainer > h1 {
+    font-size: 60px;
+  }
+
+  #registerLeftContainer > p {
+    font-size: 40px;
+  }
+}

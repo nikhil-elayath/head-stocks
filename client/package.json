@@ -20,6 +20,7 @@
     "dotenv-expand": "5.1.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
+    "enzyme-to-json": "^3.4.3",
     "eslint": "^6.1.0",
     "eslint-config-react-app": "^5.0.2",
     "eslint-loader": "3.0.2",
@@ -37,6 +38,7 @@
     "jest-environment-jsdom-fourteen": "0.1.0",
     "jest-resolve": "24.9.0",
     "jest-watch-typeahead": "0.4.0",
+    "jwt-decode": "^2.2.0",
     "mini-css-extract-plugin": "0.8.0",
     "moxios": "^0.4.0",
     "optimize-css-assets-webpack-plugin": "5.0.3",
@@ -89,23 +91,22 @@
     ]
   },
   "jest": {
-    "resolver": "jest-pnp-resolver",
     "roots": [
       "<rootDir>/src"
-    ],
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
     ],
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}",
       "!src/**/*.d.ts"
     ],
+    "resolver": "jest-pnp-resolver",
     "setupFiles": [
-      "react-app-polyfill/jsdom"
-    ],
-    "setupFilesAfterEnv": [
+      "react-app-polyfill/jsdom",
       "<rootDir>/src/setupTests.js"
     ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "setupFilesAfterEnv": [],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
       "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
