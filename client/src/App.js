@@ -4,6 +4,8 @@ import Register from "./components/Register";
 import ResetPassword from "./components/ResetPassword";
 import Login from "./components/Login";
 import NavbarDefault from "./components/NavbarDefault"
+//nikhil
+import CompanyDetail from "./components/CompanyDetail";
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/navdemo" component={NavbarDefault} />
 
+        <Route exact path="/companydetail" component={CompanyDetail} />
       </div>
     </Router>
   );

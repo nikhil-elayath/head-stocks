@@ -1,0 +1,30 @@
+#company-detail-grid-container {
+  grid-template-rows: 150px 150px 150px 150px;
+  display: grid;
+  grid-template-areas:
+    "profile recommendation"
+    "chart chart";
+  grid-template-columns: 1fr 1fr;
+  /* overflow-x: scroll; */
+  overflow-y: scroll;
+}
+#company-detail-profile > p {
+  color: #707070;
+  font-size: 20px;
+}
+#company-detail-profile > h3 {
+  color: #707070;
+  font-size: 20px;
+}
+/* .profile {
+} */
+
+#company-detail-profile {
+  grid-area: profile;
+
+  font-size: 100px;
+}
+
+#company-detail-recommendation {
+  grid-area: recommendation;
+}
