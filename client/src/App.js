@@ -14,11 +14,11 @@ function App() {
   return (
     <Router>
       <div>
+        <NavbarDefault/>
         <Route exact path="/register" component={Register} />
         <Route exact path="/resetpassword" component={ResetPassword} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/" component={home} />
-        <Route exact path="/navdemo" component={NavbarDefault} />
         <Route exact path="/companydetail" component={CompanyDetail} />
         {/* aditya */}
         <Route exact path="/stocks" component={StocksLanding} />

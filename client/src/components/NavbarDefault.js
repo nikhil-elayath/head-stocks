@@ -23,29 +23,49 @@ export default class NavbarDefault extends Component {
         return (
     
                 <div className="navbarHS" id="navbarID">
-                        <Link to="/Headstocks">
-                    <div>
-                    <img className="navbarlogoimage" src={logo} alt="logo" width="30px" height="30px"/>
-                    <span className="active">
-                        HEAD<b>STOCKS</b>
-                    </span> 
+                    <Link to="/Headstocks">
+                    <div className="navbarLogoName">
+                        <span className="active">
+                        <img className="navbarlogoimage" src={logo} alt="logo" width="30px" height="30px"/>
+                            HEAD<b>STOCKS</b>
+                        </span> 
                     </div>
-                        </Link>
-                    <span >
-                        <Link to="/StocksHome" className="linkdecornone">
-                        Stocks
-                        </Link>
-                    </span> 
-                    <span >
-                        <Link to="/Login" className="linkdecornone">
-                        Login
-                        </Link>
-                    </span> 
+                    </Link>
+
+            
+                    <div className="navbarLoginOptions">
+                        <span 
+                        >
+                            <Link to="/Login" className="linkdecornone">
+                            Login
+                            </Link>
+                        </span> 
+                    </div>
+                   
+                   
+
+                    <div className="navbarStockOptions">
+
+                        <span 
+                        >
+                            <Link to="/StocksHome" className="linkdecornone">
+                            Stocks
+                            </Link>
+                        </span> 
                     
+                    </div>
+
+                    <div className= "navbarSearchBox">
+                        <input type="text" placeholder="Search for a company or ticker">
+
+                        </input>
+                   </div>
+
                     <span className="icon" onClick={this.myhamburgfunction}>
                         <i className="fa fa-bars"></i>
-                    </span> 
-       
+                    </span>
+                
+                   
                     
                 </div>
             
