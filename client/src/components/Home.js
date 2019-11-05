@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { allNews, newsById } from "../actions/Home";
 import { connect } from "react-redux";
 import "../styles/Home.css";
-import image from "./fakelogo.png";
 
 export class Home extends Component {
   componentDidMount() {
@@ -22,14 +21,14 @@ export class Home extends Component {
             <div>
               <div id="recent-news"></div>
               {/* recent news */}
-              {this.props.news.map(news => (
+              {this.props.news.map((news, index) => (
                 <div className="div-newspage">
                   <div id="news-list">
                     <p
-                      id="recent-news-title"
+                      id={"recent-news-title" + index}
                       onClick={() => this.props.newsById(news.new_id)}
                     >
-                      {news.headline}>
+                      {news.headline}
                     </p>
                     <p id="newsdivider">
                       <hr />
@@ -41,14 +40,16 @@ export class Home extends Component {
           </div>
           <div id="homemiddlecontainer">
             <div>
-              <h3>{this.props.singleNews.headline}</h3>
+              <h3 id="headline">{this.props.singleNews.headline}</h3>
               <img
                 id="image"
                 src={
                   "data:image/jpeg;base64," + this.props.singleNews.news_image
                 }
               />
-              <p>{this.props.singleNews.description}</p>
+              <p id="headlineDescription">
+                {this.props.singleNews.description}
+              </p>
             </div>
           </div>
           <div id="homerightsidecontainer"></div>
