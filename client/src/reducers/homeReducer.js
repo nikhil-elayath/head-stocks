@@ -1,7 +1,8 @@
 import { ALL_NEWS, NEWS_BY_ID } from "../actions/Types";
 
 const initialstate = {
-  news: []
+  news: [],
+  singleNews: [{}]
 };
 
 export default function(state = initialstate, action) {
@@ -9,7 +10,7 @@ export default function(state = initialstate, action) {
     case ALL_NEWS:
       return { ...state, news: action.payload };
     case NEWS_BY_ID:
-      return { ...state, news: action.payload };
+      return { ...state, singleNews: action.payload };
     default:
       return state;
   }

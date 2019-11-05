@@ -93,8 +93,10 @@ export class ResetPassword extends Component {
     return (
       <div>
         <div id="resetPasswordMainContainer">
-          <button id="resetButton">Reset Password</button>
           <form id="resetPasswordForm">
+            <p>
+              <button id="resetButton">Reset Password</button>
+            </p>
             <p>
               <input
                 id="resetPasswordInput"
