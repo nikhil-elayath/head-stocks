@@ -34,7 +34,6 @@ export const login = (user, history) => dispatch => {
     .post(url + "login", user)
     .then(res => {
       localStorage.setItem("token", res.data.data);
-      var decode = jwt_decode(localStorage.getItem("token"));
 
       dispatch({
         type: LOGIN,

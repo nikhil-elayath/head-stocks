@@ -12,6 +12,7 @@ function App() {
   return (
     <Router>
       <div>
+        <NavbarDefault />
         <Route exact path="/register" component={Register} />
         <Route exact path="/resetpassword" component={ResetPassword} />
         <Route exact path="/login" component={Login} />
