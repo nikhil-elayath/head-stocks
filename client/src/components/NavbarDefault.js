@@ -17,7 +17,7 @@ export default class NavbarDefault extends Component {
     }
   }
 
-  removeToekn = () => {
+  removeToken = () => {
     localStorage.removeItem("token");
   };
 
@@ -43,20 +43,11 @@ export default class NavbarDefault extends Component {
             Stocks
           </Link>
         </span>
-        {!localStorage.getItem("token") ? (
-          <span>
-            <Link to="/Login" className="linkdecornone">
-              Login
-            </Link>
-          </span>
-        ) : (
-          <span onClick={this.removeToken}>
-            <Link to="/" className="linkdecornone">
-              Logout
-            </Link>
-          </span>
-        )}
-
+        <span>
+          <Link to="/login" className="linkdecornone">
+            Login
+          </Link>
+        </span>
         <span className="icon" onClick={this.myhamburgfunction}>
           <i className="fa fa-bars"></i>
         </span>
