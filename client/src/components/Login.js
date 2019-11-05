@@ -134,7 +134,8 @@ export class Login extends Component {
               <Link to="/resetpassword">
                 <p
                   style={{
-                    color: "#39abf7"
+                    color: "#39abf7",
+                    marginTop: "20px"
                   }}
                 >
                   Forgot Password ?
