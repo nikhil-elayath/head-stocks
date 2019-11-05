@@ -1,20 +1,22 @@
-import React, { Component } from "react";
-import { getCompanyDetail } from "../actions/CompanyDetail";
-import { connect } from "react-redux";
-//importing css file
-import "../styles/CompanyDetail.css";
+import React, { Component } from 'react'
+import { getCompanyDetail } from '../actions/CompanyDetail'
+import { connect } from 'react-redux'
+// importing css file
+import '../styles/CompanyDetail.css'
+import SecondaryNavbar from '../components/Common/CompanyDetailSecondaryNavbar'
 
 export class CompanyDetail extends Component {
-  componentDidMount() {
-    console.log("component mounted");
-    this.props.getCompanyDetail();
+  componentDidMount () {
+    console.log('component mounted')
+    this.props.getCompanyDetail()
   }
-  render() {
+  render () {
     return (
       <div>
-        <div id="company-detail-grid-container">
+        <SecondaryNavbar />
+        <div id='company-detail-grid-container'>
           {this.props.company.map(company => (
-            <div id="company-detail-profile">
+            <div id='company-detail-profile'>
               <h3>
                 Sector :<span>{company.sector}</span>
               </h3>
@@ -29,27 +31,27 @@ export class CompanyDetail extends Component {
                 Employees: <span> {company.employees}</span>
               </h3>
               <h3>
-                <span>{company.bio}</span>{" "}
+                <span>{company.bio}</span>{' '}
               </h3>
             </div>
           ))}
           {/* recommendation */}
 
-          <div id="company-detail-recommendation">
+          <div id='company-detail-recommendation'>
             {this.props.company.map(company => (
               <h3> {company.sector}</h3>
             ))}
-            <div id="test"></div>
+            <div id='test' />
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 const mapStateToProps = state => ({
-  company: state.CompanyDetailReducer.company,
-});
+  company: state.CompanyDetailReducer.company
+})
 export default connect(
   mapStateToProps,
   { getCompanyDetail }
-)(CompanyDetail);
+)(CompanyDetail)
