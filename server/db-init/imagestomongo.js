@@ -8,29 +8,26 @@ const url = "mongodb://localhost:27017";
 // Database Name
 const dbName = "headstock";
 var imageAsBase64 = fs.readFileSync(
-  process.cwd() + "\\newsimage\\1.jpg",
+  process.cwd() + "\\newsimage\\10.jpeg",
   "base64"
 );
-console.log(imageAsBase64);
 mongoClient.connect(url, function(err, db) {
-  if (err) {
-    console.log("Sorry unable to connect to MongoDB Error:", err);
-  } else {
-    console.log("Connected successfully to server");
-    const db = db.db(dbName);
-    try {
-      var collection = db.collection("news");
-      collection.update(
-        { _id: 100 },
-        {
-          $set: {
-            news_image: imageAsBase64
-          }
+  console.log("Connected successfully to server");
+  const dbo = db.db(dbName);
+  try {
+    var collection = dbo.collection("news");
+    collection.updateOne(
+      { new_id: 10 },
+      {
+        $set: {
+          news_image: imageAsBase64
         }
-      );
-      console.log("Image Inserted");
-    } catch (err) {
-      console.log(err);
-    }
+      },
+      { upsert: true }
+    );
+    console.log("Image Inserted");
+    db.close();
+  } catch (err) {
+    console.log(err);
   }
 });
