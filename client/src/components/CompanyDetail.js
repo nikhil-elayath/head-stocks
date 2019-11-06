@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getCompanyDetail } from "../actions/CompanyDetail";
+import { getCompanyDetail, getBalanceSheet } from "../actions/CompanyDetail";
 import { connect } from "react-redux";
 // importing css file
 import "../styles/CompanyDetail.css";
@@ -9,6 +9,7 @@ export class CompanyDetail extends Component {
   componentDidMount() {
     console.log("component mounted");
     this.props.getCompanyDetail();
+    this.props.getBalanceSheet();
   }
   render() {
     return (
@@ -54,5 +55,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { getCompanyDetail }
+  { getCompanyDetail, getBalanceSheet }
 )(CompanyDetail);

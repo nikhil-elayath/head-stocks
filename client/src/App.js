@@ -10,7 +10,7 @@ import CompanyDetail from "./components/CompanyDetail";
 import CompanyDetailSecondaryNavbar from "./components/Common/CompanyDetailSecondaryNavbar";
 // aditya
 import StocksLanding from "./components/StocksLanding";
-import { CompanyDetailFinancial } from "./components/CompanyDetailFinancial";
+import CompanyDetailFinancial from "./components/CompanyDetailFinancial";
 import CompanyDetailAnalysis from "./components/CompanyDetailAnalysis";
 
 function App() {
