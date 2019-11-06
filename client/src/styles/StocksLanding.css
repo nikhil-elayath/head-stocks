@@ -41,3 +41,51 @@
   font-size: 20px;
   color: #707070;
 }
+
+#stocks_flex_details {
+  display: flex;
+  justify-content: center;
+}
+
+#stocks_details_title {
+  color: #707070;
+  margin-right: 5px;
+}
+
+#stocks_details {
+  color: black;
+  font-size: 16px;
+  /* font-weight: 600; */
+}
+
+/* ------------------------------------------------------------------------------ */
+
+@media only screen and (max-width: 1224px) {
+  #stocks_grid_container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 920px) {
+  #stocks_grid_container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 755px) {
+  #stocks_grid_container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 466px) {
+  #stocks_grid_container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 426px) {
+  #stocks_grid_container {
+    grid-template-columns: 1fr;
+  }
+}
