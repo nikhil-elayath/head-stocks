@@ -11,8 +11,33 @@
   font-weight: 600;
 }
 
+#stocks_main_grid_container {
+  margin: 30px;
+}
+
 #stocks_grid_container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-gap: 10px;
+  grid-gap: 15px;
+}
+
+#stocks_grid_details {
+  border: 1px solid #707070;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+}
+
+#stocks_img {
+  border-radius: 50px;
+}
+
+#stocks_name {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+#stocks_ticker {
+  font-size: 20px;
+  color: #707070;
 }
