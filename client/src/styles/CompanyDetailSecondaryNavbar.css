@@ -65,3 +65,6 @@
   /* letter-spacing: 0.3px; */
   text-align: center;
 }
+.company-link {
+  text-decoration: none;
+}
