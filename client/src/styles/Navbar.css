@@ -1,5 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Karla);
-* {
+ * {
     font-family: Karla;
   }
 /* Desktop view */
@@ -7,12 +7,13 @@
     overflow: hidden;
     background-color: #2c3e50;
     box-shadow: 0px 1px 5px black;
-    
+    position: relative;
    }
 
    .navbarLogoName {
      float: left;
    } 
+
    .navbarLoginOptions span {
      float: right;
    }
@@ -22,17 +23,20 @@
    }
    .navbarSearchBox {
       float: left;
-      width: auto;
+      width: 32%;
       display: block;
-      margin: 15px;
-      padding: 0px 70px;
-      
+      /* margin: 15px;*/
+      padding: 0px 4%; 
+   }
+   .navbarSearchSpan {
+     padding: 12px 16px !important;
    }
    .navbarSearchBox input {
      border-radius: 5px;
      border: none;
-     width: 460px;
-     height: 28px;
+     width: 100%;
+     /* min-width: 300px; */
+     height: 27px;
      text-align: center;
    }
   .navbarHS span {
@@ -42,10 +46,12 @@
     padding: 14px 16px;
     text-decoration: none;
     font-size: 20px;
+    font-family: Karla;
   }
 
   .navbarHS .linkdecornone{
     text-decoration: none;
+    color: #f2f2f2;
   }
 
   .navbarlogoimage {
@@ -53,10 +59,10 @@
     margin: 0px 0px 0px 0px;
   }
   
-  .navbarHS span:hover {
+  /* .navbarHS span:hover {
     background-color: #ffffff;
     color: black;
-  }
+  } */
   
   .navbarHS span.active {
     background-color: #39abf7;
@@ -96,23 +102,32 @@
    }
    .navbarSearchBox {
     float: left;
-    width: 100%;
     display: block;
-    position: absolute;
-    margin: 70px 0 0 0;
-    padding: 0px 10px 0px 35px;
+    /* position: fixed; */
+    /* margin: 70px 0 0 0; */
+    /* padding: 0px 10px 0px 25px; */
+    padding: 0px 0px; 
+    width: 100%;
     
+    
+  }
+  .navbarSearchBox span {
+    /* margin-top: 60px; */
+    display: none
   }
   .navbarSearchBox input {
     border-radius: 5px;
     border: 1px solid #2c3e50;
     width: 340px;
-    height: 28px;
-    text-align: center;
+     text-align: center;
   }
    .navbarHS span:not(:first-child) {display: none;}
     .navbarHS span.icon {
       float: right;
       display: block;
+      position: fixed;
+      top: 0;
+      right: 0;
+      color: #39abf7;
     }
   }
