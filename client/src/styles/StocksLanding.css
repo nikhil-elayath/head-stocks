@@ -42,7 +42,12 @@
   color: #707070;
 }
 
-#stocks_flex_details {
+#stocks_flex_details-one {
+  display: flex;
+  justify-content: center;
+}
+
+#stocks_flex_details-two {
   display: flex;
   justify-content: center;
 }
@@ -87,5 +92,12 @@
 @media only screen and (max-width: 426px) {
   #stocks_grid_container {
     grid-template-columns: 1fr;
+  }
+  #stocks_flex_details-two {
+    display: none;
+  }
+  #stocks_img {
+    border-radius: 50px;
+    float: left;
   }
 }
