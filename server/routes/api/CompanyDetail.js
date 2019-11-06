@@ -37,10 +37,11 @@ MongoClient.connect(url, function(err, client) {
       console.log(err);
     }
   });
+
   //balance sheet
   router.get("/balancesheet", async (req, response) => {
     try {
-      var collection = db.collection("CompanyDetails");
+      var collection = db.collection("BalanceSheet");
 
       //fetching the data from the collectoin and converting them into an array
       collection.find().toArray(function(err, items) {
@@ -51,13 +52,53 @@ MongoClient.connect(url, function(err, client) {
           status: 200,
           //passing result
           data: result,
-          message: "Company Details retreived successfully",
+          message: "Balance Sheet Details retreived successfully",
         });
       });
     } catch (err) {
       console.log(err);
     }
   });
+
+  //getting cash flow
+
+  router.get("/cashflow", async (req, response) => {
+    try {
+      var collection = db.collection("CashFlow");
+      collection.find().toArray(function(err, items) {
+        result = items;
+        console.log("Printing result", result);
+        response.status(200).json({
+          status: 200,
+          //passing result
+          data: result,
+          message: "CashFlow Details retreived successfully",
+        });
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  });
+
+  //getting profit and loss
+  router.get("/cashflow", async (req, response) => {
+    try {
+      var collection = db.collection("ProfitAndLoss");
+      collection.find().toArray(function(err, items) {
+        result = items;
+        console.log("Printing result", result);
+        response.status(200).json({
+          status: 200,
+          //passing result
+          data: result,
+          message: "Profit and loss Details retreived successfully",
+        });
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  });
+
   //closing the connect method
 });
 

@@ -1,7 +1,8 @@
-import { COMPANY_DETAIL } from "../actions/Types";
+import { COMPANY_DETAIL, BALANCE_SHEET } from "../actions/Types";
 
 const initialState = {
   company: [],
+  balance_sheet: [],
 };
 
 export default function(state = initialState, action) {
@@ -10,6 +11,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         company: action.payload,
+      };
+    case BALANCE_SHEET:
+      return {
+        ...state,
+        balance_sheet: action.payload,
       };
     default:
       return state;

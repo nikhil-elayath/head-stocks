@@ -10,4 +10,8 @@ export const ERROR_TYPE = "ERROR_TYPE";
 export const ALL_NEWS = "ALL_NEWS";
 export const NEWS_BY_ID = "NEWS_BY_ID";
 
+//NIKHIL
 export const COMPANY_DETAIL = "COMPANY_DETAIL";
+export const BALANCE_SHEET = "BALANCE_SHEET";
+export const CASH_FLOW = "CASH_FLOW";
+export const PROFIT_AND_LOSS = "PROFIT_AND_LOSS";

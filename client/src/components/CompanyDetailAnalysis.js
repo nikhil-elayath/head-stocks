@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import CompanyDetailSecondaryNavbar from "./Common/CompanyDetailSecondaryNavbar";
+import { getBalanceSheet } from "../actions/CompanyDetail";
+import { connect } from "react-redux";
 
-export default class CompanyDetailAnalysis extends Component {
+export class CompanyDetailAnalysis extends Component {
+  componentDidMount() {
+    this.props.getBalanceSheet();
+  }
   render() {
     return (
       <div>
@@ -11,3 +16,11 @@ export default class CompanyDetailAnalysis extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  company: state.CompanyDetailReducer.company,
+});
+export default connect(
+  mapStateToProps,
+  { getBalanceSheet }
+)(CompanyDetailAnalysis);
