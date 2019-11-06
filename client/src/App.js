@@ -8,6 +8,7 @@ import Login from "./components/Login";
 import home from "./components/Home";
 // Harshal
 import NavbarDefault from "./components/NavbarDefault";
+import IndicesProfile from "./components/IndicesProfile";
 //nikhil
 import CompanyDetail from "./components/CompanyDetail";
 //aditya
@@ -18,7 +19,7 @@ function App() {
     <Router>
       <div>
         {/* Harshal */}
-        <NavbarDefault />
+        {/* <NavbarDefault /> */}
         {/* Bhavana */}
         <Route exact path="/register" component={Register} />
         <Route exact path="/resetpassword" component={ResetPassword} />
@@ -29,6 +30,7 @@ function App() {
         <Route exact path="/companydetail" component={CompanyDetail} />
         {/* aditya */}
         <Route exact path="/stocks" component={StocksLanding} />
+        <Route exact path="/indexProfile" component={IndicesProfile} />
       </div>
     </Router>
   );

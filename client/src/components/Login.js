@@ -131,7 +131,7 @@ export class Login extends Component {
               ) : (
                 <p style={{ display: "none" }}>Hello</p>
               )}
-              <Link to="/resetpassword">
+              <Link to="/resetpassword" style={{ textDecoration: "none" }}>
                 <p
                   style={{
                     color: "#39abf7",

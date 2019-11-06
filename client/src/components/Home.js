@@ -1,17 +1,20 @@
 import React, { Component } from "react";
-import { allNews, newsById } from "../actions/Home";
+import { allNews, newsById, getIndices } from "../actions/Home";
 import { connect } from "react-redux";
 import "../styles/Home.css";
+import welcome from "./welcome.svg";
 
 export class Home extends Component {
   componentDidMount() {
     //this function calls the get News function which is defined in the actions which will retrive all the data from the news table.
     this.props.allNews();
     this.props.newsById(1);
+    this.props.getIndices();
   }
 
   render() {
     console.log(this.props.singleNews);
+    var change;
     return (
       <body>
         <div id="homecontainer">
@@ -44,7 +47,8 @@ export class Home extends Component {
               <img
                 id="image"
                 src={
-                  "data:image/jpeg;base64," + this.props.singleNews.news_image
+                  // "data:image/jpeg;base64," + this.props.singleNews.news_image
+                  welcome
                 }
               />
               <p id="headlineDescription">
@@ -52,7 +56,45 @@ export class Home extends Component {
               </p>
             </div>
           </div>
-          <div id="homerightsidecontainer"></div>
+          <div id="homerightsidecontainer">
+            <h1>Indices</h1>
+            <div>
+              <table id="homeIndicesTable">
+                <th>Indices</th>
+                <th>Last</th>
+                <th>Chng %</th>
+                {this.props.indices.map((indices, index) => (
+                  <tr>
+                    <td
+                      id="indicesName"
+                      onClick={() =>
+                        this.props.history.push(
+                          "/indexProfile/" + indices.name,
+                          {
+                            indices
+                          }
+                        )
+                      }
+                    >
+                      {indices.name}
+                    </td>
+                    <td>{indices.last}</td>
+                    <td
+                      id={
+                        String(indices.change).charAt(0) == "-"
+                          ? "negativeIndex"
+                          : "positiveIndex"
+                      }
+                    >
+                      {String(indices.change).charAt(0) == "-"
+                        ? indices.change
+                        : "+" + indices.change}
+                    </td>{" "}
+                  </tr>
+                ))}{" "}
+              </table>
+            </div>
+          </div>
         </div>
       </body>
     );
@@ -61,12 +103,14 @@ export class Home extends Component {
 
 const mapStateToProps = state => ({
   news: state.homeReducer.news,
-  singleNews: state.homeReducer.singleNews
+  singleNews: state.homeReducer.singleNews,
+  indices: state.homeReducer.indices
 });
 export default connect(
   mapStateToProps,
   {
     allNews,
-    newsById
+    newsById,
+    getIndices
   }
 )(Home);

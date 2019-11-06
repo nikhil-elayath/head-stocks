@@ -6,8 +6,6 @@
 
 #registerMainContainer {
   width: 100%;
-  margin: 0px auto;
-  height: auto;
   grid-template-columns: "side1";
   background-color: #2c3e50;
   display: grid;
@@ -121,7 +119,7 @@
   }
 
   #registerMainContainer > div:nth-child(1) {
-    margin: auto 10px auto 10px;
+    margin: 125px auto;
   }
 
   #registerLeftContainer > h1 {

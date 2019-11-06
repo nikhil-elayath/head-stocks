@@ -9,5 +9,6 @@ export const ERROR_TYPE = "ERROR_TYPE";
 //Piyush
 export const ALL_NEWS = "ALL_NEWS";
 export const NEWS_BY_ID = "NEWS_BY_ID";
+export const GET_ALL_INDICES = "GET_ALL_INDICES";
 
 export const COMPANY_DETAIL = "COMPANY_DETAIL";
