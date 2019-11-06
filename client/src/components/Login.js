@@ -113,7 +113,7 @@ export class Login extends Component {
                   value={this.state.email}
                 />
               </p>
-              <p id="loginErrorMessage">{this.state.errors.email}</p>
+                <p id="loginErrorMessage">{this.state.errors.email}</p>
               <p>
                 <input
                   id="loginInput"

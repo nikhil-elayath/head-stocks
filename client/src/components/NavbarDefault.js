@@ -20,7 +20,7 @@ export default class NavbarDefault extends Component {
   render() {
     return (
       <div className="navbarHS" id="navbarID">
-        <Link to="/">
+        <Link to="/Headstocks">
           <div className="navbarLogoName">
             <span className="active">
               <img
@@ -45,7 +45,7 @@ export default class NavbarDefault extends Component {
 
         <div className="navbarStockOptions">
           <span>
-            <Link to="/StocksHome" className="linkdecornone">
+            <Link to="/stocks" className="linkdecornone">
               Stocks
             </Link>
           </span>
