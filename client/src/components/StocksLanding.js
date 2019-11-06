@@ -14,48 +14,91 @@ export default class StocksLanding extends Component {
           <p>STOCKS</p>
           <div id="stocks_main_grid_container">
             <div id="stocks_grid_container">
+              {/* -------------------------------------------------------------------------------------- */}
               <div id="stocks_grid_details">
                 <img src={companylogo} id="stocks_img" />
                 <div id="stocks_name">APPLE INC</div>
                 <div id="stocks_ticker">(APPL)</div>
-                <div id="stocks_details">Closed Price: 249.05 USD</div>
-                <div id="stocks_details">Market Cap: 1114.39B</div>
+                <div id="stocks_flex_details">
+                  <div id="stocks_details_title">Closed Price:</div>
+                  <div id="stocks_details">249.05 USD</div>
+                </div>
+                <div id="stocks_flex_details">
+                  <div id="stocks_details_title">Market Cap:</div>
+                  <div id="stocks_details">1114.39B</div>
+                </div>
               </div>
+              {/* -------------------------------------------------------------------------------------- */}
               <div id="stocks_grid_details">
                 <img src={companylogo} id="stocks_img" />
                 <div id="stocks_name">APPLE INC</div>
                 <div id="stocks_ticker">(APPL)</div>
-                <div id="stocks_details">Closed Price: 249.05 USD</div>
-                <div id="stocks_details">Market Cap: 1114.39B</div>
+                <div id="stocks_flex_details">
+                  <div id="stocks_details_title">Closed Price:</div>
+                  <div id="stocks_details">249.05 USD</div>
+                </div>
+                <div id="stocks_flex_details">
+                  <div id="stocks_details_title">Market Cap:</div>
+                  <div id="stocks_details">1114.39B</div>
+                </div>
               </div>
+              {/* -------------------------------------------------------------------------------------- */}
               <div id="stocks_grid_details">
                 <img src={companylogo} id="stocks_img" />
                 <div id="stocks_name">APPLE INC</div>
                 <div id="stocks_ticker">(APPL)</div>
-                <div id="stocks_details">Closed Price: 249.05 USD</div>
-                <div id="stocks_details">Market Cap: 1114.39B</div>
+                <div id="stocks_flex_details">
+                  <div id="stocks_details_title">Closed Price:</div>
+                  <div id="stocks_details">249.05 USD</div>
+                </div>
+                <div id="stocks_flex_details">
+                  <div id="stocks_details_title">Market Cap:</div>
+                  <div id="stocks_details">1114.39B</div>
+                </div>
               </div>
+              {/* -------------------------------------------------------------------------------------- */}
               <div id="stocks_grid_details">
                 <img src={companylogo} id="stocks_img" />
                 <div id="stocks_name">APPLE INC</div>
                 <div id="stocks_ticker">(APPL)</div>
-                <div id="stocks_details">Closed Price: 249.05 USD</div>
-                <div id="stocks_details">Market Cap: 1114.39B</div>
+                <div id="stocks_flex_details">
+                  <div id="stocks_details_title">Closed Price:</div>
+                  <div id="stocks_details">249.05 USD</div>
+                </div>
+                <div id="stocks_flex_details">
+                  <div id="stocks_details_title">Market Cap:</div>
+                  <div id="stocks_details">1114.39B</div>
+                </div>
               </div>
+              {/* -------------------------------------------------------------------------------------- */}
               <div id="stocks_grid_details">
                 <img src={companylogo} id="stocks_img" />
                 <div id="stocks_name">APPLE INC</div>
                 <div id="stocks_ticker">(APPL)</div>
-                <div id="stocks_details">Closed Price: 249.05 USD</div>
-                <div id="stocks_details">Market Cap: 1114.39B</div>
+                <div id="stocks_flex_details">
+                  <div id="stocks_details_title">Closed Price:</div>
+                  <div id="stocks_details">249.05 USD</div>
+                </div>
+                <div id="stocks_flex_details">
+                  <div id="stocks_details_title">Market Cap:</div>
+                  <div id="stocks_details">1114.39B</div>
+                </div>
               </div>
+              {/* -------------------------------------------------------------------------------------- */}
               <div id="stocks_grid_details">
                 <img src={companylogo} id="stocks_img" />
                 <div id="stocks_name">APPLE INC</div>
                 <div id="stocks_ticker">(APPL)</div>
-                <div id="stocks_details">Closed Price: 249.05 USD</div>
-                <div id="stocks_details">Market Cap: 1114.39B</div>
+                <div id="stocks_flex_details">
+                  <div id="stocks_details_title">Closed Price:</div>
+                  <div id="stocks_details">249.05 USD</div>
+                </div>
+                <div id="stocks_flex_details">
+                  <div id="stocks_details_title">Market Cap:</div>
+                  <div id="stocks_details">1114.39B</div>
+                </div>
               </div>
+              {/* -------------------------------------------------------------------------------------- */}
             </div>
           </div>
         </div>
