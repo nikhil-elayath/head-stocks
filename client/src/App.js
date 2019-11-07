@@ -30,8 +30,8 @@ function App() {
           path="/secondarynavbar"
           component={CompanyDetailSecondaryNavbar}
         />
-        <Route exact path="/financial" component={CompanyDetailFinancial} />
-        <Route exact path="/analysis" component={CompanyDetailAnalysis} />
+        <Route exact path="/financial/:id" component={CompanyDetailFinancial} />
+        <Route exact path="/analysis/:id" component={CompanyDetailAnalysis} />
       </div>
     </Router>
   );

@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-import { getBalanceSheet } from "../../actions/CompanyDetail";
+// import { getBalanceSheet } from "../../actions/CompanyDetail";
 import { connect } from "react-redux";
 // importing css file
 import "../../styles/CompanyDetailSecondaryNavbar.css";
 import { Link } from "react-router-dom";
 
-export default class CompanyDetailSecondaryNavbar extends Component {
+export class CompanyDetailSecondaryNavbar extends Component {
   componentDidMount() {
     console.log("component mounted");
   }
+  // DEFINING THE STATE WITH OVERVIEW AS DEFAULT AND REST TWO OPTIONS FALSE
   state = {
     overview: true,
     financial: false,
@@ -23,7 +24,8 @@ export default class CompanyDetailSecondaryNavbar extends Component {
             <ul id="company-detail-content-container">
               <Link
                 className="company-link"
-                to={{ pathname: "/companydetail" }}
+                // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
+                to={{ pathname: "/companydetail/" + this.props.company._id }}
               >
                 {" "}
                 {/* {this.props.getBalanceSheet()}{" "} */}
@@ -56,10 +58,13 @@ export default class CompanyDetailSecondaryNavbar extends Component {
 
               {/* Financial Section  */}
               <div id="company-detail-financial">
+                {/* {this.props.home.map(news => ( */}
                 <Link
                   className="company-link"
                   to={{
-                    pathname: "/financial",
+                    // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
+
+                    pathname: "/financial/" + this.props.company._id,
                   }}
                 >
                   <span
@@ -85,6 +90,7 @@ export default class CompanyDetailSecondaryNavbar extends Component {
                     </li>
                   </span>
                 </Link>
+                {/* ))} */}
               </div>
 
               {/* Analysis section */}
@@ -92,7 +98,7 @@ export default class CompanyDetailSecondaryNavbar extends Component {
                 <Link
                   className="company-link"
                   to={{
-                    pathname: "/analysis",
+                    pathname: "/analysis/" + this.props.company._id,
                   }}
                 >
                   <span
@@ -126,10 +132,10 @@ export default class CompanyDetailSecondaryNavbar extends Component {
     );
   }
 }
-// const mapStateToProps = state => ({
-//   company: state.CompanyDetailReducer.company,
-// });
-// export default connect(
-//   mapStateToProps,
-//   { getBalanceSheet }
-// )(CompanyDetailSecondaryNavbar);
+const mapStateToProps = state => ({
+  company: state.CompanyDetailReducer.company,
+});
+export default connect(
+  mapStateToProps
+  // { getBalanceSheet }
+)(CompanyDetailSecondaryNavbar);
