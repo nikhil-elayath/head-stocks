@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import users from "./usersReducer";
 import home from "./homeReducer";
 import company from "./CompanyDetailReducer";
-
+import searchResults from "./navbarReducer"
 export default combineReducers({
   //piyush
   homeReducer: home,
@@ -10,5 +10,7 @@ export default combineReducers({
   //bhavana
   usersReducer: users,
   //nikhil
-  CompanyDetailReducer: company
+  CompanyDetailReducer: company,
+  // Harshal
+  navbarReducer: searchResults
 });
