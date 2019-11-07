@@ -4,9 +4,15 @@
 **/node_modules
 **/.pnp
 **/.pnp.js
+**/package-lock.json
+**/.csv
+**/.zip
+**/simfin-data
+**/yahoo-data
 
 # testing
 **/coverage
+**/.sacnnerwork
 
 # production
 **/build
