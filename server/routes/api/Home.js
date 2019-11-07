@@ -72,4 +72,27 @@ router.get("/index", async (req, res) => {
   });
 });
 
+router.get("/search", async (req, res) => {
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("stocks");
+    var user_value = req.body.search_value;
+    dbo
+      .collection("stocks")
+      .find(
+        { tname: { $regex: user_value, $options: "i" } },
+        { tdate: 0, tname: 1, sector: 1 }
+      )
+      .toArray(function(err, result) {
+        if (err) throw err;
+        res.status(200).json({
+          status: 200,
+          data: result,
+          message: "Retrieved Ticker Sucessfully"
+        });
+        db.close();
+      });
+  });
+});
+
 module.exports = router;

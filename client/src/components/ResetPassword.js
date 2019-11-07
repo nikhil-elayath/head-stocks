@@ -38,11 +38,6 @@ export class ResetPassword extends Component {
       password: this.state.password
     };
     this.props.resetPassword(user);
-    this.setState({
-      email: "",
-      password: "",
-      confirmPassword: ""
-    });
   };
 
   verifyOTP = e => {
@@ -52,6 +47,12 @@ export class ResetPassword extends Component {
     };
     if (this.props.verifyOtp(user)) {
       this.onReset();
+      this.setState({
+        email: "",
+        password: "",
+        confirmPassword: "",
+        otp: ""
+      });
     }
   };
 
@@ -137,6 +138,8 @@ export class ResetPassword extends Component {
                   value={this.state.otp}
                   onChange={this.OnChange}
                 />
+
+                <p>{this.props.error ? this.props.error : "Hello"}</p>
 
                 <p id="resetPasswordErrorMessage">{this.state.errors.otp}</p>
 

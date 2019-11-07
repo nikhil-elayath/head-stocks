@@ -18,7 +18,7 @@ export default class StocksLanding extends Component {
               <div id="stocks_grid_details">
                 <img src={companylogo} id="stocks_img" />
                 <div id="stocks_name">APPLE INC</div>
-                <div id="stocks_ticker">(APPL)</div>
+                <div id="stocks_ticker">(AAPL)</div>
                 <div id="stocks_flex_details">
                   <div id="stocks_details_title">Closed Price:</div>
                   <div id="stocks_details">249.05 USD</div>
@@ -32,7 +32,7 @@ export default class StocksLanding extends Component {
               <div id="stocks_grid_details">
                 <img src={companylogo} id="stocks_img" />
                 <div id="stocks_name">APPLE INC</div>
-                <div id="stocks_ticker">(APPL)</div>
+                <div id="stocks_ticker">(AAPL)</div>
                 <div id="stocks_flex_details">
                   <div id="stocks_details_title">Closed Price:</div>
                   <div id="stocks_details">249.05 USD</div>
@@ -46,7 +46,7 @@ export default class StocksLanding extends Component {
               <div id="stocks_grid_details">
                 <img src={companylogo} id="stocks_img" />
                 <div id="stocks_name">APPLE INC</div>
-                <div id="stocks_ticker">(APPL)</div>
+                <div id="stocks_ticker">(AAPL)</div>
                 <div id="stocks_flex_details">
                   <div id="stocks_details_title">Closed Price:</div>
                   <div id="stocks_details">249.05 USD</div>
@@ -60,7 +60,7 @@ export default class StocksLanding extends Component {
               <div id="stocks_grid_details">
                 <img src={companylogo} id="stocks_img" />
                 <div id="stocks_name">APPLE INC</div>
-                <div id="stocks_ticker">(APPL)</div>
+                <div id="stocks_ticker">(AAPL)</div>
                 <div id="stocks_flex_details">
                   <div id="stocks_details_title">Closed Price:</div>
                   <div id="stocks_details">249.05 USD</div>
@@ -74,7 +74,7 @@ export default class StocksLanding extends Component {
               <div id="stocks_grid_details">
                 <img src={companylogo} id="stocks_img" />
                 <div id="stocks_name">APPLE INC</div>
-                <div id="stocks_ticker">(APPL)</div>
+                <div id="stocks_ticker">(AAPL)</div>
                 <div id="stocks_flex_details">
                   <div id="stocks_details_title">Closed Price:</div>
                   <div id="stocks_details">249.05 USD</div>
@@ -88,7 +88,7 @@ export default class StocksLanding extends Component {
               <div id="stocks_grid_details">
                 <img src={companylogo} id="stocks_img" />
                 <div id="stocks_name">APPLE INC</div>
-                <div id="stocks_ticker">(APPL)</div>
+                <div id="stocks_ticker">(AAPL)</div>
                 <div id="stocks_flex_details">
                   <div id="stocks_details_title">Closed Price:</div>
                   <div id="stocks_details">249.05 USD</div>

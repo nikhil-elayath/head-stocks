@@ -15,13 +15,14 @@ import CompanyDetailSecondaryNavbar from "./components/Common/CompanyDetailSecon
 import StocksLanding from "./components/StocksLanding";
 import { CompanyDetailFinancial } from "./components/CompanyDetailFinancial";
 import CompanyDetailAnalysis from "./components/CompanyDetailAnalysis";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <Router>
       <div>
         {/* Harshal */}
-        {/* <NavbarDefault /> */}
+        <NavbarDefault />
         {/* Bhavana */}
         <Route exact path="/register" component={Register} />
         <Route exact path="/resetpassword" component={ResetPassword} />
@@ -40,6 +41,7 @@ function App() {
         <Route exact path="/financial" component={CompanyDetailFinancial} />
         <Route exact path="/analysis" component={CompanyDetailAnalysis} />
       </div>
+      <Footer />
     </Router>
   );
 }
