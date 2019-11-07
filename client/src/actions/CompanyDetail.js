@@ -3,6 +3,7 @@ import {
   BALANCE_SHEET,
   CASH_FLOW,
   PROFIT_AND_LOSS,
+  COMPANY_DETAIL_BY_ID,
 } from "./Types";
 import axios from "axios";
 
@@ -14,6 +15,24 @@ export const getCompanyDetail = () => dispatch => {
       .then(res => {
         dispatch({
           type: COMPANY_DETAIL,
+          payload: res.data.data,
+        });
+      });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//getting company details by id
+export const getCompanyDetailById = id => dispatch => {
+  console.log("get companydetails by id from actions", id);
+  try {
+    return axios
+      .get("http://localhost:2001/api/companydetail/" + id)
+      .then(res => {
+        dispatch({
+          type: COMPANY_DETAIL_BY_ID,
+
           payload: res.data.data,
         });
       });

@@ -1,4 +1,4 @@
-import { COMPANY_DETAIL, BALANCE_SHEET } from "../actions/Types";
+import { COMPANY_DETAIL_BY_ID, BALANCE_SHEET } from "../actions/Types";
 
 const initialState = {
   company: [],
@@ -7,7 +7,7 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case COMPANY_DETAIL:
+    case COMPANY_DETAIL_BY_ID:
       return {
         ...state,
         company: action.payload,

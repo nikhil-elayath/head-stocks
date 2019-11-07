@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-import { getCompanyDetail, getBalanceSheet } from "../actions/CompanyDetail";
+import {
+  // getCompanyDetail,
+  getBalanceSheet,
+  getCompanyDetailById,
+} from "../actions/CompanyDetail";
 import { connect } from "react-redux";
 // importing css file
 import "../styles/CompanyDetail.css";
@@ -7,9 +11,13 @@ import SecondaryNavbar from "../components/Common/CompanyDetailSecondaryNavbar";
 
 export class CompanyDetail extends Component {
   componentDidMount() {
+    const id = this.props.match.params.id;
+    console.log("printing id from the component", id);
+
     console.log("component mounted");
-    this.props.getCompanyDetail();
-    this.props.getBalanceSheet();
+    // this.props.getCompanyDetail();
+    // this.props.getBalanceSheet();
+    this.props.getCompanyDetailById(id);
   }
   render() {
     return (
@@ -55,5 +63,9 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { getCompanyDetail, getBalanceSheet }
+  {
+    //  getCompanyDetail
+    getBalanceSheet,
+    getCompanyDetailById,
+  }
 )(CompanyDetail);

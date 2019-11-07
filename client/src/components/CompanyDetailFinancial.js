@@ -6,6 +6,7 @@ import {
   getProfitAndLoss,
 } from "../actions/CompanyDetail";
 import { connect } from "react-redux";
+import "../styles/CompanyDetailFinancial.css";
 
 export class CompanyDetailFinancial extends Component {
   componentDidMount() {
@@ -20,14 +21,112 @@ export class CompanyDetailFinancial extends Component {
         <CompanyDetailSecondaryNavbar />
         <p>Financials </p>
         {this.props.balance_sheet.map(balance_sheet => (
-          <div>
-            <p>{balance_sheet.cash_equivalents} </p>
-            <p>{balance_sheet.current_assests} </p>
-            <p>{balance_sheet.total_assests} </p>
-            <p>{balance_sheet.account_payable} </p>
-            <p>{balance_sheet.recieveables} </p>
-            <p>{balance_sheet.preferred_equity} </p>
-            <p>{balance_sheet.equity_before_minority} </p>
+          <div id="table_data">
+            <table>
+              <tr>
+                <div id="bla">
+                  <td> </td>
+                  <td>2008 </td>
+                  <td>2008</td>
+                  <td>2008</td>
+                  <td>2008</td>
+                  <td>2008</td>
+                  <td>2008</td>
+                  <td>2008</td>
+                  <td>2008</td>
+                  <td>2008</td>
+                  <td>2008</td>
+                  <td>2008</td>
+                  <td>2008</td>
+                  <td>2008</td>
+                  <td>2008</td>
+
+                  <td>2008</td>
+
+                  <td>2008</td>
+
+                  <td>2009</td>
+                  <td>2009</td>
+
+                  <td>2009</td>
+
+                  <td>2009</td>
+
+                  <td>2009</td>
+                </div>
+              </tr>
+              <tr>
+                {/* map the name of the data once the data in ready */}
+                <td> Data name</td>
+
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+
+                <td> {balance_sheet.current_assests}</td>
+
+                <td> {balance_sheet.current_assests}</td>
+
+                <td> {balance_sheet.current_assests}</td>
+              </tr>
+              <tr>
+                <td> Data name</td>
+
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+
+                <td> {balance_sheet.current_assests}</td>
+
+                <td> {balance_sheet.current_assests}</td>
+              </tr>
+              <tr>
+                <td> Data name</td>
+
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+
+                <td> {balance_sheet.current_assests}</td>
+
+                <td> {balance_sheet.current_assests}</td>
+              </tr>
+            </table>
           </div>
         ))}
       </div>
