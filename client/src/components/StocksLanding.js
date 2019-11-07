@@ -19,11 +19,11 @@ export default class StocksLanding extends Component {
                 <img src={companylogo} id="stocks_img" />
                 <div id="stocks_name">APPLE INC</div>
                 <div id="stocks_ticker">(APPL)</div>
-                <div id="stocks_flex_details">
+                <div id="stocks_flex_details-one">
                   <div id="stocks_details_title">Closed Price:</div>
                   <div id="stocks_details">249.05 USD</div>
                 </div>
-                <div id="stocks_flex_details">
+                <div id="stocks_flex_details-two">
                   <div id="stocks_details_title">Market Cap:</div>
                   <div id="stocks_details">1114.39B</div>
                 </div>
@@ -33,11 +33,11 @@ export default class StocksLanding extends Component {
                 <img src={companylogo} id="stocks_img" />
                 <div id="stocks_name">APPLE INC</div>
                 <div id="stocks_ticker">(APPL)</div>
-                <div id="stocks_flex_details">
+                <div id="stocks_flex_details-one">
                   <div id="stocks_details_title">Closed Price:</div>
                   <div id="stocks_details">249.05 USD</div>
                 </div>
-                <div id="stocks_flex_details">
+                <div id="stocks_flex_details-two">
                   <div id="stocks_details_title">Market Cap:</div>
                   <div id="stocks_details">1114.39B</div>
                 </div>
@@ -47,11 +47,11 @@ export default class StocksLanding extends Component {
                 <img src={companylogo} id="stocks_img" />
                 <div id="stocks_name">APPLE INC</div>
                 <div id="stocks_ticker">(APPL)</div>
-                <div id="stocks_flex_details">
+                <div id="stocks_flex_details-one">
                   <div id="stocks_details_title">Closed Price:</div>
                   <div id="stocks_details">249.05 USD</div>
                 </div>
-                <div id="stocks_flex_details">
+                <div id="stocks_flex_details-two">
                   <div id="stocks_details_title">Market Cap:</div>
                   <div id="stocks_details">1114.39B</div>
                 </div>
@@ -61,11 +61,11 @@ export default class StocksLanding extends Component {
                 <img src={companylogo} id="stocks_img" />
                 <div id="stocks_name">APPLE INC</div>
                 <div id="stocks_ticker">(APPL)</div>
-                <div id="stocks_flex_details">
+                <div id="stocks_flex_details-one">
                   <div id="stocks_details_title">Closed Price:</div>
                   <div id="stocks_details">249.05 USD</div>
                 </div>
-                <div id="stocks_flex_details">
+                <div id="stocks_flex_details-two">
                   <div id="stocks_details_title">Market Cap:</div>
                   <div id="stocks_details">1114.39B</div>
                 </div>
@@ -75,11 +75,11 @@ export default class StocksLanding extends Component {
                 <img src={companylogo} id="stocks_img" />
                 <div id="stocks_name">APPLE INC</div>
                 <div id="stocks_ticker">(APPL)</div>
-                <div id="stocks_flex_details">
+                <div id="stocks_flex_details-one">
                   <div id="stocks_details_title">Closed Price:</div>
                   <div id="stocks_details">249.05 USD</div>
                 </div>
-                <div id="stocks_flex_details">
+                <div id="stocks_flex_details-two">
                   <div id="stocks_details_title">Market Cap:</div>
                   <div id="stocks_details">1114.39B</div>
                 </div>
@@ -89,11 +89,11 @@ export default class StocksLanding extends Component {
                 <img src={companylogo} id="stocks_img" />
                 <div id="stocks_name">APPLE INC</div>
                 <div id="stocks_ticker">(APPL)</div>
-                <div id="stocks_flex_details">
+                <div id="stocks_flex_details-one">
                   <div id="stocks_details_title">Closed Price:</div>
                   <div id="stocks_details">249.05 USD</div>
                 </div>
-                <div id="stocks_flex_details">
+                <div id="stocks_flex_details-two">
                   <div id="stocks_details_title">Market Cap:</div>
                   <div id="stocks_details">1114.39B</div>
                 </div>
