@@ -2,7 +2,7 @@
 
 \c headstocks;
 
---[Yatin] Creating the structure
+--[piyush] Creating the structure
 create table yahoodata
 (
     dates date,
