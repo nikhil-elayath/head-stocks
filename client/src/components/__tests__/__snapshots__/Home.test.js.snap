@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing home Component should mount the component 1`] = `
+<Home
+  allNews={
+    [MockFunction] {
+      "calls": Array [
+        Array [],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  home={[MockFunction]}
+  news={
+    Array [
+      Object {
+        "headline": "Master Blaster Sachin baby",
+        "new_id": 1,
+      },
+      Object {
+        "headline": "BCCI President elections coming up",
+        "new_id": 2,
+      },
+    ]
+  }
+  newsById={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          1,
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  singleNews={Array []}
+>
+  <body>
+    <div
+      id="homecontainer"
+    >
+      <div
+        id="homeleftsidecontainer"
+      >
+        <h1>
+          News
+        </h1>
+        <div>
+          <div
+            id="recent-news"
+          />
+          <div
+            className="div-newspage"
+          >
+            <div
+              id="news-list"
+            >
+              <p
+                id="recent-news-title0"
+                onClick={[Function]}
+              >
+                Master Blaster Sachin baby
+              </p>
+              <p
+                id="newsdivider"
+              >
+                <hr />
+              </p>
+            </div>
+          </div>
+          <div
+            className="div-newspage"
+          >
+            <div
+              id="news-list"
+            >
+              <p
+                id="recent-news-title1"
+                onClick={[Function]}
+              >
+                BCCI President elections coming up
+              </p>
+              <p
+                id="newsdivider"
+              >
+                <hr />
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        id="homemiddlecontainer"
+      >
+        <div>
+          <h3
+            id="headline"
+          />
+          <img
+            id="image"
+            src="data:image/jpeg;base64,undefined"
+          />
+          <p
+            id="headlineDescription"
+          />
+        </div>
+      </div>
+      <div
+        id="homerightsidecontainer"
+      />
+    </div>
+  </body>
+</Home>
+`;

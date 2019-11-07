@@ -1,20 +1,24 @@
 import React, { Component } from "react";
-import { getCompanyDetail } from "../actions/CompanyDetail";
+import { getCompanyDetail, getBalanceSheet } from "../actions/CompanyDetail";
 import { connect } from "react-redux";
-//importing css file
+// importing css file
 import "../styles/CompanyDetail.css";
+import SecondaryNavbar from "../components/Common/CompanyDetailSecondaryNavbar";
 
 export class CompanyDetail extends Component {
   componentDidMount() {
     console.log("component mounted");
     this.props.getCompanyDetail();
+    this.props.getBalanceSheet();
   }
   render() {
     return (
       <div>
+        <SecondaryNavbar />
         <div id="company-detail-grid-container">
           {this.props.company.map(company => (
             <div id="company-detail-profile">
+              <h3>Profile</h3>
               <h3>
                 Sector :<span>{company.sector}</span>
               </h3>
@@ -37,9 +41,9 @@ export class CompanyDetail extends Component {
 
           <div id="company-detail-recommendation">
             {this.props.company.map(company => (
-              <h3> {company.sector}</h3>
+              <h3> Recommendation</h3>
             ))}
-            <div id="test"></div>
+            <div id="test" />
           </div>
         </div>
       </div>
@@ -51,5 +55,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { getCompanyDetail }
+  { getCompanyDetail, getBalanceSheet }
 )(CompanyDetail);

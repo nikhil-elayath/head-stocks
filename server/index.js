@@ -29,6 +29,7 @@ app.use("/api/home/", home);
 
 //Nikhil
 app.use("/api/companydetail/", companydetails);
+app.use("/api/companydetail/balancesheet/", companydetails);
 
 const port = process.env.port || 2001;
 

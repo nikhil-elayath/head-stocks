@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import { createUser } from "../actions/Users";
 import { connect } from "react-redux";
 import "../styles/Register.css";
-import ResetPassword from "./ResetPassword";
 import { Link } from "react-router-dom";
-import welcome from "./welcome.svg";
 
 export class Register extends Component {
   state = {

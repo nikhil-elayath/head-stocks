@@ -1,0 +1,70 @@
+#company-detail-content-container > div {
+  color: #2c3e50;
+  font-size: 20px;
+}
+
+/* parent container */
+/* main grid  */
+
+#company-details-tab-container {
+  padding: 0px 0px 0px 10px;
+  grid-template-rows: 1fr;
+  display: grid;
+  grid-template-areas: "overview financial analysis";
+  /* "chart chart"; */
+  grid-template-columns: 1fr 1fr 1fr;
+  /* overflow-x: scroll; */
+  overflow-y: scroll;
+  box-shadow: 0px 4px 6px 0px #cacaca;
+}
+
+/* child within parent container */
+/* grid within grid  */
+
+#company-detail-content-container {
+  /* padding: 10px 10px 10px 10px; */
+  grid-template-rows: 1fr;
+  display: grid;
+  grid-template-areas: "a b c";
+  /* "chart chart"; */
+  grid-template-columns: 1fr 1fr 1fr;
+  /* overflow-x: scroll; */
+  overflow-y: scroll;
+  grid-gap: 15px;
+  list-style-type: none;
+  font-size: 20px;
+}
+
+#comapany-detail-overview-li {
+  grid-area: a;
+  /* color: red; */
+  /* margin: 50px 50px 50px 50px; */
+}
+#company-detail-financial-li {
+  grid-area: b;
+  /* color: yellowgreen; */
+}
+#company-detail-analysis-li {
+  grid-area: c;
+  /* color: blue; */
+}
+
+.options-selected-li {
+  font-weight: 600;
+  cursor: pointer;
+  /* padding-bottom: 7px; */
+  color: #2980b9;
+  border-bottom: 3px solid #2980b9;
+}
+.options-li {
+  /* font-family: "Montserrat", sans-serif; */
+  /* padding: 10px 0px; */
+  /* transition: 0.3s; */
+  color: #272727;
+  /* margin-right: 30px; */
+  /* letter-spacing: 0.3px; */
+  text-align: center;
+}
+.company-link {
+  text-decoration: none;
+}
