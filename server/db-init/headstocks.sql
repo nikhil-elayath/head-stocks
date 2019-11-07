@@ -20,7 +20,7 @@ create table stocksinfo
 -- in the FROM section [Piyush]
 COPY stocksinfo
 (Ticker,SimFinID,CompanyID,IndicatorName, dates, IndicatorValue) 
-FROM 'C:\Users\kinng\Desktop\capstone2\headstocks\server\db-init\output-semicolon-narrow.csv' DELIMITER ';' CSV HEADER;
+FROM 'C:\Users\kinng\Desktop\capstone2\headstocks\server\db-init\stock-data\simfin-data\output-semicolon-narrow.csv' DELIMITER ';' CSV HEADER;
 
 -- Creating Company Column [Piyush]
 ALTER TABLE stocksinfo ADD COLUMN Industry varchar
