@@ -2,8 +2,18 @@ import React, { Component } from 'react'
 import "../styles/Navbar.css";
 import { Link } from "react-router-dom";
 import logo from "./fakelogo.png"
- 
-export default class NavbarDefault extends Component {
+import searchlogo from "./search.png"
+import { connect } from "react-redux";
+import { searchContent } from "../actions/Navbar";
+
+
+export class NavbarDefault extends Component {
+    state= {
+        searchInput: "",
+        home:true,
+        stocks:false,
+        login:false
+    }
 
     //Displays option inside the hamburger button
     myhamburgfunction() {
@@ -19,20 +29,40 @@ export default class NavbarDefault extends Component {
         }
       };
 
-    // showActive() {
-    //     document.getElementById('navbarActive').style.display = "block";
-    //  }
-     
+      OnChange = event => {
+        this.setState({ [event.target.name]: event.target.value });
+      };
+
+      onSearch = e => {
+        e.preventDefault();
+          let searchString = {
+            searchInput: this.state.searchInput,
+           };
+        //   this.props.searchContent(searchString);
+        console.log(searchString)
+          this.setState({
+            searchInput: "",
+          });
+      };
+
+
 
     render() { 
         return (
     
                 <div className="navbarHS" id="navbarID">
 
-                    <Link to="/Headstocks">
+                    <Link to="/">
 
                         <div className="navbarLogoName">
-                            <span className="active">
+                            <span className="active"
+                            onClick={() =>
+                                this.setState({
+                                    home: false,
+                                    stocks: false,
+                                    login: true 
+                                })
+                            } >
                             <img className="navbarlogoimage" src={logo} alt="logo" width="30px" height="30px"/>
                                 HEAD<b>STOCKS</b>
                             </span> 
@@ -42,7 +72,14 @@ export default class NavbarDefault extends Component {
 
             
                     <div className="navbarLoginOptions">
-                        <span>
+                        <span onClick={() =>
+                            this.setState({
+                                home: false,
+                                stocks: false,
+                                login: true 
+                            })
+                        } 
+                        className={this.state.login?"tabactive":""}>
                             <Link to="/Login" className="linkdecornone">
                             Login
                             </Link>
@@ -51,23 +88,21 @@ export default class NavbarDefault extends Component {
                    
                    
 
-                    <div className="navbarStockOptions" 
-                    // onClick={this.showActive}
+                    <div className="navbarStockOptions"
                     >
 
-                        <span>
-                            <Link to="/StocksHome" className="linkdecornone">
+                        <span onClick={() =>
+                            this.setState({
+                                home: false,
+                                stocks: true,
+                                login: false 
+                            })
+                        } 
+                        className={this.state.stocks? "tabactive": ""}>
+                            <Link to="/Stocks" className="linkdecornone">
                             Stocks
                             </Link>
-                            {/* <div id="navbarActive"  style={{display:"none"}} class="answer_list" >
-                            <hr style= {{
-                                backgroundcolor:"#39abf7",
-                                width: "65px", 
-                                padding: "0px",
-                                margin: "0px",
-                                border: "1.5px solid #39abf7"}}
-                                />
-                            </div> */}
+                            
                         </span> 
                     
                     </div>
@@ -76,22 +111,36 @@ export default class NavbarDefault extends Component {
                         <span  className= "navbarSearchSpan">
                         <input 
                         type="text" 
+                        name="searchInput"
                         placeholder="Search for a company or ticker"
+                        onChange={this.OnChange}
                          />
+                         <button onClick={
+                             this.onSearch
+                         }>
+                             <img src={searchlogo} alt="Search Icon" width="15px" height="15px"/>
+                         </button>
                         </span>
                    </div>
 
                     <span className="icon" onClick={this.myhamburgfunction}>
                         <i className="fa fa-bars"></i>
                     </span>
-                
-                   
-                    
-
-{/* <input type="button" name="answer" value="Show Div" onClick={this.showActive} /> */}
-                </div>
+                 
+                 </div>
 
             
         )
     }
 }
+
+const mapStateToProps = state => ({
+    results: state.navbarReducer.results
+  });
+  
+  export default connect(
+    mapStateToProps,
+    { searchContent }
+  )
+  (NavbarDefault);
+  

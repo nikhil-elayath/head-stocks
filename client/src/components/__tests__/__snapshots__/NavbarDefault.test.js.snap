@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Navbar Component should mount the component 1`] = `
+<div
+  className="navbarHS"
+  id="navbarID"
+>
+  <Link
+    to="/Headstocks"
+  >
+    <div
+      className="navbarLogoName"
+    >
+      <span
+        className="active"
+      >
+        <img
+          alt="logo"
+          className="navbarlogoimage"
+          height="30px"
+          src="fakelogo.png"
+          width="30px"
+        />
+        HEAD
+        <b>
+          STOCKS
+        </b>
+      </span>
+    </div>
+  </Link>
+  <div
+    className="navbarLoginOptions"
+  >
+    <span>
+      <Link
+        className="linkdecornone"
+        to="/Login"
+      >
+        Login
+      </Link>
+    </span>
+  </div>
+  <div
+    className="navbarStockOptions"
+  >
+    <span>
+      <Link
+        className="linkdecornone"
+        to="/StocksHome"
+      >
+        Stocks
+      </Link>
+    </span>
+  </div>
+  <div
+    className="navbarSearchBox"
+  >
+    <span
+      className="navbarSearchSpan"
+    >
+      <input
+        placeholder="Search for a company or ticker"
+        type="text"
+      />
+    </span>
+  </div>
+  <span
+    className="icon"
+    onClick={[Function]}
+  >
+    <i
+      className="fa fa-bars"
+    />
+  </span>
+</div>
+`;

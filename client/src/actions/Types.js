@@ -11,3 +11,6 @@ export const ALL_NEWS = "ALL_NEWS";
 export const NEWS_BY_ID = "NEWS_BY_ID";
 
 export const COMPANY_DETAIL = "COMPANY_DETAIL";
+
+// Harshal
+export const SEARCH_CONTENT = "SEARCH_CONTENT";

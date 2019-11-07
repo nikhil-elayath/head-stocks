@@ -1,30 +1,36 @@
-import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Register from "./components/Register";
-import ResetPassword from "./components/ResetPassword";
-import Login from "./components/Login";
-import home from "./components/Home";
-import NavbarDefault from "./components/NavbarDefault";
-//nikhil
-import CompanyDetail from "./components/CompanyDetail";
-//aditya
-import StocksLanding from "./components/StocksLanding";
+import React from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import Register from './components/Register'
+import ResetPassword from './components/ResetPassword'
+import Login from './components/Login'
+import home from './components/Home'
+import NavbarDefault from './components/NavbarDefault'
+// nikhil
+import CompanyDetail from './components/CompanyDetail'
+import CompanyDetailSecondaryNavbar from './components/Common/CompanyDetailSecondaryNavbar'
+// aditya
+import StocksLanding from './components/StocksLanding'
 
-function App() {
+function App () {
   return (
     <Router>
       <div>
-        <NavbarDefault/>
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/resetpassword" component={ResetPassword} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/" component={home} />
-        <Route exact path="/companydetail" component={CompanyDetail} />
+        <NavbarDefault />
+        <Route exact path='/register' component={Register} />
+        <Route exact path='/resetpassword' component={ResetPassword} />
+        <Route exact path='/login' component={Login} />
+        <Route exact path='/' component={home} />
+        <Route exact path='/companydetail' component={CompanyDetail} />
         {/* aditya */}
-        <Route exact path="/stocks" component={StocksLanding} />
+        <Route exact path='/stocks' component={StocksLanding} />
+        <Route
+          exact
+          path='/secondarynavbar'
+          component={CompanyDetailSecondaryNavbar}
+        />
       </div>
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App

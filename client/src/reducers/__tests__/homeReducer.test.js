@@ -1,37 +1,17 @@
 import { NEWS_BY_ID, ALL_NEWS } from "../../actions/Types";
 import homeReducer from "../homeReducer";
 
-describe("Testing Player reducer", () => {
+describe("Testing Home reducer", () => {
   //get news by id - piyush
-  it("should return  state object with news Details array equal to the payload in the action when the action type is GET_NEWS_ID(when the state is initial state)", () => {
+  it("should return  state object with news Details array equal to the payload in the action when the action type is NEWS_BY_ID(when the state is initial state)", () => {
     const action = {
       type: NEWS_BY_ID,
       payload: []
     };
     const returnedState = homeReducer(undefined, action);
     expect(returnedState).toEqual({
-      news: action.payload
-    });
-  });
-
-  it("should return state object with player details array equal to the payload in the action when the action type is GET_PLAYERS(when state is not initial empty)", () => {
-    const initialState = {
-      // REDUCER
-      news_details: [
-        { news_id: "1" },
-        { headline: "Right Handed Bat" },
-        { description: "news title" }
-      ]
-    };
-
-    const action = {
-      type: GET_NEWS_ID,
-      payload: [{}, {}, {}, {}]
-    };
-
-    const returnedState = homeReducer(initialState, action);
-    expect(returnedState).toEqual({
-      news: action.payload
+      news: action.payload,
+      singleNews: []
     });
   });
 
@@ -41,8 +21,8 @@ describe("Testing Player reducer", () => {
       type: ALL_NEWS,
       payload: [{}, {}, {}]
     };
-    const returnedState = AdminPlayer(undefined, action);
-    expect(returnedState).toEqual({ news: action.payload });
+    const returnedState = homeReducer(undefined, action);
+    expect(returnedState).toEqual({ news: action.payload, singleNews: [{}] });
   });
 
   it("should return a state object with user array equal to the payload in the action when the action type is GET_USER (when the returned state is not an initial state)", () => {
@@ -53,7 +33,7 @@ describe("Testing Player reducer", () => {
       type: ALL_NEWS,
       payload: [{}, {}, {}]
     };
-    const returnedState = AdminPlayer(initialState, action);
+    const returnedState = homeReducer(initialState, action);
     expect(returnedState).toEqual({ news: action.payload });
   });
 
@@ -61,14 +41,12 @@ describe("Testing Player reducer", () => {
     let action = {
       payload: [{}, {}, {}]
     };
-    let returnedState = AdminPlayer(undefined, action);
-    expect(returnedState).toEqual({ news: [] });
     action = {
       type: "SOME_TYPE",
       payload: [{}, {}, {}]
     };
-    returnedState = AdminPlayer(undefined, action);
-    expect(returnedState).toEqual({ news: [] });
+    let returnedState = homeReducer(undefined, action);
+    expect(returnedState).toEqual({ news: [], singleNews: [{}] });
   });
 
   it("should return a state object with user array equal to the payload in the action when the action type is GET_USERS (when the returned state is not an initial state)", () => {
@@ -78,13 +56,13 @@ describe("Testing Player reducer", () => {
     let action = {
       payload: [{}, {}, {}]
     };
-    let returnedState = AdminPlayer(initialState, action);
+    let returnedState = homeReducer(initialState, action);
     expect(returnedState).toEqual({ news: initialState.news });
     action = {
       type: "SOME_TYPE",
       payload: [{}, {}, {}]
     };
-    returnedState = AdminPlayer(initialState, action);
+    returnedState = homeReducer(initialState, action);
     expect(returnedState).toEqual({ news: initialState.news });
   });
 });

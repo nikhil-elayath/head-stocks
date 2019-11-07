@@ -17,28 +17,68 @@
    .navbarLoginOptions span {
      float: right;
    }
+
+   .navbarLoginOptions span .tabactive{
+    border-bottom: 1px solid #39abf7;
+  }
+  .navbarLoginOptions span :hover{
+    border-bottom: 2px solid #39abf7;
+  }
+
+
    .navbarStockOptions span {
     float: left;
     margin-left: 35%;
    }
+   .navbarStockOptions span .tabactive{
+    border-bottom: 2px solid #39abf7;
+  }
+  .navbarStockOptions span :hover{
+    border-bottom: 2px solid #39abf7;
+  }
+
    .navbarSearchBox {
       float: left;
-      width: 32%;
+      width: 38%;
       display: block;
-      /* margin: 15px;*/
-      padding: 0px 4%; 
+      /* top: 0px;
+      right: 8%;
+      position: absolute; */
+       padding: 0px 4%; 
    }
-   .navbarSearchSpan {
+   /* .navbarSearchSpan {
      padding: 12px 16px !important;
-   }
+   } */
    .navbarSearchBox input {
      border-radius: 5px;
      border: none;
-     width: 100%;
+     width: 90%;
      /* min-width: 300px; */
      height: 27px;
      text-align: center;
    }
+   .navbarSearchBox input::placeholder {
+     font-size: 15px;
+   }
+   .navbarSearchBox button {
+    border: none; 
+    border-radius: 5px; 
+    background-color: #ffffff;
+    z-index: 1; 
+    height: 27px;
+    position: relative;
+    top: 1px;
+    right: 8px;
+  }
+
+  .navbarSearchBox button img {
+    border: none; 
+    border-radius: 5px; 
+    top:0px;
+    
+    
+  }
+  
   .navbarHS span {
     display: block;
     color: #f2f2f2;
@@ -51,75 +91,80 @@
 
   .navbarHS .linkdecornone{
     text-decoration: none;
-    color: #f2f2f2;
+    color: #f2f2f2;}
+
+  
+.navbarlogoimage {
+  float: left;
+  margin: 0px 0px 0px 0px;
+}
+
+
+
+.navbarHS span.active {
+  background-color: #39abf7;
+  color: white;
+}
+
+.navbarHS .icon {
+  display: none;
+}
+
+/* Mobile view */
+@media screen and (max-width: 600px) {
+  .navbarHS.responsiveHS {
+    position: relative;
   }
 
-  .navbarlogoimage {
-    float: left;
-    margin: 0px 0px 0px 0px;
+  .navbarHS.responsiveHS .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
   }
   
-  /* .navbarHS span:hover {
-    background-color: #ffffff;
-    color: black;
-  } */
-  
-  .navbarHS span.active {
-    background-color: #39abf7;
-    color: white;
+ 
 
+  .navbarHS.responsiveHS span {
+    float: none;
+    display: block;
+    text-align: center;
   }
-  
-  .navbarHS .icon {
+  .navbarLoginOptions span {
+    margin-top: 60px;
     display: none;
   }
-  
-  /* Mobile view */
-  @media screen and (max-width: 600px) {
-    .navbarHS.responsiveHS {
-      position: relative;
-    }
-  
-    .navbarHS.responsiveHS .icon {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    .navbarHS.responsiveHS span {
-      float: none;
-      display: block;
-      text-align: center;
-    }
-    .navbarLoginOptions span {
-      margin-top: 60px;
-      display: none
-    }
-     
-    .navbarStockOptions span {
-      display: none;
-      margin-left: 0px;
-     
-   }
-   .navbarSearchBox {
+
+  .navbarStockOptions span {
+    display: none;
+    margin-left: 0px;
+  }
+  .navbarSearchBox {
     float: left;
     display: block;
-    /* position: fixed; */
-    /* margin: 70px 0 0 0; */
-    /* padding: 0px 10px 0px 25px; */
     padding: 0px 0px; 
     width: 100%;
     
-    
   }
   .navbarSearchBox span {
-    /* margin-top: 60px; */
     display: none
   }
   .navbarSearchBox input {
     border-radius: 5px;
-    border: 1px solid #2c3e50;
-    width: 340px;
-     text-align: center;
+    /* border: 1px solid #2c3e50; */
+    width: 330px;
+    text-align: center;
+    height: 27px;
+  }
+  .navbarSearchBox button {
+    background-color: #ffffff;
+    width: 20px;
+    /* border: none;  */
+    /* border-radius: 5px;  */
+    /* z-index: 1;  */
+    /* height: 26px; */
+    /* position: relative; */
+    /* top: 2px; */
+    /* right: 8px; */
   }
    .navbarHS span:not(:first-child) {display: none;}
     .navbarHS span.icon {
@@ -131,3 +176,4 @@
       color: #39abf7;
     }
   }
+ 
