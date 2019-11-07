@@ -4,9 +4,10 @@
 }
 
 /* parent container */
+/* main grid  */
 
 #company-details-tab-container {
-  padding: 10px 10px 10px 10px;
+  padding: 0px 0px 0px 10px;
   grid-template-rows: 1fr;
   display: grid;
   grid-template-areas: "overview financial analysis";
@@ -18,9 +19,10 @@
 }
 
 /* child within parent container */
+/* grid within grid  */
 
 #company-detail-content-container {
-  padding: 10px 10px 10px 10px;
+  /* padding: 10px 10px 10px 10px; */
   grid-template-rows: 1fr;
   display: grid;
   grid-template-areas: "a b c";
@@ -29,14 +31,40 @@
   /* overflow-x: scroll; */
   overflow-y: scroll;
   grid-gap: 15px;
+  list-style-type: none;
+  font-size: 20px;
 }
-#company-detail-overview {
+
+#comapany-detail-overview-li {
   grid-area: a;
+  /* color: red; */
+  /* margin: 50px 50px 50px 50px; */
 }
-#company-detail-analysis {
+#company-detail-financial-li {
   grid-area: b;
+  /* color: yellowgreen; */
 }
-#company-detail-financials {
+#company-detail-analysis-li {
   grid-area: c;
+  /* color: blue; */
 }
-/* #company-details */
+
+.options-selected-li {
+  font-weight: 600;
+  cursor: pointer;
+  /* padding-bottom: 7px; */
+  color: #2980b9;
+  border-bottom: 3px solid #2980b9;
+}
+.options-li {
+  /* font-family: "Montserrat", sans-serif; */
+  /* padding: 10px 0px; */
+  /* transition: 0.3s; */
+  color: #272727;
+  /* margin-right: 30px; */
+  /* letter-spacing: 0.3px; */
+  text-align: center;
+}
+.company-link {
+  text-decoration: none;
+}

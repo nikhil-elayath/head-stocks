@@ -5,7 +5,7 @@ import axios from "axios";
 export const searchContent = () => dispatch => {
   try {
     return axios
-      .get("http://localhost:2001/api/navbar/search")
+      .post("http://localhost:2001/api/navbar/search")
       .then(res => {
         dispatch({
           type: SEARCH_CONTENT,

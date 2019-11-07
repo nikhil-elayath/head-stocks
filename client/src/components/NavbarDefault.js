@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import "../styles/Navbar.css";
 import { Link } from "react-router-dom";
 import logo from "./fakelogo.png"
@@ -38,8 +38,8 @@ export class NavbarDefault extends Component {
           let searchString = {
             searchInput: this.state.searchInput,
            };
-        //   this.props.searchContent(searchString);
-        console.log(searchString)
+          this.props.searchContent(searchString);
+        // console.log(searchString)
           this.setState({
             searchInput: "",
           });
@@ -47,9 +47,10 @@ export class NavbarDefault extends Component {
 
 
 
-    render() { 
+      render() { 
+        console.log(this.props);
         return (
-    
+          
                 <div className="navbarHS" id="navbarID">
 
                     <Link to="/">
