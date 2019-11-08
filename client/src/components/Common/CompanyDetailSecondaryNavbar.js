@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import { getBalanceSheet } from "../../actions/CompanyDetail";
+import { getCompanyDetailById } from "../../actions/CompanyDetail";
 import { connect } from "react-redux";
 // importing css file
 import "../../styles/CompanyDetailSecondaryNavbar.css";
@@ -8,6 +8,9 @@ import { Link } from "react-router-dom";
 export class CompanyDetailSecondaryNavbar extends Component {
   componentDidMount() {
     console.log("component mounted");
+
+    // const id = this.props.match.params;
+    // this.props.getCompanyDetailById(8);
   }
   // DEFINING THE STATE WITH OVERVIEW AS DEFAULT AND REST TWO OPTIONS FALSE
   state = {
@@ -16,6 +19,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
     analysis: false,
   };
   render() {
+    // this.props.company ? this.props.company : console.log("Loading...");
     return (
       <div>
         <div id="company-details-tab-container">
@@ -25,9 +29,8 @@ export class CompanyDetailSecondaryNavbar extends Component {
               <Link
                 className="company-link"
                 // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
-                to={{ pathname: "/companydetail/" + this.props.company._id }}
+                to={{ pathname: "/companydetail/" + this.props.company[0] }}
               >
-                {" "}
                 {/* {this.props.getBalanceSheet()}{" "} */}
                 <span
                   id="company-detail-overview-click"
@@ -64,7 +67,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                   to={{
                     // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
 
-                    pathname: "/financial/" + this.props.company._id,
+                    pathname: "/financial/" + this.props.company[0],
                   }}
                 >
                   <span
@@ -98,7 +101,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                 <Link
                   className="company-link"
                   to={{
-                    pathname: "/analysis/" + this.props.company._id,
+                    pathname: "/analysis/" + this.props.company[0],
                   }}
                 >
                   <span
@@ -136,6 +139,6 @@ const mapStateToProps = state => ({
   company: state.CompanyDetailReducer.company,
 });
 export default connect(
-  mapStateToProps
-  // { getBalanceSheet }
+  mapStateToProps,
+  { getCompanyDetailById }
 )(CompanyDetailSecondaryNavbar);
