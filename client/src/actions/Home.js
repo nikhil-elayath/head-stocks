@@ -1,4 +1,5 @@
 import { ALL_NEWS, NEWS_BY_ID, GET_ALL_INDICES } from "./Types";
+import { startLoading, stopLoading } from "./LoadingAction";
 import axios from "axios";
 const url = "http://localhost:2001/api/home/";
 
@@ -36,15 +37,18 @@ export const newsById = news_id => dispatch => {
 
 // Get all Indices
 export const getIndices = () => dispatch => {
+  dispatch(startLoading());
   return axios
     .get(url + "index")
     .then(res => {
+      dispatch(stopLoading());
       dispatch({
         type: GET_ALL_INDICES,
         payload: res.data.data
       });
     })
     .catch(err => {
+      dispatch(startLoading());
       console.log(err);
     });
 };

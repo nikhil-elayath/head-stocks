@@ -3,7 +3,9 @@ import { allNews, newsById, getIndices } from "../actions/Home";
 import { connect } from "react-redux";
 import "../styles/Home.css";
 import welcome from "./welcome.svg";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import loader from "./Common/Loader.gif";
+import Loader from "react-loader-spinner";
 
 export class Home extends Component {
   componentDidMount() {
@@ -15,73 +17,82 @@ export class Home extends Component {
 
   render() {
     console.log(this.props.indices);
+    console.log(this.props.isLoading);
     return (
       <body>
         <div id="homecontainer">
           {/* <Navbar> */}
-          <div id="homeleftsidecontainer">
-            <h1>News</h1>
-            <div>
-              <div id="recent-news"></div>
-              {/* recent news */}
-              {this.props.news.map((news, index) => (
-                <div className="div-newspage">
-                  <div id="news-list">
-                    <p
-                      id="recent-news-title"
-                      onClick={() => this.props.newsById(news.new_id)}
-                    >
-                      {news.headline}
-                    </p>
-                    <p id="newsdivider">
-                      <hr />
-                    </p>
-                  </div>
+          {this.props.isLoading ? ( //use to display loader [piyush]
+            <div style={{ margin: "200px 500px" }}>
+              {/* <Loader type="Puff" color="#2980b9" height="100" width="400" /> */}
+              <img src={loader} alt="loading..." />
+            </div>
+          ) : (
+            <>
+              <div id="homeleftsidecontainer">
+                <h1>News</h1>
+                <div>
+                  <div id="recent-news"></div>
+                  {/* recent news */}
+                  {this.props.news.map((news, index) => (
+                    <div className="div-newspage">
+                      <div id="news-list">
+                        <p
+                          id="recent-news-title"
+                          onClick={() => this.props.newsById(news.new_id)}
+                        >
+                          {news.headline}
+                        </p>
+                        <p id="newsdivider">
+                          <hr />
+                        </p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
-          <div id="homemiddlecontainer">
-            <div>
-              <h3 id="headline">{this.props.singleNews.headline}</h3>
-              <img
-                id="image"
-                src={
-                  "data:image/jpeg;base64," + this.props.singleNews.news_image
-                }
-              />
-              <p id="headlineDescription">
-                {this.props.singleNews.description}
-              </p>
-            </div>
-          </div>
-          <div id="homerightsidecontainer">
-            <h1>Indices</h1>
-            <div>
-              <table id="homeIndicesTable">
-                <th>Indices</th>
-                <th>Last</th>
-                {this.props.indices.map((indices, index) => (
-                  <tr>
-                    <td
-                      id="indicesName"
-                      onClick={() =>
-                        this.props.history.push(
-                          "/indexProfile/" + indices.name,
-                          {
-                            indices
+              </div>
+              <div id="homemiddlecontainer">
+                <div>
+                  <h3 id="headline">{this.props.singleNews.headline}</h3>
+                  <img
+                    id="image"
+                    src={
+                      "data:image/jpeg;base64," +
+                      this.props.singleNews.news_image
+                    }
+                  />
+                  <p id="headlineDescription">
+                    {this.props.singleNews.description}
+                  </p>
+                </div>
+              </div>
+              <div id="homerightsidecontainer">
+                <h1>Indices</h1>
+                <div>
+                  <table id="homeIndicesTable">
+                    <th>Indices</th>
+                    <th>Last</th>
+                    {this.props.indices.map((indices, index) => (
+                      <tr>
+                        <td
+                          id="indicesName"
+                          onClick={() =>
+                            this.props.history.push(
+                              "/indexProfile/" + indices.name,
+                              {
+                                indices
+                              }
+                            )
                           }
-                        )
-                      }
-                    >
-                      {indices.ticker_name}
-                    </td>
-                    <td>
-                      {Number(
-                        indices.ticker_dates["2019-11-05"].closing
-                      ).toFixed(2)}
-                    </td>
-                    {/* <td
+                        >
+                          {indices.ticker_name}
+                        </td>
+                        <td>
+                          {Number(
+                            indices.ticker_dates["2019-11-05"].closing
+                          ).toFixed(2)}
+                        </td>
+                        {/* <td
                       id={
                         String(indices.change).charAt(0) == "-"
                           ? "negativeIndex"
@@ -92,11 +103,13 @@ export class Home extends Component {
                         ? indices.change
                         : "+" + indices.change}
                     </td>{" "} */}
-                  </tr>
-                ))}{" "}
-              </table>
-            </div>
-          </div>
+                      </tr>
+                    ))}{" "}
+                  </table>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </body>
     );
@@ -106,7 +119,8 @@ export class Home extends Component {
 const mapStateToProps = state => ({
   news: state.homeReducer.news,
   singleNews: state.homeReducer.singleNews,
-  indices: state.homeReducer.indices
+  indices: state.homeReducer.indices,
+  isLoading: state.LoadingReducer.isLoading
 });
 export default connect(
   mapStateToProps,
