@@ -30,9 +30,9 @@ export class CompanyDetail extends Component {
             {/* {this.props.company.map(company => ( */}
             <div id="company-detail-profile">
               <h3>Profile</h3>
-              <h3>{this.props.company.tname}</h3>
+              <h3>{this.props.company[5]}</h3>
               <h3>
-                Sector :<span>{this.props.company.sector}</span>
+                Sector :<span>{this.props.company[6]}</span>
               </h3>
 
               <h3>

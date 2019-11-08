@@ -21,21 +21,54 @@ export class CompanyDetailFinancial extends Component {
     return (
       <div>
         <CompanyDetailSecondaryNavbar />
-        <p>Financials </p>
+        <p>Balance Sheet </p>
         <table>
           <tr>
-            <td>Cash and Cash Equivalents</td>
+            <td>Equity Before Minorities</td>
+            {/* </tr> */}
             {this.props.company.map(balanceSheet => (
               <div>
                 {balanceSheet.map(balance => (
-                  <td>{balance["Cash and Cash Equivalents"]}</td>
+                  <td>{balance["Equity Before Minorities"]}</td>
+                  /* <td>{balance["Total Assets"]}</td>
+                    <td>{balance["Current Assets"]}</td>
+                    <td>{balance["Total Assets"]}</td>
+                    <td>{balance["Accounts Payable"]}</td>
+                    <td>{balance["Receivables"]}</td>
+                    <td>{balance["Total Liabilities"]}</td>
+                    <td>{balance["Current Liabilities"]}</td>
+                    <td>{balance["Preferred Equity"]}</td>
+                    <td>{balance["Equity Before Minorities"]}</td>
+                    <td>{balance["Minorities Interest"]}</td>
+                    <td>{balance["Noncurrent Liabilities"]}</td> */
                 ))}
               </div>
             ))}
           </tr>
+
+          {/* cashflow */}
+
+          {/* <tr>
+            <td>cashflow</td>
+            {this.props.company.map(balanceSheet => (
+              <div>
+                {balanceSheet.map(cashflow => (
+                  <div>
+                    <td>{cashflow["Cash From Operating Activities"]}</td>
+                    <td>{cashflow["Cash From Investing Activities"]}</td>
+                    <td>{cashflow["Cash From Financing Activities"]}</td>
+                    <td>{cashflow["EBITDA"]}</td>
+                    <td>{cashflow["Net Change in Cash"]}</td>
+                    <td>{cashflow["Net PP&E"]}</td>
+                    <td>{cashflow[" Dividends"]}</td>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </tr> */}
         </table>
 
-        <table>
+        {/* <table>
           <tr>
             <td>Cash From Financing Activities</td>
             {this.props.company.map(cashflow => (
@@ -46,7 +79,7 @@ export class CompanyDetailFinancial extends Component {
               </div>
             ))}
           </tr>
-        </table>
+        </table> */}
       </div>
     );
   }

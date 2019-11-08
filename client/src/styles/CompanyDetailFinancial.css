@@ -24,3 +24,6 @@ tr:nth-child(even) {
 
   border-radius: 10px 0px;
 }
+#balance {
+  width: 700px;
+}

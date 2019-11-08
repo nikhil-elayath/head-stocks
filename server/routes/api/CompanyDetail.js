@@ -23,7 +23,18 @@ MongoClient.connect(url, function(err, client) {
       console.log("printing id from api all", id);
       var collection = db.collection("stocks_data");
       // hardcoding dummy data
-      var dummy_date = ["2010-03-31"]; //variable
+      var dummy_date = [
+        "2009-09-30",
+        "2009-12-31",
+        "2010-03-31",
+        "2010-06-30",
+        "2010-09-30",
+        "2010-12-31",
+        "2011-03-31",
+        "2011-06-30",
+        "2011-09-30",
+        "2011-12-31",
+      ]; //variable
       collection.findOne({ ticker_id: +id }, function(err, result) {
         // console.log(result);
         var balancesheet = [];
@@ -31,6 +42,10 @@ MongoClient.connect(url, function(err, client) {
         var profitandloss = [];
         var ratios = [];
         var company_id = [result.ticker_id];
+        //will contain company profile
+        var company_profile = [result.profile];
+        var company_sector = [result.sector];
+        console.log("result", company_profile);
 
         // console.log("printing only id from result", result);
 
@@ -130,7 +145,15 @@ MongoClient.connect(url, function(err, client) {
           if (err) throw err;
           res.status(200).json({
             status: 200,
-            data: [balancesheet, cashflow, profitandloss, ratios, company_id],
+            data: [
+              balancesheet,
+              cashflow,
+              profitandloss,
+              ratios,
+              company_id,
+              company_profile,
+              company_sector,
+            ],
             message: "Retrieved news Successfully",
           });
         }
