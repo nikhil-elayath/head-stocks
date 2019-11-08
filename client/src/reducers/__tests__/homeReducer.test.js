@@ -11,6 +11,7 @@ describe("Testing Home reducer", () => {
     const returnedState = homeReducer(undefined, action);
     expect(returnedState).toEqual({
       news: action.payload,
+      indices: [],
       singleNews: []
     });
   });
@@ -22,7 +23,11 @@ describe("Testing Home reducer", () => {
       payload: [{}, {}, {}]
     };
     const returnedState = homeReducer(undefined, action);
-    expect(returnedState).toEqual({ news: action.payload, singleNews: [{}] });
+    expect(returnedState).toEqual({
+      news: action.payload,
+      singleNews: [{}],
+      indices: []
+    });
   });
 
   it("should return a state object with user array equal to the payload in the action when the action type is GET_USER (when the returned state is not an initial state)", () => {
@@ -46,7 +51,7 @@ describe("Testing Home reducer", () => {
       payload: [{}, {}, {}]
     };
     let returnedState = homeReducer(undefined, action);
-    expect(returnedState).toEqual({ news: [], singleNews: [{}] });
+    expect(returnedState).toEqual({ news: [], singleNews: [{}], indices: [] });
   });
 
   it("should return a state object with user array equal to the payload in the action when the action type is GET_USERS (when the returned state is not an initial state)", () => {

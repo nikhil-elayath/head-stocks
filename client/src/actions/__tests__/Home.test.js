@@ -36,7 +36,7 @@ describe("Testing Home Action", () => {
   it("should return a single news by id and return status code of 200 with a message", () => {
     const responseOfApi = [];
     let new_id = 1;
-    moxios.stubRequest("http://localhost:2001/api/home/" + new_id, {
+    moxios.stubRequest("http://localhost:2001/api/home/singleNews/" + new_id, {
       status: 200,
       response: { data: responseOfApi }
     });

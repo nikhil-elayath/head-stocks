@@ -29,6 +29,9 @@ ALTER TABLE simfin ADD COLUMN Industry varchar
 -- Creating Sectors Column [Piyush]
 ALTER TABLE simfin ADD COLUMN Sector varchar
 (255);
+ 
+ -- Updated ticker name to NA where the ticker value is null [piyush] 
+UPDATE simFin set ticker='NA' where ticker is null;
 
 UPDATE simfin SET Sector = 'Industrials' WHERE CAST(CompanyID AS TEXT) like '100%';
 UPDATE simfin SET Sector = 'Technology' WHERE CAST(CompanyID AS TEXT) like '101%';
@@ -51,6 +54,7 @@ create index ticker_index on simfin (Ticker);
 create index indicator_name_index on simfin (IndicatorName);
 create index dates_index on simfin (dates);
 create index CompanyID_index on simfin (CompanyID)
+create index SimFinID_index on simfin (SimFinID)
 
 
 -- --  Loading data of Industry -> Industrials[Piyush]

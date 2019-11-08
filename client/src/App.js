@@ -1,9 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+// Bhavana
 import Register from "./components/Register";
 import ResetPassword from "./components/ResetPassword";
 import Login from "./components/Login";
+// Piyush
 import home from "./components/Home";
+// Harshal
 import NavbarDefault from "./components/NavbarDefault";
 // nikhil
 import CompanyDetail from "./components/CompanyDetail";
@@ -12,15 +15,19 @@ import CompanyDetailSecondaryNavbar from "./components/Common/CompanyDetailSecon
 import StocksLanding from "./components/StocksLanding";
 import CompanyDetailFinancial from "./components/CompanyDetailFinancial";
 import CompanyDetailAnalysis from "./components/CompanyDetailAnalysis";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <Router>
       <div>
+        {/* Harshal */}
         <NavbarDefault />
+        {/* Bhavana */}
         <Route exact path="/register" component={Register} />
         <Route exact path="/resetpassword" component={ResetPassword} />
         <Route exact path="/login" component={Login} />
+        {/* Piyush */}
         <Route exact path="/" component={home} />
         <Route exact path="/companydetail/:id" component={CompanyDetail} />
         {/* aditya */}
@@ -33,6 +40,7 @@ function App() {
         <Route exact path="/financial/:id" component={CompanyDetailFinancial} />
         <Route exact path="/analysis/:id" component={CompanyDetailAnalysis} />
       </div>
+      <Footer />
     </Router>
   );
 }
