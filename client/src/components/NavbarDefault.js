@@ -3,7 +3,7 @@ import "../styles/Navbar.css";
 import { Link } from "react-router-dom";
 
 // logos 
-// import logo from "./fakelogo.png"
+// import user from "./user.svg"
 import searchlogo from "./search.png"
 import { connect } from "react-redux";
 import { searchContent } from "../actions/Navbar";
@@ -99,7 +99,8 @@ export class NavbarDefault extends Component {
                         } 
                             className={this.state.login?"tabactive linkdecornone":"linkdecornone"}
                             >
-                            Login
+                                Login
+                            {/* <img src={user} alt="Log in Icon" width="85px" height="30px" /> */}
                             </Link>
                         </span> 
                     </div>

@@ -7,6 +7,7 @@ var MongoClient = require("mongodb").MongoClient;
 router.post("/search", async (req, res) => {
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
+    var user_value = req.body.searchInput;
     // selecting the database "stocks"
     var dbo = db.db("stocks");
     dbo
@@ -16,10 +17,16 @@ router.post("/search", async (req, res) => {
         //  search the results in two different attributes
         {
           $or: [
+            
             //  when the search has an industry value
+            // { industry: { $regex: user_value, $options: "i" } },
             { industry: req.body.searchInput },
+
             //  when the search has an Ticker value
+            // { ticker_name: { $regex: user_value, $options: "i" } },
             { ticker_name: req.body.searchInput }
+        
+            // { ticker_dates: 0, ticker_name: 1, industry: 1, sector: 0, isIndex: 0, simfin_Id: 0, ticker_id}
           ]
         }
       )

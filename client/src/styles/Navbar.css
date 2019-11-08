@@ -19,19 +19,17 @@
   float: left;
 }
 
-.navbarLoginOptions span .tabactive {
-  border-bottom: 2px solid #39abf7;
-}
-.navbarLoginOptions span :hover {
-  border-bottom: 2px solid #39abf7;
-}
+.navbarLoginOptions span {
+   float: right;
+   margin-right: 20px;
+} 
 
 .navbarLoginOptions span .tabactive {
-  border-bottom: 1px solid #39abf7;
+  border-bottom: 2px solid #39abf7;
 }
 .navbarLoginOptions span :hover {
   border-bottom: 2px solid #39abf7;
-}
+ }
 
 .navbarStockOptions span {
   float: left;
@@ -46,21 +44,18 @@
 
 .navbarSearchBox {
   float: left;
-  width: 35%;
-  max-width: 555px;
+  width: 38%;
   display: block;
-  /* top: 0px;
-      right: 8%;
-      position: absolute; */
-  padding: 0px 2% 0px 2%;
+  padding: 0px 2% 0px 5%;
 }
 .navbarSearchSpan {
-  padding: 12px 16px 12px 16px !important;
+  padding: 16px 16px 8px 16px !important;
 }
 .navbarSearchBox input {
   border-radius: 5px;
   border: none;
   width: 90%;
+  max-width: 555px;
   height: 25px;
   text-align: center;
 }
@@ -87,11 +82,11 @@
 }
 .navbarSearchResultsFound {
   padding: 0px 26px 20px 26px;
-  margin: 0px 0px 0px 22px;
+  margin: 0px 0px 0px 26px;
   border: 1px solid #2c3e50;
   border-radius: 5px;
   box-shadow: 0px 5px 10px #2c3e50;
-  width: 31%;
+  width: 26%;
   background-color: #ffffff;
   position: fixed;
   display: block;
@@ -117,14 +112,14 @@
 }
 .navbarSearchResultsPTag1 {
   height: auto;
-  margin-top: 15px;
+  margin-top: 14px;
   width: 50%;
   float: left;
   color: #ffffff;
 }
 .navbarSearchResultsPTag2 {
   height: auto;
-  margin-top: 15px;
+  margin-top: 14px;
   width: 50%;
   float: right;
   color: #ffffff;
@@ -206,8 +201,7 @@
   }
   .navbarSearchBox input {
     border-radius: 5px;
-    /* border: 1px solid #2c3e50; */
-    width: 90%;
+     width: 90%;
     text-align: center;
     height: 27px;
   }
@@ -239,11 +233,4 @@
     color: #39abf7;
   }
 }
-.navbarHS span.icon {
-  float: right;
-  display: block;
-  position: fixed;
-  top: 2px;
-  right: 0;
-  color: #39abf7;
-}
+
