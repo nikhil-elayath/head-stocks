@@ -19,12 +19,14 @@ router.post("/search", async (req, res) => {
             //  when the search has an industry value
             { industry: req.body.searchInput },
             //  when the search has an Ticker value
-            { ticker_name: req.body.searchInput }
+            { ticker_name: { $regex: req.body.searchInput, $options: "i" } }
           ]
         }
       )
+      .project({ ticker_name: 1, industry: 1, ticker_id: 1 })
       // converts the results to an array
       .toArray(function(err, result) {
+        console.log(result);
         // if something goes wrong it will throw error
         if (err) throw err;
         if (result == 0) {
