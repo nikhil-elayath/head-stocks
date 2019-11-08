@@ -36,6 +36,7 @@ export class CompanyDetail extends Component {
               </h3>
 
               <h3>
+                <span> {this.props.company.company_details}</span>
                 Market Cap: <span> {this.props.company.marketcap}</span>
               </h3>
               <h3>
