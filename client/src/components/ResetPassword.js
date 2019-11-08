@@ -23,7 +23,7 @@ export class ResetPassword extends Component {
     e.preventDefault();
     if (this.validateForm()) {
       let user = {
-        emai: this.state.email
+        email: this.state.email
       };
       this.props.sendOtp(user);
     }
@@ -32,31 +32,31 @@ export class ResetPassword extends Component {
     });
   };
 
-  onReset = e => {
-    e.preventDefault();
+  onReset = () => {
     let user = {
       email: this.state.email,
       password: this.state.password
     };
     this.props.resetPassword(user);
-    this.setState({
-      email: "",
-      password: "",
-      confirmPassword: ""
-    });
   };
 
-  verifyOTP = () => {
+  verifyOTP = e => {
+    e.preventDefault();
     let user = {
       otp: this.state.otp
     };
     if (this.props.verifyOtp(user)) {
       this.onReset();
+      this.setState({
+        email: "",
+        password: "",
+        confirmPassword: "",
+        otp: ""
+      });
     }
   };
 
   validateForm() {
-    console.log("Hello");
     let errors = {};
     let formIsValid = true;
     if (!this.state.email) {
@@ -79,10 +79,6 @@ export class ResetPassword extends Component {
       errors["confirmPassword"] = "*Password Don't Match";
     }
 
-    if (!this.state.otp) {
-      formIsValid = false;
-      errors["otp"] = "*Please Enter OTP";
-    }
     this.setState({
       errors: errors
     });
@@ -94,70 +90,67 @@ export class ResetPassword extends Component {
       <div>
         <div id="resetPasswordMainContainer">
           <form id="resetPasswordForm">
-            <p>
+            <div>
               <button id="resetButton">Reset Password</button>
-            </p>
-            <p>
-              <input
-                id="resetPasswordInput"
-                placeholder="Email"
-                type="text"
-                name="email"
-                value={this.state.email}
-                onChange={this.OnChange}
-              />
-              <span></span>
-            </p>
+            </div>
+            <input
+              id="resetPasswordInput"
+              placeholder="Email"
+              type="text"
+              name="email"
+              value={this.state.email}
+              onChange={this.OnChange}
+            />
+
             <p id="resetPasswordErrorMessage">{this.state.errors.email}</p>
-            <p>
-              <input
-                id="resetPasswordInput"
-                placeholder="New Password"
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.OnChange}
-              />
-            </p>
+
+            <input
+              id="resetPasswordInput"
+              placeholder="New Password"
+              type="password"
+              name="password"
+              value={this.state.password}
+              onChange={this.OnChange}
+            />
+
             <p id="resetPasswordErrorMessage">{this.state.errors.password}</p>
-            <p>
-              <input
-                id="resetPasswordInput"
-                placeholder="Confirm Password"
-                type="password"
-                name="confirmPassword"
-                value={this.state.confirmPassword}
-                onChange={this.OnChange}
-              />
-            </p>
+
+            <input
+              id="resetPasswordInput"
+              placeholder="Confirm Password"
+              type="password"
+              name="confirmPassword"
+              value={this.state.confirmPassword}
+              onChange={this.OnChange}
+            />
+
             <p id="resetPasswordErrorMessage">
               {this.state.errors.confirmPassword}
             </p>
+
             {this.state.show_otp_field === true ? (
               <>
-                <p>
-                  <input
-                    id="resetPasswordInput"
-                    placeholder="Enter Otp"
-                    type="password"
-                    name="otp"
-                    value={this.state.otp}
-                    onChange={this.OnChange}
-                  />
-                </p>
+                <input
+                  id="resetPasswordInput"
+                  placeholder="Enter Otp"
+                  type="password"
+                  name="otp"
+                  value={this.state.otp}
+                  onChange={this.OnChange}
+                />
+
+                <p>{this.props.error ? this.props.error : "Hello"}</p>
+
                 <p id="resetPasswordErrorMessage">{this.state.errors.otp}</p>
-                <p>
-                  <button onClick={this.verifyOTP} id="resetPasswordButton">
-                    Reset
-                  </button>
-                </p>
+
+                <button onClick={this.verifyOTP} id="resetPasswordButton">
+                  Reset
+                </button>
               </>
             ) : (
-              <p>
-                <button onClick={this.sendOTP} id="resetPasswordButton">
-                  Proceed
-                </button>
-              </p>
+              <button onClick={this.sendOTP} id="resetPasswordButton">
+                Proceed
+              </button>
             )}
           </form>
         </div>

@@ -1,5 +1,4 @@
 <svg width="580" height="400" xmlns="http://www.w3.org/2000/svg">
- <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
  <g>
   <title>background</title>
   <rect fill="#2c3e50" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
@@ -9,8 +8,8 @@
  </g>
  <g>
   <title>Layer 1</title>
-  <text xml:space="preserve" text-anchor="start" font-family="Karla" font-size="76" id="svg_2" y="108.453125" x="110.5" stroke-width="0" stroke="#000" fill="#ffffff">Welcome,</text>
-  <text xml:space="preserve" text-anchor="start" font-family="Karla" font-size="26" id="svg_4" y="191.453125" x="120.5" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#ffffff">pays the best Interest</text>
-  <text xml:space="preserve" text-anchor="start" font-family="Karla" font-size="26" id="svg_5" y="155.453125" x="118.5" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#ffffff">An Investment in Knowledge</text>
+  <text xml:space="preserve" text-anchor="start" font-family="trebuchet" font-size="76" id="svg_2" y="108.453125" x="110.5" stroke-width="0" stroke="#000" fill="#ffffff">Welcome,</text>
+  <text xml:space="preserve" text-anchor="start" font-family="trebuchet" font-size="26" id="svg_4" y="191.453125" x="120.5" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#ffffff">pays the best Interest</text>
+  <text xml:space="preserve" text-anchor="start" font-family="trebuchet" font-size="26" id="svg_5" y="155.453125" x="118.5" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#ffffff">An Investment in Knowledge</text>
  </g>
 </svg>

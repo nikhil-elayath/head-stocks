@@ -86,6 +86,11 @@ exports[`Testing Login Component should mount the component 1`] = `
           Hello
         </p>
         <Link
+          style={
+            Object {
+              "textDecoration": "none",
+            }
+          }
           to="/resetpassword"
         >
           <p

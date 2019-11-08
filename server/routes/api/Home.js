@@ -25,11 +25,11 @@ router.get("/allnews", async (req, res) => {
 });
 
 //geting news details with an id - Piyush kumar
-router.get("/:id", async (req, res, next) => {
+router.get("/singleNews/:id", async (req, res, next) => {
   MongoClient.connect(url, function(err, db) {
     try {
       let id = req.params.id;
-      var dbo = db.db("headstock");
+      var dbo = db.db("stocks");
       dbo.collection("news").findOne({ new_id: +id }, function(err, result) {
         if (!result) {
           return res.status(400).send({ message: "News not found" });
@@ -48,6 +48,28 @@ router.get("/:id", async (req, res, next) => {
     } catch (err) {
       next(err);
     }
+  });
+});
+
+router.get("/index", async (req, res) => {
+  console.log("INdices");
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("stocks");
+    dbo
+      .collection("stocks_data")
+      .find({ isIndex: true })
+      .toArray(function(err, result) {
+        console.log(result);
+        if (err) throw err;
+        // console.log(result);
+        res.status(200).json({
+          status: 200,
+          data: result,
+          message: "Retrieved all news Successfully"
+        });
+        db.close();
+      });
   });
 });
 
