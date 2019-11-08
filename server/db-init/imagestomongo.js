@@ -7,6 +7,7 @@ const url = "mongodb://localhost:27017";
 
 // Database Name
 const dbName = "headstock";
+// converting image tp base 64 foe storing in mongod[piyush]
 var imageAsBase64 = fs.readFileSync(
   process.cwd() + "\\newsimage\\10.jpeg",
   "base64"

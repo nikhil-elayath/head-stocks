@@ -12,7 +12,8 @@ create table yahoodata
     closing double precision,
     adjclose double precision,
     volume bigint,
-    ticker varchar(50)
+    ticker varchar(50),
+    isIndex boolean default False
 );
 
 COPY yahoodata
@@ -20,36 +21,42 @@ COPY yahoodata
 FROM 'C:\Users\kinng\Desktop\capstone2\headstocks\server\db-init\stock-data\yahoo-data\index\^DJI.csv' CSV HEADER;
 
 UPDATE yahoodata SET ticker = 'DJI' WHERE ticker is null;
+UPDATE yahoodata SET isindex='true' WHERE ticker = 'DJI';
 
 COPY yahoodata
 (dates,opening,high,low, closing, adjclose, volume) 
 FROM 'C:\Users\kinng\Desktop\capstone2\headstocks\server\db-init\stock-data\yahoo-data\index\^GSPC.csv' CSV HEADER;
 
 UPDATE yahoodata SET ticker = 'GSPC' WHERE ticker is null;
+UPDATE yahoodata SET isindex='true' WHERE ticker = 'GSPC';
 
 COPY yahoodata
 (dates,opening,high,low, closing, adjclose, volume) 
 FROM 'C:\Users\kinng\Desktop\capstone2\headstocks\server\db-init\stock-data\yahoo-data\index\^NDX.csv' CSV HEADER;
 
 UPDATE yahoodata SET ticker = 'NDX' WHERE ticker is null;
+UPDATE yahoodata SET isindex='true' WHERE ticker = 'NDX';
 
 COPY yahoodata
 (dates,opening,high,low, closing, adjclose, volume) 
 FROM 'C:\Users\kinng\Desktop\capstone2\headstocks\server\db-init\stock-data\yahoo-data\index\^OEX.csv' CSV HEADER;
 
 UPDATE yahoodata SET ticker = 'OEX' WHERE ticker is null;
+UPDATE yahoodata SET isindex='true' WHERE ticker = 'OEX';
 
 COPY yahoodata
 (dates,opening,high,low, closing, adjclose, volume) 
 FROM 'C:\Users\kinng\Desktop\capstone2\headstocks\server\db-init\stock-data\yahoo-data\index\^RUA.csv' CSV HEADER;
 
 UPDATE yahoodata SET ticker = 'RUA' WHERE ticker is null;
+UPDATE yahoodata SET isindex='true' WHERE ticker = 'RUA';
 
 COPY yahoodata
 (dates,opening,high,low, closing, adjclose, volume) 
 FROM 'C:\Users\kinng\Desktop\capstone2\headstocks\server\db-init\stock-data\yahoo-data\index\^RUT.csv' CSV HEADER;
 
 UPDATE yahoodata SET ticker = 'RUT' WHERE ticker is null;
+UPDATE yahoodata SET isindex='true' WHERE ticker = 'RUT';
 
 COPY yahoodata
 (dates,opening,high,low, closing, adjclose, volume) 
@@ -170,3 +177,5 @@ COPY yahoodata
 FROM 'C:\Users\kinng\Desktop\capstone2\headstocks\server\db-init\stock-data\yahoo-data\tech\ORCL.csv' CSV HEADER;
 
 UPDATE yahoodata SET ticker = 'ORCL' WHERE ticker is null;
+
+create index yahoo_ticker_index on yahoodata (ticker)
