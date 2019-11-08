@@ -1,16 +1,12 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
-import  Navbar  from "../NavbarDefault";
+import { NavbarDefault } from "../NavbarDefault";
 
 const navbar = jest.fn();
-const wrapper = shallow(
-  <Navbar/>
-);
-
+const wrapper = shallow(<NavbarDefault navbar={navbar} />);
 
 describe("Testing Navbar Component", () => {
-    
-    it("should mount the component", () => {
-      expect(wrapper).toMatchSnapshot();
-    });
-})
+  it("should mount the component", () => {
+    expect(wrapper).toMatchSnapshot();
+  });
+});

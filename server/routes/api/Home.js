@@ -7,7 +7,7 @@ var MongoClient = require("mongodb").MongoClient;
 router.get("/allnews", async (req, res) => {
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
-    var dbo = db.db("headstock");
+    var dbo = db.db("stocks");
     dbo
       .collection("news")
       .find({})
@@ -29,7 +29,7 @@ router.get("/singleNews/:id", async (req, res, next) => {
   MongoClient.connect(url, function(err, db) {
     try {
       let id = req.params.id;
-      var dbo = db.db("headstock");
+      var dbo = db.db("stocks");
       dbo.collection("news").findOne({ new_id: +id }, function(err, result) {
         if (!result) {
           return res.status(400).send({ message: "News not found" });
@@ -55,40 +55,18 @@ router.get("/index", async (req, res) => {
   console.log("INdices");
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
-    var dbo = db.db("headStocks");
+    var dbo = db.db("stocks");
     dbo
-      .collection("index")
-      .find({})
+      .collection("stocks_data")
+      .find({ isIndex: true })
       .toArray(function(err, result) {
+        console.log(result);
         if (err) throw err;
         // console.log(result);
         res.status(200).json({
           status: 200,
           data: result,
           message: "Retrieved all news Successfully"
-        });
-        db.close();
-      });
-  });
-});
-
-router.get("/search", async (req, res) => {
-  MongoClient.connect(url, function(err, db) {
-    if (err) throw err;
-    var dbo = db.db("stocks");
-    var user_value = req.body.search_value;
-    dbo
-      .collection("stocks")
-      .find(
-        { tname: { $regex: user_value, $options: "i" } },
-        { tdate: 0, tname: 1, sector: 1 }
-      )
-      .toArray(function(err, result) {
-        if (err) throw err;
-        res.status(200).json({
-          status: 200,
-          data: result,
-          message: "Retrieved Ticker Sucessfully"
         });
         db.close();
       });

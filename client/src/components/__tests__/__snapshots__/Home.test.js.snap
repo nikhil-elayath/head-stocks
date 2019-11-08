@@ -15,7 +15,21 @@ exports[`Testing home Component should mount the component 1`] = `
       ],
     }
   }
+  getIndices={
+    [MockFunction] {
+      "calls": Array [
+        Array [],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
   home={[MockFunction]}
+  indices={Array []}
   news={
     Array [
       Object {
@@ -108,7 +122,7 @@ exports[`Testing home Component should mount the component 1`] = `
           />
           <img
             id="image"
-            src="data:image/jpeg;base64,undefined"
+            src="welcome.svg"
           />
           <p
             id="headlineDescription"
@@ -117,7 +131,27 @@ exports[`Testing home Component should mount the component 1`] = `
       </div>
       <div
         id="homerightsidecontainer"
-      />
+      >
+        <h1>
+          Indices
+        </h1>
+        <div>
+          <table
+            id="homeIndicesTable"
+          >
+            <th>
+              Indices
+            </th>
+            <th>
+              Last
+            </th>
+            <th>
+              Chng %
+            </th>
+             
+          </table>
+        </div>
+      </div>
     </div>
   </body>
 </Home>

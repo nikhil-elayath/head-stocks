@@ -3,6 +3,7 @@ import { allNews, newsById, getIndices } from "../actions/Home";
 import { connect } from "react-redux";
 import "../styles/Home.css";
 import welcome from "./welcome.svg";
+import loader from "./Common/Loader.gif";
 
 export class Home extends Component {
   componentDidMount() {
@@ -13,8 +14,7 @@ export class Home extends Component {
   }
 
   render() {
-    console.log(this.props.singleNews);
-    var change;
+    console.log(this.props.indices);
     return (
       <body>
         <div id="homecontainer">
@@ -28,7 +28,7 @@ export class Home extends Component {
                 <div className="div-newspage">
                   <div id="news-list">
                     <p
-                      id={"recent-news-title" + index}
+                      id="recent-news-title"
                       onClick={() => this.props.newsById(news.new_id)}
                     >
                       {news.headline}
@@ -47,8 +47,7 @@ export class Home extends Component {
               <img
                 id="image"
                 src={
-                  // "data:image/jpeg;base64," + this.props.singleNews.news_image
-                  welcome
+                  "data:image/jpeg;base64," + this.props.singleNews.news_image
                 }
               />
               <p id="headlineDescription">
@@ -62,7 +61,6 @@ export class Home extends Component {
               <table id="homeIndicesTable">
                 <th>Indices</th>
                 <th>Last</th>
-                <th>Chng %</th>
                 {this.props.indices.map((indices, index) => (
                   <tr>
                     <td
@@ -76,10 +74,14 @@ export class Home extends Component {
                         )
                       }
                     >
-                      {indices.name}
+                      {indices.ticker_name}
                     </td>
-                    <td>{indices.last}</td>
-                    <td
+                    <td>
+                      {Number(
+                        indices.ticker_dates["2019-11-05"].closing
+                      ).toFixed(2)}
+                    </td>
+                    {/* <td
                       id={
                         String(indices.change).charAt(0) == "-"
                           ? "negativeIndex"
@@ -89,7 +91,7 @@ export class Home extends Component {
                       {String(indices.change).charAt(0) == "-"
                         ? indices.change
                         : "+" + indices.change}
-                    </td>{" "}
+                    </td>{" "} */}
                   </tr>
                 ))}{" "}
               </table>
