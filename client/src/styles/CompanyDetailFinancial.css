@@ -9,7 +9,7 @@ table {
   width: 100%;
   border: 1px solid #ddd;
 }
-#table_data {
+.table_data {
   /* onlythe table will scroll */
   overflow-x: scroll;
 }
@@ -18,12 +18,13 @@ tr:nth-child(even) {
 }
 
 /* converting row to column */
-table tr > * {
+/* table tr > * {
   display: block;
 }
 table tr {
   display: table-cell;
-}
+} */
+
 #bla {
   /* font-size: 100px; */
   border: 1px solid red;
