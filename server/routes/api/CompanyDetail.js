@@ -41,11 +41,11 @@ MongoClient.connect(url, function(err, client) {
         var cashflow = [];
         var profitandloss = [];
         var ratios = [];
-        var company_id = [result.ticker_id];
+        // var company_id = [result.ticker_id];
         //will contain company profile
-        var company_profile = [result.profile];
-        var company_sector = [result.sector];
-        console.log("result", company_profile);
+        // var company_profile = [result.profile];
+        // var company_sector = [result.sector];
+        // console.log("result", company_profile);
 
         // console.log("printing only id from result", result);
 
@@ -146,13 +146,15 @@ MongoClient.connect(url, function(err, client) {
           res.status(200).json({
             status: 200,
             data: [
-              balancesheet,
-              cashflow,
-              profitandloss,
-              ratios,
-              company_id,
-              company_profile,
-              company_sector,
+              {
+                balancesheet: balancesheet,
+                cashflow: cashflow,
+                profitandloss: profitandloss,
+                ratios: ratios,
+                company_id: result.ticker_id,
+                company_name: result.company_name,
+                company_details: result.profile,
+              },
             ],
             message: "Retrieved news Successfully",
           });
