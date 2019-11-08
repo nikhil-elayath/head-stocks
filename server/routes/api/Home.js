@@ -7,7 +7,7 @@ var MongoClient = require("mongodb").MongoClient;
 router.get("/allnews", async (req, res) => {
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
-    var dbo = db.db("headstock");
+    var dbo = db.db("stocks");
     dbo
       .collection("news")
       .find({})
