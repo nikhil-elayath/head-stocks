@@ -1,0 +1,36 @@
+th,
+td {
+  text-align: left;
+  padding: 8px;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+#table_data {
+  /* onlythe table will scroll */
+  overflow-x: scroll;
+}
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* converting row to column */
+table tr > * {
+  display: block;
+}
+table tr {
+  display: table-cell;
+}
+#bla {
+  /* font-size: 100px; */
+  border: 1px solid red;
+  background-color: #2c3e50;
+
+  border-radius: 10px 0px;
+}
+#balance {
+  width: 700px;
+}

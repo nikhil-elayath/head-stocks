@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import "../styles/Navbar.css";
 import { Link } from "react-router-dom";
-import logo from "./fakelogo.png"
+
+// logos 
+// import logo from "./fakelogo.png"
 import searchlogo from "./search.png"
 import { connect } from "react-redux";
 import { searchContent } from "../actions/Navbar";
@@ -9,8 +11,11 @@ import { searchContent } from "../actions/Navbar";
 
 export class NavbarDefault extends Component {
     state= {
+        // input text in the search box
         searchInput: "",
-        home:true,
+
+        // to highlight the current page
+        home:false,
         stocks:false,
         login:false
     }
@@ -29,26 +34,36 @@ export class NavbarDefault extends Component {
         }
       };
 
+    // handles the input change performed in the search input box 
       OnChange = event => {
         this.setState({ [event.target.name]: event.target.value });
       };
 
       onSearch = e => {
         e.preventDefault();
+
           let searchString = {
             searchInput: this.state.searchInput,
            };
+
+        //    console.log("state value");
+        //    console.log(this.state.searchInput);
+
           this.props.searchContent(searchString);
-        // console.log(searchString)
-          this.setState({
-            searchInput: "",
-          });
+
+        //   console.log("props value");
+        //   console.log(this.props)
+        
+        //resets the state value after execution 
+        this.setState({
+            searchInput: ""
+        })
       };
 
 
 
       render() { 
-        console.log(this.props);
+        // console.log(this.props);
         return (
           
                 <div className="navbarHS" id="navbarID">
@@ -59,12 +74,12 @@ export class NavbarDefault extends Component {
                             <span className="active"
                             onClick={() =>
                                 this.setState({
-                                    home: false,
+                                    home: true,
                                     stocks: false,
-                                    login: true 
+                                    login: false 
                                 })
                             } >
-                            <img className="navbarlogoimage" src={logo} alt="logo" width="30px" height="30px"/>
+                            {/* <img className="navbarlogoimage" src={logo} alt="logo" width="30px" height="30px"/> */}
                                 HEAD<b>STOCKS</b>
                             </span> 
                         </div>
@@ -73,15 +88,17 @@ export class NavbarDefault extends Component {
 
             
                     <div className="navbarLoginOptions">
-                        <span onClick={() =>
+                        <span 
+                        >
+                            <Link to="/Login" onClick={() =>
                             this.setState({
                                 home: false,
                                 stocks: false,
                                 login: true 
                             })
                         } 
-                        className={this.state.login?"tabactive":""}>
-                            <Link to="/Login" className="linkdecornone">
+                            className={this.state.login?"tabactive linkdecornone":"linkdecornone"}
+                            >
                             Login
                             </Link>
                         </span> 
@@ -92,15 +109,15 @@ export class NavbarDefault extends Component {
                     <div className="navbarStockOptions"
                     >
 
-                        <span onClick={() =>
+                        <span>
+                            <Link to="/Stocks" onClick={() =>
                             this.setState({
                                 home: false,
                                 stocks: true,
                                 login: false 
                             })
                         } 
-                        className={this.state.stocks? "tabactive": ""}>
-                            <Link to="/Stocks" className="linkdecornone">
+                            className={this.state.stocks?"tabactive linkdecornone":"linkdecornone"}>
                             Stocks
                             </Link>
                             
@@ -122,6 +139,33 @@ export class NavbarDefault extends Component {
                              <img src={searchlogo} alt="Search Icon" width="15px" height="15px"/>
                          </button>
                         </span>
+                        <div className={this.props.results.length === 0 ? "navbarSearchResultsNotFound": "navbarSearchResultsFound"}>
+                           
+                                <h4>Search Results 
+                                    {/* for {this.state.searchInput} */}
+                                    </h4>
+                            {
+                                this.props.results.map(result => (
+                                    <Link
+                                    className="company-link"
+                                    // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
+                                    to={{ pathname: "/companydetail/" + this.props.results[0]["ticker_id" ]}}
+                                  >
+                                <div className="navbarSearchResultsDiv" 
+                                // onClick={() =>
+                                //     this.props.history.push("/companydetail/"+ result.ticker_id, { result })
+                                //   }
+                                >
+                                    <p className="navbarSearchResultsPTag1"><b>{result.ticker_name}</b></p>
+                                    <p className="navbarSearchResultsPTag2">{result.industry}</p>
+                                </div>
+                                </Link>
+                                
+                                )
+                                )
+                            }
+             
+                        </div>
                    </div>
 
                     <span className="icon" onClick={this.myhamburgfunction}>
@@ -139,9 +183,8 @@ const mapStateToProps = state => ({
     results: state.navbarReducer.results
   });
   
-  export default connect(
+export default connect(
     mapStateToProps,
     { searchContent }
-  )
-  (NavbarDefault);
+  )(NavbarDefault);
   

@@ -22,7 +22,7 @@ function App() {
         <Route exact path="/resetpassword" component={ResetPassword} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/" component={home} />
-        <Route exact path="/companydetail" component={CompanyDetail} />
+        <Route exact path="/companydetail/:id" component={CompanyDetail} />
         {/* aditya */}
         <Route exact path="/stocks" component={StocksLanding} />
         <Route
@@ -30,8 +30,8 @@ function App() {
           path="/secondarynavbar"
           component={CompanyDetailSecondaryNavbar}
         />
-        <Route exact path="/financial" component={CompanyDetailFinancial} />
-        <Route exact path="/analysis" component={CompanyDetailAnalysis} />
+        <Route exact path="/financial/:id" component={CompanyDetailFinancial} />
+        <Route exact path="/analysis/:id" component={CompanyDetailAnalysis} />
       </div>
     </Router>
   );
