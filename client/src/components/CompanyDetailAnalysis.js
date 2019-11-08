@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import CompanyDetailSecondaryNavbar from "./Common/CompanyDetailSecondaryNavbar";
-import { getBalanceSheet } from "../actions/CompanyDetail";
+import { getCompanyDetailById } from "../actions/CompanyDetail";
 import { connect } from "react-redux";
 
 export class CompanyDetailAnalysis extends Component {
   componentDidMount() {
-    this.props.getBalanceSheet();
+    const id = this.props.match.params.id;
+
+    console.log("From analysis component", id);
+    this.props.getCompanyDetailById(id);
   }
   render() {
     return (
@@ -22,5 +25,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { getBalanceSheet }
+  { getCompanyDetailById }
 )(CompanyDetailAnalysis);
