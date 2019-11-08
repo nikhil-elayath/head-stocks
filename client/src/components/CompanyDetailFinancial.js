@@ -1,28 +1,143 @@
 import React, { Component } from "react";
-import { getCompanyDetail } from "../actions/CompanyDetail";
+import CompanyDetailSecondaryNavbar from "./Common/CompanyDetailSecondaryNavbar";
+import {
+  getBalanceSheet,
+  getCashFlow,
+  getProfitAndLoss,
+} from "../actions/CompanyDetail";
 import { connect } from "react-redux";
-// importing css file
-import "../styles/CompanyDetail.css";
-import SecondaryNavbar from "../components/Common/CompanyDetailSecondaryNavbar";
+import "../styles/CompanyDetailFinancial.css";
 
 export class CompanyDetailFinancial extends Component {
   componentDidMount() {
-    console.log("component mounted");
-    // this.props.getCompanyDetail();
+    console.log("financial mounted");
+    this.props.getBalanceSheet();
+    this.props.getCashFlow();
+    this.props.getProfitAndLoss();
   }
   render() {
     return (
       <div>
-        <SecondaryNavbar />
-        <p>Financial </p>
+        <CompanyDetailSecondaryNavbar />
+        <p>Financials </p>
+        {this.props.balance_sheet.map(balance_sheet => (
+          <div id="table_data">
+            <table>
+              <tr>
+                <div id="bla">
+                  <td> </td>
+                  <td>2008 </td>
+                  <td>2008</td>
+                  <td>2008</td>
+                  <td>2008</td>
+                  <td>2008</td>
+                  <td>2008</td>
+                  <td>2008</td>
+                  <td>2008</td>
+                  <td>2008</td>
+                  <td>2008</td>
+                  <td>2008</td>
+                  <td>2008</td>
+                  <td>2008</td>
+                  <td>2008</td>
+
+                  <td>2008</td>
+
+                  <td>2008</td>
+
+                  <td>2009</td>
+                  <td>2009</td>
+
+                  <td>2009</td>
+
+                  <td>2009</td>
+
+                  <td>2009</td>
+                </div>
+              </tr>
+              <tr>
+                {/* map the name of the data once the data in ready */}
+                <td> Data name</td>
+
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+
+                <td> {balance_sheet.current_assests}</td>
+
+                <td> {balance_sheet.current_assests}</td>
+
+                <td> {balance_sheet.current_assests}</td>
+              </tr>
+              <tr>
+                <td> Data name</td>
+
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+
+                <td> {balance_sheet.current_assests}</td>
+
+                <td> {balance_sheet.current_assests}</td>
+              </tr>
+              <tr>
+                <td> Data name</td>
+
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+                <td> {balance_sheet.current_assests}</td>
+
+                <td> {balance_sheet.current_assests}</td>
+
+                <td> {balance_sheet.current_assests}</td>
+              </tr>
+            </table>
+          </div>
+        ))}
       </div>
     );
   }
 }
+
 const mapStateToProps = state => ({
-  company: state.CompanyDetailReducer.company,
+  balance_sheet: state.CompanyDetailReducer.balance_sheet,
 });
 export default connect(
   mapStateToProps,
-  { getCompanyDetail }
+  { getBalanceSheet, getCashFlow, getProfitAndLoss }
 )(CompanyDetailFinancial);

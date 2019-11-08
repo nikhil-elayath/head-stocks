@@ -13,7 +13,7 @@ import CompanyDetail from "./components/CompanyDetail";
 import CompanyDetailSecondaryNavbar from "./components/Common/CompanyDetailSecondaryNavbar";
 // aditya
 import StocksLanding from "./components/StocksLanding";
-import { CompanyDetailFinancial } from "./components/CompanyDetailFinancial";
+import CompanyDetailFinancial from "./components/CompanyDetailFinancial";
 import CompanyDetailAnalysis from "./components/CompanyDetailAnalysis";
 import Footer from "./components/Footer";
 
@@ -29,8 +29,7 @@ function App() {
         <Route exact path="/login" component={Login} />
         {/* Piyush */}
         <Route exact path="/" component={home} />
-        {/* Nikhil */}
-        <Route exact path="/companydetail" component={CompanyDetail} />
+        <Route exact path="/companydetail/:id" component={CompanyDetail} />
         {/* aditya */}
         <Route exact path="/stocks" component={StocksLanding} />
         <Route

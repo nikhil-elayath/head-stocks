@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import { getCompanyDetail } from '../actions/CompanyDetail'
+import { getBalanceSheet } from "../../actions/CompanyDetail";
 import { connect } from "react-redux";
 // importing css file
 import "../../styles/CompanyDetailSecondaryNavbar.css";
@@ -25,6 +25,8 @@ export default class CompanyDetailSecondaryNavbar extends Component {
                 className="company-link"
                 to={{ pathname: "/companydetail" }}
               >
+                {" "}
+                {/* {this.props.getBalanceSheet()}{" "} */}
                 <span
                   id="company-detail-overview-click"
                   // className="secLink"
@@ -128,6 +130,6 @@ export default class CompanyDetailSecondaryNavbar extends Component {
 //   company: state.CompanyDetailReducer.company,
 // });
 // export default connect(
-//   mapStateToProps
-//   //   { getCompanyDetail }
+//   mapStateToProps,
+//   { getBalanceSheet }
 // )(CompanyDetailSecondaryNavbar);

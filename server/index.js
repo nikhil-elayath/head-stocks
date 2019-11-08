@@ -9,7 +9,10 @@ const mongoURL = "mongodb://localhost:27017/headStocks";
 const users = require("./routes/api/Users");
 const home = require("./routes/api/Home");
 const companydetails = require("./routes/api/CompanyDetail");
+const navbar = require("./routes/api/Navbar"); // Harshal
+
 console.log(mongoURL);
+
 mongoose.connect(mongoURL);
 app.use(cors());
 
@@ -29,6 +32,10 @@ app.use("/api/home/", home);
 
 //Nikhil
 app.use("/api/companydetail/", companydetails);
+app.use("/api/companydetail/balancesheet/", companydetails);
+
+//harshal
+app.use("/api/navbar/", navbar);
 
 const port = process.env.port || 2001;
 
