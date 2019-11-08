@@ -10,6 +10,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
     console.log("component mounted");
 
     // const id = this.props.match.params;
+    // console.log(id);
     // this.props.getCompanyDetailById(8);
   }
   // DEFINING THE STATE WITH OVERVIEW AS DEFAULT AND REST TWO OPTIONS FALSE
@@ -19,6 +20,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
     analysis: false,
   };
   render() {
+    console.log(this.props);
     // this.props.company ? this.props.company : console.log("Loading...");
     return (
       <div>
@@ -29,7 +31,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
               <Link
                 className="company-link"
                 // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
-                to={{ pathname: "/companydetail/" + this.props.company[0] }}
+                to={{ pathname: "/companydetail/" + this.props.company[4] }}
               >
                 {/* {this.props.getBalanceSheet()}{" "} */}
                 <span
@@ -67,7 +69,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                   to={{
                     // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
 
-                    pathname: "/financial/" + this.props.company[0],
+                    pathname: "/financial/" + this.props.company[4],
                   }}
                 >
                   <span
@@ -101,7 +103,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                 <Link
                   className="company-link"
                   to={{
-                    pathname: "/analysis/" + this.props.company[0],
+                    pathname: "/analysis/" + this.props.company[4],
                   }}
                 >
                   <span

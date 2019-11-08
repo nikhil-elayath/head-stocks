@@ -10,12 +10,13 @@ export class CompanyDetailFinancial extends Component {
     // getting the id from the params
     const id = this.props.match.params.id;
     //PASSING THE ID TO THE ACTION
-    this.props.getCompanyDetailById(id);
+    // this.props.getCompanyDetailById(id);
     console.log("financial mounted and id is", id);
   }
   render() {
+    console.log(this.props);
     console.log(
-      this.props.company ? this.props.company : console.log("Loading..")
+      this.props.company ? this.props.company[1] : console.log("Loading..")
     );
     return (
       <div>

@@ -20,6 +20,7 @@ export class CompanyDetail extends Component {
     // this.props.getBalanceSheet();
   }
   render() {
+    console.log(this.props);
     console.log(this.props.company.tname);
     return (
       <div>
