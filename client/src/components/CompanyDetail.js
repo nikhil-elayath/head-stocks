@@ -30,22 +30,23 @@ export class CompanyDetail extends Component {
             {/* {this.props.company.map(company => ( */}
             <div id="company-detail-profile">
               <h3>Profile</h3>
-              <h3>{this.props.company.company_id}</h3>
-              <h3>{/* Sector :<span>{this.props.company[6]}</span> */}</h3>
+              <h3>Maket Cap:</h3>
+              <h3>
+                Sector: <span>{this.props.company.sector}</span>
+              </h3>
+              <h3>
+                Industry:<span>{this.props.company.industry}</span>
+              </h3>
+              <h3>
+                Employees: <span>{this.props.company.employess}</span>
+              </h3>
 
-              <h3>
-                <span> {this.props.company.company_details}</span>
-                Market Cap: <span> {this.props.company.marketcap}</span>
+              {/* <h4>{this.props.company.ticker_name}</h4> */}
+
+              <h3 id="company-detail-profile-span">
+                {this.props.company.profile}
               </h3>
-              <h3>
-                Industry: <span> {this.props.company.industry}</span>
-              </h3>
-              <h3>
-                Employees: <span> {this.props.company.employees}</span>
-              </h3>
-              <h3>
-                <span>{this.props.company.bio}</span>{" "}
-              </h3>
+              {/* <h4>{this.props.company.company_name}</h4> */}
             </div>
 
             {/* recommendation */}

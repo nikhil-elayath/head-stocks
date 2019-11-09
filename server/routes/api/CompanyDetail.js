@@ -41,6 +41,7 @@ MongoClient.connect(url, function(err, client) {
         var cashflow = [];
         var profitandloss = [];
         var ratios = [];
+        var company_details = [];
         // var company_id = [result.ticker_id];
         //will contain company profile
         // var company_profile = [result.profile];
@@ -56,6 +57,7 @@ MongoClient.connect(url, function(err, client) {
           var flow = {};
           var ratio = {};
           var pnl = {};
+          var details = {};
           balance["ticker_dates"] = i;
           console.log("new bal", balance);
           balance["Cash and Cash Equivalents"] = result.ticker_dates[i][
@@ -133,11 +135,25 @@ MongoClient.connect(url, function(err, client) {
             result.ticker_dates[i]["Total Liabilities"];
           ratios.push(ratio);
         }
-        console.log("Balance sheet", balancesheet);
-        console.log("cashflow sheet", cashflow);
-        console.log("pnl", profitandloss);
+        // var company_details = [];
+        // details["ticker_id"] = result.ticker_id;
+        // details["sector"] = result.sector;
+        // details["industry"] = result.industry;
 
-        console.log("ratios", ratios);
+        // details["ticker_name"] = result.ticker_name;
+        // details["employess"] = result.employess;
+
+        // details["profile"] = result.profile;
+
+        // details["company_name"] = result.company_name;
+        // company_details.push(details);
+
+        // console.log("Balance sheet", balancesheet);
+        // console.log("cashflow sheet", cashflow);
+        // console.log("pnl", profitandloss);
+
+        // console.log("ratios", ratios);
+        console.log(company_details);
 
         if (!result) {
           return res.status(400).send({ message: "No data found" });
@@ -150,9 +166,13 @@ MongoClient.connect(url, function(err, client) {
               cashflow: cashflow,
               profitandloss: profitandloss,
               ratios: ratios,
-              company_id: result.ticker_id,
+              ticker_id: result.ticker_id,
+              profile: result.profile,
+              industry: result.industry,
               company_name: result.company_name,
-              company_details: result.profile,
+              employess: result.employess,
+              ticker_name: result.ticker_name,
+              sector: result.sector,
             },
 
             message: "Retrieved data Successfully",
