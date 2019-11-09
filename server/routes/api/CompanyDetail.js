@@ -145,18 +145,17 @@ MongoClient.connect(url, function(err, client) {
           if (err) throw err;
           res.status(200).json({
             status: 200,
-            data: [
-              {
-                balancesheet: balancesheet,
-                cashflow: cashflow,
-                profitandloss: profitandloss,
-                ratios: ratios,
-                company_id: result.ticker_id,
-                company_name: result.company_name,
-                company_details: result.profile,
-              },
-            ],
-            message: "Retrieved news Successfully",
+            data: {
+              balancesheet: balancesheet,
+              cashflow: cashflow,
+              profitandloss: profitandloss,
+              ratios: ratios,
+              company_id: result.ticker_id,
+              company_name: result.company_name,
+              company_details: result.profile,
+            },
+
+            message: "Retrieved data Successfully",
           });
         }
       });

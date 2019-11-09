@@ -25,15 +25,13 @@ export class CompanyDetail extends Component {
     return (
       <div>
         <SecondaryNavbar />
-        {this.props.company ? (
+        {this.props.company.balancesheet ? (
           <div id="company-detail-grid-container">
             {/* {this.props.company.map(company => ( */}
             <div id="company-detail-profile">
               <h3>Profile</h3>
-              <h3>{this.props.company[5]}</h3>
-              <h3>
-                Sector :<span>{this.props.company[6]}</span>
-              </h3>
+              <h3>{this.props.company.company_id}</h3>
+              <h3>{/* Sector :<span>{this.props.company[6]}</span> */}</h3>
 
               <h3>
                 <span> {this.props.company.company_details}</span>
@@ -49,7 +47,7 @@ export class CompanyDetail extends Component {
                 <span>{this.props.company.bio}</span>{" "}
               </h3>
             </div>
-            // ))}
+
             {/* recommendation */}
             <div id="company-detail-recommendation">
               {/* {this.props.company.map(company => (
