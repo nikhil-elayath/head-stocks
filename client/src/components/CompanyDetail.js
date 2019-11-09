@@ -52,8 +52,9 @@ export class CompanyDetail extends Component {
             {/* recommendation */}
             <div id="company-detail-recommendation">
               {/* {this.props.company.map(company => (
-                <h3> Recommendation</h3>
               ))} */}
+              <h3> Recommendation</h3>
+
               <div id="test" />
             </div>
           </div>
