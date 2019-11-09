@@ -8,7 +8,7 @@ describe("Testing Company Details Reducer", () => {
       payload: [{}, {}, {}]
     };
     const returnedState = companyDetailReducer(undefined, action);
-    expect(returnedState).toEqual({ company: action.payload });
+    expect(returnedState).toEqual({ company: [], balance_sheet: [] });
   });
 
   it("should return the initial state object when the action type is not mentioned or doesn't concern the reducer (when the returned state is initial state)", () => {
@@ -20,6 +20,6 @@ describe("Testing Company Details Reducer", () => {
       payload: [{}, {}, {}]
     };
     let returnedState = companyDetailReducer(undefined, action);
-    expect(returnedState).toEqual({ company: [] });
+    expect(returnedState).toEqual({ company: [], balance_sheet: [] });
   });
 });

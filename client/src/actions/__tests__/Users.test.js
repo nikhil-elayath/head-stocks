@@ -184,7 +184,12 @@ describe("Testing Users Action", () => {
       response: { data: responseOfApi }
     });
     const store = mockStore({});
-    const expectedResponse = [];
+    const expectedResponse = [
+      {
+        type: ERROR_TYPE,
+        payload: undefined
+      }
+    ];
     return store.dispatch(action.sendOtp(user)).then(() => {
       expect(store.getActions()).toEqual(expectedResponse);
     });
@@ -221,7 +226,12 @@ describe("Testing Users Action", () => {
       response: { data: responseOfApi }
     });
     const store = mockStore({});
-    const expectedResponse = [];
+    const expectedResponse = [
+      {
+        type: ERROR_TYPE,
+        payload: undefined
+      }
+    ];
     return store.dispatch(action.verifyOtp(user)).then(() => {
       expect(store.getActions()).toEqual(expectedResponse);
     });
