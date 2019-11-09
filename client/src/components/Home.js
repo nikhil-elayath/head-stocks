@@ -72,13 +72,14 @@ export class Home extends Component {
                   <table id="homeIndicesTable">
                     <th>Indices</th>
                     <th>Last</th>
+                    <th>%Chng</th>
                     {this.props.indices.map((indices, index) => (
                       <tr>
                         <td
                           id="indicesName"
                           onClick={() =>
                             this.props.history.push(
-                              "/indexProfile/" + indices.name,
+                              "/indexProfile/" + indices.ticker_id,
                               {
                                 indices
                               }
@@ -92,17 +93,23 @@ export class Home extends Component {
                             indices.ticker_dates["2019-11-05"].closing
                           ).toFixed(2)}
                         </td>
-                        {/* <td
-                      id={
-                        String(indices.change).charAt(0) == "-"
-                          ? "negativeIndex"
-                          : "positiveIndex"
-                      }
-                    >
-                      {String(indices.change).charAt(0) == "-"
-                        ? indices.change
-                        : "+" + indices.change}
-                    </td>{" "} */}
+                        <td
+                          id={
+                            String(
+                              (indices.ticker_dates["2019-10-31"].closing -
+                                indices.ticker_dates["2019-11-05"].closing) /
+                                100
+                            ).charAt(0) == "-"
+                              ? "negativeIndex"
+                              : "positiveIndex"
+                          }
+                        >
+                          {Number(
+                            (indices.ticker_dates["2019-10-31"].closing -
+                              indices.ticker_dates["2019-11-05"].closing) /
+                              100
+                          ).toFixed(3)}
+                        </td>
                       </tr>
                     ))}{" "}
                   </table>
