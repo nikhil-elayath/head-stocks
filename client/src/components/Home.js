@@ -16,7 +16,7 @@ export class Home extends Component {
   }
 
   render() {
-    console.log(this.props.indices);
+    console.log(this.props.singleNews);
     console.log(this.props.isLoading);
     return (
       <body>
@@ -53,16 +53,16 @@ export class Home extends Component {
               </div>
               <div id="homemiddlecontainer">
                 <div>
-                  <h3 id="headline">{this.props.singleNews.headline}</h3>
+                  <h3 id="headline">{this.props.singleNews[0].headline}</h3>
                   <img
                     id="image"
                     src={
                       "data:image/jpeg;base64," +
-                      this.props.singleNews.news_image
+                      this.props.singleNews[0].news_image
                     }
                   />
                   <p id="headlineDescription">
-                    {this.props.singleNews.description}
+                    {this.props.singleNews[0].description}
                   </p>
                 </div>
               </div>

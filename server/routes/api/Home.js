@@ -1,23 +1,24 @@
 const express = require("express");
 const router = express.Router();
-const stocksData = require("../../model/stocksModel");
+const newsData = require("../../model/news");
 
 //geting all news from database - Piyush kumar
 router.get("/allnews", async (req, res, next) => {
   try {
-    let result = await stocksData.find({});
+    let result = await newsData.find({});
     if (result < 0) {
       res.status(400).json({
         status: 400,
         data: result,
         message: "No news Found"
       });
+    } else {
+      res.status(200).json({
+        status: 200,
+        data: result,
+        message: "Retrieved all news Successfully"
+      });
     }
-    res.status(200).json({
-      status: 200,
-      data: result,
-      message: "Retrieved all news Successfully"
-    });
   } catch (err) {
     next(err);
   }
@@ -26,7 +27,8 @@ router.get("/allnews", async (req, res, next) => {
 //geting news details with an id - Piyush kumar
 router.get("/singleNews/:id", async (req, res, next) => {
   try {
-    let result = await stocksData.findOne({ new_id: +id });
+    let id = req.params.id;
+    let result = await newsData.find({ new_id: id });
     if (result < 0) {
       res.status(400).json({
         status: 400,
@@ -47,7 +49,7 @@ router.get("/singleNews/:id", async (req, res, next) => {
 
 router.get("/index", async (req, res) => {
   try {
-    let result = await stocksData.find({ isIndex: true });
+    let result = await newsData.find({ isIndex: true });
     if (result < 0) {
       res.status(400).json({
         status: 400,
