@@ -33,7 +33,7 @@ MongoClient.connect(url, function(err, client) {
         "2011-03-31",
         "2011-06-30",
         "2011-09-30",
-        "2011-12-31",
+        "2011-12-31"
       ]; //variable
       collection.findOne({ ticker_id: +id }, function(err, result) {
         // console.log(result);
@@ -41,13 +41,7 @@ MongoClient.connect(url, function(err, client) {
         var cashflow = [];
         var profitandloss = [];
         var ratios = [];
-        // var company_id = [result.ticker_id];
-        //will contain company profile
-        // var company_profile = [result.profile];
-        // var company_sector = [result.sector];
-        // console.log("result", company_profile);
-
-        // console.log("printing only id from result", result);
+        var profile = [result.ticker_id, result.company_name, result.profile];
 
         // Fetching the object using dates for balance sheet
         for (i of dummy_date) {
@@ -133,11 +127,6 @@ MongoClient.connect(url, function(err, client) {
             result.ticker_dates[i]["Total Liabilities"];
           ratios.push(ratio);
         }
-        console.log("Balance sheet", balancesheet);
-        console.log("cashflow sheet", cashflow);
-        console.log("pnl", profitandloss);
-
-        console.log("ratios", ratios);
 
         if (!result) {
           return res.status(400).send({ message: "No data found" });
@@ -151,12 +140,10 @@ MongoClient.connect(url, function(err, client) {
                 cashflow: cashflow,
                 profitandloss: profitandloss,
                 ratios: ratios,
-                company_id: result.ticker_id,
-                company_name: result.company_name,
-                company_details: result.profile,
-              },
+                profile: profile
+              }
             ],
-            message: "Retrieved news Successfully",
+            message: "Retrieved news Successfully"
           });
         }
       });
@@ -204,7 +191,7 @@ MongoClient.connect(url, function(err, client) {
           res.status(200).json({
             status: 200,
             data: result,
-            message: "Retrieved news Successfully",
+            message: "Retrieved news Successfully"
           });
         }
       });

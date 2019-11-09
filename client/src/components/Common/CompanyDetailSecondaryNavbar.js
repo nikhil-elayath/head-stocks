@@ -17,13 +17,13 @@ export class CompanyDetailSecondaryNavbar extends Component {
   state = {
     overview: true,
     financial: false,
-    analysis: false,
+    analysis: false
   };
   render() {
-    console.log(this.props);
-    console.log(
-      this.props.company ? this.props.company[0] : console.log("Loading..")
-    );
+    console.log(this.props.company["0"]);
+    this.props.company.profile
+      ? console.log(this.props.company.profile)
+      : console.log("Wait..");
     // this.props.company ? this.props.company : console.log("Loading...");
     return (
       <div>
@@ -35,7 +35,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                 className="company-link"
                 // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
                 to={{
-                  pathname: "/companydetail/" + this.props.company[0],
+                  pathname: "/companydetail/" + this.props.company[0]
                 }}
               >
                 {/* {this.props.getBalanceSheet()}{" "} */}
@@ -47,7 +47,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                     this.setState({
                       overview: true,
                       financial: false,
-                      analysis: false,
+                      analysis: false
                     });
                     console.log("Overview clicked");
 
@@ -74,7 +74,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                   to={{
                     // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
 
-                    pathname: "/financial/" + this.props.company.company_id,
+                    pathname: "/financial/" + this.props.company.company_id
                   }}
                 >
                   <span
@@ -83,7 +83,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                       this.setState({
                         overview: false,
                         financial: true,
-                        analysis: false,
+                        analysis: false
                       });
                       console.log("Financial clicked");
                     }}
@@ -108,7 +108,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                 <Link
                   className="company-link"
                   to={{
-                    pathname: "/analysis/" + this.props.company.company_id,
+                    pathname: "/analysis/" + this.props.company.company_id
                   }}
                 >
                   <span
@@ -117,7 +117,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                       this.setState({
                         overview: false,
                         financial: false,
-                        analysis: true,
+                        analysis: true
                       });
                       console.log("Analysis clicked");
                     }}
@@ -143,7 +143,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
   }
 }
 const mapStateToProps = state => ({
-  company: state.CompanyDetailReducer.company,
+  company: state.CompanyDetailReducer.company
 });
 export default connect(
   mapStateToProps,
