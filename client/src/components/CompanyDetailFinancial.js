@@ -29,39 +29,17 @@ export class CompanyDetailFinancial extends Component {
               {this.props.company.balancesheet.map(balance => (
                 <>
                   <tr>
-                    <td>
-                      <h3>{balance["Cash and Cash Equivalents"]}</h3>
-                    </td>
-                    <td>
-                      <h3>{balance["Current Assets"]}</h3>
-                    </td>
-                    <td>
-                      <h3>{balance["Total Assets"]}</h3>
-                    </td>
-                    <td>
-                      <h3>{balance["Accounts Payable"]}</h3>
-                    </td>
-                    <td>
-                      <h3>{balance["Receivables"]}</h3>
-                    </td>
-                    <td>
-                      <h3>{balance["Total Liabilities"]}</h3>
-                    </td>
-                    <td>
-                      <h3>{balance["Current Liabilities"]}</h3>
-                    </td>
-                    <td>
-                      <h3>{balance["Preferred Equity"]}</h3>
-                    </td>
-                    <td>
-                      <h3>{balance["Equity Before Minorities"]}</h3>
-                    </td>
-                    <td>
-                      <h3>{balance["Minorities Interest"]}</h3>
-                    </td>
-                    <td>
-                      <h3>{balance["Noncurrent Liabilities"]}</h3>
-                    </td>
+                    <td>{balance["Cash and Cash Equivalents"]}</td>
+                    <td>{balance["Current Assets"]}</td>
+                    <td>{balance["Total Assets"]}</td>
+                    <td>{balance["Accounts Payable"]}</td>
+                    <td>{balance["Receivables"]}</td>
+                    <td>{balance["Total Liabilities"]}</td>
+                    <td>{balance["Current Liabilities"]}</td>
+                    <td>{balance["Preferred Equity"]}</td>
+                    <td>{balance["Equity Before Minorities"]}</td>
+                    <td>{balance["Minorities Interest"]}</td>
+                    <td>{balance["Noncurrent Liabilities"]}</td>
                   </tr>
                 </>
               ))}
@@ -78,27 +56,51 @@ export class CompanyDetailFinancial extends Component {
               {this.props.company.cashflow.map(cashflow => (
                 <>
                   <tr>
-                    <td>
-                      <h3>{cashflow["Cash From Operating Activities"]}</h3>
-                    </td>
-                    <td>
-                      <h3>{cashflow["Cash From Investing Activities"]}</h3>
-                    </td>
-                    <td>
-                      <h3>{cashflow["Cash From Financing Activities"]}</h3>
-                    </td>
-                    <td>
-                      <h3>{cashflow["EBITDA"]}</h3>
-                    </td>
-                    <td>
-                      <h3>{cashflow["Net Change in Cash"]}</h3>
-                    </td>
-                    <td>
-                      <h3>{cashflow["Net PP&E"]}</h3>
-                    </td>
-                    <td>
-                      <h3>{cashflow["Dividends"]}</h3>
-                    </td>
+                    <td>{cashflow["Cash From Operating Activities"]}</td>
+                    <td>{cashflow["Cash From Investing Activities"]}</td>
+                    <td>{cashflow["Cash From Financing Activities"]}</td>
+                    <td>{cashflow["EBITDA"]}</td>
+                    <td>{cashflow["Net Change in Cash"]}</td>
+                    <td>{cashflow["Net PP&E"]}</td>
+                    <td>{cashflow["Dividends"]}</td>
+                  </tr>
+                </>
+              ))}
+            </>
+          ) : (
+            <p>Loading..</p>
+          )}
+        </table>
+
+        <h1>Profit And Loss </h1>
+        <table id="table_data">
+          {this.props.company.cashflow ? (
+            <>
+              {this.props.company.profitandloss.map(profitandloss => (
+                <>
+                  <tr>
+                    <td>{profitandloss["Revenues"]}</td>
+                    <td>{profitandloss["EBIT"]}</td>
+                    <td>{profitandloss["Net Profit"]}</td>
+                  </tr>
+                </>
+              ))}
+            </>
+          ) : (
+            <p>Loading..</p>
+          )}
+        </table>
+
+        <h1>Ratios </h1>
+        <table id="table_data">
+          {this.props.company.cashflow ? (
+            <>
+              {this.props.company.ratios.map(ratios => (
+                <>
+                  <tr>
+                    <td>{ratios["Current Ratio"]}</td>
+                    <td>{ratios["Liabilities To Equity"]}</td>
+                    <td>{ratios["Debt To Asset"]}</td>
                   </tr>
                 </>
               ))}
