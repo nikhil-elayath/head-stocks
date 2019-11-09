@@ -22,7 +22,7 @@ export class CompanyDetailFinancial extends Component {
     return (
       <div>
         <CompanyDetailSecondaryNavbar />
-        <p>Balance Sheet </p>
+        <h1>Balance Sheet </h1>
         <table id="table_data">
           {this.props.company.balancesheet ? (
             <>
@@ -48,27 +48,58 @@ export class CompanyDetailFinancial extends Component {
                       <h3>{balance["Total Liabilities"]}</h3>
                     </td>
                     <td>
-                      <h3>{balance["Total Liabilities"]}</h3>
+                      <h3>{balance["Current Liabilities"]}</h3>
                     </td>
                     <td>
-                      <h3>{balance["Total Liabilities"]}</h3>
+                      <h3>{balance["Preferred Equity"]}</h3>
                     </td>
                     <td>
-                      <h3>{balance["Total Liabilities"]}</h3>
+                      <h3>{balance["Equity Before Minorities"]}</h3>
                     </td>
                     <td>
-                      <h3>{balance["Total Liabilities"]}</h3>
+                      <h3>{balance["Minorities Interest"]}</h3>
+                    </td>
+                    <td>
+                      <h3>{balance["Noncurrent Liabilities"]}</h3>
                     </td>
                   </tr>
-                  {/* <h3>{balance["Current Assets"]}</h3>
+                </>
+              ))}
+            </>
+          ) : (
+            <p>Loading..</p>
+          )}
+        </table>
 
-                  <h3>{balance["Current Assets"]}</h3>
-
-                  <h3>{balance["Current Assets"]}</h3>
-
-                  <h3>{balance["Current Assets"]}</h3> */}
-
-                  {/* <h3>{this.props.company[0].balancesheet}</h3> */}
+        <h1>Cash Flow </h1>
+        <table id="table_data">
+          {this.props.company.cashflow ? (
+            <>
+              {this.props.company.cashflow.map(cashflow => (
+                <>
+                  <tr>
+                    <td>
+                      <h3>{cashflow["Cash From Operating Activities"]}</h3>
+                    </td>
+                    <td>
+                      <h3>{cashflow["Cash From Investing Activities"]}</h3>
+                    </td>
+                    <td>
+                      <h3>{cashflow["Cash From Financing Activities"]}</h3>
+                    </td>
+                    <td>
+                      <h3>{cashflow["EBITDA"]}</h3>
+                    </td>
+                    <td>
+                      <h3>{cashflow["Net Change in Cash"]}</h3>
+                    </td>
+                    <td>
+                      <h3>{cashflow["Net PP&E"]}</h3>
+                    </td>
+                    <td>
+                      <h3>{cashflow["Dividends"]}</h3>
+                    </td>
+                  </tr>
                 </>
               ))}
             </>
