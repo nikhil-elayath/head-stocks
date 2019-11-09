@@ -41,7 +41,14 @@ MongoClient.connect(url, function(err, client) {
         var cashflow = [];
         var profitandloss = [];
         var ratios = [];
-        var profile = [result.ticker_id, result.company_name, result.profile];
+        var company_details = [];
+        // var company_id = [result.ticker_id];
+        //will contain company profile
+        // var company_profile = [result.profile];
+        // var company_sector = [result.sector];
+        // console.log("result", company_profile);
+
+        // console.log("printing only id from result", result);
 
         // Fetching the object using dates for balance sheet
         for (i of dummy_date) {
@@ -50,6 +57,7 @@ MongoClient.connect(url, function(err, client) {
           var flow = {};
           var ratio = {};
           var pnl = {};
+          var details = {};
           balance["ticker_dates"] = i;
           console.log("new bal", balance);
           balance["Cash and Cash Equivalents"] = result.ticker_dates[i][
@@ -127,6 +135,25 @@ MongoClient.connect(url, function(err, client) {
             result.ticker_dates[i]["Total Liabilities"];
           ratios.push(ratio);
         }
+        // var company_details = [];
+        // details["ticker_id"] = result.ticker_id;
+        // details["sector"] = result.sector;
+        // details["industry"] = result.industry;
+
+        // details["ticker_name"] = result.ticker_name;
+        // details["employess"] = result.employess;
+
+        // details["profile"] = result.profile;
+
+        // details["company_name"] = result.company_name;
+        // company_details.push(details);
+
+        // console.log("Balance sheet", balancesheet);
+        // console.log("cashflow sheet", cashflow);
+        // console.log("pnl", profitandloss);
+
+        // console.log("ratios", ratios);
+        console.log(company_details);
 
         if (!result) {
           return res.status(400).send({ message: "No data found" });
@@ -134,16 +161,21 @@ MongoClient.connect(url, function(err, client) {
           if (err) throw err;
           res.status(200).json({
             status: 200,
-            data: [
-              {
-                balancesheet: balancesheet,
-                cashflow: cashflow,
-                profitandloss: profitandloss,
-                ratios: ratios,
-                profile: profile
-              }
-            ],
-            message: "Retrieved news Successfully"
+            data: {
+              balancesheet: balancesheet,
+              cashflow: cashflow,
+              profitandloss: profitandloss,
+              ratios: ratios,
+              ticker_id: result.ticker_id,
+              profile: result.profile,
+              industry: result.industry,
+              company_name: result.company_name,
+              employess: result.employess,
+              ticker_name: result.ticker_name,
+              sector: result.sector
+            },
+
+            message: "Retrieved data Successfully"
           });
         }
       });
