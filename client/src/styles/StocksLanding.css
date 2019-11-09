@@ -22,10 +22,17 @@
 }
 
 #stocks_grid_details {
-  border: 1px solid #707070;
+  background-color: #ffffff;
+  border: 1px solid #cacaca;
   border-radius: 8px;
   padding: 10px;
   text-align: center;
+  cursor: pointer;
+}
+
+#stocks_grid_details:hover {
+  box-shadow: 3px 3px #cacaca;
+  transform: scale(1.02);
 }
 
 #stocks_img {

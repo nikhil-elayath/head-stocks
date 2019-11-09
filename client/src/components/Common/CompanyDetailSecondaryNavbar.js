@@ -21,6 +21,9 @@ export class CompanyDetailSecondaryNavbar extends Component {
   };
   render() {
     console.log(this.props);
+    console.log(
+      this.props.company ? this.props.company[0] : console.log("Loading..")
+    );
     // this.props.company ? this.props.company : console.log("Loading...");
     return (
       <div>
