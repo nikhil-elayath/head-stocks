@@ -40,7 +40,7 @@ function App() {
         <Route exact path="/financial/:id" component={CompanyDetailFinancial} />
         <Route exact path="/analysis/:id" component={CompanyDetailAnalysis} />
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </Router>
   );
 }

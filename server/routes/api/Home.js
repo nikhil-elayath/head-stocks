@@ -29,11 +29,12 @@ router.get("/allnews", async (req, res, next) => {
 router.get("/singleNews/:id", async (req, res, next) => {
   try {
     let id = req.params.id;
-    let result = await newsData.find({ new_id: id });
+    console.log(id);
+    let result = await newsData.find({ new_id: req.params.id });
     if (result < 0) {
       res.status(400).json({
         status: 400,
-        data: result,
+        data: null,
         message: "No news Found"
       });
     } else {

@@ -31,8 +31,10 @@ export class CompanyDetailSecondaryNavbar extends Component {
           <div>
             {this.props.company.balancesheet ? (
               <div>
-                <h1>{this.props.company.ticker_name} </h1>
-                <h1>{this.props.company.company_name} </h1>
+                <h1>
+                  {this.props.company.company_name} (
+                  {this.props.company.ticker_name})
+                </h1>
                 <ul id="company-detail-content-container">
                   <Link
                     className="company-link"

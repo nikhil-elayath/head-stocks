@@ -1,23 +1,20 @@
 import React, { Component } from "react";
-import {
-  // getCompanyDetail,
-  // getBalanceSheet,
-  getCompanyDetailById,
-} from "../actions/CompanyDetail";
+import { getCompanyDetailById, getOhlcChart } from "../actions/CompanyDetail";
 import { connect } from "react-redux";
 // importing css file
 import "../styles/CompanyDetail.css";
 import SecondaryNavbar from "../components/Common/CompanyDetailSecondaryNavbar";
+import loader from "./Common/Loader.gif";
+import Loader from "react-loader-spinner";
 
 export class CompanyDetail extends Component {
   componentDidMount() {
     const id = this.props.match.params.id;
     this.props.getCompanyDetailById(id);
+    this.props.getOhlcChart("AAPL");
     console.log("printing id from the component", id);
 
     console.log("component mounted");
-    // this.props.getCompanyDetail();
-    // this.props.getBalanceSheet();
   }
   render() {
     console.log(this.props);
@@ -61,18 +58,40 @@ export class CompanyDetail extends Component {
         ) : (
           <p>Loading..</p>
         )}
+        {this.props.isLoading ? ( //use to display loader [piyush]
+          <div style={{ margin: "200px 500px" }}>
+            <Loader type={Loader} color="#2c3e50" height="100" width="400" />
+            {/* <img src={loader} alt="loading..." /> */}
+          </div>
+        ) : (
+          <div
+            style={{
+              border: "1px solid #cacaca",
+              width: "97%",
+              margin: "auto"
+            }}
+          >
+            <iframe
+              src={this.props.ohlc_chart}
+              style={{
+                width: "100%",
+                height: "550px",
+                outline: "none",
+                border: "none"
+              }}
+            />
+          </div>
+        )}
       </div>
     );
   }
 }
 const mapStateToProps = state => ({
   company: state.CompanyDetailReducer.company,
+  ohlc_chart: state.CompanyDetailReducer.ohlc_chart,
+  isLoading: state.LoadingReducer.isLoading
 });
 export default connect(
   mapStateToProps,
-  {
-    //  getCompanyDetail
-    // getBalanceSheet,
-    getCompanyDetailById,
-  }
+  { getOhlcChart, getCompanyDetailById }
 )(CompanyDetail);

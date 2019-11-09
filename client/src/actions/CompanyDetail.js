@@ -1,10 +1,5 @@
-import {
-  COMPANY_DETAIL,
-  // BALANCE_SHEET,
-  // CASH_FLOW,
-  // PROFIT_AND_LOSS,
-  COMPANY_DETAIL_BY_ID,
-} from "./Types";
+import { COMPANY_DETAIL, COMPANY_DETAIL_BY_ID, OHLC_CHART } from "./Types";
+import { startLoading, stopLoading } from "./LoadingAction";
 import axios from "axios";
 
 //getting company details
@@ -15,7 +10,7 @@ export const getCompanyDetail = () => dispatch => {
       .then(res => {
         dispatch({
           type: COMPANY_DETAIL,
-          payload: res.data.data,
+          payload: res.data.data
         });
       });
   } catch (err) {
@@ -33,11 +28,29 @@ export const getCompanyDetailById = id => dispatch => {
         dispatch({
           type: COMPANY_DETAIL_BY_ID,
 
-          payload: res.data.data,
+          payload: res.data.data
         });
         console.log("from then");
       });
   } catch (err) {
+    console.log(err);
+  }
+};
+
+// Fetching OHLC Chart for company
+export const getOhlcChart = id => dispatch => {
+  dispatch(startLoading());
+  try {
+    return axios.get("http://localhost:5000/companyindices/" + id).then(res => {
+      dispatch(stopLoading());
+      dispatch({
+        type: OHLC_CHART,
+
+        payload: res.data
+      });
+    });
+  } catch (err) {
+    dispatch(startLoading());
     console.log(err);
   }
 };

@@ -98,9 +98,11 @@ export class CompanyDetailFinancial extends Component {
               {this.props.company.ratios.map(ratios => (
                 <>
                   <tr>
-                    <td>{ratios["Current Ratio"]}</td>
-                    <td>{ratios["Liabilities To Equity"]}</td>
-                    <td>{ratios["Debt To Asset"]}</td>
+                    <td>{Number(ratios["Current Ratio"]).toFixed(2)}</td>
+                    <td>
+                      {Number(ratios["Liabilities To Equity"]).toFixed(2)}
+                    </td>
+                    <td>{Number(ratios["Debt To Asset"]).toFixed(2)}</td>
                   </tr>
                 </>
               ))}
@@ -115,7 +117,7 @@ export class CompanyDetailFinancial extends Component {
 }
 
 const mapStateToProps = state => ({
-  company: state.CompanyDetailReducer.company,
+  company: state.CompanyDetailReducer.company
 });
 export default connect(
   mapStateToProps,
