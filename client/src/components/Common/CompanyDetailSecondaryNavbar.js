@@ -29,14 +29,13 @@ export class CompanyDetailSecondaryNavbar extends Component {
       <div>
         <div id="company-details-tab-container">
           <div>
-            {this.props.company[0] ? (
+            {this.props.company.balancesheet ? (
               <ul id="company-detail-content-container">
                 <Link
                   className="company-link"
                   // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
                   to={{
-                    pathname:
-                      "/companydetail/" + this.props.company[0].company_id,
+                    pathname: "/companydetail/" + this.props.company.company_id,
                   }}
                 >
                   {/* {this.props.getBalanceSheet()}{" "} */}
@@ -76,8 +75,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                     to={{
                       // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
 
-                      pathname:
-                        "/financial/" + this.props.company[0].company_id,
+                      pathname: "/financial/" + this.props.company.company_id,
                     }}
                   >
                     <span
@@ -110,7 +108,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                   <Link
                     className="company-link"
                     to={{
-                      pathname: "/analysis/" + this.props.company[0].company_id,
+                      pathname: "/analysis/" + this.props.company.company_id,
                     }}
                   >
                     <span
