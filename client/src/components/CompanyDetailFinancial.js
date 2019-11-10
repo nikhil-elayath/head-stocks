@@ -23,73 +23,87 @@ export class CompanyDetailFinancial extends Component {
       <div>
         <CompanyDetailSecondaryNavbar />
         <h1>Balance Sheet </h1>
-        <table id="table_data">
-          {this.props.company.balancesheet ? (
-            <>
-              {this.props.company.balancesheet.map(balance => (
-                <>
-                  <tr>
-                    <td>{balance["Cash and Cash Equivalents"]}</td>
-                    <td>{balance["Current Assets"]}</td>
-                    <td>{balance["Total Assets"]}</td>
-                    <td>{balance["Accounts Payable"]}</td>
-                    <td>{balance["Receivables"]}</td>
-                    <td>{balance["Total Liabilities"]}</td>
-                    <td>{balance["Current Liabilities"]}</td>
-                    <td>{balance["Preferred Equity"]}</td>
-                    <td>{balance["Equity Before Minorities"]}</td>
-                    <td>{balance["Minorities Interest"]}</td>
-                    <td>{balance["Noncurrent Liabilities"]}</td>
-                  </tr>
-                </>
-              ))}
-            </>
-          ) : (
-            <p>Loading..</p>
-          )}
-        </table>
+        <div id="table-container">
+          <table>
+            {this.props.company.balancesheet ? (
+              <>
+                {this.props.company.balancesheet.map(balance => (
+                  <>
+                    <div id="company-details-date"> </div>
+
+                    <tr>
+                      <td id="comp-dates">{balance["ticker_dates"]}</td>
+
+                      <td>{balance["Cash and Cash Equivalents"]}</td>
+                      <td>{balance["Current Assets"]}</td>
+                      <td>{balance["Total Assets"]}</td>
+                      <td>{balance["Accounts Payable"]}</td>
+                      <td>{balance["Receivables"]}</td>
+                      <td>{balance["Total Liabilities"]}</td>
+                      <td>{balance["Current Liabilities"]}</td>
+                      <td>{balance["Preferred Equity"]}</td>
+                      <td>{balance["Equity Before Minorities"]}</td>
+                      <td>{balance["Minorities Interest"]}</td>
+                      <td>{balance["Noncurrent Liabilities"]}</td>
+                    </tr>
+                  </>
+                ))}
+              </>
+            ) : (
+              <p>Loading..</p>
+            )}
+          </table>
+        </div>
 
         <h1>Cash Flow </h1>
-        <table id="table_data">
-          {this.props.company.cashflow ? (
-            <>
-              {this.props.company.cashflow.map(cashflow => (
-                <>
-                  <tr>
-                    <td>{cashflow["Cash From Operating Activities"]}</td>
-                    <td>{cashflow["Cash From Investing Activities"]}</td>
-                    <td>{cashflow["Cash From Financing Activities"]}</td>
-                    <td>{cashflow["EBITDA"]}</td>
-                    <td>{cashflow["Net Change in Cash"]}</td>
-                    <td>{cashflow["Net PP&E"]}</td>
-                    <td>{cashflow["Dividends"]}</td>
-                  </tr>
-                </>
-              ))}
-            </>
-          ) : (
-            <p>Loading..</p>
-          )}
-        </table>
+        <div id="table-container">
+          <table id="table_data">
+            {this.props.company.cashflow ? (
+              <>
+                {this.props.company.cashflow.map(cashflow => (
+                  <>
+                    <tr>
+                      <td id="comp-dates">{cashflow["ticker_dates"]}</td>
+
+                      <td>{cashflow["Cash From Operating Activities"]}</td>
+                      <td>{cashflow["Cash From Investing Activities"]}</td>
+                      <td>{cashflow["Cash From Financing Activities"]}</td>
+                      <td>{cashflow["EBITDA"]}</td>
+                      <td>{cashflow["Net Change in Cash"]}</td>
+                      <td>{cashflow["Net PP&E"]}</td>
+                      <td>{cashflow["Dividends"]}</td>
+                    </tr>
+                  </>
+                ))}
+              </>
+            ) : (
+              <p>Loading..</p>
+            )}
+          </table>
+        </div>
 
         <h1>Profit And Loss </h1>
-        <table id="table_data">
-          {this.props.company.cashflow ? (
-            <>
-              {this.props.company.profitandloss.map(profitandloss => (
-                <>
-                  <tr>
-                    <td>{profitandloss["Revenues"]}</td>
-                    <td>{profitandloss["EBIT"]}</td>
-                    <td>{profitandloss["Net Profit"]}</td>
-                  </tr>
-                </>
-              ))}
-            </>
-          ) : (
-            <p>Loading..</p>
-          )}
-        </table>
+        <div id="table-container">
+          <table id="table_data">
+            {this.props.company.cashflow ? (
+              <>
+                {this.props.company.profitandloss.map(profitandloss => (
+                  <>
+                    <tr>
+                      <td id="comp-dates">{profitandloss["ticker_dates"]}</td>
+
+                      <td>{profitandloss["Revenues"]}</td>
+                      <td>{profitandloss["EBIT"]}</td>
+                      <td>{profitandloss["Net Profit"]}</td>
+                    </tr>
+                  </>
+                ))}
+              </>
+            ) : (
+              <p>Loading..</p>
+            )}
+          </table>
+        </div>
 
         <h1>Ratios </h1>
         <table id="table_data">
@@ -98,6 +112,8 @@ export class CompanyDetailFinancial extends Component {
               {this.props.company.ratios.map(ratios => (
                 <>
                   <tr>
+                    <td id="comp-dates">{ratios["ticker_dates"]}</td>
+
                     <td>{Number(ratios["Current Ratio"]).toFixed(2)}</td>
                     <td>
                       {Number(ratios["Liabilities To Equity"]).toFixed(2)}
@@ -117,7 +133,7 @@ export class CompanyDetailFinancial extends Component {
 }
 
 const mapStateToProps = state => ({
-  company: state.CompanyDetailReducer.company
+  company: state.CompanyDetailReducer.company,
 });
 export default connect(
   mapStateToProps,

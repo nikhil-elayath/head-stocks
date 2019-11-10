@@ -33,7 +33,7 @@ MongoClient.connect(url, function(err, client) {
         "2011-03-31",
         "2011-06-30",
         "2011-09-30",
-        "2011-12-31"
+        "2011-12-31",
       ]; //variable
       collection.findOne({ ticker_id: +id }, function(err, result) {
         // console.log(result);
@@ -59,6 +59,10 @@ MongoClient.connect(url, function(err, client) {
           var pnl = {};
           var details = {};
           balance["ticker_dates"] = i;
+          flow["ticker_dates"] = i;
+          pnl["ticker_dates"] = i;
+          ratio["ticker_dates"] = i;
+          // balance["ticker_dates"] = i;
           console.log("new bal", balance);
           balance["Cash and Cash Equivalents"] = result.ticker_dates[i][
             "Cash and Cash Equivalents"
@@ -172,10 +176,10 @@ MongoClient.connect(url, function(err, client) {
               company_name: result.company_name,
               employess: result.employess,
               ticker_name: result.ticker_name,
-              sector: result.sector
+              sector: result.sector,
             },
 
-            message: "Retrieved data Successfully"
+            message: "Retrieved data Successfully",
           });
         }
       });
@@ -223,7 +227,7 @@ MongoClient.connect(url, function(err, client) {
           res.status(200).json({
             status: 200,
             data: result,
-            message: "Retrieved news Successfully"
+            message: "Retrieved news Successfully",
           });
         }
       });
