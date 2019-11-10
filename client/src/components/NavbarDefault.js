@@ -122,12 +122,7 @@ export class NavbarDefault extends Component {
               onChange={this.OnChange}
             />
             <button onClick={this.onSearch}>
-              <img
-                src={searchlogo}
-                alt="Search Icon"
-                width="15px"
-                height="15px"
-              />
+              <i className="fa fa-search"></i>
             </button>
           </span>
           <div

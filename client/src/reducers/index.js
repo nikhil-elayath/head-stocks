@@ -4,6 +4,7 @@ import home from "./homeReducer";
 import company from "./CompanyDetailReducer";
 import searchResults from "./navbarReducer";
 import LoadingReducer from "./LoadingReducer";
+import stocks from "./StocksReducer";
 export default combineReducers({
   //piyush
   homeReducer: home,
@@ -14,5 +15,6 @@ export default combineReducers({
   //nikhil
   CompanyDetailReducer: company,
   // Harshal
-  navbarReducer: searchResults
+  navbarReducer: searchResults,
+  stocksReducer: stocks
 });

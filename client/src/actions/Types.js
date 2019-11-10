@@ -5,6 +5,7 @@ export const RESET_PASSWORD = "RESET_PASSWORD";
 export const SEND_OTP = "SEND_OTP";
 export const VERIFY_OTP = "VERIFY_OTP";
 export const ERROR_TYPE = "ERROR_TYPE";
+export const GET_ALL_COMPANY = "GET_ALL_COMPANY";
 
 //Piyush
 export const ALL_NEWS = "ALL_NEWS";

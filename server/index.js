@@ -8,6 +8,7 @@ const app = express();
 const mongoURL = "mongodb://localhost:27017/headStocks";
 const users = require("./routes/api/Users");
 const home = require("./routes/api/Home");
+const company = require("./routes/api/Stocks");
 const companydetails = require("./routes/api/CompanyDetail");
 const navbar = require("./routes/api/Navbar"); // Harshal
 const indexProfile = require("./routes/api/IndicesProfile");
@@ -28,12 +29,14 @@ app.use(logger("common"));
 //Bhavna
 app.use("/api/users/", users);
 app.use("/api/indicesprofile/", indexProfile);
+
 //piyush
 app.use("/api/home/", home);
 
 //Nikhil
 app.use("/api/companydetail/", companydetails);
 app.use("/api/companydetail/balancesheet/", companydetails);
+app.use("/api/sector/", company);
 
 //harshal
 app.use("/api/navbar/", navbar);
