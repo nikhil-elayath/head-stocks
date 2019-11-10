@@ -5,7 +5,6 @@
 
 #indicesMainContainer {
   width: 97%;
-  text-align: center;
   margin: 5px auto;
   display: grid;
   grid-template-rows: 250px 250px 250px;
@@ -15,11 +14,19 @@
 @media screen and (min-width: 430px) {
   #indicesMainContainer {
     width: 97%;
-    text-align: center;
+
     margin: 5px auto;
     display: grid;
-    grid-template-rows: 250px 250px 250px;
+    grid-template-rows: 120px 250px 250px;
     grid-gap: 10px;
+  }
+
+  #indicesLeftContainer {
+    font-size: 20px;
+  }
+
+  #indicesLeftContainer hr {
+    border: 1px solid #cacaca;
   }
 
   #losersGainersContainer {
