@@ -13,7 +13,7 @@ export class StocksLanding extends Component {
 
   state = {
     data: [],
-    items: 15,
+    items: 20,
     loadingstate: false,
     height: 800,
     pageStocks: [],
@@ -64,7 +64,12 @@ export class StocksLanding extends Component {
               hasMore={true}
               height={600}
               loader={
-                <Loader type={Loader} color="#2c3e50" textAlign="center" />
+                <Loader
+                  type={Loader}
+                  color="#2c3e50"
+                  textAlign="center"
+                  style={{ margin: "200px 700px" }}
+                />
               }
               endMessage={
                 <p style={{ textAlign: "center" }}>

@@ -21,7 +21,7 @@ export class CompanyDetailFinancial extends Component {
     return (
       <div>
         <CompanyDetailSecondaryNavbar />
-        <h1>Balance Sheet </h1>
+        <h1 id='financialsh1'>Balance Sheet </h1>
         <div id='table-container'>
           <table id='table_data'>
             {this.props.company.balancesheet ? (
@@ -29,7 +29,6 @@ export class CompanyDetailFinancial extends Component {
                 {this.props.company.balancesheet.map(balance => (
                   <>
                     <div id='company-details-date' />
-
                     <tr>
                       <td id='comp-dates'>{balance['ticker_dates']}</td>
 
@@ -56,7 +55,7 @@ export class CompanyDetailFinancial extends Component {
           </table>
         </div>
 
-        <h1>Cash Flow </h1>
+        <h1 id='financialsh1'>Cash Flow </h1>
         <div id='table-container'>
           <table id='table_data'>
             {this.props.company.cashflow ? (
@@ -83,7 +82,7 @@ export class CompanyDetailFinancial extends Component {
           </table>
         </div>
 
-        <h1>Profit And Loss </h1>
+        <h1 id='financialsh1'>Profit And Loss </h1>
         <div id='table-container'>
           <table id='table_data'>
             {this.props.company.cashflow ? (
@@ -106,30 +105,28 @@ export class CompanyDetailFinancial extends Component {
           </table>
         </div>
 
-        <h1>Ratios </h1>
-        <div id='table-container'>
-          <table id='table_data'>
-            {this.props.company.cashflow ? (
-              <>
-                {this.props.company.ratios.map(ratios => (
-                  <>
-                    <tr>
-                      <td id='comp-dates'>{ratios['ticker_dates']}</td>
+        <h1 id='financialsh1'>Ratios </h1>
+        <table id='table_data'>
+          {this.props.company.cashflow ? (
+            <>
+              {this.props.company.ratios.map(ratios => (
+                <>
+                  <tr>
+                    <td id='comp-dates'>{ratios['ticker_dates']}</td>
 
-                      <td>{Number(ratios['Current Ratio']).toFixed(2)}</td>
-                      <td>
-                        {Number(ratios['Liabilities To Equity']).toFixed(2)}
-                      </td>
-                      <td>{Number(ratios['Debt To Asset']).toFixed(2)}</td>
-                    </tr>
-                  </>
-                ))}
-              </>
-            ) : (
-              <p>Loading..</p>
-            )}
-          </table>
-        </div>
+                    <td>{Number(ratios['Current Ratio']).toFixed(2)}</td>
+                    <td>
+                      {Number(ratios['Liabilities To Equity']).toFixed(2)}
+                    </td>
+                    <td>{Number(ratios['Debt To Asset']).toFixed(2)}</td>
+                  </tr>
+                </>
+              ))}
+            </>
+          ) : (
+            <p>Loading..</p>
+          )}
+        </table>
       </div>
     )
   }

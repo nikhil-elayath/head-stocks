@@ -20,7 +20,7 @@ router.get("/company", async (req, res) => {
   res.status(200).json({
     status: 200,
     data: result,
-    message: "Retrieved Search Result successfully"
+    message: "Retrieved All Companies successfully"
   });
 });
 module.exports = router;

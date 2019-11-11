@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import "../styles/Navbar.css";
 import { Link } from "react-router-dom";
+
+// logos
+// import user from "./user.svg"
 import searchlogo from "./search.png";
 import { connect } from "react-redux";
 import { searchContent } from "../actions/Navbar";
@@ -14,6 +17,11 @@ export class NavbarDefault extends Component {
     home: false,
     stocks: false,
     login: false
+  };
+
+  removeToken = () => {
+    localStorage.removeItem("token");
+    this.forceUpdate();
   };
 
   //Displays option inside the hamburger button
@@ -53,7 +61,7 @@ export class NavbarDefault extends Component {
   };
 
   render() {
-    // console.log(this.props);
+    console.log(this.props.results);
     return (
       <div className="navbarHS" id="navbarID">
         <Link to="/">
@@ -74,23 +82,29 @@ export class NavbarDefault extends Component {
         </Link>
 
         <div className="navbarLoginOptions">
-          <span>
-            <Link
-              to="/Login"
-              onClick={() =>
-                this.setState({
-                  home: false,
-                  stocks: false,
-                  login: true
-                })
-              }
-              className={
-                this.state.login ? "tabactive linkdecornone" : "linkdecornone"
-              }
-            >
-              Login
-            </Link>
-          </span>
+          {!localStorage.getItem("token") ? (
+            <span>
+              <Link
+                to="/login"
+                onClick={() =>
+                  this.setState({
+                    home: false,
+                    stocks: false,
+                    login: true
+                  })
+                }
+                className={
+                  this.state.login ? "tabactive linkdecornone" : "linkdecornone"
+                }
+              >
+                Login
+              </Link>
+            </span>
+          ) : (
+            <span onClick={this.removeToken}>
+              <Link to="/">Logout</Link>
+            </span>
+          )}
         </div>
 
         <div className="navbarStockOptions">
@@ -118,7 +132,7 @@ export class NavbarDefault extends Component {
             <input
               type="text"
               name="searchInput"
-              placeholder="Search for a company or ticker"
+              placeholder="Search for ticker"
               onChange={this.OnChange}
             />
             <button onClick={this.onSearch}>
@@ -132,10 +146,7 @@ export class NavbarDefault extends Component {
                 : "navbarSearchResultsFound"
             }
           >
-            <h4>
-              Search Results
-              {/* for {this.state.searchInput} */}
-            </h4>
+            <h4>Search Results for {this.state.searchInput}</h4>
             {this.props.results.map(result => (
               <Link
                 className="company-link"
@@ -145,12 +156,7 @@ export class NavbarDefault extends Component {
                     "/companydetail/" + this.props.results[0]["ticker_id"]
                 }}
               >
-                <div
-                  className="navbarSearchResultsDiv"
-                  // onClick={() =>
-                  //     this.props.history.push("/companydetail/"+ result.ticker_id, { result })
-                  //   }
-                >
+                <div className="navbarSearchResultsDiv">
                   <p className="navbarSearchResultsPTag1">
                     <b>{result.ticker_name}</b>
                   </p>
