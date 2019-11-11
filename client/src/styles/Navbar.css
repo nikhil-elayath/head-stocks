@@ -44,7 +44,7 @@
 
 .navbarSearchBox {
   float: left;
-  width: 35%;
+  width: 38%;
   display: block;
   padding: 0px 2% 0px 5%;
 }
@@ -81,7 +81,7 @@
   position: relative;
 }
 .navbarSearchResultsFound {
-  padding: 20px 26px 20px 26px;
+  padding: 4px 26px 20px 26px;
   margin: 0px 0px 0px 26px;
   border: 1px solid #2c3e50;
   border-radius: 5px;
@@ -92,7 +92,7 @@
   display: block;
   overflow-y: scroll;
   overflow: auto;
-  max-height: 200px;
+  max-height: 500px;
   text-align: center;
 }
 .navbarSearchResultsNotFound {
@@ -208,18 +208,19 @@
   .navbarSearchBox button {
     background-color: #ffffff;
     width: 20px;
-    /* border: none;  */
-    /* border-radius: 5px;  */
-    /* z-index: 1;  */
-    /* height: 26px; */
-    /* position: relative; */
-    /* top: 2px; */
-    /* right: 8px; */
+   
   }
   .navbarSearchResultsFound {
     margin: 0px 0px 0px 6%;
     width: 86%;
     display: block;
+  }
+  .navbarSearchResultsPTag1 {
+    font-size: 12px;
+  }
+  .navbarSearchResultsPTag2 {
+    font-size: 12px;
+    
   }
   .navbarHS span:not(:first-child) {
     display: none;
