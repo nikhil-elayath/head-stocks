@@ -44,12 +44,12 @@
 
 .navbarSearchBox {
   float: left;
-  width: 33%;
+  width: 35%;
   display: block;
   padding: 0px 2% 0px 5%;
 }
 .navbarSearchSpan {
-  padding: 12px 16px 8px 16px !important;
+  padding: 16px 16px 8px 16px !important;
 }
 .navbarSearchBox input {
   border-radius: 5px;
