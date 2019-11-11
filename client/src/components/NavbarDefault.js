@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import "../styles/Navbar.css";
 import { Link } from "react-router-dom";
-import searchlogo from "./search.png";
+
+// logos 
+// import user from "./user.svg"
+import searchlogo from "./search.png"
 import { connect } from "react-redux";
 import { searchContent } from "../actions/Navbar";
 
@@ -53,7 +56,7 @@ export class NavbarDefault extends Component {
   };
 
   render() {
-    // console.log(this.props);
+    console.log(this.props.results);
     return (
       <div className="navbarHS" id="navbarID">
         <Link to="/">
@@ -118,7 +121,7 @@ export class NavbarDefault extends Component {
             <input
               type="text"
               name="searchInput"
-              placeholder="Search for a company or ticker"
+              placeholder="Search for ticker"
               onChange={this.OnChange}
             />
             <button onClick={this.onSearch}>
@@ -134,7 +137,7 @@ export class NavbarDefault extends Component {
           >
             <h4>
               Search Results
-              {/* for {this.state.searchInput} */}
+              for {this.state.searchInput}
             </h4>
             {this.props.results.map(result => (
               <Link
@@ -147,9 +150,6 @@ export class NavbarDefault extends Component {
               >
                 <div
                   className="navbarSearchResultsDiv"
-                  // onClick={() =>
-                  //     this.props.history.push("/companydetail/"+ result.ticker_id, { result })
-                  //   }
                 >
                   <p className="navbarSearchResultsPTag1">
                     <b>{result.ticker_name}</b>
