@@ -121,7 +121,7 @@ export class NavbarDefault extends Component {
             <input
               type="text"
               name="searchInput"
-              placeholder="Search for a company or ticker"
+              placeholder="Search for ticker"
               onChange={this.OnChange}
             />
             <button onClick={this.onSearch}>
