@@ -20,7 +20,7 @@
 #homeleftsidecontainer {
   /* grid-area: news; */
   grid-column: 1/2;
-  height: 520px;
+  height: 620px;
   overflow-x: hidden;
   padding: 10px;
   background-color: #fff;
@@ -40,7 +40,7 @@
 }
 #homemiddlecontainer {
   grid-column: 2/4;
-  height: 520px;
+  height: 620px;
   padding: 20px;
   overflow-x: hidden;
   background-color: #fff;
@@ -49,7 +49,7 @@
 }
 #homerightsidecontainer {
   grid-column: 4/-1;
-  height: 520px;
+  height: 620px;
   overflow-x: hidden;
   font-size: 16px;
   background-color: #fff;
@@ -84,8 +84,20 @@
   color: #ff4d4d;
 }
 
+#homeIndicesTable {
+  border-collapse: collapse;
+  border-spacing: 0;
+  text-align: center;
+  width: 100%;
+  margin: auto;
+}
+
 #homeIndicesTable td {
-  padding: 10px;
+  padding: 15px;
+}
+
+#homeIndicesTable tr:nth-child(odd) {
+  background-color: #fafafa;
 }
 
 #homeIndicesTable th {

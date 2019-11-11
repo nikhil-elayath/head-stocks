@@ -17,8 +17,7 @@ export class CompanyDetail extends Component {
     console.log("component mounted");
   }
   render() {
-    console.log(this.props);
-    console.log(this.props.company.tname);
+    // console.log(this.props.company.tname);
     return (
       <div>
         <SecondaryNavbar />
@@ -26,16 +25,15 @@ export class CompanyDetail extends Component {
           <div id="company-detail-grid-container">
             {/* {this.props.company.map(company => ( */}
             <div id="company-detail-profile">
-              <h3>Profile</h3>
               <h3>Maket Cap:</h3>
               <h3>
-                Sector: <span>{this.props.company.sector}</span>
+                Sector : <span>{this.props.company.sector}</span>
               </h3>
               <h3>
-                Industry:<span>{this.props.company.industry}</span>
+                Industry : <span>{this.props.company.industry}</span>
               </h3>
               <h3>
-                Employees: <span>{this.props.company.employess}</span>
+                Employees : <span>{this.props.company.employess}</span>
               </h3>
 
               {/* <h4>{this.props.company.ticker_name}</h4> */}
@@ -47,18 +45,18 @@ export class CompanyDetail extends Component {
             </div>
 
             {/* recommendation */}
-            <div id="company-detail-recommendation">
-              {/* {this.props.company.map(company => (
-              ))} */}
+            {/* <div id="company-detail-recommendation">
+              {this.props.company.map(company => (
+              ))}
               <h3> Recommendation</h3>
 
               <div id="test" />
-            </div>
+            </div> */}
           </div>
         ) : (
           <p>Loading..</p>
         )}
-        {this.props.isLoading ? ( //use to display loader [piyush]
+        {this.props.isLoading ? ( // use to display loader [piyush]
           <div style={{ margin: "200px 500px" }}>
             <Loader type={Loader} color="#2c3e50" height="100" width="400" />
             {/* <img src={loader} alt="loading..." /> */}
@@ -68,7 +66,8 @@ export class CompanyDetail extends Component {
             style={{
               border: "1px solid #cacaca",
               width: "97%",
-              margin: "auto"
+              margin: "auto",
+              marginBottom: "20px"
             }}
           >
             <iframe

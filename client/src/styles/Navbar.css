@@ -20,16 +20,16 @@
 }
 
 .navbarLoginOptions span {
-   float: right;
-   margin-right: 20px;
-} 
+  float: right;
+  margin-right: 20px;
+}
 
 .navbarLoginOptions span .tabactive {
   border-bottom: 2px solid #39abf7;
 }
 .navbarLoginOptions span :hover {
   border-bottom: 2px solid #39abf7;
- }
+}
 
 .navbarStockOptions span {
   float: left;
@@ -201,7 +201,7 @@
   }
   .navbarSearchBox input {
     border-radius: 5px;
-     width: 90%;
+    width: 90%;
     text-align: center;
     height: 27px;
   }
@@ -234,4 +234,3 @@
     color: #39abf7;
   }
 }
-
