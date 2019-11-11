@@ -1,27 +1,28 @@
-#table_data th,
+th,
 td {
   text-align: left;
   padding: 8px;
 }
-#table_data {
+table {
   border-collapse: collapse;
   border-spacing: 0;
-  border: 1px solid #cacaca;
-  width: 97%;
-  margin: auto;
+  width: 100%;
+  /* border: 1px solid red; */
   padding: 10px 10px 10px 10px;
 }
-
-#table_data td:nth-child(even) {
-  background-color: #f2f2f2;
+.table_data {
+  /* onlythe table will scroll */
+  overflow-x: scroll;
 }
-*/
+/* tr:nth-child(even) {
+  background-color: #f2f2f2;
+} */
 
 /* converting row to column  */
-#table_data tr > * {
+table tr > * {
   display: block;
 }
-#table_data tr {
+table tr {
   display: table-cell;
 }
 
@@ -44,13 +45,9 @@ td {
 }
 #comp-dates {
   background-color: #2c3e50;
-  color: #fff;
+  color: white;
   /* border-radius: 10px; */
 }
 #table-container {
   padding: 10px 10px 10px 10px;
-}
-
-#financialsh1 {
-  margin-left: 25px;
 }
