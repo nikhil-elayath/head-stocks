@@ -1,0 +1,125 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Company Detail Financial Component should display the cash and cash equivalents 1`] = `
+<div>
+  <Connect(CompanyDetailSecondaryNavbar) />
+  <h1>
+    Balance Sheet 
+  </h1>
+  <div
+    id="table-container"
+  >
+    <table
+      id="table_data"
+    >
+      <p>
+        Loading..
+      </p>
+    </table>
+  </div>
+  <h1>
+    Cash Flow 
+  </h1>
+  <div
+    id="table-container"
+  >
+    <table
+      id="table_data"
+    >
+      <p>
+        Loading..
+      </p>
+    </table>
+  </div>
+  <h1>
+    Profit And Loss 
+  </h1>
+  <div
+    id="table-container"
+  >
+    <table
+      id="table_data"
+    >
+      <p>
+        Loading..
+      </p>
+    </table>
+  </div>
+  <h1>
+    Ratios 
+  </h1>
+  <div
+    id="table-container"
+  >
+    <table
+      id="table_data"
+    >
+      <p>
+        Loading..
+      </p>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Testing Company Detail Financial Component should mount the component 1`] = `
+<div>
+  <Connect(CompanyDetailSecondaryNavbar) />
+  <h1>
+    Balance Sheet 
+  </h1>
+  <div
+    id="table-container"
+  >
+    <table
+      id="table_data"
+    >
+      <p>
+        Loading..
+      </p>
+    </table>
+  </div>
+  <h1>
+    Cash Flow 
+  </h1>
+  <div
+    id="table-container"
+  >
+    <table
+      id="table_data"
+    >
+      <p>
+        Loading..
+      </p>
+    </table>
+  </div>
+  <h1>
+    Profit And Loss 
+  </h1>
+  <div
+    id="table-container"
+  >
+    <table
+      id="table_data"
+    >
+      <p>
+        Loading..
+      </p>
+    </table>
+  </div>
+  <h1>
+    Ratios 
+  </h1>
+  <div
+    id="table-container"
+  >
+    <table
+      id="table_data"
+    >
+      <p>
+        Loading..
+      </p>
+    </table>
+  </div>
+</div>
+`;

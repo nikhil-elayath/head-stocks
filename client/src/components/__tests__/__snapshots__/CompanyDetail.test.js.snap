@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Company Detail Component should mount the component 1`] = `
+<div>
+  <Connect(CompanyDetailSecondaryNavbar) />
+  <p>
+    Loading..
+  </p>
+  <div
+    style={
+      Object {
+        "border": "1px solid #cacaca",
+        "margin": "auto",
+        "width": "97%",
+      }
+    }
+  >
+    <iframe
+      style={
+        Object {
+          "border": "none",
+          "height": "550px",
+          "outline": "none",
+          "width": "100%",
+        }
+      }
+    />
+  </div>
+</div>
+`;

@@ -53,6 +53,7 @@ export class Home extends Component {
               </div>
               <div id="homemiddlecontainer">
                 <div>
+                  {/*single news */}
                   <h3 id="headline">{this.props.singleNews[0].headline}</h3>
                   <img
                     id="image"
@@ -67,6 +68,7 @@ export class Home extends Component {
                 </div>
               </div>
               <div id="homerightsidecontainer">
+                {/*for indics table */}
                 <h1>Indices</h1>
                 <div>
                   <table id="homeIndicesTable">
