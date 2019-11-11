@@ -60,6 +60,11 @@ export class Register extends Component {
       }
     }
 
+    if (this.state.name.length < 6 || this.state.name.length > 8) {
+      formIsValid = false;
+      errors["name"] = "*Please Enter name betwenn 6 to 8 characters only.";
+    }
+
     if (!this.state.email) {
       formIsValid = false;
       errors["email"] = "*Please enter your email-ID.";
@@ -88,21 +93,16 @@ export class Register extends Component {
       }
     }
 
+    if (this.state.password.length < 6 || this.state.password.length > 8) {
+      formIsValid = false;
+      errors["password"] =
+        "*Please Enter password betwenn 6 to 8 characters only.";
+    }
+
     if (!this.state.password) {
       formIsValid = false;
       errors["password"] = "*Please enter your password.";
     }
-
-    // if (typeof this.state.password !== "undefined") {
-    //   if (
-    //     !this.state.password.match(
-    //       /^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&]).*$/
-    //     )
-    //   ) {
-    //     formIsValid = false;
-    //     errors["password"] = "*Please enter secure and strong password.";
-    //   }
-    // }
 
     if (!this.state.password) {
       formIsValid = false;

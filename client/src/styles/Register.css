@@ -109,9 +109,17 @@
   color: #39abf7;
 }
 
+#registerFormButton:hover {
+  color: #fff;
+  right: 0;
+  background-color: #39abf7;
+  box-shadow: 0 12px 16px 0 rgba(231, 226, 226, 0.24),
+    0 17px 50px 0 rgba(231, 226, 226, 0.24);
+}
+
 @media screen and (min-width: 430px) {
   #registerMainContainer {
-    grid-template-rows: 657px;
+    grid-template-rows: 675px;
     grid-template-columns: repeat(2, 1fr);
   }
   #registerMainContainer > div:nth-child(2) > form input {
