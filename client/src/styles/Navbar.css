@@ -97,7 +97,7 @@
   display: block;
   overflow-y: scroll;
   overflow: auto;
-  max-height: 550px;
+  max-height: 200px;
   text-align: center;
 }
 .navbarSearchResultsNotFound {

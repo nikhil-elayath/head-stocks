@@ -16,6 +16,7 @@ import StocksLanding from "./components/StocksLanding";
 import CompanyDetailFinancial from "./components/CompanyDetailFinancial";
 import CompanyDetailAnalysis from "./components/CompanyDetailAnalysis";
 import Footer from "./components/Footer";
+import IndicesProfile from "./components/IndicesProfile";
 
 function App() {
   return (
@@ -39,8 +40,9 @@ function App() {
         />
         <Route exact path="/financial/:id" component={CompanyDetailFinancial} />
         <Route exact path="/analysis/:id" component={CompanyDetailAnalysis} />
+        <Route exact path="/indexProfile/:id" component={IndicesProfile} />
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </Router>
   );
 }
