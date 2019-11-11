@@ -65,7 +65,9 @@ export class CompanyDetailFinancial extends Component {
                     <tr>
                       <td id='comp-dates'>{cashflow['ticker_dates']}</td>
 
-                      <td>{cashflow['Cash From Operating Activities']}</td>
+                      <td id='current-assests'>
+                        {cashflow['Cash From Operating Activities']}
+                      </td>
                       <td>{cashflow['Cash From Investing Activities']}</td>
                       <td>{cashflow['Cash From Financing Activities']}</td>
                       <td>{cashflow['EBITDA']}</td>

@@ -65,7 +65,9 @@ exports[`Testing Company Detail Financial Component should display the cash and 
 exports[`Testing Company Detail Financial Component should mount the component 1`] = `
 <div>
   <Connect(CompanyDetailSecondaryNavbar) />
-  <h1>
+  <h1
+    id="financialsh1"
+  >
     Balance Sheet 
   </h1>
   <div
@@ -79,7 +81,9 @@ exports[`Testing Company Detail Financial Component should mount the component 1
       </p>
     </table>
   </div>
-  <h1>
+  <h1
+    id="financialsh1"
+  >
     Cash Flow 
   </h1>
   <div
@@ -93,7 +97,9 @@ exports[`Testing Company Detail Financial Component should mount the component 1
       </p>
     </table>
   </div>
-  <h1>
+  <h1
+    id="financialsh1"
+  >
     Profit And Loss 
   </h1>
   <div
@@ -107,19 +113,17 @@ exports[`Testing Company Detail Financial Component should mount the component 1
       </p>
     </table>
   </div>
-  <h1>
+  <h1
+    id="financialsh1"
+  >
     Ratios 
   </h1>
-  <div
-    id="table-container"
+  <table
+    id="table_data"
   >
-    <table
-      id="table_data"
-    >
-      <p>
-        Loading..
-      </p>
-    </table>
-  </div>
+    <p>
+      Loading..
+    </p>
+  </table>
 </div>
 `;
