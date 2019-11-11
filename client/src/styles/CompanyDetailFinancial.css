@@ -14,9 +14,9 @@ table {
   /* onlythe table will scroll */
   overflow-x: scroll;
 }
-tr:nth-child(even) {
+/* tr:nth-child(even) {
   background-color: #f2f2f2;
-}
+} */
 
 /* converting row to column  */
 table tr > * {
@@ -45,6 +45,7 @@ table tr {
 }
 #comp-dates {
   background-color: #2c3e50;
+  color: white;
   /* border-radius: 10px; */
 }
 #table-container {

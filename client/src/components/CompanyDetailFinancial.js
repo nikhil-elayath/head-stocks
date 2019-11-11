@@ -106,27 +106,29 @@ export class CompanyDetailFinancial extends Component {
         </div>
 
         <h1>Ratios </h1>
-        <table id="table_data">
-          {this.props.company.cashflow ? (
-            <>
-              {this.props.company.ratios.map(ratios => (
-                <>
-                  <tr>
-                    <td id="comp-dates">{ratios["ticker_dates"]}</td>
+        <div id="table-container">
+          <table id="table_data">
+            {this.props.company.cashflow ? (
+              <>
+                {this.props.company.ratios.map(ratios => (
+                  <>
+                    <tr>
+                      <td id="comp-dates">{ratios["ticker_dates"]}</td>
 
-                    <td>{Number(ratios["Current Ratio"]).toFixed(2)}</td>
-                    <td>
-                      {Number(ratios["Liabilities To Equity"]).toFixed(2)}
-                    </td>
-                    <td>{Number(ratios["Debt To Asset"]).toFixed(2)}</td>
-                  </tr>
-                </>
-              ))}
-            </>
-          ) : (
-            <p>Loading..</p>
-          )}
-        </table>
+                      <td>{Number(ratios["Current Ratio"]).toFixed(2)}</td>
+                      <td>
+                        {Number(ratios["Liabilities To Equity"]).toFixed(2)}
+                      </td>
+                      <td>{Number(ratios["Debt To Asset"]).toFixed(2)}</td>
+                    </tr>
+                  </>
+                ))}
+              </>
+            ) : (
+              <p>Loading..</p>
+            )}
+          </table>
+        </div>
       </div>
     );
   }
