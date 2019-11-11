@@ -97,7 +97,7 @@ export class CompanyDetailFinancial extends Component {
                 ))}
               </>
             ) : (
-              <p></p>
+              <p />
             )}
           </table>
         </div>
@@ -110,7 +110,7 @@ export class CompanyDetailFinancial extends Component {
                 <>
                   <tr>
                     <td id='comp-dates'>{ratios['ticker_dates']}</td>
-
+                    {/* mapping only the first two values and ignoring the rest of the values  */}
                     <td>{Number(ratios['Current Ratio']).toFixed(2)}</td>
                     <td>
                       {Number(ratios['Liabilities To Equity']).toFixed(2)}
@@ -121,7 +121,7 @@ export class CompanyDetailFinancial extends Component {
               ))}
             </>
           ) : (
-            <p></p>
+            <p />
           )}
         </table>
       </div>
