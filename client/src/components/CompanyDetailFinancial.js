@@ -22,7 +22,7 @@ export class CompanyDetailFinancial extends Component {
     return (
       <div>
         <CompanyDetailSecondaryNavbar />
-        <h1>Balance Sheet </h1>
+        <h1 id="financialsh1">Balance Sheet </h1>
         <div id="table-container">
           <table id="table_data">
             {this.props.company.balancesheet ? (
@@ -30,7 +30,6 @@ export class CompanyDetailFinancial extends Component {
                 {this.props.company.balancesheet.map(balance => (
                   <>
                     <div id="company-details-date"> </div>
-
                     <tr>
                       <td id="comp-dates">{balance["ticker_dates"]}</td>
 
@@ -55,7 +54,7 @@ export class CompanyDetailFinancial extends Component {
           </table>
         </div>
 
-        <h1>Cash Flow </h1>
+        <h1 id="financialsh1">Cash Flow </h1>
         <div id="table-container">
           <table id="table_data">
             {this.props.company.cashflow ? (
@@ -82,7 +81,7 @@ export class CompanyDetailFinancial extends Component {
           </table>
         </div>
 
-        <h1>Profit And Loss </h1>
+        <h1 id="financialsh1">Profit And Loss </h1>
         <div id="table-container">
           <table id="table_data">
             {this.props.company.cashflow ? (
@@ -105,7 +104,7 @@ export class CompanyDetailFinancial extends Component {
           </table>
         </div>
 
-        <h1>Ratios </h1>
+        <h1 id="financialsh1">Ratios </h1>
         <table id="table_data">
           {this.props.company.cashflow ? (
             <>
