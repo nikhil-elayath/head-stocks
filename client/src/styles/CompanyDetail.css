@@ -2,9 +2,7 @@
   padding: 10px 10px 10px 10px;
   grid-template-rows: 1fr 1fr;
   display: grid;
-  grid-template-areas:
-    "profile"
-    "recommendation";
+  grid-template-areas: "profile";
   /* "chart chart"; */
   grid-template-columns: 1fr;
   /* overflow-x: scroll; */
@@ -25,12 +23,12 @@
 }
 @media screen and (min-width: 480px) {
   #company-detail-grid-container {
-    padding: 10px 10px 10px 10px;
+    padding: 20px;
     grid-template-rows: 1fr;
     display: grid;
-    grid-template-areas: "profile recommendation";
+    grid-template-areas: "profile";
     /* "chart chart"; */
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     /* overflow-x: scroll; */
     overflow-y: scroll;
   }
@@ -41,6 +39,7 @@
   #company-detail-profile > h3 {
     /* color: #707070; */
     font-size: 20px;
+    text-align: justify;
   }
 
   /* .profile {
