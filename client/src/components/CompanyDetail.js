@@ -25,7 +25,9 @@ export class CompanyDetail extends Component {
           <div id="company-detail-grid-container">
             {/* {this.props.company.map(company => ( */}
             <div id="company-detail-profile">
-              <h3>Maket Cap:</h3>
+              <h3>
+                Maket Cap : <span>1.156T for Nov. 8, 2019</span>
+              </h3>
               <h3>
                 Sector : <span>{this.props.company.sector}</span>
               </h3>
@@ -38,7 +40,7 @@ export class CompanyDetail extends Component {
 
               {/* <h4>{this.props.company.ticker_name}</h4> */}
 
-              <h3 id="company-detail-profile-span">
+              <h3 id="company-detail-profile-span" style={{ fontSize: "17px" }}>
                 {this.props.company.profile}
               </h3>
               {/* <h4>{this.props.company.company_name}</h4> */}
