@@ -3,9 +3,7 @@ import CompanyDetailSecondaryNavbar from './Common/CompanyDetailSecondaryNavbar'
 import { getCompanyDetailById } from '../actions/CompanyDetail'
 import { connect } from 'react-redux'
 import '../styles/CompanyDetailFinancial.css'
-import Table from './Common/Table'
-// let i = 1;
-// let j = 1;
+
 export class CompanyDetailFinancial extends Component {
   componentDidMount () {
     // getting the id from the params
@@ -14,12 +12,9 @@ export class CompanyDetailFinancial extends Component {
     this.props.getCompanyDetailById(id)
   }
   render () {
-    // console.log(this.props)
-    // console.log(
-    //   this.props.company ? this.props.company[1] : console.log('Loading..')
-    // )
     return (
       <div>
+        {/* CALLING THE SECONDARY NAVBAR  */}
         <CompanyDetailSecondaryNavbar />
         <h1 id='financialsh1'>Balance Sheet </h1>
         <div id='table-container'>
@@ -50,7 +45,7 @@ export class CompanyDetailFinancial extends Component {
                 ))}
               </>
             ) : (
-              <p>Loading..</p>
+              <p />
             )}
           </table>
         </div>
@@ -79,7 +74,7 @@ export class CompanyDetailFinancial extends Component {
                 ))}
               </>
             ) : (
-              <p>Loading..</p>
+              <p />
             )}
           </table>
         </div>
@@ -102,7 +97,7 @@ export class CompanyDetailFinancial extends Component {
                 ))}
               </>
             ) : (
-              <p>Loading..</p>
+              <p></p>
             )}
           </table>
         </div>
@@ -126,7 +121,7 @@ export class CompanyDetailFinancial extends Component {
               ))}
             </>
           ) : (
-            <p>Loading..</p>
+            <p></p>
           )}
         </table>
       </div>
