@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing stocks Component should mount the component 1`] = `
+<div>
+  <div
+    id="stocks_main_container"
+  >
+    <p>
+      STOCKS
+    </p>
+    <div
+      id="stocks_main_grid_container "
+    >
+      <InfiniteScroll
+        dataLength={0}
+        endMessage={
+          <p
+            style={
+              Object {
+                "textAlign": "center",
+              }
+            }
+          >
+            <b>
+              Yay! You have seen all Teams
+            </b>
+          </p>
+        }
+        hasMore={true}
+        height={600}
+        loader={
+          <Loader
+            className=""
+            color="#2c3e50"
+            style={
+              Object {
+                "margin": "200px 700px",
+              }
+            }
+            textAlign="center"
+            timeout={0}
+            type={[Function]}
+            visible={true}
+          />
+        }
+        next={[Function]}
+      >
+        <div
+          id="stocks_grid_container"
+        />
+      </InfiniteScroll>
+    </div>
+  </div>
+</div>
+`;
