@@ -20,7 +20,7 @@ router.post("/search", async (req, res) => {
   if (result < 0) {
     res.status(400).json({
       status: 400,
-      data: null,
+      data: result,
       message: "No Data Found"
     });
   }
