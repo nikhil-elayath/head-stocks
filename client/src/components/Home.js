@@ -52,7 +52,7 @@ export class Home extends Component {
                 </div>
               </div>
               <div id="homemiddlecontainer">
-                <div>
+                {/* <div>
                   <h3 id="headline">{this.props.singleNews[0].headline}</h3>
                   <img
                     id="image"
@@ -64,7 +64,7 @@ export class Home extends Component {
                   <p id="headlineDescription">
                     {this.props.singleNews[0].description}
                   </p>
-                </div>
+                </div> */}
               </div>
               <div id="homerightsidecontainer">
                 <h1>Indices</h1>

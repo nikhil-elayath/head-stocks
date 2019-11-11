@@ -24,7 +24,7 @@ export class CompanyDetailFinancial extends Component {
         <CompanyDetailSecondaryNavbar />
         <h1>Balance Sheet </h1>
         <div id="table-container">
-          <table>
+          <table id="table_data">
             {this.props.company.balancesheet ? (
               <>
                 {this.props.company.balancesheet.map(balance => (
@@ -135,7 +135,7 @@ export class CompanyDetailFinancial extends Component {
 }
 
 const mapStateToProps = state => ({
-  company: state.CompanyDetailReducer.company,
+  company: state.CompanyDetailReducer.company
 });
 export default connect(
   mapStateToProps,

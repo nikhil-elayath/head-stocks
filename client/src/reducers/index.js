@@ -5,6 +5,7 @@ import company from "./CompanyDetailReducer";
 import searchResults from "./navbarReducer";
 import LoadingReducer from "./LoadingReducer";
 import stocks from "./StocksReducer";
+import singleIndex from "./IndicesReducer";
 export default combineReducers({
   //piyush
   homeReducer: home,
@@ -16,5 +17,6 @@ export default combineReducers({
   CompanyDetailReducer: company,
   // Harshal
   navbarReducer: searchResults,
-  stocksReducer: stocks
+  stocksReducer: stocks,
+  indexReducer: singleIndex
 });
