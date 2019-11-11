@@ -5,7 +5,6 @@ const logger = require("morgan");
 const bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 const app = express();
-const mongoURL = "mongodb://localhost:27017/headStocks";
 const users = require("./routes/api/Users");
 const home = require("./routes/api/Home");
 const company = require("./routes/api/Stocks");
@@ -13,9 +12,6 @@ const companydetails = require("./routes/api/CompanyDetail");
 const navbar = require("./routes/api/Navbar"); // Harshal
 const indexProfile = require("./routes/api/IndicesProfile");
 
-console.log(mongoURL);
-
-mongoose.connect(mongoURL);
 app.use(cors());
 
 app.use(bodyParser.json());
@@ -26,7 +22,7 @@ app.use(
 );
 
 app.use(logger("common"));
-//Bhavna
+//Bhavana
 app.use("/api/users/", users);
 app.use("/api/indicesprofile/", indexProfile);
 

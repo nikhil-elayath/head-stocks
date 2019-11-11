@@ -1,4 +1,6 @@
 var mongoose = require("mongoose");
+var mongodb = "mongodb://localhost:27017/stocks";
+mongoose.connect(mongodb);
 const Joi = require("joi");
 const users_info = mongoose.Schema({
   name: { type: String, require: true },

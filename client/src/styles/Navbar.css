@@ -240,7 +240,7 @@
   }
 }
 .navbarHS span.icon {
-  float: right;
+  /* float: right; */
   display: block;
   position: fixed;
   top: 2px;
