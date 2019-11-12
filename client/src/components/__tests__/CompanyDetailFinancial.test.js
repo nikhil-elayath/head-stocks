@@ -5,52 +5,52 @@ import { CompanyDetailFinancial } from '../CompanyDetailFinancial'
 
 const getCompanyDetailById = jest.fn()
 
-const company = [
+const balancesheet = [
   {
     sector: 'technology',
     industry: 'Computer',
     employees: '123456',
     profile: 'profile',
-    cashequivalents:"123",
-    currentassests:"123",
-    totalassests:"123",
-    accountpayable:"123",
-    receivables:"123",
-    totalliabilities:"123",
-    currentliabilities:"123",
-    preferredequity:"123",
-    equitybeforeminorities:"123",
-    minorityinterests:"123",
-    noncurrentliabilities:"123",
-    netincome:"123",
-    revenues:"123",
-    FOIT:"123",
-    netprofit:"123",
-    RandD:"123",
-    incometax:"123",
-    currentliabilities:"123",
-    preferredequity:"123",
-    equitybeforeminorities:"123",
-    minorityinterests:"123",
-    noncurrentliabilities:"123",
-    netincome:"123",
-    revenues:"123",
-    FOIT:"123",
-    netprofit:"123",
-    RandD:"123",
-    incometax:"123",
-    currentliabilities:"123",
-    preferredequity:"123",
-
-
+    cashequivalents: '123',
+    currentassests: '123',
+    totalassests: '123',
+    accountpayable: '123',
+    receivables: '123',
+    totalliabilities: '123',
+    currentliabilities: '123',
+    preferredequity: '123',
+    equitybeforeminorities: '123',
+    minorityinterests: '123',
+    noncurrentliabilities: '123',
+    netincome: '123',
+    revenues: '123',
+    FOIT: '123',
+    netprofit: '123',
+    RandD: '123',
+    incometax: '123',
+    currentliabilities: '123',
+    preferredequity: '123',
+    equitybeforeminorities: '123',
+    minorityinterests: '123',
+    noncurrentliabilities: '123',
+    netincome: '123',
+    revenues: '123',
+    FOIT: '123',
+    netprofit: '123',
+    RandD: '123',
+    incometax: '123',
+    currentliabilities: '123',
+    preferredequity: '123'
   }
 ]
+const company=[]
 
 const wrapper = shallow(
   <CompanyDetailFinancial
     getCompanyDetailById={getCompanyDetailById}
-    company={company}
+    balancesheet={balancesheet}
     match={{ params: { id: 1 } }}
+    company={company}
   />
 )
 
@@ -62,7 +62,7 @@ describe('Testing Company Detail Financial Component', () => {
     expect(wrapper).toMatchSnapshot()
   })
   it('should display the cash and cash equivalents', () => {
-    expect(wrapper.find('#cashequivalents').text()).toBe('123')
+    expect(wrapper.find('#comp-dates').text()).toBe('123')
   })
   it('should display the current assests', () => {
     expect(wrapper.find('#current-assests').text()).toBe('123')

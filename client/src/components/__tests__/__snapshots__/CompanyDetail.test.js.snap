@@ -11,6 +11,7 @@ exports[`Testing Company Detail Component should mount the component 1`] = `
       Object {
         "border": "1px solid #cacaca",
         "margin": "auto",
+        "marginBottom": "20px",
         "width": "97%",
       }
     }
