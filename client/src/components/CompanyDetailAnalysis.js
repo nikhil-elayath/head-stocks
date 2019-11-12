@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import CompanyDetailSecondaryNavbar from "./Common/CompanyDetailSecondaryNavbar";
-import { getCompanyDetailById } from "../actions/CompanyDetail";
+import {
+  getCompanyDetailById,
+  getSimilarTable,
+} from "../actions/CompanyDetail";
 import { connect } from "react-redux";
 
 export class CompanyDetailAnalysis extends Component {
@@ -9,12 +12,24 @@ export class CompanyDetailAnalysis extends Component {
 
     console.log("From analysis component", id);
     this.props.getCompanyDetailById(id);
+    const sector = this.props.company.sector;
+    console.log("sector from analysis", sector);
+    // this.props.getSimilarTable(sector);
   }
   render() {
+    {
+      this.props.company
+        ? this.props.getSimilarTable(this.props.company.sector)
+        : console.log("");
+    }
     return (
       <div>
         <CompanyDetailSecondaryNavbar />
-        <p>Analysis </p>
+        {this.props.similar_company[0] ? (
+          <span>{this.props.similar_company[0].ticker_name}</span>
+        ) : (
+          <p />
+        )}
       </div>
     );
   }
@@ -22,8 +37,9 @@ export class CompanyDetailAnalysis extends Component {
 
 const mapStateToProps = state => ({
   company: state.CompanyDetailReducer.company,
+  similar_company: state.CompanyDetailReducer.similar_company,
 });
 export default connect(
   mapStateToProps,
-  { getCompanyDetailById }
+  { getCompanyDetailById, getSimilarTable }
 )(CompanyDetailAnalysis);
