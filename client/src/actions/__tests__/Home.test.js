@@ -1,5 +1,11 @@
 import * as action from "../Home";
-import { NEWS_BY_ID, ALL_NEWS } from "../Types";
+import {
+  NEWS_BY_ID,
+  ALL_NEWS,
+  GET_ALL_INDICES,
+  LOADING_START,
+  LOADING_STOP
+} from "../Types";
 import moxios from "moxios";
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
@@ -48,6 +54,31 @@ describe("Testing Home Action", () => {
       }
     ];
     return store.dispatch(action.newsById(new_id)).then(() => {
+      expect(store.getActions()).toEqual(expectedResponse);
+    });
+  });
+
+  it("should return a al the index and return status code of 200 with a message", () => {
+    const responseOfApi = [];
+
+    moxios.stubRequest("http://localhost:2001/api/home/index", {
+      status: 200,
+      response: { data: responseOfApi }
+    });
+    const store = mockStore({});
+    const expectedResponse = [
+      {
+        type: LOADING_START
+      },
+      {
+        type: LOADING_STOP
+      },
+      {
+        type: GET_ALL_INDICES,
+        payload: responseOfApi
+      }
+    ];
+    return store.dispatch(action.getIndices()).then(() => {
       expect(store.getActions()).toEqual(expectedResponse);
     });
   });
