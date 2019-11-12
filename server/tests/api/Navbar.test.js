@@ -22,6 +22,9 @@ describe("Testing IndicesProfile API", () => {
       
   });
 } );
+
+
+
   describe("Testing Navbar API", () => {
 
     it("(Search Results Found) should return a status of 200  when give the search results", done => {
