@@ -3,9 +3,7 @@ import CompanyDetailSecondaryNavbar from './Common/CompanyDetailSecondaryNavbar'
 import { getCompanyDetailById } from '../actions/CompanyDetail'
 import { connect } from 'react-redux'
 import '../styles/CompanyDetailFinancial.css'
-import Table from './Common/Table'
-// let i = 1;
-// let j = 1;
+
 export class CompanyDetailFinancial extends Component {
   componentDidMount () {
     // getting the id from the params
@@ -14,12 +12,9 @@ export class CompanyDetailFinancial extends Component {
     this.props.getCompanyDetailById(id)
   }
   render () {
-    // console.log(this.props)
-    // console.log(
-    //   this.props.company ? this.props.company[1] : console.log('Loading..')
-    // )
     return (
       <div>
+        {/* CALLING THE SECONDARY NAVBAR  */}
         <CompanyDetailSecondaryNavbar />
         <h1 id='financialsh1'>Balance Sheet </h1>
         <div id='table-container'>
@@ -50,7 +45,7 @@ export class CompanyDetailFinancial extends Component {
                 ))}
               </>
             ) : (
-              <p>Loading..</p>
+              <p />
             )}
           </table>
         </div>
@@ -65,7 +60,9 @@ export class CompanyDetailFinancial extends Component {
                     <tr>
                       <td id='comp-dates'>{cashflow['ticker_dates']}</td>
 
-                      <td>{cashflow['Cash From Operating Activities']}</td>
+                      <td id='current-assests'>
+                        {cashflow['Cash From Operating Activities']}
+                      </td>
                       <td>{cashflow['Cash From Investing Activities']}</td>
                       <td>{cashflow['Cash From Financing Activities']}</td>
                       <td>{cashflow['EBITDA']}</td>
@@ -77,7 +74,7 @@ export class CompanyDetailFinancial extends Component {
                 ))}
               </>
             ) : (
-              <p>Loading..</p>
+              <p />
             )}
           </table>
         </div>
@@ -100,7 +97,7 @@ export class CompanyDetailFinancial extends Component {
                 ))}
               </>
             ) : (
-              <p>Loading..</p>
+              <p />
             )}
           </table>
         </div>
@@ -113,7 +110,7 @@ export class CompanyDetailFinancial extends Component {
                 <>
                   <tr>
                     <td id='comp-dates'>{ratios['ticker_dates']}</td>
-
+                    {/* mapping only the first two values and ignoring the rest of the values  */}
                     <td>{Number(ratios['Current Ratio']).toFixed(2)}</td>
                     <td>
                       {Number(ratios['Liabilities To Equity']).toFixed(2)}
@@ -124,7 +121,7 @@ export class CompanyDetailFinancial extends Component {
               ))}
             </>
           ) : (
-            <p>Loading..</p>
+            <p />
           )}
         </table>
       </div>

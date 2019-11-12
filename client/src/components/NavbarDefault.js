@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 // logos
 // import user from "./user.svg"
-import searchlogo from "./search.png";
+import cancel from "./cancel.png";
 import { connect } from "react-redux";
 import { searchContent } from "../actions/Navbar";
 
@@ -12,6 +12,7 @@ export class NavbarDefault extends Component {
   state = {
     // input text in the search box
     searchInput: "",
+    searchInputChanged: false,
 
     // to highlight the current page
     home: false,
@@ -39,6 +40,15 @@ export class NavbarDefault extends Component {
 
   // handles the input change performed in the search input box
   OnChange = event => {
+
+    // search results display
+    {this.state.searchInputChanged?
+    console.log(this.state.searchInputChanged)
+    :
+    this.setState({
+      searchInputChanged: true
+    });}
+
     this.setState({ [event.target.name]: event.target.value });
     let searchString = {
       searchInput: this.state.searchInput
@@ -61,7 +71,7 @@ export class NavbarDefault extends Component {
   };
 
   render() {
-    console.log(this.props.results);
+    // console.log(this.props.results);
     return (
       <div className="navbarHS" id="navbarID">
         <Link to="/">
@@ -139,32 +149,71 @@ export class NavbarDefault extends Component {
               <i className="fa fa-search"></i>
             </button>
           </span>
-          <div
-            className={
-              this.props.results.length === 0
-                ? "navbarSearchResultsNotFound"
-                : "navbarSearchResultsFound"
-            }
-          >
-            <h4>Search Results for {this.state.searchInput}</h4>
-            {this.props.results.map(result => (
-              <Link
-                className="company-link"
-                // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
-                to={{
-                  pathname:
-                    "/companydetail/" + this.props.results[0]["ticker_id"]
-                }}
-              >
-                <div className="navbarSearchResultsDiv">
-                  <p className="navbarSearchResultsPTag1">
-                    <b>{result.ticker_name}</b>
-                  </p>
-                  <p className="navbarSearchResultsPTag2">{result.industry}</p>
+          
+          {
+            // On input change division is displayed
+            this.state.searchInputChanged?
+            // division displaying the result of the search
+            <div className=  "navbarSearchResultsFound" >
+              <button 
+                className="navbarSearchResultsCancelButton"
+                onClick={() => this.setState({
+                  searchInputChanged: false
+                  // ,searchInput: ""
+                })}>
+
+                  <img 
+                  className="navbarSearchResultsCancelImage"
+                  src= {cancel}
+                  alt="Cancel Button"
+                  width="15px"
+                  height="15px"
+                  // className="fa fa-cancel"
+                  ></img>
+
+                </button>
+              {/* checks if the result array has some data or not */}
+              {this.props.results.length === 0
+                ? 
+                // if no data present then this block executes
+                <h4>No Results Found for {this.state.searchInput}</h4>
+                :
+                // if results array has some data then this displays the search result
+                <div>
+
+                  <h4>Search Results</h4>
+                
+                  {this.props.results.map(result => (
+                    <Link
+                        className="company-link"
+                        // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
+                        to={{
+                          pathname:
+                            "/companydetail/" + this.props.results[0]["ticker_id"]
+                        }}
+                        onClick={() => this.setState({
+                          searchInputChanged: false
+                          // ,searchInput: ""
+                        })}
+                    >
+                      <div className="navbarSearchResultsDiv">
+                          <p className="navbarSearchResultsPTag1">
+                            <b>{result.ticker_name}</b>
+                          </p>
+                          <p className="navbarSearchResultsPTag2">{result.industry}</p>
+                      </div>
+                    </Link>
+                  ))}
+
                 </div>
-              </Link>
-            ))}
-          </div>
+                }
+           </div>
+            
+            
+          :
+          <div className="navbarSearchResultsNotFound"></div>
+              
+          }
         </div>
 
         <span className="icon" onClick={this.myhamburgfunction}>
@@ -176,7 +225,9 @@ export class NavbarDefault extends Component {
 }
 
 const mapStateToProps = state => ({
-  results: state.navbarReducer.results
+  results: state.navbarReducer.results,
+  isLoading: state.LoadingReducer.isLoading
+
 });
 
 export default connect(
