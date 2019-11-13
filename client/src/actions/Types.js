@@ -26,3 +26,5 @@ export const OHLC_CHART = "OHLC_CHART";
 
 // Harshal
 export const SEARCH_CONTENT = "SEARCH_CONTENT";
+export const UPDATE_COMPANY = "UPDATE_COMPANY";
+

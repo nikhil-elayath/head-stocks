@@ -68,9 +68,9 @@ export class NavbarDefault extends Component {
     };
 
     this.props.searchContent(searchString);
-    this.setState({
-      searchInput: ""
-    });
+    // this.setState({
+    //   searchInput: ""
+    // });
   };
 
   render() {
@@ -146,6 +146,7 @@ export class NavbarDefault extends Component {
             <input
               type="text"
               name="searchInput"
+              autoComplete= "off"
               placeholder="Search for ticker"
               onChange={this.OnChange}
             />
