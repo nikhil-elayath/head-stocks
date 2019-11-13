@@ -1,9 +1,13 @@
-import { GET_INDICES_BYID, OHLC_CHART_INDEX } from "./Types";
+import {
+  GET_INDICES_BYID,
+  OHLC_CHART_INDEX,
+  GET_ALL_SECTORS_INDEX
+} from "./Types";
 import axios from "axios";
 import { startLoading, stopLoading } from "./LoadingAction";
 const url = "http://localhost:2001/api/indicesprofile/";
 
-// GET all copanes- Bhavana
+// GET all companies- Bhavana
 export const getIndicesById = index => dispatch => {
   return axios
     .get(url + "singleindex/" + index)

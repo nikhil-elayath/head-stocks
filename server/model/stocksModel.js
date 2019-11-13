@@ -16,7 +16,7 @@ var stocks = new Schema(
     ohlc_data: Schema.Types.Mixed,
     isIndex: Boolean
   },
-  { collection: "stocks_data" }
+  { collection: "stocks_data_2" }
 );
 
 var StocksData = mongoose.model("Stocks", stocks);

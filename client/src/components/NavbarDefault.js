@@ -76,7 +76,7 @@ export class NavbarDefault extends Component {
                 })
               }
             >
-              HEAD<b>STOCKS</b>
+              <b>STOCKS</b>
             </span>
           </div>
         </Link>
@@ -179,10 +179,7 @@ const mapStateToProps = state => ({
   results: state.navbarReducer.results
 });
 
-export default connect(
-  mapStateToProps,
-  { searchContent }
-)(NavbarDefault);
+export default connect(mapStateToProps, { searchContent })(NavbarDefault);
 
 // Interview Ques for Data Science
 // Explain concept of svm
