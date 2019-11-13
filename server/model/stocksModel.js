@@ -14,7 +14,7 @@ var stocks = new Schema(
     industry: String,
     ticker_dates: Schema.Types.Mixed,
     ohlc_data: Schema.Types.Mixed,
-    isIndex: Boolean
+    isIndex: Boolean,
   },
   { collection: "stocks_data_2" }
 );
