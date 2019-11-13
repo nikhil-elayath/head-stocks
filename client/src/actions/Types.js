@@ -5,9 +5,13 @@ export const RESET_PASSWORD = "RESET_PASSWORD";
 export const SEND_OTP = "SEND_OTP";
 export const VERIFY_OTP = "VERIFY_OTP";
 export const ERROR_TYPE = "ERROR_TYPE";
-export const GET_ALL_COMPANY = "GET_ALL_COMPANY";
 export const GET_INDICES_BYID = "GET_INDICES_BYID";
 export const OHLC_CHART_INDEX = "OHLC_CHART_INDEX";
+
+//Aditya
+export const GET_ALL_COMPANY = "GET_ALL_COMPANY";
+export const GET_ALL_SECTORS = "GET_ALL_SECTORS";
+export const GET_ALL_INDUSTRIES = "GET_ALL_INDUSTRIES";
 
 //Piyush
 export const ALL_NEWS = "ALL_NEWS";
@@ -28,4 +32,3 @@ export const GET_SIMILAR_TABLE = "OHLC_CHART";
 // Harshal
 export const SEARCH_CONTENT = "SEARCH_CONTENT";
 export const UPDATE_COMPANY = "UPDATE_COMPANY";
-
