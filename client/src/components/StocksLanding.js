@@ -56,6 +56,31 @@ export class StocksLanding extends Component {
       <div>
         <div id="stocks_main_container">
           <p>STOCKS</p>
+          <div id="stocks_filter">
+            <select
+              type="text"
+              id="stocks_dropdown"
+              name="sector"
+              // value={}
+              // onChange={}
+            >
+              <option name="choice">Technology</option>
+              <option name="choice">Energy</option>
+              <option name="choice">Telecommunication services</option>
+              <option name="choice">Healthcare</option>
+            </select>
+            <select
+              type="text"
+              id="stocks_dropdown"
+              name="industries"
+              // value={}
+              // onChange={}
+            >
+              <option name="choice">Phones & Handheld Devices</option>
+              <option name="choice">Semiconductor Equipment & Testing</option>
+              <option name="choice">Electronic Equipments & Parts</option>
+            </select>
+          </div>
           <div id="stocks_main_grid_container">
             <InfiniteScroll
               dataLength={this.state.pageStocks.length} //This is important field to render the next data
@@ -67,12 +92,12 @@ export class StocksLanding extends Component {
                   type={Loader}
                   color="#2c3e50"
                   textAlign="center"
-                  style={{ margin: "200px 700px" }}
+                  style={{ margin: "150px 500px" }}
                 />
               }
               endMessage={
                 <p style={{ textAlign: "center" }}>
-                  <b>Yay! You have seen all Teams</b>
+                  <b>Yay! You have seen all the stocks</b>
                 </p>
               }
             >
