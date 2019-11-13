@@ -67,17 +67,22 @@
   border-radius: 5px;
   background-color: #ffffff;
   z-index: 1;
-  height: 22px;
+  height: 20px;
   width: 5%;
   position: relative;
-  top: 2px;
+  top: 3px;
   right: 30px;
 }
 
-.navbarSearchBox button img {
+.navbarSearchBox button i {
   border: none;
   border-radius: 5px;
-  bottom: 0px;
+  bottom: 3px;
+  position: relative;
+}
+.navbarSearchBox button img {
+  border: none;
+   top: 5px;
   position: relative;
 }
 .navbarSearchResultsFound {
@@ -192,6 +197,7 @@
   }
   .navbarLoginOptions span {
     margin-top: 60px;
+    margin-right: 0px;
     display: none;
   }
 
@@ -211,6 +217,7 @@
   .navbarSearchBox input {
     border-radius: 5px;
     width: 90%;
+    margin-left: 13px;
     text-align: center;
     height: 27px;
   }

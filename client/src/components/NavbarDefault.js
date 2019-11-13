@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import "../styles/Navbar.css";
 import { Link } from "react-router-dom";
+
+// css file
+import "../styles/Navbar.css";
 
 // logos
 // import user from "./user.svg"
@@ -20,6 +22,7 @@ export class NavbarDefault extends Component {
     login: false
   };
 
+  
   removeToken = () => {
     localStorage.removeItem("token");
     this.forceUpdate();
@@ -65,9 +68,9 @@ export class NavbarDefault extends Component {
     };
 
     this.props.searchContent(searchString);
-    this.setState({
-      searchInput: ""
-    });
+    // this.setState({
+    //   searchInput: ""
+    // });
   };
 
   render() {
@@ -92,6 +95,7 @@ export class NavbarDefault extends Component {
         </Link>
 
         <div className="navbarLoginOptions">
+         {/* checks if the user is logged In User or not */}
           {!localStorage.getItem("token") ? (
             <span>
               <Link
@@ -142,6 +146,7 @@ export class NavbarDefault extends Component {
             <input
               type="text"
               name="searchInput"
+              autoComplete= "off"
               placeholder="Search for ticker"
               onChange={this.OnChange}
             />
@@ -189,7 +194,7 @@ export class NavbarDefault extends Component {
                         // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
                         to={{
                           pathname:
-                            "/companydetail/" + this.props.results[0]["ticker_id"]
+                            "/companydetail/" + result.ticker_id
                         }}
                         onClick={() => this.setState({
                           searchInputChanged: false

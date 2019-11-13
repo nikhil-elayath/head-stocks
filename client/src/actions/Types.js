@@ -27,3 +27,5 @@ export const GET_SIMILAR_TABLE = "OHLC_CHART";
 
 // Harshal
 export const SEARCH_CONTENT = "SEARCH_CONTENT";
+export const UPDATE_COMPANY = "UPDATE_COMPANY";
+
