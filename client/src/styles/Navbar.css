@@ -197,6 +197,7 @@
   }
   .navbarLoginOptions span {
     margin-top: 60px;
+    margin-right: 0px;
     display: none;
   }
 
@@ -216,6 +217,7 @@
   .navbarSearchBox input {
     border-radius: 5px;
     width: 90%;
+    margin-left: 13px;
     text-align: center;
     height: 27px;
   }
