@@ -169,6 +169,7 @@
 
 @media only screen and (max-width: 426px) {
   #stocks_grid_container {
+    margin: 0px 10px 0px 10px;
     grid-template-columns: 1fr;
   }
   #stocks_flex_details-two {
@@ -178,10 +179,13 @@
     border-radius: 50px;
     float: left;
   }
+  #stocks_main_container {
+    margin: 0px 0px 0px 0px;
+  }
   #stocks_main_grid_container {
-    float: none;
     width: 100%;
   }
+
   #stocks_table {
     display: none;
   }
