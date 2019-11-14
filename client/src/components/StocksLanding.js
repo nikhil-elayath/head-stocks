@@ -5,6 +5,7 @@ import companylogo from "./apple--big.svg";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
+import Table from "../components/Common/TickerTable";
 
 export class StocksLanding extends Component {
   componentDidMount() {
@@ -55,97 +56,75 @@ export class StocksLanding extends Component {
     );
     return (
       <div>
-        {this.props.gainersLosers["0"] ? (
-          <div id="stocks_main_container">
-            <p>STOCKS</p>
-            <div id="stocks_main_grid_container">
-              <InfiniteScroll
-                dataLength={this.state.pageStocks.length} //This is important field to render the next data
-                next={this.loadMoreItems}
-                hasMore={true}
-                height={600}
-                loader={
-                  <Loader
-                    type={Loader}
-                    color="#2c3e50"
-                    textAlign="center"
-                    style={{ margin: "200px 700px" }}
-                  />
-                }
-                endMessage={
-                  <p style={{ textAlign: "center" }}>
-                    <b>Yay! You have seen all Teams</b>
-                  </p>
-                }
-              >
-                <div id="stocks_grid_container">
-                  {this.state.pageStocks.map(stocks => (
-                    <div
-                      id="stocks_grid_details"
-                      onClick={() => {
-                        this.props.history.push(
-                          "/companydetail/" + stocks.ticker_id,
-                          { stocks }
-                        );
-                      }}
-                    >
-                      <img src={companylogo} id="stocks_img" />
-                      <div id="stocks_ticker">{stocks.ticker_name}</div>
-                      <div id="stocks_name">{}</div>
-                      <div id="stocks_flex_details-one">
-                        <div id="stocks_details_title">Closed Price:</div>
-                        <div id="stocks_details">249.05 USD</div>
-                      </div>
-                      <div id="stocks_flex_details-two">
-                        <div id="stocks_details_title">Market Cap:</div>
-                        <div id="stocks_details">1114.39B</div>
-                      </div>
+        <div id="stocks_main_container">
+          <p>STOCKS</p>
+          <div id="stocks_main_grid_container">
+            <InfiniteScroll
+              dataLength={this.state.pageStocks.length} //This is important field to render the next data
+              next={this.loadMoreItems}
+              hasMore={true}
+              height={600}
+              loader={
+                <Loader
+                  type={Loader}
+                  color="#2c3e50"
+                  textAlign="center"
+                  style={{ margin: "200px 700px" }}
+                />
+              }
+              endMessage={
+                <p style={{ textAlign: "center" }}>
+                  <b>Yay! You have seen all Teams</b>
+                </p>
+              }
+            >
+              <div id="stocks_grid_container">
+                {this.state.pageStocks.map(stocks => (
+                  <div
+                    id="stocks_grid_details"
+                    onClick={() => {
+                      this.props.history.push(
+                        "/companydetail/" + stocks.ticker_id,
+                        { stocks }
+                      );
+                    }}
+                  >
+                    <img src={companylogo} id="stocks_img" />
+                    <div id="stocks_ticker">{stocks.ticker_name}</div>
+                    <div id="stocks_name">{}</div>
+                    <div id="stocks_flex_details-one">
+                      <div id="stocks_details_title">Closed Price:</div>
+                      <div id="stocks_details">249.05 USD</div>
                     </div>
-                  ))}
-                </div>
-              </InfiniteScroll>
-            </div>
-            <div id="stocks_table">
-              <div id="stocks_div_buttons">
-                <button id="stocks_gainers">Gainers</button>
-                <button id="stocks_losers">Losers</button>
-              </div>
-
-              <table id="stocks_grid_table">
-                <tr>
-                  <th>Ticker</th>
-                  <th>Chng(%)</th>
-                  <th>Share Price</th>
-                  <th>Mkt Cap</th>
-                </tr>
-                {this.props.gainersLosers.map(gainers => (
-                  <>
-                    {gainers.gainers.map(gain => (
-                      <tr>
-                        <td>{gain.ticker_name}</td>
-                        <td
-                          id={
-                            String(
-                              gain["tickerValues"]["change_percent"]
-                            ).charAt(0) == "+"
-                              ? "positiveChange"
-                              : "negativeChange"
-                          }
-                        >
-                          {gain["tickerValues"]["change_percent"]}
-                        </td>
-                        <td>{gain["tickerValues"]["Share Price"]}</td>
-                        <td>{gain["tickerValues"]["Market Cap"]}</td>
-                      </tr>
-                    ))}
-                  </>
+                    <div id="stocks_flex_details-two">
+                      <div id="stocks_details_title">Market Cap:</div>
+                      <div id="stocks_details">1114.39B</div>
+                    </div>
+                  </div>
                 ))}
-              </table>
-            </div>
+              </div>
+            </InfiniteScroll>
           </div>
-        ) : (
-          <div>Loading..</div>
-        )}
+          <div id="stocks_table">
+            <div id="stocks_div_buttons">
+              <button id="stocks_gainers">Gainers</button>
+              <button id="stocks_losers">Losers</button>
+            </div>
+            {this.props.gainersLosers["0"] ? (
+              <Table
+                tableHeaders={[
+                  "Ticker",
+                  "Chng (%)",
+                  "Market Cap",
+                  "Share Price"
+                ]}
+                tableData={this.props.gainersLosers["0"].losers}
+              />
+            ) : (
+              <div> Loading ..</div>
+            )}
+          </div>
+        </div>
       </div>
     );
   }

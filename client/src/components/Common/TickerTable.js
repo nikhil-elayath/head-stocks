@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "../../styles/TickerTable.css";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -20,34 +21,25 @@ export class TickerTable extends Component {
           {this.props.tableData.map((current, index) => (
             <tr>
               {this.props.isIndex == true ? (
-                <td
-                  onClick={() => {
-                    this.props.exchangeIndexVis(current.ticker_name);
-                  }}
-                >
-                  {current.ticker_name ? current.ticker_name : null}
-                </td>
+                <td>{current.ticker_name ? current.ticker_name : null}</td>
               ) : (
-                <Link to={{ pathname: "/stocks/" + current.ticker_id }}>
-                  <td
-                  // onClick={() => {
-                  //    this.props.history.push("/stocks/" + current.ticker_id);
-                  // }}
-                  >
-                    {current.ticker_name ? current.ticker_name : null}
-                  </td>
+                <Link
+                  to={{ pathname: "/companydetail/" + current.ticker_id }}
+                  style={{ textDecoration: "none" }}
+                >
+                  <td>{current.ticker_name ? current.ticker_name : null}</td>
                 </Link>
               )}
               {current.tickerValues
                 ? Object.keys(current.tickerValues).map((keyName, index) => (
                     <>
                       {current.tickerValues[keyName].substring(0, 1) == "-" ? (
-                        <td style={{ color: "var(--red-color)" }}>
+                        <td style={{ color: "#ff4d4d" }}>
                           {current.tickerValues[keyName]}
                         </td>
                       ) : current.tickerValues[keyName].substring(0, 1) ==
                         "+" ? (
-                        <td style={{ color: "var(--green-color)" }}>
+                        <td style={{ color: "#27ae60" }}>
                           {current.tickerValues[keyName]}
                         </td>
                       ) : (

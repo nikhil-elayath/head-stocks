@@ -90,7 +90,7 @@ router.get("/gainers-and-losers/:sector", async (req, res) => {
     });
     var losers = sorted;
     var reverse = [];
-    for (i = losers.length - 1; i > losers.length - 6; i--) {
+    for (i = losers.length - 1; i > losers.length - 11; i--) {
       reverse.push(losers[i]);
     }
     let finalData = {};
