@@ -1,8 +1,9 @@
 #table_data th,
 td {
-  text-align: left;
+  text-align: center;
   padding: 8px;
 }
+
 #table_data {
   border-collapse: collapse;
   border-spacing: 0;
