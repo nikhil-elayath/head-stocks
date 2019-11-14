@@ -22,7 +22,7 @@ MongoClient.connect(url, function(err, client) {
     try {
       let id = req.params.id;
       console.log("printing id from api all", id);
-      var collection = db.collection("stocks_data");
+      var collection = db.collection("stocks_data_2");
       // hardcoding dummy data
       var dummy_date = [
         "2009-09-30",
@@ -36,7 +36,11 @@ MongoClient.connect(url, function(err, client) {
         "2011-09-30",
         "2011-12-31"
       ]; //variable
-      collection.findOne({ ticker_id: +id }, function(err, result) {
+      collection.findOne({ ticker_id: +id }, { sector: 1 }, function(
+        err,
+        result
+      ) {
+        console.log(result);
         // console.log(result);
         var balancesheet = [];
         var cashflow = [];
@@ -158,7 +162,7 @@ MongoClient.connect(url, function(err, client) {
         // console.log("pnl", profitandloss);
 
         // console.log("ratios", ratios);
-        console.log(company_details);
+        // console.log(company_details);
 
         if (!result) {
           return res.status(400).send({ message: "No data found" });
@@ -167,17 +171,18 @@ MongoClient.connect(url, function(err, client) {
           res.status(200).json({
             status: 200,
             data: {
-              balancesheet: balancesheet,
-              cashflow: cashflow,
-              profitandloss: profitandloss,
-              ratios: ratios,
-              ticker_id: result.ticker_id,
-              profile: result.profile,
-              industry: result.industry,
-              company_name: result.company_name,
-              employess: result.employess,
-              ticker_name: result.ticker_name,
-              sector: result.sector
+              // balancesheet: balancesheet,
+              // cashflow: cashflow,
+              // profitandloss: profitandloss,
+              // ratios: ratios,
+              // ticker_id: result.ticker_id,
+              // profile: result.profile,
+              // industry: result.industry,
+              // company_name: result.company_name,
+              // employess: result.employess,
+              // ticker_name: result.ticker_name,
+              // sector: result.sector
+              result
             },
 
             message: "Retrieved data from company detail successfully"
@@ -305,16 +310,15 @@ router.get("/finanicals/:id", async (req, res, next) => {
 
 //closing the connect method
 
-router.get("/analysis/:sector", async (req, res, next) => {
+router.post("/analysis", async (req, res, next) => {
   console.log("analysis called");
   try {
-    let sector = req.params.sector;
-    console.log("sector is", sector);
-    let result = await stocksData
-      .find({ sector: sector }, { ticker_name: 1, _id: 0 })
-      .limit(5);
+    console.log("re body", req.body.sector);
+    const sector = req.body.sector;
 
-    console.log("sector filter", result);
+    let result = await stocksData.find({ sector: { $in: sector } }).limit(5);
+    console.log(result);
+
     if (result < 0) {
       res.status(400).json({
         status: 400,

@@ -22,12 +22,12 @@ export class CompanyDetail extends Component {
         {/* CALLING SECONDARY NAVBAR  */}
         <SecondaryNavbar />
         {/* TERNARY OPERATOR TO CHECK WHETHER THE DATA IS LOADED IN THE REDUCER AND IF IT IS IT WILL BE MAPPED  */}
-        {this.props.company.balancesheet ? (
+        {this.props.company.result ? (
           <div id="company-detail-grid-container">
             <div id="company-detail-profile">
               <h3>Maket Cap:</h3>
               <h3>
-                Sector : <span>{this.props.company.sector}</span>
+                Sector : <span>{this.props.company.result.sector}</span>
               </h3>
               <h3>
                 Industry : <span>{this.props.company.industry}</span>
@@ -56,7 +56,7 @@ export class CompanyDetail extends Component {
               border: "1px solid #cacaca",
               width: "97%",
               margin: "auto",
-              marginBottom: "20px",
+              marginBottom: "20px"
             }}
           >
             <iframe
@@ -65,7 +65,7 @@ export class CompanyDetail extends Component {
                 width: "100%",
                 height: "550px",
                 outline: "none",
-                border: "none",
+                border: "none"
               }}
             />
           </div>
@@ -77,9 +77,8 @@ export class CompanyDetail extends Component {
 const mapStateToProps = state => ({
   company: state.CompanyDetailReducer.company,
   ohlc_chart: state.CompanyDetailReducer.ohlc_chart,
-  isLoading: state.LoadingReducer.isLoading,
+  isLoading: state.LoadingReducer.isLoading
 });
-export default connect(
-  mapStateToProps,
-  { getOhlcChart, getCompanyDetailById }
-)(CompanyDetail);
+export default connect(mapStateToProps, { getOhlcChart, getCompanyDetailById })(
+  CompanyDetail
+);
