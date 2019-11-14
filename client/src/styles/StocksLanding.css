@@ -10,7 +10,7 @@
 #stocks_main_container p {
   font-size: 34px;
   font-weight: 600;
-  margin: 0px 0px 10px 0px;
+  margin: 0px 0px 10px 5px;
 }
 
 #stocks_main_grid_container {
@@ -35,8 +35,9 @@
 }
 
 #stocks_grid_details:hover {
-  box-shadow: 0px 3px #cacaca;
+  box-shadow: 0px 5px #cacaca;
   transform: scale(1.02);
+  transition: transform 0.3s;
 }
 
 #stocks_img {
@@ -158,6 +159,24 @@
   margin: 0px;
   font-size: 16px;
 } */
+
+#stocks_div_filter {
+  border: 1px solid black;
+}
+
+#stocks_filter {
+  margin: 0px 0px 0px 5px;
+  display: flex;
+}
+
+#stocks_dropdown {
+  background-color: #ffffff;
+  color: #39abf7;
+  border: 1.5px solid #39abf7;
+  height: 30px;
+  border-radius: 4px;
+  margin: 0px 30px 0px 0px;
+}
 
 /* ------------------------------------------------------------------------------ */
 

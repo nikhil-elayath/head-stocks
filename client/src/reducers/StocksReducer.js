@@ -1,8 +1,15 @@
-import { GET_ALL_COMPANY, GAINERS_LOSERS } from "../actions/Types";
+import {
+  GET_ALL_COMPANY,
+  GAINERS_LOSERS,
+  GET_ALL_SECTORS,
+  GET_ALL_INDUSTRIES
+} from "../actions/Types";
 
 const initialstate = {
   stocks: [],
-  gainersLosers: []
+  gainersLosers: [],
+  sectors: [],
+  industries: []
 };
 
 export default function(state = initialstate, action) {
@@ -11,6 +18,10 @@ export default function(state = initialstate, action) {
       return { ...state, stocks: action.payload };
     case GAINERS_LOSERS:
       return { ...state, gainersLosers: action.payload };
+    case GET_ALL_SECTORS:
+      return { ...state, sectors: action.payload };
+    case GET_ALL_INDUSTRIES:
+      return { ...state, industries: action.payload };
     default:
       return state;
   }
