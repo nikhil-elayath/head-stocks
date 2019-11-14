@@ -287,9 +287,6 @@ router.get("/financial/:id", async (req, res, next) => {
         }
       ],
       function(err, result) {
-        //   console.log("start");
-        // console.log("end");
-
         if (!result) {
           return res.status(400).json({
             status: 400,
@@ -322,19 +319,74 @@ router.post("/analysis", async (req, res, next) => {
     console.log("re body", req.body.sector);
     const sector = req.body.sector;
 
-    let result = await stocksData.find({ sector: { $in: sector } }).limit(5);
-    // console.log(result);
+    let result = await stocksData.find({ sector: { $in: sector } }).limit(4);
+    // console.log("sdadsadsd", result[0]["ticker_dates"]);
+    const bla = [];
+    result.forEach(function(elem) {
+      let compare = {};
+      // bla.push(elem._doc.ticker_name);
+      ticker_dates = elem._doc.ticker_dates;
+      // for_div = ticker_dates;
+      // for (i of ticker_dates) {
+      //   console.log("i from for loop", i);
+      //   result[0]["ticker_dates"].hasOwnProperty("Share Price")
+      //     ? (compare["Dividends"] = i.dividend)
+      //     : console.log("dividend not found");
+      // }
+
+      last_date = ticker_dates.slice(-1)[0];
+      // console.log("last_date", last_date);
+      var i = -1;
+
+      //getting ticker name
+      let ticker_name = elem._doc.ticker_name;
+      compare["ticker_name"] = ticker_name;
+
+      //for dividends
+      while (last_date["Dividends"] == undefined) {
+        last_date = ticker_dates.slice(i)[0];
+        i--;
+      }
+      dividend = last_date["Dividends"];
+      compare["dividend"] = dividend;
+
+      //for market cap
+      Market_cap = last_date["Market Capitalisation"];
+      compare["marketcap"] = Market_cap;
+
+      // for net profit
+      while (last_date["Net Profit"] == undefined) {
+        last_date = ticker_dates.slice(i)[0];
+        i--;
+      }
+      net_profit = last_date["Net Profit"];
+      compare["net_profit"] = net_profit;
+
+      //for price to earning ratio
+
+      //pushing the object into the array
+      bla.push(compare);
+    });
+    console.log(bla);
+    // console.log(result[0]);
+    // console.log(result[0]["ticker_dates"]);
+    // const only_dates = result[0]["ticker_dates"];
+    // const market = {};
+    // for (i of only_dates) {
+    //   market.value = i;
+    // }
+    // console.log("printing market", market);
 
     if (result < 0) {
       res.status(400).json({
         status: 400,
-        data: result,
+        data: compare,
         message: "No news Found"
       });
     } else {
       res.status(200).json({
         status: 200,
-        data: result,
+        data: { bla },
         message: "Retrieved all news Successfully"
       });
     }
