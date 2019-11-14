@@ -16,8 +16,8 @@
   width: 80%;
 }
 
-.ticker__table td {
-  padding: 5px;
+#tableData tr {
+  padding: 8px;
   text-align: center;
   /* color: white; */
 }

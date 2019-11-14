@@ -1,35 +1,35 @@
 const express = require("express");
 const router = express.Router();
 const stocksData = require("../../model/stocksModel");
-router.get("/company", async (req, res) => {
-  // selecting the database "stocks
-  let result = await stocksData.find(
-    {},
-    {
-      ticker_name: 1,
-      ticker_id: 1,
-      sector: 1,
-      industry: 1,
-      _id: 0,
-      ohlc_dates: 1
-    }
-  );
+// router.get("/company", async (req, res) => {
+// selecting the database stocks
+// let result = await stocksData.find(
+//   {},
+//   {
+//     ticker_name: 1,
+//     ticker_id: 1,
+//     sector: 1,
+//     industry: 1,
+//     _id: 0,
+//     ohlc_dates: 1
+//   }
+// );
 
-  if (result < 0) {
-    res.status(400).json({
-      status: 400,
-      data: null,
-      message: "No Company Found"
-    });
-  }
-  // If successfully executes then sends this response to the search action
-  res.status(200).json({
-    status: 200,
-    data: result,
-    message: "Retrieved All Companies Successfully"
-  });
-});
-module.exports = router;
+// if (result < 0) {
+//   res.status(400).json({
+//     status: 400,
+//     data: null,
+//     message: "No Company Found"
+//   });
+// }
+// If successfully executes then sends this response to the search action
+//   res.status(200).json({
+//     status: 200,
+//     data: result,
+//     message: "Retrieved All Companies Successfully"
+//   });
+// });
+// module.exports = router;
 
 //get companies by industries
 router.get("/companies/:industry", async (req, res, next) => {
@@ -37,9 +37,10 @@ router.get("/companies/:industry", async (req, res, next) => {
   try {
     let industry = req.params.industry;
     console.log("industry is", industry);
-    let result = await stocksData
-      .find({ industry: industry }, { ticker_name: 1, industry: 1, _id: 0 })
-      .limit(5);
+    let result = await stocksData.find(
+      { industry: industry },
+      { ticker_id: 1, ticker_name: 1, industry: 1, _id: 0 }
+    );
 
     console.log("companies by industry:", result);
     if (result < 0) {
@@ -60,10 +61,13 @@ router.get("/companies/:industry", async (req, res, next) => {
     next(err);
   }
 });
+module.exports = router;
 
 //getting all the company sectors
 router.get("/companysectors", async (req, res) => {
-  let result = await stocksData.distinct("sector");
+  let result = await stocksData.distinct("sector", {
+    sector: { $exists: true }
+  });
 
   if (result < 0) {
     res.status(400).json({
@@ -79,7 +83,9 @@ router.get("/companysectors", async (req, res) => {
     message: "Retrieved All Sectors Successfully"
   });
 });
+module.exports = router;
 
+//gainers and losers based on sector
 router.get("/gainers-and-losers/:sector", async (req, res) => {
   try {
     let sector = req.params.sector;
@@ -151,7 +157,7 @@ router.get("/gainers-and-losers/:sector", async (req, res) => {
     }
     let finalData = {};
     finalData.isIndex = false;
-    finalData.gainers = sorted.slice(0, 5);
+    finalData.gainers = sorted.slice(0, 10);
     finalData.losers = reverse;
     res.status(200).json({
       status: 200,
@@ -164,19 +170,15 @@ router.get("/gainers-and-losers/:sector", async (req, res) => {
 });
 module.exports = router;
 
-//getting industries by sector
+//getting all the industries based on a sector
 router.get("/industries/:sector", async (req, res, next) => {
   console.log("industries by sector called");
   try {
     let sector = req.params.sector;
     console.log("sector is", sector);
     let result = await stocksData
-      .find(
-        { sector: sector },
-        { ticker_name: 1, sector: 1, industry: 1, _id: 0 }
-      )
-      .limit(5);
-
+      .find({ sector: sector }, "industry")
+      .distinct("industry");
     console.log("industries by sector:", result);
     if (result < 0) {
       res.status(400).json({
@@ -195,3 +197,4 @@ router.get("/industries/:sector", async (req, res, next) => {
     next(err);
   }
 });
+module.exports = router;

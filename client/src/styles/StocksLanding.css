@@ -19,7 +19,7 @@
 }
 
 #stocks_grid_container {
-  margin: 40px 5px 0px 5px;
+  margin: 2px 5px 0px 5px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 15px;
@@ -42,6 +42,7 @@
 
 #stocks_img {
   border-radius: 50px;
+  width: 70px;
 }
 
 #stocks_ticker {
@@ -54,12 +55,12 @@
   color: #707070;
 }
 
-#stocks_flex_details-one {
+#stocks_flex_details_one {
   display: flex;
   justify-content: center;
 }
 
-#stocks_flex_details-two {
+#stocks_flex_details_two {
   display: flex;
   justify-content: center;
 }
@@ -165,7 +166,7 @@
 }
 
 #stocks_filter {
-  margin: 0px 0px 0px 5px;
+  margin: 30px 0px 30px 5px;
   display: flex;
 }
 
@@ -209,7 +210,7 @@
     margin: 0px 10px 0px 10px;
     grid-template-columns: 1fr;
   }
-  #stocks_flex_details-two {
+  #stocks_flex_details_two {
     display: none;
   }
   #stocks_img {
