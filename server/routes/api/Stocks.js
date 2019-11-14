@@ -89,14 +89,17 @@ router.get("/gainers-and-losers/:sector", async (req, res) => {
       );
     });
     var losers = sorted;
+    var reverse = [];
+    for (i = losers.length - 1; i > losers.length - 6; i--) {
+      reverse.push(losers[i]);
+    }
     let finalData = {};
     finalData.isIndex = false;
-    finalData.tableData = sorted;
-    losers = losers.reverse();
+    finalData.gainers = sorted.slice(0, 5);
+    finalData.losers = reverse;
     res.status(200).json({
       status: 200,
-      data: finalData,
-      data1: losers,
+      data: [finalData],
       message: "Retrieved name of all indexes"
     });
   } catch (err) {

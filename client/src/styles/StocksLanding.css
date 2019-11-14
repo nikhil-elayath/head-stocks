@@ -130,16 +130,34 @@
 }
 
 #stocks_grid_table {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+  border-collapse: collapse;
 }
 
-#stocks_grid_table_details {
+#stocks_grid_table th {
+  background-color: #2c3e50;
+  color: #fff;
+  padding: 10px;
+}
+
+#stocks_grid_table td {
+  padding: 15px;
+  font-size: 15 px;
+}
+
+#positiveChange {
+  color: #27ae60;
+}
+
+#negativeChange {
+  color: #ff4d4d;
+}
+/* #stocks_grid_table_details {
   text-align: center;
   padding: 10px;
   margin: 0px;
   font-size: 16px;
-}
+} */
 
 /* ------------------------------------------------------------------------------ */
 

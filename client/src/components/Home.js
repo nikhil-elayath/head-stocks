@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { allNews, newsById, getIndices } from "../actions/Home";
 import { connect } from "react-redux";
 import "../styles/Home.css";
-import welcome from "./welcome.svg";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import loader from "./Common/Loader.gif";
 import Loader from "react-loader-spinner";
