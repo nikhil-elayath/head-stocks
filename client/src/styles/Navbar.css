@@ -82,7 +82,7 @@
 }
 .navbarSearchBox button img {
   border: none;
-   top: 5px;
+  top: 5px;
   position: relative;
 }
 .navbarSearchResultsFound {
@@ -104,10 +104,10 @@
 .navbarSearchResultsCancelButton {
   float: right;
   width: 20px;
-   height: 20px;
+  height: 20px;
   border: none;
- position: fixed;  
- left: 10px;
+  position: fixed;
+  left: 10px;
 }
 .navbarSearchResultsNotFound {
   display: none;
@@ -224,7 +224,6 @@
   .navbarSearchBox button {
     background-color: #ffffff;
     width: 20px;
-   
   }
   .navbarSearchResultsFound {
     margin: 0px 0px 0px 6%;
@@ -236,7 +235,6 @@
   }
   .navbarSearchResultsPTag2 {
     font-size: 12px;
-    
   }
   .navbarHS span:not(:first-child) {
     display: none;

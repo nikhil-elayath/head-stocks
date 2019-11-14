@@ -7,6 +7,7 @@ export const VERIFY_OTP = "VERIFY_OTP";
 export const ERROR_TYPE = "ERROR_TYPE";
 export const GET_INDICES_BYID = "GET_INDICES_BYID";
 export const OHLC_CHART_INDEX = "OHLC_CHART_INDEX";
+export const GAINERS_LOSERS = "GAINERS_LOSERS";
 
 //Aditya
 export const GET_ALL_COMPANY = "GET_ALL_COMPANY";

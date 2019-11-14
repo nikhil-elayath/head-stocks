@@ -1,4 +1,9 @@
-import { GET_ALL_COMPANY, GET_ALL_SECTORS, GET_ALL_INDUSTRIES } from "./Types";
+import {
+  GET_ALL_COMPANY,
+  GET_ALL_SECTORS,
+  GET_ALL_INDUSTRIES,
+  GAINERS_LOSERS
+} from "./Types";
 import axios from "axios";
 const url = "http://localhost:2001/api/sector/";
 
@@ -32,7 +37,6 @@ export const getSectors = () => dispatch => {
     });
 };
 
-// GET all industries
 export const getIndustries = sector => dispatch => {
   console.log("get industries by sector from actions:", sector);
   return axios
@@ -40,6 +44,20 @@ export const getIndustries = sector => dispatch => {
     .then(res => {
       dispatch({
         type: GET_ALL_INDUSTRIES,
+        payload: res.data.data
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+export const getGainersLosers = sector => dispatch => {
+  return axios
+    .get(url + "gainers-and-losers/" + sector)
+    .then(res => {
+      dispatch({
+        type: GAINERS_LOSERS,
         payload: res.data.data
       });
     })

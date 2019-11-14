@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import { allNews, newsById, getIndices } from "../actions/Home";
 import { connect } from "react-redux";
 import "../styles/Home.css";
-import welcome from "./welcome.svg";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import loader from "./Common/Loader.gif";
+import Table from "../components/Common/TickerTable";
 import Loader from "react-loader-spinner";
 
 export class Home extends Component {
@@ -71,50 +70,11 @@ export class Home extends Component {
                 {/*for indics table */}
                 <h1>Indices</h1>
                 <div>
-                  <table id="homeIndicesTable">
-                    <th>Indices</th>
-                    <th>Last</th>
-                    <th>%Chng</th>
-                    {/* {this.props.indices.map((indices, index) => (
-                      <tr>
-                        <td
-                          id="indicesName"
-                          onClick={() =>
-                            this.props.history.push(
-                              "/indexProfile/" + indices.ticker_id,
-                              {
-                                indices
-                              }
-                            )
-                          }
-                        >
-                          {indices.ticker_name}
-                        </td>
-                        <td>
-                          {Number(
-                            indices.ticker_dates["2019-11-05"].closing
-                          ).toFixed(2)}
-                        </td>
-                        <td
-                          id={
-                            String(
-                              (indices.ticker_dates["2019-10-31"].closing -
-                                indices.ticker_dates["2019-11-05"].closing) /
-                                100
-                            ).charAt(0) == "-"
-                              ? "negativeIndex"
-                              : "positiveIndex"
-                          }
-                        >
-                          {Number(
-                            (indices.ticker_dates["2019-10-31"].closing -
-                              indices.ticker_dates["2019-11-05"].closing) /
-                              100
-                          ).toFixed(3)}
-                        </td>
-                      </tr>
-                    ))}{" "} */}
-                  </table>
+                  <Table
+                    tableHeaders={["Index", "Chng%", "Last CLosed"]}
+                    tableData={this.props.indices}
+                  />
+                  {console.log(this.props.indices)}
                 </div>
               </div>
             </>

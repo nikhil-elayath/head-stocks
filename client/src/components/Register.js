@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { createUser } from "../actions/Users";
+import { createUser, sendOtp, verifyOtp } from "../actions/Users";
 import { connect } from "react-redux";
 import "../styles/Register.css";
 import { Link } from "react-router-dom";
@@ -15,7 +15,22 @@ export class Register extends Component {
     errors: {},
     isAdmin: false,
     login: false,
-    signup: true
+    otp: "",
+    signup: true,
+    show_otp_field: false
+  };
+
+  sendOTP = e => {
+    e.preventDefault();
+    if (this.validateForm()) {
+      let user = {
+        email: this.state.email
+      };
+      this.props.sendOtp(user);
+    }
+    this.setState({
+      show_otp_field: true
+    });
   };
 
   register = e => {
@@ -35,6 +50,22 @@ export class Register extends Component {
         phone: "",
         password: "",
         confirmPassword: ""
+      });
+    }
+  };
+
+  verifyOTP = e => {
+    e.preventDefault();
+    let user = {
+      otp: this.state.otp
+    };
+    if (this.props.verifyOtp(user)) {
+      this.register();
+      this.setState({
+        email: "",
+        password: "",
+        confirmPassword: "",
+        otp: ""
       });
     }
   };
@@ -106,12 +137,17 @@ export class Register extends Component {
 
     if (!this.state.password) {
       formIsValid = false;
-      errors["confirmPassword"] = "Please Enter Password Again";
+      errors["confirmPassword"] = "*Please Enter Password Again";
     }
 
     if (this.state.password != this.state.confirmPassword) {
       formIsValid = false;
       errors["confirmPassword"] = "*Password Don't Match";
+    }
+
+    if (!this.state.otp) {
+      formIsValid = false;
+      errors["otp"] = "*Please Enter OTP.";
     }
 
     this.setState({
@@ -126,11 +162,14 @@ export class Register extends Component {
         <div id="registerMainContainer">
           <div id="registerLeftContainer">
             <h1 id="welcome" className="w3-container w3-center w3-animate-left">
-              Welcome ,
+              Features :
             </h1>
             <p className="w3-container w3-center w3-animate-left">
-              An Investment in Knowledge <br />
-              pays the best Interest
+              <ul>
+                <li>Can see Detailed Comparisons</li>
+                <li>Download Reports</li>
+                <li>Screener Search</li>
+              </ul>
             </p>
           </div>
           <div id="registerRightContainer">
@@ -224,9 +263,36 @@ export class Register extends Component {
                 <p style={{ display: "none" }}>Hello</p>
               )}
               <p>
-                <button onClick={this.register} id="registerFormButton">
-                  Sign Up
-                </button>
+                {this.state.show_otp_field === true ? (
+                  <>
+                    <input
+                      id="resetPasswordInput"
+                      placeholder="Enter Otp"
+                      type="password"
+                      name="otp"
+                      value={this.state.otp}
+                      onChange={this.onChange}
+                    />
+
+                    {this.props.error ? (
+                      <p>{this.props.error}</p>
+                    ) : (
+                      <p style={{ display: "none" }}>Hello</p>
+                    )}
+
+                    <p id="resetPasswordErrorMessage">
+                      {this.state.errors.otp}
+                    </p>
+
+                    <button onClick={this.verifyOTP} id="resetPasswordButton">
+                      Reset
+                    </button>
+                  </>
+                ) : (
+                  <button onClick={this.sendOTP} id="resetPasswordButton">
+                    Proceed
+                  </button>
+                )}
               </p>
             </form>
           </div>
@@ -243,5 +309,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { createUser }
+  { createUser, sendOtp, verifyOtp }
 )(Register);

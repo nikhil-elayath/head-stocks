@@ -1,10 +1,16 @@
 import React, { Component } from "react";
-import { getCompany, getSectors, getIndustries } from "../actions/Stocks";
+import {
+  getCompany,
+  getSectors,
+  getIndustries,
+  getGainersLosers
+} from "../actions/Stocks";
 import "../styles/StocksLanding.css";
 import companylogo from "./apple--big.svg";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
+import Table from "../components/Common/TickerTable";
 
 export class StocksLanding extends Component {
   state = {
@@ -21,6 +27,7 @@ export class StocksLanding extends Component {
     this.props.getCompany();
     this.props.getSectors();
     this.props.getIndustries(this.state.sector);
+    this.props.getGainersLosers(this.state.sector);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -34,6 +41,7 @@ export class StocksLanding extends Component {
       sector: e.target.value
     });
     this.props.getIndustries(e.target.value);
+    this.props.getGainersLosers(e.target.value);
   };
 
   displayCompanies = Stocks => {
@@ -64,7 +72,7 @@ export class StocksLanding extends Component {
     console.log("Sectors", this.props.sectors ? this.props.sectors : "None");
     return (
       <div>
-        {this.props.sectors ? (
+        {this.props.gainersLosers["0"] ? (
           <div id="stocks_main_container">
             <p>STOCKS</p>
             <div id="stocks_filter">
@@ -151,25 +159,15 @@ export class StocksLanding extends Component {
                 <button id="stocks_gainers">Gainers</button>
                 <button id="stocks_losers">Losers</button>
               </div>
-              <div id="stocks_table_title">
-                <p>Ticker</p>
-                <p>Last</p>
-                <p>%CHG</p>
-              </div>
-              <div id="stocks_grid_table">
-                <div id="stocks_grid_table_details">AAPL</div>
-                <div id="stocks_grid_table_details">14.14</div>
-                <div id="stocks_grid_table_details">-1.123</div>
-                <div id="stocks_grid_table_details">AAPL</div>
-                <div id="stocks_grid_table_details">14.14</div>
-                <div id="stocks_grid_table_details">-1.123</div>
-                <div id="stocks_grid_table_details">AAPL</div>
-                <div id="stocks_grid_table_details">14.14</div>
-                <div id="stocks_grid_table_details">-1.123</div>
-                <div id="stocks_grid_table_details">AAPL</div>
-                <div id="stocks_grid_table_details">14.14</div>
-                <div id="stocks_grid_table_details">-1.123</div>
-              </div>
+              <Table
+                tableHeaders={[
+                  "Ticker",
+                  "Chng (%)",
+                  "Market Cap",
+                  "Share Price"
+                ]}
+                tableData={this.props.gainersLosers["0"].gainers}
+              />
             </div>
           </div>
         ) : (
@@ -183,11 +181,13 @@ export class StocksLanding extends Component {
 const mapStateToProps = state => ({
   stocks: state.stocksReducer.stocks,
   sectors: state.stocksReducer.sectors,
-  industries: state.stocksReducer.industries
+  industries: state.stocksReducer.industries,
+  gainersLosers: state.stocksReducer.gainersLosers
 });
 
 export default connect(mapStateToProps, {
   getCompany,
   getSectors,
-  getIndustries
+  getIndustries,
+  getGainersLosers
 })(StocksLanding);
