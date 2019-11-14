@@ -129,12 +129,9 @@ export class StocksLanding extends Component {
                 hasMore={true}
                 height={600}
                 loader={
-                  <Loader
-                    type={Loader}
-                    color="#2c3e50"
-                    textAlign="center"
-                    style={{ margin: "150px 500px" }}
-                  />
+                  <div id="stocks_loader">
+                    <Loader type={Loader} color="#2c3e50" textAlign="center" />
+                  </div>
                 }
                 endMessage={
                   <p style={{ textAlign: "center" }}>
@@ -217,7 +214,9 @@ export class StocksLanding extends Component {
             </div>
           </div>
         ) : (
-          <div>Loading ...</div>
+          <div id="stocks_main_loader">
+            <Loader type={Loader} color="#2c3e50" textAlign="center" />
+          </div>
         )}
       </div>
     );
