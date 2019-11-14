@@ -35,7 +35,7 @@
 }
 
 #stocks_grid_details:hover {
-  box-shadow: 0px 5px #cacaca;
+  box-shadow: 0px 3px 3px 3px #f5f5f5;
   transform: scale(1.02);
   transition: transform 0.3s;
 }
@@ -76,7 +76,7 @@
 }
 
 #stocks_table {
-  margin: 40px 40px 0px 0px;
+  margin: 0px 40px 0px 0px;
   float: right;
   width: 25%;
   padding: 0px 0px 5px 0px;
@@ -179,6 +179,14 @@
   margin: 0px 30px 0px 0px;
 }
 
+#stocks_loader {
+  margin: 50px 0px 50px 500px;
+}
+
+#stocks_main_loader {
+  margin: 260px 0px 0px 680px;
+}
+
 /* ------------------------------------------------------------------------------ */
 
 @media only screen and (max-width: 1224px) {
@@ -189,19 +197,46 @@
 
 @media only screen and (max-width: 920px) {
   #stocks_grid_container {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  #stocks_main_container {
+    margin: 0px 0px 0px 0px;
+  }
+  #stocks_main_grid_container {
+    width: 100%;
+  }
+  #stocks_table {
+    display: none;
+  }
+  #stocks_loader {
+    margin: 30px 0px 30px 350px;
+  }
+  #stocks_main_loader {
+    margin: 165px 0px 0px 325px;
   }
 }
 
 @media only screen and (max-width: 755px) {
   #stocks_grid_container {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  #stocks_main_container {
+    margin: 0px 0px 0px 0px;
+  }
+  #stocks_main_grid_container {
+    width: 100%;
+  }
+  #stocks_table {
+    display: none;
   }
 }
 
 @media only screen and (max-width: 466px) {
   #stocks_grid_container {
     grid-template-columns: 1fr;
+  }
+  #stocks_table {
+    display: none;
   }
 }
 
@@ -214,7 +249,6 @@
     display: none;
   }
   #stocks_img {
-    border-radius: 50px;
     float: left;
   }
   #stocks_main_container {
@@ -223,8 +257,25 @@
   #stocks_main_grid_container {
     width: 100%;
   }
-
   #stocks_table {
     display: none;
+  }
+  #stocks_filter {
+    margin: 30px 0px 30px 5px;
+    display: flex;
+  }
+  #stocks_loader {
+    margin: 20px 0px 20px 125px;
+  }
+  #stocks_main_loader {
+    margin: 205px 0px 0px 120px;
+  }
+  #stocks_filter {
+    margin: 20px 0px 15px 5px;
+    display: block;
+    text-align: center;
+  }
+  #stocks_dropdown {
+    margin: 0px 0px 5px 0px;
   }
 }
