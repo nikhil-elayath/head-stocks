@@ -359,23 +359,38 @@ router.post("/analysis", async (req, res, next) => {
         last_date = ticker_dates.slice(i)[0];
         i--;
       }
-      net_profit = last_date["Net Profit"];
-      compare["net_profit"] = net_profit;
+      // console.log(last_date["Net Profit"] / last_date["Dividends"]);
+      ratio = last_date["Net Profit"];
+      compare["ratio"] = ratio;
 
-      //for price to earning ratio
+      //for  calculating price to earning ratio
+
+      // first calculating EPS
+
+      while (
+        last_date["Net Profit"] == undefined &&
+        last_date["Dividends"] == undefined &&
+        last_date[" Avg Basic Shares Outstanding"] == undefined &&
+        last_date[" Share Price"] == undefined
+      ) {
+        last_date = ticker_dates.slice(i)[0];
+        i--;
+      }
+      console.log(
+        last_date["Share Price"] / last_date["Net Profit"] -
+          last_date["Dividends"] / last_date["Avg Basic Shares Outstanding"]
+      );
+      //PE
+      ratio =
+        (last_date["Share Price"] / last_date["Net Profit"] -
+          last_date["Dividends"]) /
+        last_date["Avg Basic Shares Outstanding"];
+      compare["ratio"] = ratio;
 
       //pushing the object into the array
       bla.push(compare);
     });
     console.log(bla);
-    // console.log(result[0]);
-    // console.log(result[0]["ticker_dates"]);
-    // const only_dates = result[0]["ticker_dates"];
-    // const market = {};
-    // for (i of only_dates) {
-    //   market.value = i;
-    // }
-    // console.log("printing market", market);
 
     if (result < 0) {
       res.status(400).json({
