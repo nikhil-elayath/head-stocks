@@ -75,7 +75,7 @@ export class Home extends Component {
                     <th>Indices</th>
                     <th>Last</th>
                     <th>%Chng</th>
-                    {this.props.indices.map((indices, index) => (
+                    {/* {this.props.indices.map((indices, index) => (
                       <tr>
                         <td
                           id="indicesName"
@@ -113,7 +113,7 @@ export class Home extends Component {
                           ).toFixed(3)}
                         </td>
                       </tr>
-                    ))}{" "}
+                    ))}{" "} */}
                   </table>
                 </div>
               </div>
@@ -131,11 +131,8 @@ const mapStateToProps = state => ({
   indices: state.homeReducer.indices,
   isLoading: state.LoadingReducer.isLoading
 });
-export default connect(
-  mapStateToProps,
-  {
-    allNews,
-    newsById,
-    getIndices
-  }
-)(Home);
+export default connect(mapStateToProps, {
+  allNews,
+  newsById,
+  getIndices
+})(Home);

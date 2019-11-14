@@ -1,8 +1,13 @@
-import { COMPANY_DETAIL, COMPANY_DETAIL_BY_ID, OHLC_CHART } from "./Types";
+import {
+  COMPANY_DETAIL,
+  COMPANY_DETAIL_BY_ID,
+  OHLC_CHART,
+  GET_SIMILAR_TABLE,
+} from "./Types";
 import { startLoading, stopLoading } from "./LoadingAction";
 import axios from "axios";
 
-//getting company details
+// getting company details
 export const getCompanyDetail = () => dispatch => {
   try {
     return axios
@@ -10,7 +15,7 @@ export const getCompanyDetail = () => dispatch => {
       .then(res => {
         dispatch({
           type: COMPANY_DETAIL,
-          payload: res.data.data
+          payload: res.data.data,
         });
       });
   } catch (err) {
@@ -18,7 +23,7 @@ export const getCompanyDetail = () => dispatch => {
   }
 };
 
-//getting company details by id
+// getting company details by id
 export const getCompanyDetailById = id => dispatch => {
   console.log("get companydetails by id from actions", id);
   try {
@@ -28,7 +33,7 @@ export const getCompanyDetailById = id => dispatch => {
         dispatch({
           type: COMPANY_DETAIL_BY_ID,
 
-          payload: res.data.data
+          payload: res.data.data,
         });
         console.log("from then");
       });
@@ -37,7 +42,27 @@ export const getCompanyDetailById = id => dispatch => {
   }
 };
 
-// Fetching OHLC Chart for company
+//getting analysis
+export const getSimilarTable = sector => dispatch => {
+  // const sector = requset.body.sector;
+  console.log("get analysis by id from actions", sector);
+  try {
+    return axios
+      .get("http://localhost:2001/api/analysis/analysis/" + sector)
+      .then(res => {
+        dispatch({
+          type: GET_SIMILAR_TABLE,
+
+          payload: res.data.data,
+        });
+        console.log("from then of similar table");
+      });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+// Fetching OHLC Chart for company [Bhavana]
 export const getOhlcChart = id => dispatch => {
   dispatch(startLoading());
   try {
@@ -46,7 +71,7 @@ export const getOhlcChart = id => dispatch => {
       dispatch({
         type: OHLC_CHART,
 
-        payload: res.data
+        payload: res.data,
       });
     });
   } catch (err) {
@@ -54,71 +79,3 @@ export const getOhlcChart = id => dispatch => {
     console.log(err);
   }
 };
-//getting balance sheet
-// export const getBalanceSheet = () => dispatch => {
-//   console.log("Balance Sheet");
-//   try {
-//     return axios
-//       .get("http://localhost:2001/api/companydetail/balancesheet")
-//       .then(res => {
-//         dispatch({
-//           type: BALANCE_SHEET,
-//           payload: res.data.data,
-//         });
-//       });
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-
-//getting cashflow
-// export const getCashFlow = () => dispatch => {
-//   console.log("cash flow from actions");
-//   try {
-//     return axios
-//       .get("http://localhost:2001/api/companydetail/cashflow")
-//       .then(res => {
-//         dispatch({
-//           type: CASH_FLOW,
-//           payload: res.data.data,
-//         });
-//       });
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-
-//getting cashflow by id
-// export const getCashFlowById = id => dispatch => {
-//   console.log("cash flow from actions", id);
-//   try {
-//     return axios
-//       .get("http://localhost:2001/api/companydetail/cashflow/" + id)
-//       .then(res => {
-//         dispatch({
-//           type: CASH_FLOW,
-//           payload: res.data.data,
-//         });
-//       });
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-
-//getting profit and loss
-
-// export const getProfitAndLoss = () => dispatch => {
-//   console.log(" profit and loss from actions");
-//   try {
-//     return axios
-//       .get("http://localhost:2001/api/companydetail/profitandloss")
-//       .then(res => {
-//         dispatch({
-//           type: PROFIT_AND_LOSS,
-//           payload: res.data.data,
-//         });
-//       });
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };

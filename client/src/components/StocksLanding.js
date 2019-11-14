@@ -54,10 +54,9 @@ export class StocksLanding extends Component {
     console.log(this.props.stocks);
     return (
       <div>
-        {/* <Navbar /> */}
         <div id="stocks_main_container">
           <p>STOCKS</p>
-          <div id="stocks_main_grid_container ">
+          <div id="stocks_main_grid_container">
             <InfiniteScroll
               dataLength={this.state.pageStocks.length} //This is important field to render the next data
               next={this.loadMoreItems}
@@ -89,8 +88,8 @@ export class StocksLanding extends Component {
                     }}
                   >
                     <img src={companylogo} id="stocks_img" />
-                    <div id="stocks_name">{}</div>
                     <div id="stocks_ticker">{stocks.ticker_name}</div>
+                    <div id="stocks_name">{}</div>
                     <div id="stocks_flex_details-one">
                       <div id="stocks_details_title">Closed Price:</div>
                       <div id="stocks_details">249.05 USD</div>
@@ -104,6 +103,31 @@ export class StocksLanding extends Component {
               </div>
             </InfiniteScroll>
           </div>
+          <div id="stocks_table">
+            <div id="stocks_div_buttons">
+              <button id="stocks_gainers">Gainers</button>
+              <button id="stocks_losers">Losers</button>
+            </div>
+            <div id="stocks_table_title">
+              <p>Ticker</p>
+              <p>Last</p>
+              <p>%CHG</p>
+            </div>
+            <div id="stocks_grid_table">
+              <div id="stocks_grid_table_details">AAPL</div>
+              <div id="stocks_grid_table_details">14.14</div>
+              <div id="stocks_grid_table_details">-1.123</div>
+              <div id="stocks_grid_table_details">AAPL</div>
+              <div id="stocks_grid_table_details">14.14</div>
+              <div id="stocks_grid_table_details">-1.123</div>
+              <div id="stocks_grid_table_details">AAPL</div>
+              <div id="stocks_grid_table_details">14.14</div>
+              <div id="stocks_grid_table_details">-1.123</div>
+              <div id="stocks_grid_table_details">AAPL</div>
+              <div id="stocks_grid_table_details">14.14</div>
+              <div id="stocks_grid_table_details">-1.123</div>
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -114,7 +138,4 @@ const mapStateToProps = state => ({
   stocks: state.stocksReducer.stocks
 });
 
-export default connect(
-  mapStateToProps,
-  { getCompany }
-)(StocksLanding);
+export default connect(mapStateToProps, { getCompany })(StocksLanding);

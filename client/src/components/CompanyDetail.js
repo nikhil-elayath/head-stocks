@@ -9,25 +9,23 @@ import Loader from "react-loader-spinner";
 
 export class CompanyDetail extends Component {
   componentDidMount() {
+    // storing the id in the params into a variable which will be passed along with the action
     const id = this.props.match.params.id;
     this.props.getCompanyDetailById(id);
     this.props.getOhlcChart("AAPL");
-    console.log("printing id from the component", id);
-
-    console.log("component mounted");
   }
   render() {
+    console.log(this.props);
     // console.log(this.props.company.tname);
     return (
       <div>
+        {/* CALLING SECONDARY NAVBAR  */}
         <SecondaryNavbar />
+        {/* TERNARY OPERATOR TO CHECK WHETHER THE DATA IS LOADED IN THE REDUCER AND IF IT IS IT WILL BE MAPPED  */}
         {this.props.company.balancesheet ? (
           <div id="company-detail-grid-container">
-            {/* {this.props.company.map(company => ( */}
             <div id="company-detail-profile">
-              <h3>
-                Maket Cap : <span>1.156T for Nov. 8, 2019</span>
-              </h3>
+              <h3>Maket Cap:</h3>
               <h3>
                 Sector : <span>{this.props.company.sector}</span>
               </h3>
@@ -38,25 +36,13 @@ export class CompanyDetail extends Component {
                 Employees : <span>{this.props.company.employess}</span>
               </h3>
 
-              {/* <h4>{this.props.company.ticker_name}</h4> */}
-
-              <h3 id="company-detail-profile-span" style={{ fontSize: "17px" }}>
+              <h3 id="company-detail-profile-span">
                 {this.props.company.profile}
               </h3>
-              {/* <h4>{this.props.company.company_name}</h4> */}
             </div>
-
-            {/* recommendation */}
-            {/* <div id="company-detail-recommendation">
-              {this.props.company.map(company => (
-              ))}
-              <h3> Recommendation</h3>
-
-              <div id="test" />
-            </div> */}
           </div>
         ) : (
-          <p>Loading..</p>
+          <p />
         )}
         {this.props.isLoading ? ( // use to display loader [piyush]
           <div style={{ margin: "200px 500px" }}>
@@ -64,12 +50,13 @@ export class CompanyDetail extends Component {
             {/* <img src={loader} alt="loading..." /> */}
           </div>
         ) : (
+          // PLOTTIGN THE GRAPH
           <div
             style={{
               border: "1px solid #cacaca",
               width: "97%",
               margin: "auto",
-              marginBottom: "20px"
+              marginBottom: "20px",
             }}
           >
             <iframe
@@ -78,7 +65,7 @@ export class CompanyDetail extends Component {
                 width: "100%",
                 height: "550px",
                 outline: "none",
-                border: "none"
+                border: "none",
               }}
             />
           </div>
@@ -90,7 +77,7 @@ export class CompanyDetail extends Component {
 const mapStateToProps = state => ({
   company: state.CompanyDetailReducer.company,
   ohlc_chart: state.CompanyDetailReducer.ohlc_chart,
-  isLoading: state.LoadingReducer.isLoading
+  isLoading: state.LoadingReducer.isLoading,
 });
 export default connect(
   mapStateToProps,

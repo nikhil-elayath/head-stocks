@@ -6,25 +6,17 @@ import "../../styles/CompanyDetailSecondaryNavbar.css";
 import { Link } from "react-router-dom";
 
 export class CompanyDetailSecondaryNavbar extends Component {
-  componentDidMount() {
-    console.log("component mounted");
-
-    // const id = this.props.match.params;
-    // console.log(id);
-    // this.props.getCompanyDetailById(8);
-  }
+  componentDidMount() {}
   // DEFINING THE STATE WITH OVERVIEW AS DEFAULT AND REST TWO OPTIONS FALSE
   state = {
     overview: true,
     financial: false,
-    analysis: false
+    analysis: false,
   };
   render() {
-    console.log(this.props.company["0"]);
     this.props.company.profile
       ? console.log(this.props.company.profile)
       : console.log("Wait..");
-    // this.props.company ? this.props.company : console.log("Loading...");
     return (
       <div>
         <div id="company-details-tab-container">
@@ -40,24 +32,20 @@ export class CompanyDetailSecondaryNavbar extends Component {
                     className="company-link"
                     // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
                     to={{
-                      pathname: "/companydetail/" + this.props.company.ticker_id
-                      // {balance["Cash and Cash Equivalents"]}
+                      pathname:
+                        "/companydetail/" + this.props.company.ticker_id,
                     }}
                   >
-                    {/* {this.props.getBalanceSheet()}{" "} */}
                     <span
                       id="company-detail-overview-click"
-                      // className="secLink"
                       onClick={() => {
                         // changing the values of the state while clicking, the clicked component will be set to true others will be false
                         this.setState({
                           overview: true,
                           financial: false,
-                          analysis: false
+                          analysis: false,
                         });
                         console.log("Overview clicked");
-
-                        // this.props.changeDetailsType("summary");
                       }}
                     >
                       <li
@@ -69,19 +57,18 @@ export class CompanyDetailSecondaryNavbar extends Component {
                             : "options-li"
                         }
                       >
-                        Overviews
+                        Overview
                       </li>
                     </span>
                   </Link>
-
+                  {/* Financials  */}
                   <div id="company-detail-financial">
-                    {/* {this.props.home.map(news => ( */}
                     <Link
                       className="company-link"
                       to={{
                         // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
 
-                        pathname: "/financial/" + this.props.company.ticker_id
+                        pathname: "/financial/" + this.props.company.ticker_id,
                       }}
                     >
                       <span
@@ -90,9 +77,8 @@ export class CompanyDetailSecondaryNavbar extends Component {
                           this.setState({
                             overview: false,
                             financial: true,
-                            analysis: false
+                            analysis: false,
                           });
-                          console.log("Financial clicked");
                         }}
                       >
                         <li
@@ -107,14 +93,13 @@ export class CompanyDetailSecondaryNavbar extends Component {
                         </li>
                       </span>
                     </Link>
-                    {/* ))} */}
                   </div>
 
                   <div id="company-detail-analysis">
                     <Link
                       className="company-link"
                       to={{
-                        pathname: "/analysis/" + this.props.company.ticker_id
+                        pathname: "/analysis/" + this.props.company.ticker_id,
                       }}
                     >
                       <span
@@ -123,9 +108,8 @@ export class CompanyDetailSecondaryNavbar extends Component {
                           this.setState({
                             overview: false,
                             financial: false,
-                            analysis: true
+                            analysis: true,
                           });
-                          console.log("Analysis clicked");
                         }}
                       >
                         <li
@@ -144,7 +128,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                 </ul>
               </div>
             ) : (
-              <p>Loading..</p>
+              <p />
             )}
           </div>
         </div>
@@ -153,7 +137,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
   }
 }
 const mapStateToProps = state => ({
-  company: state.CompanyDetailReducer.company
+  company: state.CompanyDetailReducer.company,
 });
 export default connect(
   mapStateToProps,
