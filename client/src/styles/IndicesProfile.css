@@ -11,35 +11,56 @@
   grid-gap: 10px;
 }
 
+#indicesGraphContainer {
+  padding: 20px;
+}
+
+#losersGainersContainer {
+  padding: 20px;
+}
+#losersGainersContainer table {
+  padding: 10px;
+  border-collapse: collapse;
+  width: 100%;
+  text-align: left;
+}
+
+#historicTable th {
+  font-size: 20px;
+  background-color: #cacaca;
+  padding: 10px;
+}
+
+#losersGainersContainer h4 {
+  padding: 10px;
+  font-weight: bold;
+}
+
+#indicesGraphContainer h3 {
+  background-color: #2c3e50;
+  padding: 10px;
+  color: #fff;
+}
+
+#losersGainersContainer h3 {
+  color: #fff;
+  padding: 10px;
+  font-family: Karla;
+  background-color: #2c3e50;
+}
+
 @media screen and (min-width: 430px) {
   #indicesMainContainer {
-    width: 97%;
-
+    width: 100%;
     margin: 5px auto;
     display: grid;
-    grid-template-rows: 120px 250px 250px;
+    grid-template-rows: 120px 250px 25px auto;
     grid-gap: 10px;
   }
 
   #indicesLeftContainer {
+    padding: 8px;
     font-size: 20px;
-  }
-
-  #indicesLeftContainer hr {
-    border: 1px solid #cacaca;
-  }
-
-  #losersGainersContainer {
-    display: grid;
-    grid-template-columns: 50% 50%;
-  }
-
-  #losersGainersContainer h3 {
-    color: #fff;
-    width: 90%;
-    margin: 0px auto;
-    font-family: Karla;
-    background-color: #2c3e50;
-    border-radius: 5px;
+    box-shadow: 0px 4px 6px 0px #cacaca;
   }
 }

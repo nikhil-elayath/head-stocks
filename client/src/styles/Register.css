@@ -72,6 +72,7 @@
   font-weight: 500;
   font-size: 20px;
   border: none;
+  cursor: pointer;
 }
 
 #loginButton-active {
@@ -101,6 +102,7 @@
   padding: 20px;
   font-weight: 500;
   font-size: 20px;
+  cursor: pointer;
   border: none;
 }
 
@@ -139,6 +141,7 @@
   }
 
   #registerLeftContainer > p {
-    font-size: 40px;
+    text-align: left;
+    font-size: 30px;
   }
 }
