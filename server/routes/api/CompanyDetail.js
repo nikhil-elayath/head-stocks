@@ -174,17 +174,6 @@ MongoClient.connect(url, function(err, client) {
           res.status(200).json({
             status: 200,
             data: {
-              // balancesheet: balancesheet,
-              // cashflow: cashflow,
-              // profitandloss: profitandloss,
-              // ratios: ratios,
-              // ticker_id: result.ticker_id,
-              // profile: result.profile,
-              // industry: result.industry,
-              // company_name: result.company_name,
-              // employess: result.employess,
-              // ticker_name: result.ticker_name,
-              // sector: result.sector
               result
             },
 
@@ -197,31 +186,6 @@ MongoClient.connect(url, function(err, client) {
     }
   });
 });
-
-// getting cash flow
-
-// router.get("/:id", async (req, res, next) => {
-//   try {
-//     let id = req.params.id;
-//     console.log("printing id from api all", id);
-//     var collection = db.collection("stocks");
-//     collection.findOne({ _id: +id }, function(err, result) {
-//       print(result);
-//       if (!result) {
-//         return res.status(400).send({ message: "No data found" });
-//       } else {
-//         if (err) throw err;
-//         res.status(200).json({
-//           status: 200,
-//           data: result,
-//           message: "Retrieved news Successfully"
-//         });
-//       }
-//     });
-//   } catch (err) {
-//     next(err);
-//   }
-// });
 
 //for analysis
 
@@ -349,6 +313,8 @@ router.get("/financial/:id", async (req, res, next) => {
 });
 
 //closing the connect method
+
+//ANALYSIS
 
 router.post("/analysis", async (req, res, next) => {
   console.log("analysis called");
