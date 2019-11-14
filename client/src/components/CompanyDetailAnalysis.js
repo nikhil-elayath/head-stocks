@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import CompanyDetailSecondaryNavbar from "./Common/CompanyDetailSecondaryNavbar";
 import {
   getCompanyDetailById,
-  getSimilarTable,
+  getSimilarTable
 } from "../actions/CompanyDetail";
 import { connect } from "react-redux";
 
@@ -12,16 +12,16 @@ export class CompanyDetailAnalysis extends Component {
 
     console.log("From analysis component", id);
     this.props.getCompanyDetailById(id);
+    {
+      this.props.company
+        ? this.props.getSimilarTable(this.props.company.sector)
+        : console.log("naaiiii");
+    }
     const sector = this.props.company.sector;
     console.log("sector from analysis", sector);
     // this.props.getSimilarTable(sector);
   }
   render() {
-    {
-      this.props.company
-        ? this.props.getSimilarTable(this.props.company.sector)
-        : console.log("");
-    }
     return (
       <div>
         <CompanyDetailSecondaryNavbar />
@@ -37,9 +37,9 @@ export class CompanyDetailAnalysis extends Component {
 
 const mapStateToProps = state => ({
   company: state.CompanyDetailReducer.company,
-  similar_company: state.CompanyDetailReducer.similar_company,
+  similar_company: state.CompanyDetailReducer.similar_company
 });
-export default connect(
-  mapStateToProps,
-  { getCompanyDetailById, getSimilarTable }
-)(CompanyDetailAnalysis);
+export default connect(mapStateToProps, {
+  getCompanyDetailById,
+  getSimilarTable
+})(CompanyDetailAnalysis);
