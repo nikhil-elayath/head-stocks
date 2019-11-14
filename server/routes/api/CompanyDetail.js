@@ -321,9 +321,9 @@ router.post("/analysis", async (req, res, next) => {
 
     let result = await stocksData.find({ sector: { $in: sector } }).limit(4);
     // console.log("sdadsadsd", result[0]["ticker_dates"]);
-    const bla = [];
+    const similar_sector_data = [];
     result.forEach(function(elem) {
-      let compare = {};
+      let compare = { tickerValues: {} };
       // bla.push(elem._doc.ticker_name);
       ticker_dates = elem._doc.ticker_dates;
       // for_div = ticker_dates;
@@ -348,11 +348,11 @@ router.post("/analysis", async (req, res, next) => {
         i--;
       }
       dividend = last_date["Dividends"];
-      compare["dividend"] = dividend;
+      compare.tickerValues["dividend"] = dividend.toString();
 
       //for market cap
       Market_cap = last_date["Market Capitalisation"];
-      compare["marketcap"] = Market_cap;
+      compare.tickerValues["marketcap"] = Market_cap.toString();
 
       // for net profit
       while (last_date["Net Profit"] == undefined) {
@@ -361,7 +361,7 @@ router.post("/analysis", async (req, res, next) => {
       }
       // console.log(last_date["Net Profit"] / last_date["Dividends"]);
       ratio = last_date["Net Profit"];
-      compare["ratio"] = ratio;
+      compare.tickerValues["ratio"] = ratio.toString();
 
       //for  calculating price to earning ratio
 
@@ -376,21 +376,39 @@ router.post("/analysis", async (req, res, next) => {
         last_date = ticker_dates.slice(i)[0];
         i--;
       }
-      console.log(
-        last_date["Share Price"] / last_date["Net Profit"] -
-          last_date["Dividends"] / last_date["Avg Basic Shares Outstanding"]
-      );
       //PE
       ratio =
         (last_date["Share Price"] / last_date["Net Profit"] -
           last_date["Dividends"]) /
         last_date["Avg Basic Shares Outstanding"];
-      compare["ratio"] = ratio;
+      compare.tickerValues["ratio"] = ratio.toFixed(3).toString();
+
+      //for current share price
+      while (last_date["Share Price"] == undefined) {
+        last_date = ticker_dates.slice(i)[0];
+        i--;
+      }
+      current_share_price = last_date["Share Price"];
+      compare.tickerValues[
+        "current_share_price"
+      ] = current_share_price.toString();
+      console.log("net profit", last_date["Net Profit"]);
+      //for Return on capital employed
+      while (last_date["Share Price"] == undefined) {
+        last_date = ticker_dates.slice(i)[0];
+        i--;
+      }
+      roce =
+        last_date["Net Profit"] /
+        (last_date["Net Profit"] / last_date["Total Assets"] -
+          last_date["Current Liabilities"]);
+
+      compare.tickerValues["roce"] = roce.toFixed(3).toString();
 
       //pushing the object into the array
-      bla.push(compare);
+      similar_sector_data.push(compare);
     });
-    console.log(bla);
+    console.log(similar_sector_data);
 
     if (result < 0) {
       res.status(400).json({
@@ -401,7 +419,7 @@ router.post("/analysis", async (req, res, next) => {
     } else {
       res.status(200).json({
         status: 200,
-        data: { bla },
+        data: [similar_sector_data],
         message: "Retrieved all news Successfully"
       });
     }
