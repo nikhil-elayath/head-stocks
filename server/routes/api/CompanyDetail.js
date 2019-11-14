@@ -21,7 +21,7 @@ MongoClient.connect(url, function(err, client) {
   router.get("/:id", async (req, res, next) => {
     try {
       let id = req.params.id;
-      console.log("printing id from api all", id);
+      // console.log("printing id from api all", id);
       var collection = db.collection("stocks_data_2");
       // hardcoding dummy data
       var dummy_date = [
