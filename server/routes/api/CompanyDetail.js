@@ -40,7 +40,10 @@ MongoClient.connect(url, function(err, client) {
         err,
         result
       ) {
-        console.log(result);
+        // console.log(result);
+        // var second_last_date = result.slice(-2)[0];
+        // console.log(second_last_date);
+
         // console.log(result);
         var balancesheet = [];
         var cashflow = [];
@@ -197,28 +200,28 @@ MongoClient.connect(url, function(err, client) {
 
 // getting cash flow
 
-router.get("/:id", async (req, res, next) => {
-  try {
-    let id = req.params.id;
-    console.log("printing id from api all", id);
-    var collection = db.collection("stocks");
-    collection.findOne({ _id: +id }, function(err, result) {
-      print(result);
-      if (!result) {
-        return res.status(400).send({ message: "No data found" });
-      } else {
-        if (err) throw err;
-        res.status(200).json({
-          status: 200,
-          data: result,
-          message: "Retrieved news Successfully",
-        });
-      }
-    });
-  } catch (err) {
-    next(err);
-  }
-});
+// router.get("/:id", async (req, res, next) => {
+//   try {
+//     let id = req.params.id;
+//     console.log("printing id from api all", id);
+//     var collection = db.collection("stocks");
+//     collection.findOne({ _id: +id }, function(err, result) {
+//       print(result);
+//       if (!result) {
+//         return res.status(400).send({ message: "No data found" });
+//       } else {
+//         if (err) throw err;
+//         res.status(200).json({
+//           status: 200,
+//           data: result,
+//           message: "Retrieved news Successfully"
+//         });
+//       }
+//     });
+//   } catch (err) {
+//     next(err);
+//   }
+// });
 
 //for analysis
 
@@ -226,100 +229,121 @@ router.get("/:id", async (req, res, next) => {
 router.get("/financial/:id", async (req, res, next) => {
   try {
     let id = req.params.id;
-   //variable
+    //variable
     // stocksData.findOne({ticker_name: 'AAPL',"ticker_dates":{'$elemMatch': {date: new Date("2019-03-31")}}}, function(err, result) {
     stocksData.aggregate(
       [
-        {$unwind : "$ticker_dates"},
-        {$match : {
-          // ticker_name : "AAPL"
-          ticker_id : +id
-          // ,
-          // 'ticker_dates.date' : {
-          //   $lte : new Date("2019-06-31"),
-          //   $gte :  new Date("2018-03-25") 
-          // }
-        }},
-        {$project : {"ticker_dates" : 1,
-        // ,"ticker_dates.Market Capitalisation": 1,
-  
-          "quarter":{$cond:[{
-            $and : 
-            [{$eq:[{$month: 
-              "$ticker_dates.date"
-                       },3]},
-                       {$lte:[{$dayOfMonth: 
-                         "$ticker_dates.date"
-                                  },31]},
-                                 { $gt:[{$dayOfMonth: 
-                                   "$ticker_dates.date"
-                                            },25]}]},
-                               "first",
-                               {$cond:[{$and : 
-                                [{$eq:[{$month: 
-                                  "$ticker_dates.date"
-                                           },6]},
-                                           {$lte:[{$dayOfMonth: 
-                                             "$ticker_dates.date"
-                                                      },30]},
-                                                     { $gt:[{$dayOfMonth: 
-                                                       "$ticker_dates.date"
-                                                                },25]}]},
-                                       "second",
-                                       {$cond:[{$and : 
-                                        [{$eq:[{$month: 
-                                          "$ticker_dates.date"
-                                                   },9]},
-                                                   {$lte:[{$dayOfMonth: 
-                                                     "$ticker_dates.date"
-                                                              },30]},
-                                                             { $gt:[{$dayOfMonth: 
-                                                               "$ticker_dates.date"
-                                                                        },25]}]},
-                                               "third",
-                                               {$cond:[{$and : 
-                                                [{$eq:[{$month: 
-                                                  "$ticker_dates.date"
-                                                           },12]},
-                                                           {$lte:[{$dayOfMonth: 
-                                                             "$ticker_dates.date"
-                                                                      },31]},
-                                                                     { $gt:[{$dayOfMonth: 
-                                                                       "$ticker_dates.date"
-                                                                                },25]}]},
-                                               "fourth","fifth"]}]}]}]}
-        }},
-        {$match:{"quarter":{$ne:"fifth"}}},
-        {$sort : {"ticker_dates.date":-1}},
-        {$group:{"_id":{"quarter":"$quarter"},"results":{$push:"$ticker_dates"}
-      }
-      }
-  
-     ]
-    ,
-     function(err, result) {
-      
-      //   console.log("start");
-      // console.log("end");
+        { $unwind: "$ticker_dates" },
+        {
+          $match: {
+            // ticker_name : "AAPL"
+            ticker_id: +id
+            // ,
+            // 'ticker_dates.date' : {
+            //   $lte : new Date("2019-06-31"),
+            //   $gte :  new Date("2018-03-25")
+            // }
+          }
+        },
+        {
+          $project: {
+            ticker_dates: 1,
+            // ,"ticker_dates.Market Capitalisation": 1,
 
-      if (!result) {
-        return res.status(400).json({
-          status: 400,
-          data: result,
-          message: "Retrieved dates Successfully",
-        });;
-      } else {
-        if (err) throw err;
-        res.status(200).json({
-          status: 200,
-          data: result,
-          message: "Retrieved dates Successfully",
-        });
-      }
-    });
+            quarter: {
+              $cond: [
+                {
+                  $and: [
+                    { $eq: [{ $month: "$ticker_dates.date" }, 3] },
+                    { $lte: [{ $dayOfMonth: "$ticker_dates.date" }, 31] },
+                    { $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25] }
+                  ]
+                },
+                "first",
+                {
+                  $cond: [
+                    {
+                      $and: [
+                        { $eq: [{ $month: "$ticker_dates.date" }, 6] },
+                        { $lte: [{ $dayOfMonth: "$ticker_dates.date" }, 30] },
+                        { $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25] }
+                      ]
+                    },
+                    "second",
+                    {
+                      $cond: [
+                        {
+                          $and: [
+                            { $eq: [{ $month: "$ticker_dates.date" }, 9] },
+                            {
+                              $lte: [{ $dayOfMonth: "$ticker_dates.date" }, 30]
+                            },
+                            { $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25] }
+                          ]
+                        },
+                        "third",
+                        {
+                          $cond: [
+                            {
+                              $and: [
+                                { $eq: [{ $month: "$ticker_dates.date" }, 12] },
+                                {
+                                  $lte: [
+                                    { $dayOfMonth: "$ticker_dates.date" },
+                                    31
+                                  ]
+                                },
+                                {
+                                  $gt: [
+                                    { $dayOfMonth: "$ticker_dates.date" },
+                                    25
+                                  ]
+                                }
+                              ]
+                            },
+                            "fourth",
+                            "fifth"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        { $match: { quarter: { $ne: "fifth" } } },
+        { $sort: { "ticker_dates.date": -1 } },
+        {
+          $group: {
+            _id: { quarter: "$quarter" },
+            results: { $push: "$ticker_dates" }
+          }
+        }
+      ],
+      function(err, result) {
+        //   console.log("start");
+        // console.log("end");
 
+        if (!result) {
+          return res.status(400).json({
+            status: 400,
+            data: result,
+            message: "Retrieved dates Successfully"
+          });
+        } else {
+          if (err) throw err;
+          res.status(200).json({
+            status: 200,
+            data: result,
+            message: "Retrieved dates Successfully"
+          });
+        }
+      }
+    );
   } catch (err) {
-    console.log(err)
+    console.log(err);
     next(err);
   }
 });
@@ -333,7 +357,7 @@ router.post("/analysis", async (req, res, next) => {
     const sector = req.body.sector;
 
     let result = await stocksData.find({ sector: { $in: sector } }).limit(5);
-    console.log(result);
+    // console.log(result);
 
     if (result < 0) {
       res.status(400).json({
