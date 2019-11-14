@@ -33,6 +33,7 @@ export class StocksLanding extends Component {
     this.setState({
       sector: e.target.value
     });
+    this.props.getIndustries(e.target.value);
   };
 
   displayCompanies = Stocks => {
@@ -76,7 +77,6 @@ export class StocksLanding extends Component {
               >
                 {this.props.sectors.map(sectors => (
                   <>
-                    {console.log(sectors)}
                     <option name="choice">{sectors}</option>
                   </>
                 ))}
