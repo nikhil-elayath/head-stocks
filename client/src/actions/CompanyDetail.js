@@ -1,6 +1,7 @@
 import {
   COMPANY_DETAIL,
   COMPANY_DETAIL_BY_ID,
+  COMPANY_DATES_BY_ID,
   OHLC_CHART,
   GET_SIMILAR_TABLE
 } from "./Types";
@@ -32,7 +33,6 @@ export const getCompanyDetailById = id => dispatch => {
       .then(res => {
         dispatch({
           type: COMPANY_DETAIL_BY_ID,
-
           payload: res.data.data
         });
         console.log(res.data.data.result.sector);
@@ -82,6 +82,28 @@ export const getOhlcChart = id => dispatch => {
     });
   } catch (err) {
     dispatch(startLoading());
+    console.log(err);
+  }
+};
+
+
+// getting company dates by id
+export const getCompanyDatesById = id => dispatch => {
+  console.log("get companydetails by id from actions", id);
+  try {
+    return axios
+      .get("http://localhost:2001/api/companydetail/financial/" + id)
+      .then(res => {
+        dispatch({
+          type: COMPANY_DATES_BY_ID,
+          payload: res.data.data
+        });
+        //  let sector = {
+        //   sector: res.data.data.result.sector
+        // };
+        //  dispatch(getSimilarTable(sector));
+       });
+  } catch (err) {
     console.log(err);
   }
 };

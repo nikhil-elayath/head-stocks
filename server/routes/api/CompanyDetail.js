@@ -21,7 +21,7 @@ MongoClient.connect(url, function(err, client) {
   router.get("/:id", async (req, res, next) => {
     try {
       let id = req.params.id;
-      console.log("printing id from api all", id);
+      // console.log("printing id from api all", id);
       var collection = db.collection("stocks_data_2");
       // hardcoding dummy data
       var dummy_date = [
@@ -40,7 +40,7 @@ MongoClient.connect(url, function(err, client) {
         err,
         result
       ) {
-        console.log(result);
+        // console.log(result);
         // console.log(result);
         var balancesheet = [];
         var cashflow = [];
@@ -197,28 +197,28 @@ MongoClient.connect(url, function(err, client) {
 
 // getting cash flow
 
-router.get("/:id", async (req, res, next) => {
-  try {
-    let id = req.params.id;
-    console.log("printing id from api all", id);
-    var collection = db.collection("stocks");
-    collection.findOne({ _id: +id }, function(err, result) {
-      print(result);
-      if (!result) {
-        return res.status(400).send({ message: "No data found" });
-      } else {
-        if (err) throw err;
-        res.status(200).json({
-          status: 200,
-          data: result,
-          message: "Retrieved news Successfully",
-        });
-      }
-    });
-  } catch (err) {
-    next(err);
-  }
-});
+// router.get("/:id", async (req, res, next) => {
+//   try {
+//     let id = req.params.id;
+//     console.log("printing id from api all", id);
+//     // var collection = db.collection("stocks");
+//     stocksData.findOne({ _id: +id }, function(err, result) {
+//       // print(result);
+//       if (!result) {
+//         return res.status(400).send({ message: "No data found" });
+//       } else {
+//         if (err) throw err;
+//         res.status(200).json({
+//           status: 200,
+//           data: result,
+//           message: "Retrieved news Successfully",
+//         });
+//       }
+//     });
+//   } catch (err) {
+//     next(err);
+//   }
+// });
 
 //for analysis
 

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 // importing css file
 import "../styles/CompanyDetail.css";
 import SecondaryNavbar from "../components/Common/CompanyDetailSecondaryNavbar";
-import loader from "./Common/Loader.gif";
+// import loader from "./Common/Loader.gif";
 import Loader from "react-loader-spinner";
 
 export class CompanyDetail extends Component {

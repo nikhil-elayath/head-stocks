@@ -3,6 +3,7 @@ import {
   BALANCE_SHEET,
   OHLC_CHART,
   GET_SIMILAR_TABLE,
+  COMPANY_DATES_BY_ID
 } from "../actions/Types";
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
   balance_sheet: [],
   ohlc_chart: [],
   similar_company: [],
+  dates: []
 };
 
 export default function(state = initialState, action) {
@@ -18,6 +20,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         company: action.payload,
+      };
+    case COMPANY_DATES_BY_ID:
+      return {
+        ...state,
+        dates: action.payload,
       };
     case GET_SIMILAR_TABLE:
       return {
