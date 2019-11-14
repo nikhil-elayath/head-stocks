@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import CompanyDetailSecondaryNavbar from "./Common/CompanyDetailSecondaryNavbar";
 import {
   getCompanyDetailById,
-  getSimilarTable,
+  getSimilarTable
 } from "../actions/CompanyDetail";
 import { connect } from "react-redux";
+import { classBody } from "@babel/types";
 
 export class CompanyDetailAnalysis extends Component {
   componentDidMount() {
@@ -12,23 +13,22 @@ export class CompanyDetailAnalysis extends Component {
 
     console.log("From analysis component", id);
     this.props.getCompanyDetailById(id);
-    const sector = this.props.company.sector;
-    console.log("sector from analysis", sector);
-    // this.props.getSimilarTable(sector);
   }
+
   render() {
-    {
-      this.props.company
-        ? this.props.getSimilarTable(this.props.company.sector)
-        : console.log("");
-    }
     return (
       <div>
+        {/* checking whether the data has been loaded into the reducer and if it is then getSimilarTabl which will have a parameter sector from the data loaded in the reducer  */}
+
         <CompanyDetailSecondaryNavbar />
-        {this.props.similar_company[0] ? (
-          <span>{this.props.similar_company[0].ticker_name}</span>
+        {this.props.similar_company ? (
+          <>
+            {this.props.similar_company.map(similar => (
+              <p> {similar.ticker_name}</p>
+            ))}
+          </>
         ) : (
-          <p />
+          <p>Loadin </p>
         )}
       </div>
     );
@@ -37,9 +37,9 @@ export class CompanyDetailAnalysis extends Component {
 
 const mapStateToProps = state => ({
   company: state.CompanyDetailReducer.company,
-  similar_company: state.CompanyDetailReducer.similar_company,
+  similar_company: state.CompanyDetailReducer.similar_company
 });
-export default connect(
-  mapStateToProps,
-  { getCompanyDetailById, getSimilarTable }
-)(CompanyDetailAnalysis);
+export default connect(mapStateToProps, {
+  getCompanyDetailById,
+  getSimilarTable
+})(CompanyDetailAnalysis);

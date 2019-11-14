@@ -1,8 +1,9 @@
 import {
   COMPANY_DETAIL,
   COMPANY_DETAIL_BY_ID,
+  COMPANY_DATES_BY_ID,
   OHLC_CHART,
-  GET_SIMILAR_TABLE,
+  GET_SIMILAR_TABLE
 } from "./Types";
 import { startLoading, stopLoading } from "./LoadingAction";
 import axios from "axios";
@@ -15,7 +16,7 @@ export const getCompanyDetail = () => dispatch => {
       .then(res => {
         dispatch({
           type: COMPANY_DETAIL,
-          payload: res.data.data,
+          payload: res.data.data
         });
       });
   } catch (err) {
@@ -32,9 +33,14 @@ export const getCompanyDetailById = id => dispatch => {
       .then(res => {
         dispatch({
           type: COMPANY_DETAIL_BY_ID,
-
-          payload: res.data.data,
+          payload: res.data.data
         });
+        console.log(res.data.data.result.sector);
+        let sector = {
+          sector: res.data.data.result.sector
+        };
+        console.log("obj sector from action", sector);
+        dispatch(getSimilarTable(sector));
         console.log("from then");
       });
   } catch (err) {
@@ -48,12 +54,12 @@ export const getSimilarTable = sector => dispatch => {
   console.log("get analysis by id from actions", sector);
   try {
     return axios
-      .get("http://localhost:2001/api/analysis/analysis/" + sector)
+      .post("http://localhost:2001/api/analysis/analysis", sector)
       .then(res => {
         dispatch({
           type: GET_SIMILAR_TABLE,
 
-          payload: res.data.data,
+          payload: res.data.data
         });
         console.log("from then of similar table");
       });
@@ -71,11 +77,33 @@ export const getOhlcChart = id => dispatch => {
       dispatch({
         type: OHLC_CHART,
 
-        payload: res.data,
+        payload: res.data
       });
     });
   } catch (err) {
     dispatch(startLoading());
+    console.log(err);
+  }
+};
+
+
+// getting company dates by id
+export const getCompanyDatesById = id => dispatch => {
+  console.log("get companydetails by id from actions", id);
+  try {
+    return axios
+      .get("http://localhost:2001/api/companydetail/financial/" + id)
+      .then(res => {
+        dispatch({
+          type: COMPANY_DATES_BY_ID,
+          payload: res.data.data
+        });
+        //  let sector = {
+        //   sector: res.data.data.result.sector
+        // };
+        //  dispatch(getSimilarTable(sector));
+       });
+  } catch (err) {
     console.log(err);
   }
 };
