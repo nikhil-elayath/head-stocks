@@ -86,6 +86,17 @@ export const getOhlcChart = id => dispatch => {
   }
 };
 
+// downloading ohlc data for company[piyush]
+
+export const downloadOhlcDataCompany = ohlc => {
+  try {
+    return axios.get(
+      "http://localhost:2001/api/companydetail/downloadohlc/" + ohlc
+    );
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 // getting company dates by id
 export const getCompanyDatesById = id => dispatch => {
@@ -102,7 +113,7 @@ export const getCompanyDatesById = id => dispatch => {
         //   sector: res.data.data.result.sector
         // };
         //  dispatch(getSimilarTable(sector));
-       });
+      });
   } catch (err) {
     console.log(err);
   }
