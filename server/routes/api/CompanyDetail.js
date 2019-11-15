@@ -15,7 +15,7 @@ const stocksData = require("../../model/stocksModel");
 //Use connect method to connect to the server
 MongoClient.connect(url, function(err, client) {
   assert.equal(null, err);
-  console.log("Connected successfully to server");
+  // console.log("Connected successfully to server");
 
   const db = client.db(dbName);
   router.get("/:id", async (req, res, next) => {
@@ -226,9 +226,10 @@ MongoClient.connect(url, function(err, client) {
 router.get("/financial/:id", async (req, res, next) => {
   try {
     let id = req.params.id;
+    let datesCF= []
+    let reports={tickerValues:{}}
    //variable
-    // stocksData.findOne({ticker_name: 'AAPL',"ticker_dates":{'$elemMatch': {date: new Date("2019-03-31")}}}, function(err, result) {
-    stocksData.aggregate(
+     stocksData.aggregate(
       [
         {$unwind : "$ticker_dates"},
         {$match : {
@@ -289,30 +290,58 @@ router.get("/financial/:id", async (req, res, next) => {
                                                                                 },25]}]},
                                                "fourth","fifth"]}]}]}]}
         }},
-        {$match:{"quarter":{$ne:"fifth"}}},
-        {$sort : {"ticker_dates.date":-1}},
-        {$group:{"_id":{"quarter":"$quarter"},"results":{$push:"$ticker_dates"}
-      }
-      }
+        {$match: 
+             {"quarter":{$ne:"fifth"}} 
+     },
+        
+        {$sort : {
+          year: -1,
+          month: -1,
+          // 'ticker_dates.date':-1,  
+        }},
+
+        {$group:{
+          "_id":{"year": { "$year" : "$ticker_dates.date"},"month": { "$month" : "$ticker_dates.date"}},
+          "date_values":{$push:"$ticker_dates" }
+          }}
+          ,
+          
+          
+      
   
      ]
     ,
      function(err, result) {
       
-      //   console.log("start");
+      // console.log("start");
       // console.log("end");
-
       if (!result) {
+        
+        if (err) console.log(err);
         return res.status(400).json({
           status: 400,
           data: result,
           message: "Retrieved dates Successfully",
-        });;
+        });
       } else {
         if (err) throw err;
+        for (let i of result)
+        {
+
+          for(dates of i.date_values){
+            if(dates.hasOwnProperty('Revenues'))
+            {
+              // console.log(dates);
+              datesCF.push(dates)
+              // console.log(y)
+            }
+          }
+          
+        }
+        // console.log(datesCF);
         res.status(200).json({
           status: 200,
-          data: result,
+          data: datesCF,
           message: "Retrieved dates Successfully",
         });
       }
@@ -327,13 +356,13 @@ router.get("/financial/:id", async (req, res, next) => {
 //closing the connect method
 
 router.post("/analysis", async (req, res, next) => {
-  console.log("analysis called");
+  // console.log("analysis called");
   try {
-    console.log("re body", req.body.sector);
+    // console.log("re body", req.body.sector);
     const sector = req.body.sector;
 
     let result = await stocksData.find({ sector: { $in: sector } }).limit(5);
-    console.log(result);
+    // console.log(result);
 
     if (result < 0) {
       res.status(400).json({
