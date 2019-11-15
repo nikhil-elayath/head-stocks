@@ -1,59 +1,53 @@
 const express = require("express");
 const router = express.Router();
 const stocksData = require("../../model/stocksModel");
-// router.get("/company", async (req, res) => {
-// selecting the database stocks
-// let result = await stocksData.find(
-//   {},
-//   {
-//     ticker_name: 1,
-//     ticker_id: 1,
-//     sector: 1,
-//     industry: 1,
-//     _id: 0,
-//     ohlc_dates: 1
-//   }
-// );
-
-// if (result < 0) {
-//   res.status(400).json({
-//     status: 400,
-//     data: null,
-//     message: "No Company Found"
-//   });
-// }
-// If successfully executes then sends this response to the search action
-//   res.status(200).json({
-//     status: 200,
-//     data: result,
-//     message: "Retrieved All Companies Successfully"
-//   });
-// });
-// module.exports = router;
 
 //get companies by industries
 router.get("/companies/:industry", async (req, res, next) => {
-  console.log("companies by industry called");
+  // console.log("companies by industry called");
   try {
     let industry = req.params.industry;
-    console.log("industry is", industry);
+    // console.log("industry is", industry);
     let result = await stocksData.find(
       { industry: industry },
-      { ticker_id: 1, ticker_name: 1, industry: 1, _id: 0 }
+      {
+        ticker_id: 1,
+        ticker_name: 1,
+        industry: 1,
+        _id: 0,
+        ticker_dates: 1,
+        ticker_logo: 1
+      }
     );
-
-    console.log("companies by industry:", result);
+    var data = [];
+    result.forEach(function(elem) {
+      let name = {};
+      var ticker_dates = elem._doc.ticker_dates;
+      var ticker_id = elem._doc.ticker_id;
+      var ticker_name = elem._doc.ticker_name;
+      var ticker_logo = elem._doc.ticker_logo;
+      last_date = ticker_dates.slice(-1)[0];
+      last_date_shareprice = last_date["Share Price"];
+      Market_cap = last_date["Market Capitalisation"];
+      name["ticker_id"] = ticker_id;
+      name["ticker_name"] = ticker_name;
+      name["ticker_logo"] = ticker_logo;
+      name["MarketCap"] = Market_cap;
+      name["Share Price"] = last_date_shareprice;
+      data.push(name);
+    });
+    // console.log("companies by industry:", result);
     if (result < 0) {
       res.status(400).json({
         status: 400,
-        data: result,
+        data: data,
         message: "No Company Found"
       });
     } else {
       // If successfully executes then sends this response to the search action
       res.status(200).json({
         status: 200,
-        data: result,
+        data: data,
         message: "Retrieved all Companies Successfully"
       });
     }
@@ -165,21 +159,21 @@ router.get("/gainers-and-losers/:sector", async (req, res) => {
       message: "Retrieved name of all indexes"
     });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 });
 module.exports = router;
 
 //getting all the industries based on a sector
 router.get("/industries/:sector", async (req, res, next) => {
-  console.log("industries by sector called");
+  // console.log("industries by sector called");
   try {
     let sector = req.params.sector;
-    console.log("sector is", sector);
+    // console.log("sector is", sector);
     let result = await stocksData
       .find({ sector: sector }, "industry")
       .distinct("industry");
-    console.log("industries by sector:", result);
+    // console.log("industries by sector:", result);
     if (result < 0) {
       res.status(400).json({
         status: 400,
