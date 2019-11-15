@@ -6,6 +6,7 @@ import ResetPassword from "./components/ResetPassword";
 import Login from "./components/Login";
 // Piyush
 import home from "./components/Home";
+import download from "./components/Download";
 // Harshal
 import NavbarDefault from "./components/NavbarDefault";
 // nikhil
@@ -17,6 +18,7 @@ import CompanyDetailFinancial from "./components/CompanyDetailFinancial";
 import CompanyDetailAnalysis from "./components/CompanyDetailAnalysis";
 import Footer from "./components/Footer";
 import IndicesProfile from "./components/IndicesProfile";
+// import Download from "e:/Download";
 
 function App() {
   return (
@@ -31,6 +33,7 @@ function App() {
         {/* Piyush */}
         <Route exact path="/" component={home} />
         <Route exact path="/companydetail/:id" component={CompanyDetail} />
+        <Route exact path="/download" component={download} />
         {/* aditya */}
         <Route exact path="/stocks" component={StocksLanding} />
         <Route

@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 var result;
+//used to provide path for downloadable file [piyush]
+const path = require("path");
 
 const MongoClient = require("mongodb").MongoClient;
 const assert = require("assert");
@@ -33,7 +35,7 @@ MongoClient.connect(url, function(err, client) {
         "2011-03-31",
         "2011-06-30",
         "2011-09-30",
-        "2011-12-31",
+        "2011-12-31"
       ]; //variable
       collection.findOne({ ticker_id: +id }, function(err, result) {
         // console.log(result);
@@ -176,10 +178,10 @@ MongoClient.connect(url, function(err, client) {
               company_name: result.company_name,
               employess: result.employess,
               ticker_name: result.ticker_name,
-              sector: result.sector,
+              sector: result.sector
             },
 
-            message: "Retrieved data Successfully",
+            message: "Retrieved data Successfully"
           });
         }
       });
@@ -227,7 +229,7 @@ MongoClient.connect(url, function(err, client) {
           res.status(200).json({
             status: 200,
             data: result,
-            message: "Retrieved news Successfully",
+            message: "Retrieved news Successfully"
           });
         }
       });
@@ -237,6 +239,106 @@ MongoClient.connect(url, function(err, client) {
   });
 
   //closing the connect method
+});
+
+//downloading company data[piyush]
+//Converts JSON data To CSV
+function JSONToCSVConvertor(JSONData, ShowLabel) {
+  //If JSONData is not an object then JSON.parse will parse the JSON string in an Object
+  var arrData = typeof JSONData != "object" ? JSON.parse(JSONData) : JSONData;
+  var CSV = "";
+  //This condition will generate the Label/Header
+  if (ShowLabel) {
+    var row = "";
+
+    //This loop will extract the label from 1st index of on array
+    for (var index in arrData[0]) {
+      //Now convert each value to string and comma-seprated
+      row += index + ",";
+    }
+    row = row.slice(0, -1);
+    //append Label row with line break
+    CSV += row + "\r\n";
+  }
+
+  //1st loop is to extract each row
+  for (var i = 0; i < arrData.length; i++) {
+    var row = "";
+    //2nd loop will extract each column and convert it in string comma-seprated
+    for (var index in arrData[i]) {
+      row += arrData[i][index] + ",";
+    }
+    row.slice(0, row.length - 1);
+    //add a line break after each row
+    CSV += row + "\r\n";
+  }
+
+  if (CSV == "") {
+    alert("Invalid data");
+    return;
+  }
+
+  return CSV;
+}
+const pg = require("pg-promise")();
+const db = pg("postgres://postgres:root@localhost:5432/headstocks");
+//get indicatornames and values for a specific ticker
+router.get("/download/:ticker_name", async (req, res, next) => {
+  try {
+    let ticker_name = req.params.ticker_name;
+    const result = await db.any(
+      `select dates,indicatorname,indicatorvalue from simfin where ticker='${ticker_name}' `
+    );
+    if (!result)
+      return res.status(404).json({
+        message: "No record found"
+      });
+    else {
+      var jsonObject = JSON.stringify(result);
+      // Convert JSON to CSV
+      let csvdata = JSONToCSVConvertor(jsonObject, true);
+      res.send(csvdata);
+    }
+  } catch (err) {
+    next(err);
+    console.log(err);
+  }
+});
+
+//provides downloadable format according to the required tickername for ohlc [piyush]
+// router.get("/downloadohlc/:ticker_name", async (req, res, next) => {
+//   const ticker_name = req.params.ticker_name;
+//   res.download(
+//     path.join(
+//       __dirname,
+//       "../../db-init/stock-data/yahoo-data/company/" + ticker_name + ".csv"
+//     ),
+//     function(err) {
+//       console.log(err);
+//     }
+//   );
+// });
+
+router.get("/downloadohlc/:ticker_name", async (req, res, next) => {
+  try {
+    let ticker_name = req.params.ticker_name;
+    const result = await db.any(
+      `select dates, opening ,high ,low ,closing ,adjclose ,volume  from yahoodata where ticker = '${ticker_name}'; `
+    );
+    if (!result)
+      return res.status(404).json({
+        message: "No record found"
+      });
+    else {
+      var jsonObject = JSON.stringify(result);
+      // Convert JSON to CSV
+      let csvdata = JSONToCSVConvertor(jsonObject, true);
+      res.send(csvdata);
+    }
+  } catch (err) {
+    next(err);
+    console.log(err);
+  }
 });
 
 module.exports = router;
