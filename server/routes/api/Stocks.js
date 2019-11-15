@@ -1,35 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const stocksData = require("../../model/stocksModel");
-// router.get("/company", async (req, res) => {
-// selecting the database stocks
-// let result = await stocksData.find(
-//   {},
-//   {
-//     ticker_name: 1,
-//     ticker_id: 1,
-//     sector: 1,
-//     industry: 1,
-//     _id: 0,
-//     ohlc_dates: 1
-//   }
-// );
-
-// if (result < 0) {
-//   res.status(400).json({
-//     status: 400,
-//     data: null,
-//     message: "No Company Found"
-//   });
-// }
-// If successfully executes then sends this response to the search action
-//   res.status(200).json({
-//     status: 200,
-//     data: result,
-//     message: "Retrieved All Companies Successfully"
-//   });
-// });
-// module.exports = router;
 
 //get companies by industries
 router.get("/companies/:industry", async (req, res, next) => {
@@ -39,21 +10,35 @@ router.get("/companies/:industry", async (req, res, next) => {
     console.log("industry is", industry);
     let result = await stocksData.find(
       { industry: industry },
-      { ticker_id: 1, ticker_name: 1, industry: 1, _id: 0 }
+      { ticker_id: 1, ticker_name: 1, industry: 1, _id: 0, ticker_dates: 1 }
     );
-
+    var data = [];
+    result.forEach(function(elem) {
+      let name = {};
+      var ticker_dates = elem._doc.ticker_dates;
+      var ticker_id = elem._doc.ticker_id;
+      var ticker_name = elem._doc.ticker_name;
+      last_date = ticker_dates.slice(-1)[0];
+      last_date_shareprice = last_date["Share Price"];
+      Market_cap = last_date["Market Capitalisation"];
+      name["ticker_id"] = ticker_id;
+      name["ticker_name"] = ticker_name;
+      name["MarketCap"] = Market_cap;
+      name["Share Price"] = last_date_shareprice;
+      data.push(name);
+    });
     console.log("companies by industry:", result);
     if (result < 0) {
       res.status(400).json({
         status: 400,
-        data: result,
+        data: data,
         message: "No Company Found"
       });
     } else {
       // If successfully executes then sends this response to the search action
       res.status(200).json({
         status: 200,
-        data: result,
+        data: data,
         message: "Retrieved all Companies Successfully"
       });
     }

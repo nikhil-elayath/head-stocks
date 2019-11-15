@@ -140,32 +140,32 @@ export class StocksLanding extends Component {
                 }
               >
                 <div id="stocks_grid_container">
-                  {this.state.pageStocks.map(stocks => (
-                    <div
-                      id="stocks_grid_details"
-                      onClick={() => {
-                        this.props.history.push(
-                          "/companydetail/" + stocks.ticker_id,
-                          { stocks }
-                        );
-                      }}
-                    >
-                      <img src={companylogo} id="stocks_img" />
-
-                      <div id="stocks_ticker">
-                        {stocks ? stocks.ticker_name : "NA"}
+                  {this.state.pageStocks.map(stocks =>
+                    stocks ? (
+                      <div
+                        id="stocks_grid_details"
+                        onClick={() => {
+                          this.props.history.push(
+                            "/companydetail/" + stocks.ticker_id,
+                            { stocks }
+                          );
+                        }}
+                      >
+                        <img src={companylogo} id="stocks_img" />
+                        {console.log(stocks)}
+                        <div id="stocks_ticker">{stocks["ticker_name"]}</div>
+                        <div id="stocks_name">{}</div>
+                        <div id="stocks_flex_details_one">
+                          <div id="stocks_details_title">Share Price:</div>
+                          <div id="stocks_details">{stocks["Share Price"]}</div>
+                        </div>
+                        <div id="stocks_flex_details_two">
+                          <div id="stocks_details_title">Market Cap:</div>
+                          <div id="stocks_details">{stocks.MarketCap}</div>
+                        </div>
                       </div>
-                      <div id="stocks_name">{}</div>
-                      <div id="stocks_flex_details_one">
-                        <div id="stocks_details_title">Market Cap:</div>
-                        <div id="stocks_details">1114.39B</div>
-                      </div>
-                      {/* <div id="stocks_flex_details_two">
-                        <div id="stocks_details_title">Closed Price:</div>
-                        <div id="stocks_details">249.05 USD</div>
-                      </div> */}
-                    </div>
-                  ))}
+                    ) : null
+                  )}
                 </div>
               </InfiniteScroll>
             </div>
