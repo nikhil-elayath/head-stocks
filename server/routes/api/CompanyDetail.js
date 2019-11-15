@@ -17,7 +17,6 @@ const stocksData = require("../../model/stocksModel");
 //Use connect method to connect to the server
 router.get("/:id", async (req, res, next) => {
   const id = req.params.id;
-  console.log("get by id api called", id);
   var company_details = [];
   var data = {};
   try {
@@ -32,9 +31,9 @@ router.get("/:id", async (req, res, next) => {
       compare["industry"] = elem._doc.industry;
       compare["sector"] = elem._doc.sector;
       compare["id"] = elem._doc.ticker_id;
+      compare["image"] = elem._doc.ticker_logo;
 
       last_date = ticker_dates.slice(-1)[0];
-      console.log("lastdate", last_date);
       var i = -1;
       if (last_date["Market Capitalisation"] == undefined) {
         Market_cap = "-";
@@ -42,12 +41,10 @@ router.get("/:id", async (req, res, next) => {
         Market_cap = last_date["Market Capitalisation"];
       }
 
-      console.log("market_cap", Market_cap);
       compare["last_market_cap"] = Market_cap;
 
       company_details.push(compare);
     });
-    console.log(company_details);
 
     if (result < 0) {
       res.status(400).json({
@@ -62,9 +59,7 @@ router.get("/:id", async (req, res, next) => {
         message: "company by id recieved",
       });
     }
-  } catch {
-    console.log("From catch of getbyid api");
-  }
+  } catch {}
 });
 
 //for analysis
@@ -252,8 +247,6 @@ router.post("/analysis", async (req, res, next) => {
       } else {
         Market_cap = last_date["Market Capitalisation"];
       }
-      console.log("net profit", last_date["Market Capitalisation"]);
-      // Market_cap = last_date["Market Capitalisation"];
       compare.tickerValues["marketcap"] = Market_cap.toString();
 
       // for net profit
@@ -267,7 +260,6 @@ router.post("/analysis", async (req, res, next) => {
       } else {
         net_profit = last_date["Net Profit"];
       }
-      console.log("net profit", last_date["Net Profit"]);
 
       compare.tickerValues["net_profit"] = net_profit.toString();
 
@@ -315,7 +307,6 @@ router.post("/analysis", async (req, res, next) => {
       //pushing the object into the array
       similar_sector_data.push(compare);
     });
-    console.log("similar_sector_data", similar_sector_data);
 
     if (result < 0) {
       res.status(400).json({
@@ -338,9 +329,7 @@ router.post("/analysis", async (req, res, next) => {
 //for getting all the company name of the same sector in the dropdown for the comparison feature
 
 router.post("/dropdown", async (req, res, next) => {
-  console.log("drop down api called");
   const sector = req.body.sector;
-  console.log("sector from drop down api", sector);
 
   try {
     let result = await stocksData.find(
@@ -349,7 +338,6 @@ router.post("/dropdown", async (req, res, next) => {
       { ticker_name: 1 },
       { sector: 1 }
     );
-    console.log("result for dropdown", result);
     if (result < 0) {
       res.status(400).json({
         status: 400,
