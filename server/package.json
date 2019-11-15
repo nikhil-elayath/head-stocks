@@ -17,6 +17,8 @@
     "colors": "^1.4.0",
     "config": "^3.2.2",
     "cors": "^2.8.5",
+    "csv-parse": "^4.6.5",
+    "csvtojson": "^2.0.10",
     "email-verification": "^0.4.6",
     "express": "^4.17.1",
     "express-joi-validation": "^2.0.0",

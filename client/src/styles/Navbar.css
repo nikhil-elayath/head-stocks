@@ -67,17 +67,22 @@
   border-radius: 5px;
   background-color: #ffffff;
   z-index: 1;
-  height: 22px;
+  height: 20px;
   width: 5%;
   position: relative;
-  top: 2px;
+  top: 3px;
   right: 30px;
 }
 
-.navbarSearchBox button img {
+.navbarSearchBox button i {
   border: none;
   border-radius: 5px;
-  bottom: 0px;
+  bottom: 3px;
+  position: relative;
+}
+.navbarSearchBox button img {
+  border: none;
+  top: 5px;
   position: relative;
 }
 .navbarSearchResultsFound {
@@ -99,10 +104,10 @@
 .navbarSearchResultsCancelButton {
   float: right;
   width: 20px;
-   height: 20px;
+  height: 20px;
   border: none;
- position: fixed;  
- left: 10px;
+  position: fixed;
+  left: 10px;
 }
 .navbarSearchResultsNotFound {
   display: none;
@@ -192,6 +197,7 @@
   }
   .navbarLoginOptions span {
     margin-top: 60px;
+    margin-right: 0px;
     display: none;
   }
 
@@ -211,13 +217,13 @@
   .navbarSearchBox input {
     border-radius: 5px;
     width: 90%;
+    margin-left: 13px;
     text-align: center;
     height: 27px;
   }
   .navbarSearchBox button {
     background-color: #ffffff;
     width: 20px;
-   
   }
   .navbarSearchResultsFound {
     margin: 0px 0px 0px 6%;
@@ -229,7 +235,6 @@
   }
   .navbarSearchResultsPTag2 {
     font-size: 12px;
-    
   }
   .navbarHS span:not(:first-child) {
     display: none;

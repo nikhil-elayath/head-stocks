@@ -17,7 +17,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
-    extended: false
+    extended: false,
   })
 );
 
@@ -31,7 +31,9 @@ app.use("/api/home/", home);
 
 //Nikhil
 app.use("/api/companydetail/", companydetails);
-app.use("/api/companydetail/balancesheet/", companydetails);
+app.use("/api/analysis/", companydetails);
+app.use("/api/", companydetails);
+
 app.use("/api/sector/", company);
 
 //harshal
