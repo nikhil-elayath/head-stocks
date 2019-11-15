@@ -49,7 +49,7 @@ export class CompanyDetailAnalysis extends Component {
               />
             </>
           ) : (
-            <p>Loadin </p>
+            <p>Loading </p>
           )}
         </div>
         <select
@@ -64,6 +64,11 @@ export class CompanyDetailAnalysis extends Component {
             </>
           ))}
         </select>
+        <div id="analysis-stock-chart"></div>
+
+        <div id="analysis-stock-chart"></div>
+
+        <div id="analysis-stock-chart"></div>
       </div>
     );
   }
