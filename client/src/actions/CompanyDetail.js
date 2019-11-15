@@ -36,9 +36,9 @@ export const getCompanyDetailById = id => dispatch => {
           type: COMPANY_DETAIL_BY_ID,
           payload: res.data.data,
         });
-        console.log(res.data.data.result.sector);
+        console.log("apksodk", res.data.data["0"].sector);
         let sector = {
-          sector: res.data.data.result.sector,
+          sector: res.data.data["0"].sector,
         };
         console.log("obj sector from action", sector);
 
