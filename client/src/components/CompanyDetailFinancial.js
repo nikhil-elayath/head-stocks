@@ -12,6 +12,14 @@ import profitloss from "./pl.png";
 import ratios from "./ratios.png";
 
 export class CompanyDetailFinancial extends Component {
+  state = {
+    balanceSheetOption: true,
+    cashFlowOption: false,
+    profitLossOption: false,
+    ratiosOption: false
+
+  };
+
   componentDidMount() {
     // getting the id from the params
     const id = this.props.match.params.id;
@@ -27,7 +35,9 @@ export class CompanyDetailFinancial extends Component {
         <div className="financialsMainGrid">
           <sidebar className="financialsSidebar">
             <div className="financialsSidebarOptions">
-              <item1 className="financialsSidebarItem1">
+              <section id="item1" 
+              //  className={this.state.balanceSheetOption ? "financialsSidebarItem" : null}
+              >
                 <img
                   src={balanceSheet}
                   alt="Balance Sheet"
@@ -36,8 +46,10 @@ export class CompanyDetailFinancial extends Component {
                   style={{ margin: "20px 10px 10px 10px" }}
                 />
                 <p className="financialsSidebarOptionsP">Balance Sheet</p>
-              </item1>
-              <item2 className="financialsSidebarItem2">
+              </section>
+              <section id="item2" 
+              //  className={this.state.balanceSheetOption ? "financialsSidebarItem" : null}
+              >
                 <img
                   src={cashFlow}
                   alt="Balance Sheet"
@@ -45,9 +57,11 @@ export class CompanyDetailFinancial extends Component {
                   height="80px"
                   style={{ margin: "20px 10px 10px 10px" }}
                 />
-                <p className="financialsSidebarOptionsP">Cash Flow</p>
-              </item2>
-              <item3 className="financialsSidebarItem3">
+                <p className="financialsSidebarOptionsP">Balance Sheet</p>
+              </section>
+              <section id="item3" 
+              //  className={this.state.balanceSheetOption ? "financialsSidebarItem" : null}
+              >
                 <img
                   src={profitloss}
                   alt="Balance Sheet"
@@ -55,9 +69,11 @@ export class CompanyDetailFinancial extends Component {
                   height="80px"
                   style={{ margin: "20px 10px 10px 10px" }}
                 />
-                <p className="financialsSidebarOptionsP">Profit & loss</p>
-              </item3>
-              <item4 className="financialsSidebarItem4">
+                <p className="financialsSidebarOptionsP">Balance Sheet</p>
+              </section>
+              <section id="item4" 
+              //  className={this.state.balanceSheetOption ? "financialsSidebarItem" : null}
+              >
                 <img
                   src={ratios}
                   alt="Balance Sheet"
@@ -65,8 +81,8 @@ export class CompanyDetailFinancial extends Component {
                   height="80px"
                   style={{ margin: "20px 10px 10px 10px" }}
                 />
-                <p className="financialsSidebarOptionsP">Ratios</p>
-              </item4>
+                <p className="financialsSidebarOptionsP">Balance Sheet</p>
+              </section>
             </div>
           </sidebar>
 

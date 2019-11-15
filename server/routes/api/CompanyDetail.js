@@ -15,178 +15,56 @@ const dbName = "stocks";
 const stocksData = require("../../model/stocksModel");
 
 //Use connect method to connect to the server
-MongoClient.connect(url, function(err, client) {
-  assert.equal(null, err);
-  // console.log("Connected successfully to server");
+router.get("/:id", async (req, res, next) => {
+  const id = req.params.id;
+  console.log("get by id api called", id);
+  var company_details = [];
+  var data = {};
+  try {
+    let result = await stocksData.find({ ticker_id: +id });
+    result.forEach(function(elem) {
+      let compare = {};
+      ticker_dates = elem._doc.ticker_dates;
 
-  const db = client.db(dbName);
-  router.get("/:id", async (req, res, next) => {
-    try {
-      let id = req.params.id;
-      // console.log("printing id from api all", id);
-      var collection = db.collection("stocks_data_2");
-      // hardcoding dummy data
-      var dummy_date = [
-        "2009-09-30",
-        "2009-12-31",
-        "2010-03-31",
-        "2010-06-30",
-        "2010-09-30",
-        "2010-12-31",
-        "2011-03-31",
-        "2011-06-30",
-        "2011-09-30",
-        "2011-12-31"
-      ]; //variable
-      collection.findOne({ ticker_id: +id }, { sector: 1 }, function(
-        err,
-        result
-      ) {
-        // console.log(result);
-        // var second_last_date = result.slice(-2)[0];
-        // console.log(second_last_date);
+      compare["ticker_name"] = elem._doc.ticker_name;
+      compare["employees"] = elem._doc.employess;
+      compare["profile"] = elem._doc.profile;
+      compare["industry"] = elem._doc.industry;
+      compare["sector"] = elem._doc.sector;
+      compare["id"] = elem._doc.ticker_id;
 
-        // console.log(result);
-        var balancesheet = [];
-        var cashflow = [];
-        var profitandloss = [];
-        var ratios = [];
-        var company_details = [];
-        // var company_id = [result.ticker_id];
-        //will contain company profile
-        // var company_profile = [result.profile];
-        // var company_sector = [result.sector];
-        // console.log("result", company_profile);
+      last_date = ticker_dates.slice(-1)[0];
+      console.log("lastdate", last_date);
+      var i = -1;
+      if (last_date["Market Capitalisation"] == undefined) {
+        Market_cap = "-";
+      } else {
+        Market_cap = last_date["Market Capitalisation"];
+      }
 
-        // console.log("printing only id from result", result);
+      console.log("market_cap", Market_cap);
+      compare["last_market_cap"] = Market_cap;
 
-        // Fetching the object using dates for balance sheet
-        // for (i of dummy_date) {
-        //   console.log("new i", i);
-        //   var balance = {};
-        //   var flow = {};
-        //   var ratio = {};
-        //   var pnl = {};
-        //   var details = {};
-        //   balance["ticker_dates"] = i;
-        //   flow["ticker_dates"] = i;
-        //   pnl["ticker_dates"] = i;
-        //   ratio["ticker_dates"] = i;
-        //   // balance["ticker_dates"] = i;
-        //   console.log("new bal", balance);
-        //   balance["Cash and Cash Equivalents"] = result.ticker_dates[i][
-        //     "Cash and Cash Equivalents"
-        //   ]
-        //     ? result.ticker_dates[i]["Cash and Cash Equivalents"]
-        //     : "-";
-        //   console.log("inside", balance);
-        //   balance["Current Assets"] = result.ticker_dates[i]["Current Assets"];
-        //   balance["Total Assets"] = result.ticker_dates[i]["Total Assets"];
+      company_details.push(compare);
+    });
+    console.log(company_details);
 
-        //   balance["Accounts Payable"] =
-        //     result.ticker_dates[i]["Accounts Payable"];
-
-        //   balance["Receivables"] = result.ticker_dates[i]["Receivables"];
-
-        //   balance["Total Liabilities"] =
-        //     result.ticker_dates[i]["Total Liabilities"];
-
-        //   balance["Current Liabilities"] =
-        //     result.ticker_dates[i]["Current Liabilities"];
-
-        //   balance["Preferred Equity"] =
-        //     result.ticker_dates[i]["Preferred Equity"];
-
-        //   balance["Equity Before Minorities"] =
-        //     result.ticker_dates[i]["Equity Before Minorities"];
-
-        //   balance["Minorities Interest"] = result.ticker_dates[i]["Minorities"];
-
-        //   balance["Noncurrent Liabilities"] =
-        //     result.ticker_dates[i]["Total Noncurrent Liabilities"];
-        //   balancesheet.push(balance);
-
-        //   //cashflow
-        //   flow["Cash From Operating Activities"] =
-        //     result.ticker_dates[i]["Cash From Operating Activities"];
-
-        //   flow["Cash From Investing Activities"] =
-        //     result.ticker_dates[i]["Cash From Investing Activities"];
-
-        //   flow["Cash From Financing Activities"] =
-        //     result.ticker_dates[i]["Cash From Financing Activities"];
-
-        //   flow["EBITDA"] = result.ticker_dates[i]["EBITDA"];
-
-        //   flow["Net Change in Cash"] =
-        //     result.ticker_dates[i]["Net Change in Cash"];
-
-        //   flow["Net PP&E"] = result.ticker_dates[i]["Net PP&E"];
-
-        //   flow["Dividends"] = result.ticker_dates[i]["Dividends"];
-        //   cashflow.push(flow);
-
-        //   //PROFIT AND LOSS
-        //   pnl["Revenues"] = result.ticker_dates[i]["Revenues"];
-        //   pnl["EBIT"] = result.ticker_dates[i]["EBIT"];
-
-        //   pnl["Net Profit"] = result.ticker_dates[i]["Net Profit"];
-
-        //   pnl["Revenues"] = result.ticker_dates[i]["Revenues"];
-        //   profitandloss.push(pnl);
-
-        //   //calculating ratios
-        //   ratio["Current Ratio"] =
-        //     result.ticker_dates[i]["Current Assets"] /
-        //     result.ticker_dates[i]["Current Liabilities"];
-
-        //   ratio["Liabilities To Equity"] =
-        //     result.ticker_dates[i]["Total Liabilities"] /
-        //     result.ticker_dates[i]["Total Equity"];
-
-        //   ratio["Debt To Asset"] =
-        //     result.ticker_dates[i]["Total Assets"] /
-        //     result.ticker_dates[i]["Total Liabilities"];
-        //   ratios.push(ratio);
-        // }
-        // var company_details = [];
-        // details["ticker_id"] = result.ticker_id;
-        // details["sector"] = result.sector;
-        // details["industry"] = result.industry;
-
-        // details["ticker_name"] = result.ticker_name;
-        // details["employess"] = result.employess;
-
-        // details["profile"] = result.profile;
-
-        // details["company_name"] = result.company_name;
-        // company_details.push(details);
-
-        // console.log("Balance sheet", balancesheet);
-        // console.log("cashflow sheet", cashflow);
-        // console.log("pnl", profitandloss);
-
-        // console.log("ratios", ratios);
-        // console.log(company_details);
-
-        if (!result) {
-          return res.status(400).send({ message: "No data found" });
-        } else {
-          if (err) throw err;
-          res.status(200).json({
-            status: 200,
-            data: {
-              result
-            },
-
-            message: "Retrieved data from company detail successfully"
-          });
-        }
+    if (result < 0) {
+      res.status(400).json({
+        status: 400,
+        data: company_details,
+        message: "No companies found",
       });
-    } catch (err) {
-      next(err);
+    } else {
+      res.status(200).json({
+        status: 200,
+        data: company_details,
+        message: "company by id recieved",
+      });
     }
-  });
+  } catch {
+    console.log("From catch of getbyid api");
+  }
 });
 
 //for analysis
@@ -288,18 +166,18 @@ router.get("/financial/:id", async (req, res, next) => {
           $group: {
             _id: {
               year: { $year: "$ticker_dates.date" },
-              month: { $month: "$ticker_dates.date" }
+              month: { $month: "$ticker_dates.date" },
             },
-            date_values: { $push: "$ticker_dates" }
-          }
+            date_values: { $push: "$ticker_dates" },
+          },
         },
         {
           $sort: {
             "_id.year": -1,
-            "_id.month": -1
+            "_id.month": -1,
             // 'ticker_dates.date':-1,
-          }
-        }
+          },
+        },
       ],
       function(err, result) {
         // console.log("start");
@@ -326,7 +204,7 @@ router.get("/financial/:id", async (req, res, next) => {
           res.status(200).json({
             status: 200,
             data: datesCF,
-            message: "Retrieved dates Successfully"
+            message: "Retrieved dates Successfully",
           });
         }
       }
