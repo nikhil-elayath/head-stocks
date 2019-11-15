@@ -159,12 +159,14 @@ export class StocksLanding extends Component {
                         <div id="stocks_name">{}</div>
                         <div id="stocks_flex_details_one">
                           <div id="stocks_details_title">Share Price:</div>
-                          <div id="stocks_details">{stocks["Share Price"]}</div>
+                          <div id="stocks_details">
+                            {stocks["Share Price"]}USD
+                          </div>
                           {/* mapping the share price from the api */}
                         </div>
                         <div id="stocks_flex_details_two">
                           <div id="stocks_details_title">Market Cap:</div>
-                          <div id="stocks_details">{stocks["MarketCap"]}</div>
+                          <div id="stocks_details">{stocks["MarketCap"]}M</div>
                           {/* mapping the market cap from the api */}
                         </div>
                       </div>
