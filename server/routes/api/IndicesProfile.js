@@ -27,7 +27,7 @@ router.get("/singleindex/:id", async (req, res, next) => {
   }
 });
 
-//provides downloadable format according to the required market index[piyush]
+//provides downloadable format according to the required market index[p]
 router.get("/download/:index", async (req, res, next) => {
   const index = req.params.index;
   res.download(
@@ -39,7 +39,7 @@ router.get("/download/:index", async (req, res, next) => {
       console.log(err);
     }
   );
-
+});
 
 router.get("/ohlcdata/:id", async (req, res, next) => {
   try {
