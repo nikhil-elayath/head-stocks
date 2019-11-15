@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const stocksData = require("../../model/stocksModel");
+//used to provide path for downloadable file
+const path = require("path");
 
 router.get("/singleindex/:id", async (req, res, next) => {
   try {
@@ -23,6 +25,20 @@ router.get("/singleindex/:id", async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+});
+
+//provides downloadable format according to the required market index[p]
+router.get("/download/:index", async (req, res, next) => {
+  const index = req.params.index;
+  res.download(
+    path.join(
+      __dirname,
+      "../../db-init/stock-data/yahoo-data/index/^" + index + ".csv"
+    ),
+    function(err) {
+      console.log(err);
+    }
+  );
 });
 
 router.get("/ohlcdata/:id", async (req, res, next) => {

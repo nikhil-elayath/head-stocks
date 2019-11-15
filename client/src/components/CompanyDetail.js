@@ -25,19 +25,28 @@ export class CompanyDetail extends Component {
         {this.props.company.result ? (
           <div id="company-detail-grid-container">
             <div id="company-detail-profile">
-              <h3>Maket Cap:</h3>
+              <h3>
+                Maket Cap:{" "}
+                <span>
+                  {
+                    this.props.company.result.ticker_dates[0][
+                      "Market Capitalisation"
+                    ]
+                  }
+                </span>
+              </h3>
               <h3>
                 Sector : <span>{this.props.company.result.sector}</span>
               </h3>
               <h3>
-                Industry : <span>{this.props.company.industry}</span>
+                Industry : <span>{this.props.company.result.industry}</span>
               </h3>
               <h3>
-                Employees : <span>{this.props.company.employess}</span>
+                Employees : <span>{this.props.company.result.employess}</span>
               </h3>
 
               <h3 id="company-detail-profile-span">
-                {this.props.company.profile}
+                {this.props.company.result.profile}
               </h3>
             </div>
           </div>
