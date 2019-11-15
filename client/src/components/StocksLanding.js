@@ -145,7 +145,14 @@ export class StocksLanding extends Component {
                           );
                         }}
                       >
-                        <img src={companylogo} id="stocks_img" />
+                        <img
+                          id="stocks_img"
+                          src={
+                            stocks.ticker_logo == null
+                              ? companylogo
+                              : "data:image/jpeg;base64," + stocks.ticker_logo
+                          }
+                        />
                         {console.log(stocks)}
                         <div id="stocks_ticker">{stocks["ticker_name"]}</div>
                         {/* mapping the ticker name from the api*/}
