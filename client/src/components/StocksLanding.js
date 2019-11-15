@@ -6,7 +6,7 @@ import {
   getGainersLosers
 } from "../actions/Stocks";
 import "../styles/StocksLanding.css";
-import companylogo from "./apple--big.svg";
+import companylogo from "./Common/stockslogo.PNG";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
@@ -20,11 +20,13 @@ export class StocksLanding extends Component {
     height: 800,
     pageStocks: [],
     loading: false,
-    sector: "Healthcare"
+    sector: "Basic Materials",
+    industry: "Building Materials",
+    gainersClick: true
   };
 
   componentDidMount() {
-    this.props.getCompany();
+    this.props.getCompany(this.state.industry);
     this.props.getSectors();
     this.props.getIndustries(this.state.sector);
     this.props.getGainersLosers(this.state.sector);
@@ -43,6 +45,18 @@ export class StocksLanding extends Component {
     this.props.getIndustries(e.target.value);
     this.props.getGainersLosers(e.target.value);
   };
+
+  OnSelectIndustry = e => {
+    this.setState({
+      industry: e.target.value
+    });
+    this.props.getCompany(e.target.value);
+  };
+
+  // onClickGainersLosers = () => {
+  //   this.setState({ gainersClick:true, losersClick:false });
+  //   this.props.getGainersLosers(this.state.sector);
+  // };
 
   displayCompanies = Stocks => {
     console.log(Stocks);
@@ -69,12 +83,12 @@ export class StocksLanding extends Component {
   };
 
   render() {
-    console.log("Sectors", this.props.sectors ? this.props.sectors : "None");
+    // console.log("Sectors", this.props.stocks ? this.state.pageStocks : "None");
     return (
       <div>
         {this.props.gainersLosers["0"] ? (
           <div id="stocks_main_container">
-            <p>STOCKS</p>
+            {/* <p>STOCKS</p> */}
             <div id="stocks_filter">
               <select
                 type="text"
@@ -93,13 +107,14 @@ export class StocksLanding extends Component {
                 type="text"
                 id="stocks_dropdown"
                 name="industries"
-                // value={}
-                // onChange={}
+                value={this.state.industry}
+                onChange={this.OnSelectIndustry}
               >
+                <option name="choice">Select an Industry</option>
                 {this.props.industries.map(industries => (
                   <>
                     {console.log(industries)}
-                    <option name="choice">{industries.industry}</option>
+                    <option name="choice">{industries}</option>
                   </>
                 ))}
                 {/* <option name="choice">Phones & Handheld Devices</option>
@@ -114,12 +129,9 @@ export class StocksLanding extends Component {
                 hasMore={true}
                 height={600}
                 loader={
-                  <Loader
-                    type={Loader}
-                    color="#2c3e50"
-                    textAlign="center"
-                    style={{ margin: "150px 500px" }}
-                  />
+                  <div id="stocks_loader">
+                    <Loader type={Loader} color="#2c3e50" textAlign="center" />
+                  </div>
                 }
                 endMessage={
                   <p style={{ textAlign: "center" }}>
@@ -139,25 +151,52 @@ export class StocksLanding extends Component {
                       }}
                     >
                       <img src={companylogo} id="stocks_img" />
-                      <div id="stocks_ticker">{stocks.ticker_name}</div>
-                      <div id="stocks_name">{}</div>
-                      <div id="stocks_flex_details-one">
-                        <div id="stocks_details_title">Closed Price:</div>
-                        <div id="stocks_details">249.05 USD</div>
+
+                      <div id="stocks_ticker">
+                        {stocks ? stocks.ticker_name : "NA"}
                       </div>
-                      <div id="stocks_flex_details-two">
+                      <div id="stocks_name">{}</div>
+                      <div id="stocks_flex_details_one">
                         <div id="stocks_details_title">Market Cap:</div>
                         <div id="stocks_details">1114.39B</div>
                       </div>
+                      {/* <div id="stocks_flex_details_two">
+                        <div id="stocks_details_title">Closed Price:</div>
+                        <div id="stocks_details">249.05 USD</div>
+                      </div> */}
                     </div>
                   ))}
                 </div>
               </InfiniteScroll>
             </div>
+
+            {console.log(
+              this.state.gainersClick == true
+                ? this.props.gainersLosers["0"].gainers
+                : this.props.gainersLosers["0"].losers
+            )}
             <div id="stocks_table">
               <div id="stocks_div_buttons">
-                <button id="stocks_gainers">Gainers</button>
-                <button id="stocks_losers">Losers</button>
+                <button
+                  id={
+                    this.state.gainersClick == true
+                      ? "stocks_gainers"
+                      : "stocks_losers"
+                  }
+                  onClick={() => this.setState({ gainersClick: true })}
+                >
+                  Gainers
+                </button>
+                <button
+                  id={
+                    this.state.gainersClick == false
+                      ? "stocks_gainers"
+                      : "stocks_losers"
+                  }
+                  onClick={() => this.setState({ gainersClick: false })}
+                >
+                  Losers
+                </button>
               </div>
               <Table
                 tableHeaders={[
@@ -166,12 +205,18 @@ export class StocksLanding extends Component {
                   "Market Cap",
                   "Share Price"
                 ]}
-                tableData={this.props.gainersLosers["0"].gainers}
+                tableData={
+                  this.state.gainersClick == true
+                    ? this.props.gainersLosers["0"].gainers
+                    : this.props.gainersLosers["0"].losers
+                }
               />
             </div>
           </div>
         ) : (
-          <div>Loading ...</div>
+          <div id="stocks_main_loader">
+            <Loader type={Loader} color="#2c3e50" textAlign="center" />
+          </div>
         )}
       </div>
     );
