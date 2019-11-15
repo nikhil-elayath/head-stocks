@@ -195,126 +195,140 @@ MongoClient.connect(url, function(err, client) {
 router.get("/financial/:id", async (req, res, next) => {
   try {
     let id = req.params.id;
-    let datesCF= []
-    let reports={tickerValues:{}}
-   //variable
-     stocksData.aggregate(
+    let datesCF = [];
+    let reports = { tickerValues: {} };
+    //variable
+    stocksData.aggregate(
       [
-        {$unwind : "$ticker_dates"},
-        {$match : {
-          // ticker_name : "AAPL"
-          ticker_id : +id
-          // ,
-          // 'ticker_dates.date' : {
-          //   $lte : new Date("2019-06-31"),
-          //   $gte :  new Date("2018-03-25") 
-          // }
-        }},
-        {$project : {"ticker_dates" : 1,
-        // ,"ticker_dates.Market Capitalisation": 1,
-  
-          "quarter":{$cond:[{
-            $and : 
-            [{$eq:[{$month: 
-              "$ticker_dates.date"
-                       },3]},
-                       {$lte:[{$dayOfMonth: 
-                         "$ticker_dates.date"
-                                  },31]},
-                                 { $gt:[{$dayOfMonth: 
-                                   "$ticker_dates.date"
-                                            },25]}]},
-                               "first",
-                               {$cond:[{$and : 
-                                [{$eq:[{$month: 
-                                  "$ticker_dates.date"
-                                           },6]},
-                                           {$lte:[{$dayOfMonth: 
-                                             "$ticker_dates.date"
-                                                      },30]},
-                                                     { $gt:[{$dayOfMonth: 
-                                                       "$ticker_dates.date"
-                                                                },25]}]},
-                                       "second",
-                                       {$cond:[{$and : 
-                                        [{$eq:[{$month: 
-                                          "$ticker_dates.date"
-                                                   },9]},
-                                                   {$lte:[{$dayOfMonth: 
-                                                     "$ticker_dates.date"
-                                                              },30]},
-                                                             { $gt:[{$dayOfMonth: 
-                                                               "$ticker_dates.date"
-                                                                        },25]}]},
-                                               "third",
-                                               {$cond:[{$and : 
-                                                [{$eq:[{$month: 
-                                                  "$ticker_dates.date"
-                                                           },12]},
-                                                           {$lte:[{$dayOfMonth: 
-                                                             "$ticker_dates.date"
-                                                                      },31]},
-                                                                     { $gt:[{$dayOfMonth: 
-                                                                       "$ticker_dates.date"
-                                                                                },25]}]},
-                                               "fourth","fifth"]}]}]}]}
-        }},
-        {$match: 
-             {"quarter":{$ne:"fifth"}} 
-     },
-        
-        {$sort : {
-          year: -1,
-          month: -1,
-          // 'ticker_dates.date':-1,  
-        }},
-
-        {$group:{
-          "_id":{"year": { "$year" : "$ticker_dates.date"},"month": { "$month" : "$ticker_dates.date"}},
-          "date_values":{$push:"$ticker_dates" }
-          }}
-          ,
-          
-          
-      
-  
-     ]
-    ,
-     function(err, result) {
-      
-      // console.log("start");
-      // console.log("end");
-      if (!result) {
-        
-        if (err) console.log(err);
-        return res.status(400).json({
-          status: 400,
-          data: result,
-          message: "Retrieved dates Successfully",
-        });
-      } else {
-        if (err) throw err;
-        for (let i of result)
+        { $unwind: "$ticker_dates" },
         {
+          $match: {
+            // ticker_name : "AAPL"
+            ticker_id: +id
+            // ,
+            // 'ticker_dates.date' : {
+            //   $lte : new Date("2019-06-31"),
+            //   $gte :  new Date("2018-03-25")
+            // }
+          }
+        },
+        {
+          $project: {
+            ticker_dates: 1,
+            // ,"ticker_dates.Market Capitalisation": 1,
 
-          for(dates of i.date_values){
-            if(dates.hasOwnProperty('Revenues'))
-            {
-              // console.log(dates);
-              datesCF.push(dates)
-              // console.log(y)
+            quarter: {
+              $cond: [
+                {
+                  $and: [
+                    { $eq: [{ $month: "$ticker_dates.date" }, 3] },
+                    { $lte: [{ $dayOfMonth: "$ticker_dates.date" }, 31] },
+                    { $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25] }
+                  ]
+                },
+                "first",
+                {
+                  $cond: [
+                    {
+                      $and: [
+                        { $eq: [{ $month: "$ticker_dates.date" }, 6] },
+                        { $lte: [{ $dayOfMonth: "$ticker_dates.date" }, 30] },
+                        { $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25] }
+                      ]
+                    },
+                    "second",
+                    {
+                      $cond: [
+                        {
+                          $and: [
+                            { $eq: [{ $month: "$ticker_dates.date" }, 9] },
+                            {
+                              $lte: [{ $dayOfMonth: "$ticker_dates.date" }, 30]
+                            },
+                            { $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25] }
+                          ]
+                        },
+                        "third",
+                        {
+                          $cond: [
+                            {
+                              $and: [
+                                { $eq: [{ $month: "$ticker_dates.date" }, 12] },
+                                {
+                                  $lte: [
+                                    { $dayOfMonth: "$ticker_dates.date" },
+                                    31
+                                  ]
+                                },
+                                {
+                                  $gt: [
+                                    { $dayOfMonth: "$ticker_dates.date" },
+                                    25
+                                  ]
+                                }
+                              ]
+                            },
+                            "fourth",
+                            "fifth"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             }
           }
-          
+        },
+        { $match: { quarter: { $ne: "fifth" } } },
+
+        {
+          $group: {
+            _id: {
+              year: { $year: "$ticker_dates.date" },
+              month: { $month: "$ticker_dates.date" }
+            },
+            date_values: { $push: "$ticker_dates" }
+          }
+        },
+        {
+          $sort: {
+            "_id.year": -1,
+            "_id.month": -1
+            // 'ticker_dates.date':-1,
+          }
         }
-        // console.log(datesCF);
-        res.status(200).json({
-          status: 200,
-          data: datesCF,
-          message: "Retrieved dates Successfully",
-        });
+      ],
+      function(err, result) {
+        // console.log("start");
+        // console.log("end");
+        if (!result) {
+          if (err) console.log(err);
+          return res.status(400).json({
+            status: 400,
+            data: result,
+            message: "Retrieved dates Successfully"
+          });
+        } else {
+          if (err) throw err;
+          for (let i of result) {
+            for (dates of i.date_values) {
+              if (dates.hasOwnProperty("Revenues")) {
+                // console.log(dates);
+                datesCF.push(dates);
+                // console.log(y)
+              }
+            }
+          }
+          // console.log(datesCF);
+          res.status(200).json({
+            status: 200,
+            data: datesCF,
+            message: "Retrieved dates Successfully"
+          });
+        }
       }
-     });
+    );
   } catch (err) {
     console.log(err);
     next(err);

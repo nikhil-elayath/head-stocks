@@ -89,7 +89,7 @@ export class NavbarDefault extends Component {
                 })
               }
             >
-              <b>STOCKS</b>
+              HEAD<b>STOCKS</b>
             </span>
           </div>
         </Link>
