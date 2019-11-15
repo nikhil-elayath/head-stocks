@@ -57,14 +57,24 @@
   border-bottom: 3px solid #2980b9;
 }
 .options-li {
-  /* font-family: "Montserrat", sans-serif; */
-  /* padding: 10px 0px; */
-  /* transition: 0.3s; */
   color: #272727;
-  /* margin-right: 30px; */
-  /* letter-spacing: 0.3px; */
+
   text-align: center;
 }
 .company-link {
   text-decoration: none;
+}
+
+/* for image and ticker name grid  */
+
+#secondary-navbar-img-name-container {
+  display: flex;
+}
+
+#secondary-navbar-ticker_name {
+  margin: 10px 10px 10px 10px;
+  font-size: 30px;
+}
+#secondary-navbar-img {
+  margin: 10px 10px 10px 10px;
 }

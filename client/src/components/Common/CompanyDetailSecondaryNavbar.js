@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { getCompanyDetailById } from "../../actions/CompanyDetail";
 import { connect } from "react-redux";
+import companylogo from "./stockslogo.PNG";
+
 // importing css file
 import "../../styles/CompanyDetailSecondaryNavbar.css";
 import { Link } from "react-router-dom";
@@ -25,7 +27,21 @@ export class CompanyDetailSecondaryNavbar extends Component {
               <div>
                 {this.props.company.map(coms => (
                   <>
-                    <h1>{coms.ticker_name}</h1>
+                    <div id="secondary-navbar-img-name-container">
+                      <div id="secondary-navbar-img">
+                        <img
+                          id="stocks_img"
+                          src={
+                            coms.image == null
+                              ? companylogo
+                              : "data:image/jpeg;base64," + coms.image
+                          }
+                        />
+                      </div>
+                      <div id="secondary-navbar-ticker_name">
+                        <p>{coms.ticker_name}</p>
+                      </div>
+                    </div>
 
                     <h1>{this.props.company.ticker_name}</h1>
                     <ul id="company-detail-content-container">
