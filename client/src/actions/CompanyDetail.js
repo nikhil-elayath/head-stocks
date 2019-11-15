@@ -133,10 +133,6 @@ export const getCompanyDatesById = id => dispatch => {
           type: COMPANY_DATES_BY_ID,
           payload: res.data.data,
         });
-        //  let sector = {
-        //   sector: res.data.data.result.sector
-        // };
-        //  dispatch(getSimilarTable(sector));
       });
   } catch (err) {
     console.log(err);

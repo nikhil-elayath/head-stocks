@@ -17,6 +17,14 @@ export class CompanyDetailAnalysis extends Component {
     this.props.getCompanyDetailById(id);
   }
 
+  //function that would change the state value with the value selected and inside which the action function will be called and that ticker name will passed
+  // this action is to plot the graph
+  OnSelectSector = e => {
+    this.setState({
+      ticker_name: e.target.value,
+    });
+  };
+
   render() {
     console.log(this.props.similar_company ? this.props.similar_company : "NA");
     return (
@@ -48,8 +56,7 @@ export class CompanyDetailAnalysis extends Component {
           type="text"
           id="stocks_dropdown"
           name="sector"
-          // value={this.state.sector}
-          // onChange={this.OnSelectSector}
+          onChange={this.OnSelectTicker}
         >
           {this.props.drop_down_data.map(companies => (
             <>
