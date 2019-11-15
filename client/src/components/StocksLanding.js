@@ -26,10 +26,10 @@ export class StocksLanding extends Component {
   };
 
   componentDidMount() {
-    this.props.getCompany(this.state.industry);
-    this.props.getSectors();
-    this.props.getIndustries(this.state.sector);
-    this.props.getGainersLosers(this.state.sector);
+    this.props.getCompany(this.state.industry); //getting all the companies based on an industry selected
+    this.props.getSectors(); //getting all the sectors
+    this.props.getIndustries(this.state.sector); //getting all the industries based on a sector selected
+    this.props.getGainersLosers(this.state.sector); //getting all the gainers and losers based on a sector selected
   }
 
   componentWillReceiveProps(nextProps) {
@@ -40,23 +40,18 @@ export class StocksLanding extends Component {
 
   OnSelectSector = e => {
     this.setState({
-      sector: e.target.value
+      sector: e.target.value //setting state for the sector
     });
-    this.props.getIndustries(e.target.value);
-    this.props.getGainersLosers(e.target.value);
+    this.props.getIndustries(e.target.value); //getting all the industries based on a sector selected
+    this.props.getGainersLosers(e.target.value); //getting all the gainers and losers based on a sector selected
   };
 
   OnSelectIndustry = e => {
     this.setState({
-      industry: e.target.value
+      industry: e.target.value //setting state for the industry
     });
-    this.props.getCompany(e.target.value);
+    this.props.getCompany(e.target.value); //getting all the companies based on an industry selected
   };
-
-  // onClickGainersLosers = () => {
-  //   this.setState({ gainersClick:true, losersClick:false });
-  //   this.props.getGainersLosers(this.state.sector);
-  // };
 
   displayCompanies = Stocks => {
     console.log(Stocks);
@@ -100,6 +95,7 @@ export class StocksLanding extends Component {
                 {this.props.sectors.map(sectors => (
                   <>
                     <option name="choice">{sectors}</option>
+                    {/*mapping all the sectors to select from the dropdown*/}
                   </>
                 ))}
               </select>
@@ -107,19 +103,17 @@ export class StocksLanding extends Component {
                 type="text"
                 id="stocks_dropdown"
                 name="industries"
-                value={this.state.industry}
-                onChange={this.OnSelectIndustry}
+                value={this.state.industry} //changing the value of industry when selected
+                onChange={this.OnSelectIndustry} //on change perform this function
               >
                 <option name="choice">Select an Industry</option>
                 {this.props.industries.map(industries => (
                   <>
                     {console.log(industries)}
                     <option name="choice">{industries}</option>
+                    {/* mapping all the industries in the dropdown based on the selected sector*/}
                   </>
                 ))}
-                {/* <option name="choice">Phones & Handheld Devices</option>
-                <option name="choice">Semiconductor Equipment & Testing</option>
-                <option name="choice">Electronic Equipments & Parts</option> */}
               </select>
             </div>
             <div id="stocks_main_grid_container">
@@ -146,7 +140,7 @@ export class StocksLanding extends Component {
                         id="stocks_grid_details"
                         onClick={() => {
                           this.props.history.push(
-                            "/companydetail/" + stocks.ticker_id,
+                            "/companydetail/" + stocks.ticker_id, //pushing to the company details page with ticker id of a stock when that particular stock card is clicked
                             { stocks }
                           );
                         }}
@@ -154,14 +148,17 @@ export class StocksLanding extends Component {
                         <img src={companylogo} id="stocks_img" />
                         {console.log(stocks)}
                         <div id="stocks_ticker">{stocks["ticker_name"]}</div>
+                        {/* mapping the ticker name from the api*/}
                         <div id="stocks_name">{}</div>
                         <div id="stocks_flex_details_one">
                           <div id="stocks_details_title">Share Price:</div>
                           <div id="stocks_details">{stocks["Share Price"]}</div>
+                          {/* mapping the share price from the api */}
                         </div>
                         <div id="stocks_flex_details_two">
                           <div id="stocks_details_title">Market Cap:</div>
-                          <div id="stocks_details">{stocks.MarketCap}</div>
+                          <div id="stocks_details">{stocks["MarketCap"]}</div>
+                          {/* mapping the market cap from the api */}
                         </div>
                       </div>
                     ) : null
@@ -169,31 +166,25 @@ export class StocksLanding extends Component {
                 </div>
               </InfiniteScroll>
             </div>
-
-            {console.log(
-              this.state.gainersClick == true
-                ? this.props.gainersLosers["0"].gainers
-                : this.props.gainersLosers["0"].losers
-            )}
             <div id="stocks_table">
               <div id="stocks_div_buttons">
                 <button
                   id={
-                    this.state.gainersClick == true
+                    this.state.gainersClick == true //changing the color of gainers button when clicked on it
                       ? "stocks_gainers"
                       : "stocks_losers"
                   }
-                  onClick={() => this.setState({ gainersClick: true })}
+                  onClick={() => this.setState({ gainersClick: true })} //on clicking the gainers button, the state of gainersClick is set true
                 >
                   Gainers
                 </button>
                 <button
                   id={
-                    this.state.gainersClick == false
+                    this.state.gainersClick == false //changing the color of losers button when clicked on it
                       ? "stocks_gainers"
                       : "stocks_losers"
                   }
-                  onClick={() => this.setState({ gainersClick: false })}
+                  onClick={() => this.setState({ gainersClick: false })} //on clicking the losers button, the state of gainersClick is set false
                 >
                   Losers
                 </button>
@@ -206,7 +197,7 @@ export class StocksLanding extends Component {
                   "Share Price"
                 ]}
                 tableData={
-                  this.state.gainersClick == true
+                  this.state.gainersClick == true //displaying the gainers data in the table if state of gainersClick is true that is when gainers button is clicked else losers data is displayed
                     ? this.props.gainersLosers["0"].gainers
                     : this.props.gainersLosers["0"].losers
                 }
