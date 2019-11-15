@@ -22,7 +22,7 @@ export const getIndicesById = index => dispatch => {
     });
 };
 
-// Fetching OHLC Chart for company
+// Fetching OHLC Chart for index
 export const getOhlcChartIndex = id => dispatch => {
   dispatch(startLoading());
   try {
@@ -36,6 +36,16 @@ export const getOhlcChartIndex = id => dispatch => {
     });
   } catch (err) {
     dispatch(startLoading());
+    console.log(err);
+  }
+};
+
+// downloading ohlc data for index[piyush]
+
+export const downloadOhlcDataIndex = index => {
+  try {
+    return axios.get(url + "download/" + index);
+  } catch (err) {
     console.log(err);
   }
 };
