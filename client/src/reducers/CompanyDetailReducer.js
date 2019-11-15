@@ -3,7 +3,8 @@ import {
   BALANCE_SHEET,
   OHLC_CHART,
   GET_SIMILAR_TABLE,
-  COMPANY_DATES_BY_ID
+  COMPANY_DATES_BY_ID,
+  GET_DROP_DOWN,
 } from "../actions/Types";
 
 const initialState = {
@@ -11,7 +12,8 @@ const initialState = {
   balance_sheet: [],
   ohlc_chart: [],
   similar_company: [],
-  dates: []
+  dates: [],
+  drop_down_data: [],
 };
 
 export default function(state = initialState, action) {
@@ -35,6 +37,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         balance_sheet: action.payload,
+      };
+    case GET_DROP_DOWN:
+      return {
+        ...state,
+        drop_down_data: action.payload,
       };
     case OHLC_CHART:
       return { ...state, ohlc_chart: action.payload };
