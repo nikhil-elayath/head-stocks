@@ -34,7 +34,7 @@ MongoClient.connect(url, function(err, client) {
         "2011-03-31",
         "2011-06-30",
         "2011-09-30",
-        "2011-12-31"
+        "2011-12-31",
       ]; //variable
       collection.findOne({ ticker_id: +id }, { sector: 1 }, function(
         err,
@@ -174,10 +174,10 @@ MongoClient.connect(url, function(err, client) {
           res.status(200).json({
             status: 200,
             data: {
-              result
+              result,
             },
 
-            message: "Retrieved data from company detail successfully"
+            message: "Retrieved data from company detail successfully",
           });
         }
       });
@@ -201,13 +201,13 @@ router.get("/financial/:id", async (req, res, next) => {
         {
           $match: {
             // ticker_name : "AAPL"
-            ticker_id: +id
+            ticker_id: +id,
             // ,
             // 'ticker_dates.date' : {
             //   $lte : new Date("2019-06-31"),
             //   $gte :  new Date("2018-03-25")
             // }
-          }
+          },
         },
         {
           $project: {
@@ -220,8 +220,8 @@ router.get("/financial/:id", async (req, res, next) => {
                   $and: [
                     { $eq: [{ $month: "$ticker_dates.date" }, 3] },
                     { $lte: [{ $dayOfMonth: "$ticker_dates.date" }, 31] },
-                    { $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25] }
-                  ]
+                    { $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25] },
+                  ],
                 },
                 "first",
                 {
@@ -230,8 +230,8 @@ router.get("/financial/:id", async (req, res, next) => {
                       $and: [
                         { $eq: [{ $month: "$ticker_dates.date" }, 6] },
                         { $lte: [{ $dayOfMonth: "$ticker_dates.date" }, 30] },
-                        { $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25] }
-                      ]
+                        { $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25] },
+                      ],
                     },
                     "second",
                     {
@@ -240,10 +240,12 @@ router.get("/financial/:id", async (req, res, next) => {
                           $and: [
                             { $eq: [{ $month: "$ticker_dates.date" }, 9] },
                             {
-                              $lte: [{ $dayOfMonth: "$ticker_dates.date" }, 30]
+                              $lte: [{ $dayOfMonth: "$ticker_dates.date" }, 30],
                             },
-                            { $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25] }
-                          ]
+                            {
+                              $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25],
+                            },
+                          ],
                         },
                         "third",
                         {
@@ -254,51 +256,51 @@ router.get("/financial/:id", async (req, res, next) => {
                                 {
                                   $lte: [
                                     { $dayOfMonth: "$ticker_dates.date" },
-                                    31
-                                  ]
+                                    31,
+                                  ],
                                 },
                                 {
                                   $gt: [
                                     { $dayOfMonth: "$ticker_dates.date" },
-                                    25
-                                  ]
-                                }
-                              ]
+                                    25,
+                                  ],
+                                },
+                              ],
                             },
                             "fourth",
-                            "fifth"
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          }
+                            "fifth",
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         },
         { $match: { quarter: { $ne: "fifth" } } },
         { $sort: { "ticker_dates.date": -1 } },
         {
           $group: {
             _id: { quarter: "$quarter" },
-            results: { $push: "$ticker_dates" }
-          }
-        }
+            results: { $push: "$ticker_dates" },
+          },
+        },
       ],
       function(err, result) {
         if (!result) {
           return res.status(400).json({
             status: 400,
             data: result,
-            message: "Retrieved dates Successfully"
+            message: "Retrieved dates Successfully",
           });
         } else {
           if (err) throw err;
           res.status(200).json({
             status: 200,
             data: result,
-            message: "Retrieved dates Successfully"
+            message: "Retrieved dates Successfully",
           });
         }
       }
@@ -320,22 +322,12 @@ router.post("/analysis", async (req, res, next) => {
     const sector = req.body.sector;
 
     let result = await stocksData.find({ sector: { $in: sector } }).limit(4);
-    // console.log("sdadsadsd", result[0]["ticker_dates"]);
     const similar_sector_data = [];
     result.forEach(function(elem) {
       let compare = { tickerValues: {} };
-      // bla.push(elem._doc.ticker_name);
       ticker_dates = elem._doc.ticker_dates;
-      // for_div = ticker_dates;
-      // for (i of ticker_dates) {
-      //   console.log("i from for loop", i);
-      //   result[0]["ticker_dates"].hasOwnProperty("Share Price")
-      //     ? (compare["Dividends"] = i.dividend)
-      //     : console.log("dividend not found");
-      // }
 
       last_date = ticker_dates.slice(-1)[0];
-      // console.log("last_date", last_date);
       var i = -1;
 
       //getting ticker name
@@ -351,7 +343,13 @@ router.post("/analysis", async (req, res, next) => {
       compare.tickerValues["dividend"] = dividend.toString();
 
       //for market cap
-      Market_cap = last_date["Market Capitalisation"];
+      if (last_date["Market Capitalisation"] == undefined) {
+        Market_cap = "-";
+      } else {
+        Market_cap = last_date["Market Capitalisation"];
+      }
+      console.log("net profit", last_date["Market Capitalisation"]);
+      // Market_cap = last_date["Market Capitalisation"];
       compare.tickerValues["marketcap"] = Market_cap.toString();
 
       // for net profit
@@ -360,8 +358,14 @@ router.post("/analysis", async (req, res, next) => {
         i--;
       }
       // console.log(last_date["Net Profit"] / last_date["Dividends"]);
-      ratio = last_date["Net Profit"];
-      compare.tickerValues["ratio"] = ratio.toString();
+      if (last_date["Net Profit"] == undefined) {
+        net_profit = "-";
+      } else {
+        net_profit = last_date["Net Profit"];
+      }
+      console.log("net profit", last_date["Net Profit"]);
+
+      compare.tickerValues["net_profit"] = net_profit.toString();
 
       //for  calculating price to earning ratio
 
@@ -392,7 +396,6 @@ router.post("/analysis", async (req, res, next) => {
       compare.tickerValues[
         "current_share_price"
       ] = current_share_price.toString();
-      console.log("net profit", last_date["Net Profit"]);
       //for Return on capital employed
       while (last_date["Share Price"] == undefined) {
         last_date = ticker_dates.slice(i)[0];
@@ -408,23 +411,57 @@ router.post("/analysis", async (req, res, next) => {
       //pushing the object into the array
       similar_sector_data.push(compare);
     });
-    console.log(similar_sector_data);
+    console.log("similar_sector_data", similar_sector_data);
 
     if (result < 0) {
       res.status(400).json({
         status: 400,
         data: compare,
-        message: "No news Found"
+        message: "No news Found",
       });
     } else {
       res.status(200).json({
         status: 200,
         data: [similar_sector_data],
-        message: "Retrieved all news Successfully"
+        message: "Retrieved all news Successfully",
       });
     }
   } catch (err) {
     next(err);
   }
 });
+
+//for getting all the company name of the same sector in the dropdown for the comparison feature
+
+router.post("/dropdown", async (req, res, next) => {
+  console.log("drop down api called");
+  const sector = req.body.sector;
+  console.log("sector from drop down api", sector);
+
+  try {
+    let result = await stocksData.find(
+      { sector: { $in: sector } },
+
+      { ticker_name: 1 },
+      { sector: 1 }
+    );
+    console.log("result for dropdown", result);
+    if (result < 0) {
+      res.status(400).json({
+        status: 400,
+        data: result,
+        message: "No companies found",
+      });
+    } else {
+      res.status(200).json({
+        status: 200,
+        data: result,
+        message: "Similar companies for dropdown retrieved",
+      });
+    }
+  } catch {
+    console.log("From catch of dropdown api");
+  }
+});
+
 module.exports = router;
