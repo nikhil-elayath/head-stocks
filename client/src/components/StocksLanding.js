@@ -210,25 +210,19 @@ export class StocksLanding extends Component {
                   Losers
                 </button>
               </div>
-              {this.props.isLoading ? (
-                <div id="stocks_loader">
-                  <Loader type={Loader} color="#2c3e50" textAlign="center" />
-                </div>
-              ) : (
-                <Table
-                  tableHeaders={[
-                    "Ticker",
-                    "Chng (%)",
-                    "Market Cap",
-                    "Share Price"
-                  ]}
-                  tableData={
-                    this.state.gainersClick == true //displaying the gainers data in the table if state of gainersClick is true that is when gainers button is clicked else losers data is displayed
-                      ? this.props.gainersLosers["0"].gainers
-                      : this.props.gainersLosers["0"].losers
-                  }
-                />
-              )}
+              <Table
+                tableHeaders={[
+                  "Ticker",
+                  "Chng (%)",
+                  "Market Cap",
+                  "Share Price"
+                ]}
+                tableData={
+                  this.state.gainersClick == true //displaying the gainers data in the table if state of gainersClick is true that is when gainers button is clicked else losers data is displayed
+                    ? this.props.gainersLosers["0"].gainers
+                    : this.props.gainersLosers["0"].losers
+                }
+              />
             </div>
           </div>
         ) : (
