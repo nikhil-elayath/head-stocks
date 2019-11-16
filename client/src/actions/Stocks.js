@@ -4,20 +4,24 @@ import {
   GET_ALL_INDUSTRIES,
   GAINERS_LOSERS
 } from "./Types";
+import { startLoading, stopLoading } from "./LoadingAction";
 import axios from "axios";
 const url = "http://localhost:2001/api/sector/";
 
 // GET all companies
 export const getCompany = industry => dispatch => {
+  dispatch(startLoading());
   return axios
     .get(url + "companies/" + industry)
     .then(res => {
+      dispatch(stopLoading());
       dispatch({
         type: GET_ALL_COMPANY,
         payload: res.data.data
       });
     })
     .catch(err => {
+      dispatch(startLoading());
       console.log(err);
     });
 };
