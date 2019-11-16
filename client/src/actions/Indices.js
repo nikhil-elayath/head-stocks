@@ -50,3 +50,13 @@ export const getOhlcChartIndex = id => dispatch => {
     console.log(err);
   }
 };
+
+// downloading ohlc data for index[piyush]
+
+export const downloadOhlcDataIndex = index => {
+  try {
+    return axios.get(url + "download/" + index);
+  } catch (err) {
+    console.log(err);
+  }
+};

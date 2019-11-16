@@ -1,242 +1,330 @@
 const express = require("express");
 const router = express.Router();
 var result;
+//used to provide path for downloadable file [piyush]
+const path = require("path");
 
-// const MongoClient = require("mongodb").MongoClient;
-// const assert = require("assert");
+const MongoClient = require("mongodb").MongoClient;
+const assert = require("assert");
 
 // Connection URL
-// const url = "mongodb://localhost:27017";
+const url = "mongodb://localhost:27017";
 
 // Database Name
-// const dbName = "stocks";
+const dbName = "stocks";
 const stocksData = require("../../model/stocksModel");
 
 //Use connect method to connect to the server
-// MongoClient.connect(url, function(err, client) {
-//   assert.equal(null, err);
-//   console.log("Connected successfully to server");
-
-//   const db = client.db(dbName);
-//   router.get("/:id", async (req, res, next) => {
-//     try {
-//       let id = req.params.id;
-//       console.log("printing id from api all", id);
-//       var collection = db.collection("stocks_data");
-//       // hardcoding dummy data
-//       var dummy_date = [
-//         "2009-09-30",
-//         "2009-12-31",
-//         "2010-03-31",
-//         "2010-06-30",
-//         "2010-09-30",
-//         "2010-12-31",
-//         "2011-03-31",
-//         "2011-06-30",
-//         "2011-09-30",
-//         "2011-12-31",
-//       ]; //variable
-//       collection.findOne({ ticker_id: +id }, function(err, result) {
-//         // console.log(result);
-//         var balancesheet = [];
-//         var cashflow = [];
-//         var profitandloss = [];
-//         var ratios = [];
-//         var company_details = [];
-//         // var company_id = [result.ticker_id];
-//         //will contain company profile
-//         // var company_profile = [result.profile];
-//         // var company_sector = [result.sector];
-//         // console.log("result", company_profile);
-
-//         // console.log("printing only id from result", result);
-
-//         // Fetching the object using dates for balance sheet
-//         for (i of dummy_date) {
-//           console.log("new i", i);
-//           var balance = {};
-//           var flow = {};
-//           var ratio = {};
-//           var pnl = {};
-//           var details = {};
-//           balance["ticker_dates"] = i;
-//           flow["ticker_dates"] = i;
-//           pnl["ticker_dates"] = i;
-//           ratio["ticker_dates"] = i;
-//           // balance["ticker_dates"] = i;
-//           console.log("new bal", balance);
-//           balance["Cash and Cash Equivalents"] = result.ticker_dates[i][
-//             "Cash and Cash Equivalents"
-//           ]
-//             ? result.ticker_dates[i]["Cash and Cash Equivalents"]
-//             : "-";
-//           console.log("inside", balance);
-//           balance["Current Assets"] = result.ticker_dates[i]["Current Assets"];
-//           balance["Total Assets"] = result.ticker_dates[i]["Total Assets"];
-
-//           balance["Accounts Payable"] =
-//             result.ticker_dates[i]["Accounts Payable"];
-
-//           balance["Receivables"] = result.ticker_dates[i]["Receivables"];
-
-//           balance["Total Liabilities"] =
-//             result.ticker_dates[i]["Total Liabilities"];
-
-//           balance["Current Liabilities"] =
-//             result.ticker_dates[i]["Current Liabilities"];
-
-//           balance["Preferred Equity"] =
-//             result.ticker_dates[i]["Preferred Equity"];
-
-//           balance["Equity Before Minorities"] =
-//             result.ticker_dates[i]["Equity Before Minorities"];
-
-//           balance["Minorities Interest"] = result.ticker_dates[i]["Minorities"];
-
-//           balance["Noncurrent Liabilities"] =
-//             result.ticker_dates[i]["Total Noncurrent Liabilities"];
-//           balancesheet.push(balance);
-
-//           //cashflow
-//           flow["Cash From Operating Activities"] =
-//             result.ticker_dates[i]["Cash From Operating Activities"];
-
-//           flow["Cash From Investing Activities"] =
-//             result.ticker_dates[i]["Cash From Investing Activities"];
-
-//           flow["Cash From Financing Activities"] =
-//             result.ticker_dates[i]["Cash From Financing Activities"];
-
-//           flow["EBITDA"] = result.ticker_dates[i]["EBITDA"];
-
-//           flow["Net Change in Cash"] =
-//             result.ticker_dates[i]["Net Change in Cash"];
-
-//           flow["Net PP&E"] = result.ticker_dates[i]["Net PP&E"];
-
-//           flow["Dividends"] = result.ticker_dates[i]["Dividends"];
-//           cashflow.push(flow);
-
-//           //PROFIT AND LOSS
-//           pnl["Revenues"] = result.ticker_dates[i]["Revenues"];
-//           pnl["EBIT"] = result.ticker_dates[i]["EBIT"];
-
-//           pnl["Net Profit"] = result.ticker_dates[i]["Net Profit"];
-
-//           pnl["Revenues"] = result.ticker_dates[i]["Revenues"];
-//           profitandloss.push(pnl);
-
-//           //calculating ratios
-//           ratio["Current Ratio"] =
-//             result.ticker_dates[i]["Current Assets"] /
-//             result.ticker_dates[i]["Current Liabilities"];
-
-//           ratio["Liabilities To Equity"] =
-//             result.ticker_dates[i]["Total Liabilities"] /
-//             result.ticker_dates[i]["Total Equity"];
-
-//           ratio["Debt To Asset"] =
-//             result.ticker_dates[i]["Total Assets"] /
-//             result.ticker_dates[i]["Total Liabilities"];
-//           ratios.push(ratio);
-//         }
-//         // var company_details = [];
-//         // details["ticker_id"] = result.ticker_id;
-//         // details["sector"] = result.sector;
-//         // details["industry"] = result.industry;
-
-//         // details["ticker_name"] = result.ticker_name;
-//         // details["employess"] = result.employess;
-
-//         // details["profile"] = result.profile;
-
-//         // details["company_name"] = result.company_name;
-//         // company_details.push(details);
-
-//         // console.log("Balance sheet", balancesheet);
-//         // console.log("cashflow sheet", cashflow);
-//         // console.log("pnl", profitandloss);
-
-//         // console.log("ratios", ratios);
-//         console.log(company_details);
-
-//         if (!result) {
-//           return res.status(400).send({ message: "No data found" });
-//         } else {
-//           if (err) throw err;
-//           res.status(200).json({
-//             status: 200,
-//             data: {
-//               balancesheet: balancesheet,
-//               cashflow: cashflow,
-//               profitandloss: profitandloss,
-//               ratios: ratios,
-//               ticker_id: result.ticker_id,
-//               profile: result.profile,
-//               industry: result.industry,
-//               company_name: result.company_name,
-//               employess: result.employess,
-//               ticker_name: result.ticker_name,
-//               sector: result.sector,
-//             },
-
-//             message: "Retrieved data from company detail successfully",
-//           });
-//         }
-//       });
-//     } catch (err) {
-//       next(err);
-//     }
-//   });
-// });
-
-//getting cash flow
-
-// router.get("/financial/:id", async (req, res, next) => {
-//   try {
-//     let id = req.params.id;
-//     console.log("printing id from api all", id);
-//     var collection = db.collection("stocks");
-//     collection.findOne({ _id: +id }, function(err, result) {
-//       print(result);
-//       if (!result) {
-//         return res.status(400).send({ message: "No data found" });
-//       } else {
-//         if (err) throw err;
-//         res.status(200).json({
-//           status: 200,
-//           data: result,
-//           message: "Retrieved news Successfully",
-//         });
-//       }
-//     });
-//   } catch (err) {
-//     next(err);
-//   }
-// });
-
-//for analysis
-router.get("/analysis/:sector", async (req, res, next) => {
-  console.log("analysis called");
+router.get("/:id", async (req, res, next) => {
+  const id = req.params.id;
+  var company_details = [];
+  var data = {};
   try {
-    let sector = req.params.sector;
-    console.log("sector is", sector);
-    let result = await stocksData
-      .find({ sector: sector }, { ticker_name: 1, _id: 0 })
-      .limit(5);
+    let result = await stocksData.find({ ticker_id: +id });
+    result.forEach(function(elem) {
+      let compare = {};
+      ticker_dates = elem._doc.ticker_dates;
 
-    console.log("sector filter", result);
+      compare["ticker_name"] = elem._doc.ticker_name;
+      compare["employees"] = elem._doc.employess;
+      compare["profile"] = elem._doc.profile;
+      compare["industry"] = elem._doc.industry;
+      compare["sector"] = elem._doc.sector;
+      compare["id"] = elem._doc.ticker_id;
+      compare["image"] = elem._doc.ticker_logo;
+
+      last_date = ticker_dates.slice(-1)[0];
+      var i = -1;
+      if (last_date["Market Capitalisation"] == undefined) {
+        Market_cap = "-";
+      } else {
+        Market_cap = last_date["Market Capitalisation"];
+      }
+      compare["last_market_cap"] = Market_cap;
+
+      //fetching last share price
+      if (last_date["Share Price"] == undefined) {
+        share_price = "-";
+      } else {
+        share_price = last_date["Share Price"];
+        share_date = last_date["date"];
+      }
+      compare["last_share_price"] = share_price;
+      compare["share_date"] = share_date;
+
+      //fetching the last date
+
+      company_details.push(compare);
+      console.log(company_details);
+    });
+
     if (result < 0) {
       res.status(400).json({
         status: 400,
-        data: result,
-        message: "No news Found"
+        data: company_details,
+        message: "No companies found",
       });
     } else {
       res.status(200).json({
         status: 200,
-        data: result,
-        message: "Retrieved all news Successfully"
+        data: company_details,
+        message: "company by id recieved",
+      });
+    }
+  } catch {}
+});
+
+//for analysis
+
+//new financials
+router.get("/financial/:id", async (req, res, next) => {
+  try {
+    let id = req.params.id;
+    let datesCF = [];
+    let reports = { tickerValues: {} };
+    //variable
+    stocksData.aggregate(
+      [
+        { $unwind: "$ticker_dates" },
+        {
+          $match: {
+            ticker_id: +id,
+          },
+        },
+        {
+          $project: {
+            ticker_dates: 1,
+            // ,"ticker_dates.Market Capitalisation": 1,
+
+            quarter: {
+              $cond: [
+                {
+                  $and: [
+                    { $eq: [{ $month: "$ticker_dates.date" }, 3] },
+                    { $lte: [{ $dayOfMonth: "$ticker_dates.date" }, 31] },
+                    { $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25] },
+                  ],
+                },
+                "first",
+                {
+                  $cond: [
+                    {
+                      $and: [
+                        { $eq: [{ $month: "$ticker_dates.date" }, 6] },
+                        { $lte: [{ $dayOfMonth: "$ticker_dates.date" }, 30] },
+                        { $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25] },
+                      ],
+                    },
+                    "second",
+                    {
+                      $cond: [
+                        {
+                          $and: [
+                            { $eq: [{ $month: "$ticker_dates.date" }, 9] },
+                            {
+                              $lte: [{ $dayOfMonth: "$ticker_dates.date" }, 30],
+                            },
+                            {
+                              $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25],
+                            },
+                          ],
+                        },
+                        "third",
+                        {
+                          $cond: [
+                            {
+                              $and: [
+                                { $eq: [{ $month: "$ticker_dates.date" }, 12] },
+                                {
+                                  $lte: [
+                                    { $dayOfMonth: "$ticker_dates.date" },
+                                    31,
+                                  ],
+                                },
+                                {
+                                  $gt: [
+                                    { $dayOfMonth: "$ticker_dates.date" },
+                                    25,
+                                  ],
+                                },
+                              ],
+                            },
+                            "fourth",
+                            "fifth",
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        },
+        { $match: { quarter: { $ne: "fifth" } } },
+
+        {
+          $group: {
+            _id: {
+              year: { $year: "$ticker_dates.date" },
+              month: { $month: "$ticker_dates.date" },
+            },
+            date_values: { $push: "$ticker_dates" },
+          },
+        },
+        {
+          $sort: {
+            "_id.year": -1,
+            "_id.month": -1,
+            // 'ticker_dates.date':-1,
+          },
+        },
+      ],
+      function(err, result) {
+        // console.log("start");
+        // console.log("end");
+        if (!result) {
+          if (err) console.log(err);
+          return res.status(400).json({
+            status: 400,
+            data: result,
+            message: "Retrieved dates Successfully",
+          });
+        } else {
+          if (err) throw err;
+          for (let i of result) {
+            for (dates of i.date_values) {
+              if (dates.hasOwnProperty("Revenues")) {
+                // console.log(dates);
+                datesCF.push(dates);
+                // console.log(y)
+              }
+            }
+          }
+          // console.log(datesCF);
+          res.status(200).json({
+            status: 200,
+            data: datesCF,
+            message: "Retrieved dates Successfully",
+          });
+        }
+      }
+    );
+  } catch (err) {
+    console.log(err);
+    next(err);
+  }
+});
+
+//closing the connect method
+
+//ANALYSIS
+
+router.post("/analysis", async (req, res, next) => {
+  // console.log("analysis called");
+  try {
+    // console.log("re body", req.body.sector);
+    const sector = req.body.sector;
+
+    let result = await stocksData.find({ sector: { $in: sector } }).limit(4);
+    const similar_sector_data = [];
+    result.forEach(function(elem) {
+      let compare = { tickerValues: {} };
+      ticker_dates = elem._doc.ticker_dates;
+
+      last_date = ticker_dates.slice(-1)[0];
+      var i = -1;
+
+      //getting ticker name
+      let ticker_name = elem._doc.ticker_name;
+      compare["ticker_name"] = ticker_name;
+
+      //for dividends
+      while (last_date["Dividends"] == undefined) {
+        last_date = ticker_dates.slice(i)[0];
+        i--;
+      }
+      dividend = last_date["Dividends"];
+      compare.tickerValues["dividend"] = dividend.toString();
+
+      //for market cap
+      if (last_date["Market Capitalisation"] == undefined) {
+        Market_cap = "-";
+      } else {
+        Market_cap = last_date["Market Capitalisation"];
+      }
+      compare.tickerValues["marketcap"] = Market_cap.toString();
+
+      // for net profit
+      while (last_date["Net Profit"] == undefined) {
+        last_date = ticker_dates.slice(i)[0];
+        i--;
+      }
+      // console.log(last_date["Net Profit"] / last_date["Dividends"]);
+      if (last_date["Net Profit"] == undefined) {
+        net_profit = "-";
+      } else {
+        net_profit = last_date["Net Profit"];
+      }
+
+      compare.tickerValues["net_profit"] = net_profit.toString();
+
+      //for  calculating price to earning ratio
+
+      // first calculating EPS
+
+      while (
+        last_date["Net Profit"] == undefined &&
+        last_date["Dividends"] == undefined &&
+        last_date[" Avg Basic Shares Outstanding"] == undefined &&
+        last_date[" Share Price"] == undefined
+      ) {
+        last_date = ticker_dates.slice(i)[0];
+        i--;
+      }
+      //PE
+      ratio =
+        (last_date["Share Price"] / last_date["Net Profit"] -
+          last_date["Dividends"]) /
+        last_date["Avg Basic Shares Outstanding"];
+      compare.tickerValues["ratio"] = ratio.toFixed(3).toString();
+
+      //for current share price
+      while (last_date["Share Price"] == undefined) {
+        last_date = ticker_dates.slice(i)[0];
+        i--;
+      }
+      current_share_price = last_date["Share Price"];
+      compare.tickerValues[
+        "current_share_price"
+      ] = current_share_price.toString();
+      //for Return on capital employed
+      while (last_date["Share Price"] == undefined) {
+        last_date = ticker_dates.slice(i)[0];
+        i--;
+      }
+      roce =
+        last_date["Net Profit"] /
+        (last_date["Net Profit"] / last_date["Total Assets"] -
+          last_date["Current Liabilities"]);
+
+      compare.tickerValues["roce"] = roce.toFixed(3).toString();
+
+      //pushing the object into the array
+      similar_sector_data.push(compare);
+    });
+
+    if (result < 0) {
+      res.status(400).json({
+        status: 400,
+        data: compare,
+        message: "No news Found",
+      });
+    } else {
+      res.status(200).json({
+        status: 200,
+        data: [similar_sector_data],
+        message: "Retrieved all news Successfully",
       });
     }
   } catch (err) {
@@ -244,92 +332,34 @@ router.get("/analysis/:sector", async (req, res, next) => {
   }
 });
 
-//new financials
-router.get("/finanicals/:id", async (req, res, next) => {
-  console.log("financials called");
+//for getting all the company name of the same sector in the dropdown for the comparison feature
+
+router.post("/dropdown", async (req, res, next) => {
+  const sector = req.body.sector;
+
   try {
-    let id = req.params.id;
-    console.log("id is", id);
-    // let result = await stocksData.find(
-    //   { ticker_id: +id }
-    let quarter = await stocksData.aggregate([
-      {
-        $project: {
-          // dateAttempted: 1,
-          // userId: 1,
-          // topicId: 1,
-          // ekgId: 1,
-          // title: 1,
-          ticker_id: 1,
-          "ticker_dates:date": 1,
-          quarter: {
-            $cond: [
-              { $lte: [{ $month: "$ticker_dates:date" }, 3] },
-              "first",
-              {
-                $cond: [
-                  { $lte: [{ $month: "$ticker_dates:date" }, 6] },
-                  "second",
-                  {
-                    $cond: [
-                      { $lte: [{ $month: "$ticker_dates:date" }, 9] },
-                      "third",
-                      "fourth"
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        }
-      },
-      {
-        $group: { _id: { quarter: "$quarter" }, results: { $push: "$$ROOT" } }
-      }
-    ]);
-    // { ticker_dates: 1 },
-    // { ticker_id: { $lt: 3 } }
+    let result = await stocksData.find(
+      { sector: { $in: sector } },
 
-    console.log("first result", quarter[0]);
-    // {ticker_name:1,_id:0,"ticker_dates":{'$elemMatch': {date: new Date("2009-03-31T00:00:00.000+00:00")}}}
-    // console.log("asdsad", result[0]["ticker_dates"]);
-    const cashflow = [];
-    // for (i of result[0]["ticker_dates"]) {
-    //   if (i.hasOwnProperty("Cash & Cash Equivalents")) {
-    //     cashflow.push(i["Cash & Cash Equivalents"]);
-    //   } else {
-    //     console.log("not found");
-    //   }
-    // }
-    // console.log("ME AAYA LOOP k bahar", cashflow);
-
-    // console.log(
-    //   "printing result"
-    //   // result[0]["ticker_dates"][0].hasOwnProperty("Share Price")
-    // );
-    var dates_obj = {};
-    // result[0]["ticker_dates"][0].hasOwnProperty("Share Price")
-    //   ? console.log(result[0]["ticker_dates"][0])
-    //   : console.log("nai");
-
-    // if (result < 0) {
-    //   res.status(400).json({
-    //     status: 400,
-    //     data: result,
-    //     message: "No news Found",
-    //   });
-    // } else {
-    //   res.status(200).json({
-    //     status: 200,
-    //     data: result,
-    //     message: "Retrieved all financials Successfully",
-    //   });
-    // }
-  } catch (err) {
-    next(err);
+      { ticker_name: 1 },
+      { sector: 1 }
+    );
+    if (result < 0) {
+      res.status(400).json({
+        status: 400,
+        data: result,
+        message: "No companies found",
+      });
+    } else {
+      res.status(200).json({
+        status: 200,
+        data: result,
+        message: "Similar companies for dropdown retrieved",
+      });
+    }
+  } catch {
+    console.log("From catch of dropdown api");
   }
 });
-
-//closing the connect method
 
 module.exports = router;

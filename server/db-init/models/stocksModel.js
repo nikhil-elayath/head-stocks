@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var mongodb = "mongodb://localhost:27017/";
 mongoose.connect(mongodb);
-console.log("Connection to mongoStocks Established");
+// console.log("Connection to mongoStocks Established");
 
 var stocks = new Schema({
   ticker_id: Number,

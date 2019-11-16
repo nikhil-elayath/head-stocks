@@ -30,7 +30,9 @@ export const CASH_FLOW = "CASH_FLOW";
 export const PROFIT_AND_LOSS = "PROFIT_AND_LOSS";
 export const OHLC_CHART = "OHLC_CHART";
 export const GET_SIMILAR_TABLE = "OHLC_CHART";
+export const GET_DROP_DOWN = "GET_DROP_DOWN";
 
 // Harshal
 export const SEARCH_CONTENT = "SEARCH_CONTENT";
 export const UPDATE_COMPANY = "UPDATE_COMPANY";
+export const COMPANY_DATES_BY_ID = "COMPANY_DATES_BY_ID";

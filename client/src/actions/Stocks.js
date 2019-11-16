@@ -8,9 +8,9 @@ import axios from "axios";
 const url = "http://localhost:2001/api/sector/";
 
 // GET all companies
-export const getCompany = () => dispatch => {
+export const getCompany = industry => dispatch => {
   return axios
-    .get(url + "company")
+    .get(url + "companies/" + industry)
     .then(res => {
       dispatch({
         type: GET_ALL_COMPANY,

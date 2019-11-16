@@ -2,7 +2,9 @@
   padding: 10px 10px 10px 10px;
   grid-template-rows: 1fr 1fr;
   display: grid;
-  grid-template-areas: "profile";
+  grid-template-areas:
+    "profile "
+    "recommendation";
   /* "chart chart"; */
   grid-template-columns: 1fr;
   /* overflow-x: scroll; */
@@ -10,7 +12,12 @@
 }
 #company-detail-recommendation {
   grid-area: recommendation;
-  height: 102px;
+  /* height: 102px; */
+  /* border: 2px solid black; */
+}
+#company-detail-profile {
+  grid-area: profile;
+  /* height: 102px; */
   /* border: 2px solid black; */
 }
 #company-detail-profile > h3 > span {
@@ -21,14 +28,16 @@
 #h3 {
   color: red;
 }
+
+/* FOR DESKTOP  */
 @media screen and (min-width: 480px) {
   #company-detail-grid-container {
     padding: 20px;
     grid-template-rows: 1fr;
     display: grid;
-    grid-template-areas: "profile";
+    grid-template-areas: "profile recommendation";
     /* "chart chart"; */
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     /* overflow-x: scroll; */
     overflow-y: scroll;
   }

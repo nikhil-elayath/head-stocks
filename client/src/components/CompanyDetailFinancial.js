@@ -1,138 +1,258 @@
-import React, { Component } from 'react'
-import CompanyDetailSecondaryNavbar from './Common/CompanyDetailSecondaryNavbar'
-import { getCompanyDetailById } from '../actions/CompanyDetail'
-import { connect } from 'react-redux'
-import '../styles/CompanyDetailFinancial.css'
+  import React, { Component } from 'react'
+  import { 
+    // getCompanyDetailById,
+    getCompanyDatesById } from '../actions/CompanyDetail'
+    import { connect } from 'react-redux'
+    import SecondaryNavbar from "../components/Common/CompanyDetailSecondaryNavbar";
+    import '../styles/CompanyDetailFinancial.css'
+    import balanceSheet from './bl.png'
+    import cashFlow from './cf.png'
+    import profitloss from './pl.png'
+    import ratios from './ratios.png'
 
-export class CompanyDetailFinancial extends Component {
-  componentDidMount () {
-    // getting the id from the params
-    const id = this.props.match.params.id
-    // PASSING THE ID TO THE ACTION
-    this.props.getCompanyDetailById(id)
-  }
-  render () {
-    return (
-      <div>
-        {/* CALLING THE SECONDARY NAVBAR  */}
-        <CompanyDetailSecondaryNavbar />
-        <h1 id='financialsh1'>Balance Sheet </h1>
-        <div id='table-container'>
-          <table id='table_data'>
-            {this.props.company.balancesheet ? (
-              <>
-                {this.props.company.balancesheet.map(balance => (
-                  <>
-                    <div id='company-details-date' />
+    export class CompanyDetailFinancial extends Component {
+    componentDidMount () {
+      // getting the id from the params
+      const id = this.props.match.params.id
+      // PASSING THE ID TO THE ACTION
+      // this.props.getCompanyDetailById(id);
+      this.props.getCompanyDatesById(id)
+    }
+    render () {
+      return (
+        <div>
+          {/* CALLING THE SECONDARY NAVBAR  */}
+          <SecondaryNavbar />
+          <div className="financialsMainGrid">
+
+
+              <sidebar className="financialsSidebar">
+                  <div className="financialsSidebarOptions">
+                    <item1 className="financialsSidebarItem1">
+                      <img src={balanceSheet} alt="Balance Sheet" width="80px" height="80px" style={{margin: "30px 10px"}}/>
+                    </item1>
+                    <item2 className="financialsSidebarItem2">
+                      <img src={cashFlow} alt="Balance Sheet" width="80px" height="80px" style={{margin: "30px 10px"}}/>
+
+                    </item2>
+                    <item3 className="financialsSidebarItem3">
+                      <img src={profitloss} alt="Balance Sheet" width="80px" height="80px" style={{margin: "30px 10px"}}/>
+
+                    </item3>
+                    <item4 className="financialsSidebarItem4">
+                    <img src={ratios} alt="Balance Sheet" width="80px" height="80px" style={{margin: "30px 10px"}}/>
+
+                    </item4>
+                  </div>
+              </sidebar>
+
+
+
+              <div className="financialsAllTablesDiv">
+              <h1 className='financialsTitle'>Balance Sheet </h1>
+                <div className='financialTableContainer'>
+                  <table className='financialTableData'>
+                    <tr className="financialTableDataTitleRow">
+
+                              <td className='financialTableDataTitleNames'>
+                                ddshsj
+                              </td>
+
+                              <td>Current Assets</td>
+                              <td>Intangible Assets</td>
+                              <td>Cash & Cash Equivalents</td>
+                              <td>Goodwill</td>
+                              <td  className='financialsTotalTD'>Total Assets</td>
+
+                               <hr className='financialsTableHR'></hr>
+
+                              <td>Accounts Payable</td>
+                              <td>Receivables</td>
+                              <td>Current Liabilities</td>
+                              <td  className='financialsTotalTD'>Total Liabilities</td>
+
+                              <td>Preferred Equity</td>
+                              <td>Total Noncurrent Liabilities</td>
+                              <td  className='financialsTotalTD'>Equity Before Minorities</td>
+                            
+ 
+                            </tr>
+                  {this.props.dates.map(date => (
+                          <>
+                            <tr>
+
+                              <td className='financialTableDataTitle'>{new Date(date['date']).toLocaleDateString(
+                                  "en-IN",
+                                  {
+                                    month: "short",
+                                    day: "2-digit",
+                                    year: "numeric"
+                                  }
+                                )}
+                              </td>
+
+                              <td>{date['Current Assets']}</td>
+                              <td>{date['Intangible Assets']}</td>
+                              <td>{date['Cash & Cash Equivalents']}</td>
+                              <td>{date['Goodwill']}</td>
+                              <td  className='financialsTotalTD'>{date['Total Assets']}</td>
+
+                               <hr className='financialsTableHR'></hr>
+
+                              <td>{date['Accounts Payable']}</td>
+                              <td>{date['Receivables']}</td>
+                              <td>{date['Current Liabilities']}</td>
+                              <td  className='financialsTotalTD'>{date['Total Liabilities']}</td>
+
+                              <td>{date['Preferred Equity']}</td>
+                              <td>{date['Total Noncurrent Liabilities']}</td>
+                              <td  className='financialsTotalTD'>{date['Equity Before Minorities']}</td>
+                            
+                              {/* <hr className='financialsTableHR'></hr> */}
+
+                            </tr>
+                          </>
+                        ))}
+                  </table>
+                </div>
+
+          <h1 className='financialsTitle'>Cash Flow </h1>
+          <div className='financialTableContainer'>
+                  <table className='financialTableData'>
                     <tr>
-                      <td id='comp-dates'>{balance['ticker_dates']}</td>
+                      <td className='financialTableDataTitleNames'>
+                                ddshsj
+                              </td>
 
-                      <td id='cashequivalents'>
-                        {balance['Cash and Cash Equivalents']}
-                      </td>
-                      <td>{balance['Current Assets']}</td>
-                      <td>{balance['Total Assets']}</td>
-                      <td>{balance['Accounts Payable']}</td>
-                      <td>{balance['Receivables']}</td>
-                      <td>{balance['Total Liabilities']}</td>
-                      <td>{balance['Current Liabilities']}</td>
-                      <td>{balance['Preferred Equity']}</td>
-                      <td>{balance['Equity Before Minorities']}</td>
-                      <td>{balance['Minorities Interest']}</td>
-                      <td>{balance['Noncurrent Liabilities']}</td>
-                    </tr>
-                  </>
-                ))}
-              </>
-            ) : (
-              <p />
-            )}
-          </table>
-        </div>
+                              <td>Cash From Operating Activities</td>
+                              <td>Cash From Investing Activities</td>
+                              <td>Cash From Financing Activities</td>
+                              <td>Depreciation & Amortisation</td>
+                              <td>Net Change in PP&E & Intangibles</td>
+                              <td>Net Change in Cash</td>
+                              <td  className='financialsTotalTD'>Change in Working Capital</td>
+                              </tr>
+                  {this.props.dates.map(date => (
+                          <>
+                          
+                            <tr>
+                              <td className='financialTableDataTitle'>{new Date(date['date']).toLocaleDateString(
+                                  "en-IN",
+                                  {
+                                    month: "short",
+                                    day: "2-digit",
+                                    year: "numeric"
+                                  }
+                                )}
+                              </td>
 
-        <h1 id='financialsh1'>Cash Flow </h1>
-        <div id='table-container'>
-          <table id='table_data'>
-            {this.props.company.cashflow ? (
-              <>
-                {this.props.company.cashflow.map(cashflow => (
-                  <>
-                    <tr>
-                      <td id='comp-dates'>{cashflow['ticker_dates']}</td>
+                              <td>{date['Cash From Operating Activities']}</td>
+                              <td>{date['Cash From Investing Activities']}</td>
+                              <td>{date['Cash From Financing Activities']}</td>
+                              <td>{date['Depreciation & Amortisation']}</td>
+                              <td>{date['Net Change in PP&E & Intangibles']}</td>
+                              <td>{date['Net Change in Cash']}</td>
+                               <td className='financialsTotalTD'>{date['Change in Working Capital']}</td>
+                             </tr>
+                          </>
+                        ))}
+                  </table>
+                </div>
 
-                      <td id='current-assests'>
-                        {cashflow['Cash From Operating Activities']}
-                      </td>
-                      <td>{cashflow['Cash From Investing Activities']}</td>
-                      <td>{cashflow['Cash From Financing Activities']}</td>
-                      <td>{cashflow['EBITDA']}</td>
-                      <td>{cashflow['Net Change in Cash']}</td>
-                      <td>{cashflow['Net PP&E']}</td>
-                      <td>{cashflow['Dividends']}</td>
-                    </tr>
-                  </>
-                ))}
-              </>
-            ) : (
-              <p />
-            )}
-          </table>
-        </div>
-
-        <h1 id='financialsh1'>Profit And Loss </h1>
-        <div id='table-container'>
-          <table id='table_data'>
-            {this.props.company.cashflow ? (
-              <>
-                {this.props.company.profitandloss.map(profitandloss => (
-                  <>
-                    <tr>
-                      <td id='comp-dates'>{profitandloss['ticker_dates']}</td>
-
-                      <td>{profitandloss['Revenues']}</td>
-                      <td>{profitandloss['EBIT']}</td>
-                      <td>{profitandloss['Net Profit']}</td>
-                    </tr>
-                  </>
-                ))}
-              </>
-            ) : (
-              <p />
-            )}
-          </table>
-        </div>
-
-        <h1 id='financialsh1'>Ratios </h1>
-        <table id='table_data'>
-          {this.props.company.cashflow ? (
-            <>
-              {this.props.company.ratios.map(ratios => (
-                <>
+          <h1 className='financialsTitle'>Profit And Loss </h1>
+          <div className='financialTableContainer'>
+                  <table className='financialTableData'>
                   <tr>
-                    <td id='comp-dates'>{ratios['ticker_dates']}</td>
-                    {/* mapping only the first two values and ignoring the rest of the values  */}
-                    <td>{Number(ratios['Current Ratio']).toFixed(2)}</td>
-                    <td>
-                      {Number(ratios['Liabilities To Equity']).toFixed(2)}
-                    </td>
-                    <td>{Number(ratios['Debt To Asset']).toFixed(2)}</td>
-                  </tr>
-                </>
-              ))}
-            </>
-          ) : (
-            <p />
-          )}
-        </table>
-      </div>
-    )
-  }
-}
+                      <td className='financialTableDataTitleNames'>
+                                ddshsj
+                              </td>
 
-const mapStateToProps = state => ({
-  company: state.CompanyDetailReducer.company
-})
-export default connect(
-  mapStateToProps,
-  { getCompanyDetailById }
-)(CompanyDetailFinancial)
+                              <td>Revenues</td>
+                              <td>EBIT</td>
+                              <td>Net Profit</td>
+                              <td>R&D</td>
+                              <td>Income Taxes</td>
+                               </tr>
+                  {this.props.dates.map(date => (
+                          <>
+                          
+                            <tr>
+                              <td className='financialTableDataTitle'>{new Date(date['date']).toLocaleDateString(
+                                  "en-IN",
+                                  {
+                                    month: "short",
+                                    day: "2-digit",
+                                    year: "numeric"
+                                  }
+                                )}
+                              </td>
+
+                               <td>{date['Revenues']}</td>
+                               <td>{date['EBIT']}</td>
+                              <td>{date['Net Profit']}</td>
+                              <td>{date['R&D']}</td>
+                              <td>{date['Income Taxes']}</td>
+                               
+                            </tr>
+                          </>
+                        ))}
+                  </table>
+                </div>
+
+          <h1 className='financialsTitle'>Ratios </h1>
+          <div className='financialTableContainer'>
+                  <table className='financialTableData'>
+                  <tr>
+                      <td className='financialTableDataTitleNames'>
+                                ddshsj
+                              </td>
+
+                              <td>Liabilities to Equity Ratio</td>
+                              <td>Debt to Assets Ratio</td>
+                              <td>Current Ratio</td>
+                              <td>EV / EBITDA</td>
+                              <td>EV / Sales</td>
+                              <td>Operating Income / EV</td>
+                                </tr>
+                  {this.props.dates.map(date => (
+                          <>
+                          
+                            <tr>
+                              <td className='financialTableDataTitle'>{new Date(date['date']).toLocaleDateString(
+                                  "en-IN",
+                                  {
+                                    month: "short",
+                                    day: "2-digit",
+                                    year: "numeric"
+                                  }
+                                )}
+                              </td>
+
+                              <td>{date['Liabilities to Equity Ratio']}</td>
+                              <td>{date['Debt to Assets Ratio']}</td>
+                              <td>{date['Current Ratio']}</td>
+                              <td>{date['EV / EBITDA']}</td>
+                              <td>{date['EV / Sales']}</td>
+                              <td>{date['Operating Income / EV']}</td> 
+                            </tr>
+                          </>
+                        ))}
+                  </table>
+                </div>
+              </div>
+          </div>
+        </div>
+      )
+    }
+  }
+
+  const mapStateToProps = state => ({
+    // company: state.CompanyDetailReducer.company,
+    dates : state.CompanyDetailReducer.dates
+  })
+  export default connect(
+    mapStateToProps,
+    { 
+      // getCompanyDetailById ,
+      getCompanyDatesById}
+  )(CompanyDetailFinancial)
