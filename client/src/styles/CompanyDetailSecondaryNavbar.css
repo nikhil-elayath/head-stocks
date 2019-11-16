@@ -17,10 +17,17 @@
   overflow-y: scroll;
   box-shadow: 0px 4px 6px 0px #cacaca;
 }
+#bla {
+  grid-area: analysis;
+}
+#secondary-navbar-bla {
+  margin: 40px 150px 0px 0px;
+}
 
 /* child within parent container */
 /* grid within grid  */
 
+/* tabs */
 #company-detail-content-container {
   /* padding: 10px 10px 10px 10px; */
   grid-template-rows: 1fr;
@@ -44,9 +51,9 @@
   grid-area: b;
   /* color: yellowgreen; */
 }
-#company-detail-analysis-li {
+
+#secondary-download-button {
   grid-area: c;
-  /* color: blue; */
 }
 
 .options-selected-li {
@@ -82,7 +89,16 @@
 }
 #last_date {
   font-size: 10px;
+  color: #707070;
 }
-
+#indexClose {
+  float: left;
+  text-align: center;
+  font-size: 17px;
+  font-weight: bold;
+}
+#secondary-navbar-sub {
+  font-size: 10px;
+}
 @media only screen and (min-width: 426px) {
 }
