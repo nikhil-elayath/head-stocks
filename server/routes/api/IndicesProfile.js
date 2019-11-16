@@ -72,7 +72,7 @@ router.get("/download/:index", async (req, res, next) => {
   );
 });
 
-router.get("/ohlcdata/:id", async (req, res, next) => {
+router.post("/ohlcdata/:id", async (req, res, next) => {
   try {
     let id = req.params.id;
     console.log(id);
