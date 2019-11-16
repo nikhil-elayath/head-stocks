@@ -24,7 +24,7 @@ export class Home extends Component {
           {this.props.indices["0"] ? ( //use to display loader [piyush]
             <>
               <div id="homeleftsidecontainer">
-                <h1>News</h1>
+                <h1>Recent News</h1>
                 <div>
                   <div id="recent-news"></div>
                   {/* recent news */}
