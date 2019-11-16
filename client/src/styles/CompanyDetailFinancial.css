@@ -18,8 +18,7 @@
   display: none;
   height: 500px;
   grid-area: side;
-  /* background: #2c80d4; */
-}
+ }
 .financialsAllTablesDiv {
   grid-area: table;
   display: block;
