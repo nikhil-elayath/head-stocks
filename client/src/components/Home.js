@@ -15,18 +15,13 @@ export class Home extends Component {
   }
 
   render() {
-    console.log(this.props.singleNews);
+    console.log(this.props.indices ? this.props.indices["0"] : "Load");
     console.log(this.props.isLoading);
     return (
       <body>
         <div id="homecontainer">
           {/* <Navbar> */}
-          {this.props.isLoading ? ( //use to display loader [piyush]
-            <div style={{ margin: "200px 500px" }}>
-              <Loader type={Loader} color="#2c3e50" height="100" width="400" />
-              {/* <img src={loader} alt="loading..." /> */}
-            </div>
-          ) : (
+          {this.props.indices["0"] ? ( //use to display loader [piyush]
             <>
               <div id="homeleftsidecontainer">
                 <h1>News</h1>
@@ -72,12 +67,17 @@ export class Home extends Component {
                 <div>
                   <Table
                     tableHeaders={["Index", "Chng%", "Last CLosed"]}
-                    tableData={this.props.indices}
+                    tableData={this.props.indices["0"].index}
+                    isIndex={this.props.indices["0"].isIndex}
                   />
-                  {console.log(this.props.indices)}
                 </div>
               </div>
             </>
+          ) : (
+            <div style={{ margin: "200px 500px" }}>
+              <Loader type={Loader} color="#2c3e50" height="100" width="400" />
+              {/* <img src={loader} alt="loading..." /> */}
+            </div>
           )}
         </div>
       </body>

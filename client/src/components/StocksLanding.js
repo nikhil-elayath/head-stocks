@@ -167,6 +167,7 @@ export class StocksLanding extends Component {
                   "Share Price"
                 ]}
                 tableData={this.props.gainersLosers["0"].gainers}
+                isIndex={this.props.gainersLosers["0"].isIndex}
               />
             </div>
           </div>
