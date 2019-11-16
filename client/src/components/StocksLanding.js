@@ -117,61 +117,75 @@ export class StocksLanding extends Component {
               </select>
             </div>
             <div id="stocks_main_grid_container">
-              <InfiniteScroll
-                dataLength={this.state.pageStocks.length} //This is important field to render the next data
-                next={this.loadMoreItems}
-                hasMore={true}
-                height={600}
-                loader={
-                  <div id="stocks_loader">
-                    <Loader type={Loader} color="#2c3e50" textAlign="center" />
-                  </div>
-                }
-                endMessage={
-                  <p style={{ textAlign: "center" }}>
-                    <b>Yay! You have seen all the stocks</b>
-                  </p>
-                }
-              >
-                <div id="stocks_grid_container">
-                  {this.state.pageStocks.map(stocks =>
-                    stocks ? (
-                      <div
-                        id="stocks_grid_details"
-                        onClick={() => {
-                          this.props.history.push(
-                            "/companydetail/" + stocks.ticker_id, //pushing to the company details page with ticker id of a stock when that particular stock card is clicked
-                            { stocks }
-                          );
-                        }}
-                      >
-                        <img
-                          id="stocks_img"
-                          src={
-                            stocks.ticker_logo == null
-                              ? companylogo
-                              : "data:image/jpeg;base64," + stocks.ticker_logo
-                          }
-                        />
-                        {console.log(stocks)}
-                        <div id="stocks_ticker">{stocks["ticker_name"]}</div>
-                        {/* mapping the ticker name from the api*/}
-                        <div id="stocks_name">{}</div>
-                        <div id="stocks_flex_details_one">
-                          <div id="stocks_details_title">Share Price:</div>
-                          <div id="stocks_details">{stocks["Share Price"]}</div>
-                          {/* mapping the share price from the api */}
-                        </div>
-                        <div id="stocks_flex_details_two">
-                          <div id="stocks_details_title">Market Cap:</div>
-                          <div id="stocks_details">{stocks["MarketCap"]}</div>
-                          {/* mapping the market cap from the api */}
-                        </div>
-                      </div>
-                    ) : null
-                  )}
+              {this.props.isLoading ? (
+                <div id="stocks_loader">
+                  <Loader type={Loader} color="#2c3e50" textAlign="center" />
                 </div>
-              </InfiniteScroll>
+              ) : (
+                <InfiniteScroll
+                  dataLength={this.state.pageStocks.length} //This is important field to render the next data
+                  next={this.loadMoreItems}
+                  hasMore={true}
+                  height={600}
+                  loader={
+                    <div id="stocks_loader">
+                      <Loader
+                        type={Loader}
+                        color="#2c3e50"
+                        textAlign="center"
+                      />
+                    </div>
+                  }
+                  endMessage={
+                    <p style={{ textAlign: "center" }}>
+                      <b>Yay! You have seen all the stocks</b>
+                    </p>
+                  }
+                >
+                  <div id="stocks_grid_container">
+                    {this.state.pageStocks.map(stocks =>
+                      stocks ? (
+                        <div
+                          id="stocks_grid_details"
+                          onClick={() => {
+                            this.props.history.push(
+                              "/companydetail/" + stocks.ticker_id, //pushing to the company details page with ticker id of a stock when that particular stock card is clicked
+                              { stocks }
+                            );
+                          }}
+                        >
+                          <img
+                            id="stocks_img"
+                            src={
+                              stocks.ticker_logo == null
+                                ? companylogo
+                                : "data:image/jpeg;base64," + stocks.ticker_logo
+                            }
+                          />
+                          {console.log(stocks)}
+                          <div id="stocks_ticker">{stocks["ticker_name"]}</div>
+                          {/* mapping the ticker name from the api*/}
+                          <div id="stocks_name">{}</div>
+                          <div id="stocks_flex_details_one">
+                            <div id="stocks_details_title">Share Price:</div>
+                            <div id="stocks_details">
+                              {stocks["Share Price"]}USD
+                            </div>
+                            {/* mapping the share price from the api */}
+                          </div>
+                          <div id="stocks_flex_details_two">
+                            <div id="stocks_details_title">Market Cap:</div>
+                            <div id="stocks_details">
+                              {stocks["MarketCap"]}M
+                            </div>
+                            {/* mapping the market cap from the api */}
+                          </div>
+                        </div>
+                      ) : null
+                    )}
+                  </div>
+                </InfiniteScroll>
+              )}
             </div>
             <div id="stocks_table">
               <div id="stocks_div_buttons">
@@ -225,7 +239,8 @@ const mapStateToProps = state => ({
   stocks: state.stocksReducer.stocks,
   sectors: state.stocksReducer.sectors,
   industries: state.stocksReducer.industries,
-  gainersLosers: state.stocksReducer.gainersLosers
+  gainersLosers: state.stocksReducer.gainersLosers,
+  isLoading: state.LoadingReducer.isLoading
 });
 
 export default connect(mapStateToProps, {
