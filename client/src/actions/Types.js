@@ -31,6 +31,7 @@ export const PROFIT_AND_LOSS = "PROFIT_AND_LOSS";
 export const OHLC_CHART = "OHLC_CHART";
 export const GET_SIMILAR_TABLE = "OHLC_CHART";
 export const GET_DROP_DOWN = "GET_DROP_DOWN";
+export const GET_GAUGE_COMPANY1 = "GET_GAUGE_COMPANY1";
 
 // Harshal
 export const SEARCH_CONTENT = "SEARCH_CONTENT";

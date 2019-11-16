@@ -5,6 +5,7 @@ import {
   OHLC_CHART,
   GET_SIMILAR_TABLE,
   GET_DROP_DOWN,
+  GET_GAUGE_COMPANY1
 } from "./Types";
 import { startLoading, stopLoading } from "./LoadingAction";
 import axios from "axios";
@@ -17,7 +18,7 @@ export const getCompanyDetail = () => dispatch => {
       .then(res => {
         dispatch({
           type: COMPANY_DETAIL,
-          payload: res.data.data,
+          payload: res.data.data
         });
       });
   } catch (err) {
@@ -34,11 +35,11 @@ export const getCompanyDetailById = id => dispatch => {
       .then(res => {
         dispatch({
           type: COMPANY_DETAIL_BY_ID,
-          payload: res.data.data,
+          payload: res.data.data
         });
         console.log("apksodk", res.data.data["0"].sector);
         let sector = {
-          sector: res.data.data["0"].sector,
+          sector: res.data.data["0"].sector
         };
         console.log("obj sector from action", sector);
 
@@ -62,7 +63,7 @@ export const getDropDownData = sector => dispatch => {
       .then(res => {
         dispatch({
           type: GET_DROP_DOWN,
-          payload: res.data.data,
+          payload: res.data.data
         });
         console.log("from then of drop down action");
       });
@@ -82,7 +83,7 @@ export const getSimilarTable = sector => dispatch => {
         dispatch({
           type: GET_SIMILAR_TABLE,
 
-          payload: res.data.data,
+          payload: res.data.data
         });
         console.log("from then of similar table");
         dispatch(getDropDownData(sector));
@@ -94,6 +95,7 @@ export const getSimilarTable = sector => dispatch => {
 
 // Fetching OHLC Chart for company [Bhavana]
 export const getOhlcChart = id => dispatch => {
+  console.log(id);
   dispatch(startLoading());
   try {
     return axios.get("http://localhost:5000/companyindices/" + id).then(res => {
@@ -101,7 +103,7 @@ export const getOhlcChart = id => dispatch => {
       dispatch({
         type: OHLC_CHART,
 
-        payload: res.data,
+        payload: res.data
       });
     });
   } catch (err) {
@@ -131,10 +133,29 @@ export const getCompanyDatesById = id => dispatch => {
       .then(res => {
         dispatch({
           type: COMPANY_DATES_BY_ID,
-          payload: res.data.data,
+          payload: res.data.data
         });
       });
   } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getGaugeCompany1 = ticker => dispatch => {
+  dispatch(startLoading());
+  try {
+    return axios
+      .get("http://localhost:5000/gaugeCompany2/" + ticker)
+      .then(res => {
+        dispatch(stopLoading());
+        dispatch({
+          type: GET_GAUGE_COMPANY1,
+
+          payload: res.data
+        });
+      });
+  } catch (err) {
+    dispatch(startLoading());
     console.log(err);
   }
 };
