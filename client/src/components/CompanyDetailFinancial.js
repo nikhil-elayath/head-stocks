@@ -17,10 +17,7 @@ export class CompanyDetailFinancial extends Component {
     cashflowOption: false,
     profitLossOption: false,
     ratiosOption: false
-
   };
-
-  
 
   componentDidMount() {
     // getting the id from the params
@@ -43,7 +40,9 @@ export class CompanyDetailFinancial extends Component {
               <a
                 id="item1"
                 href="#table1"
-                className={this.state.balanceSheetOption ? "financialsSidebarItem" : null}
+                className={
+                  this.state.balanceSheetOption ? "financialsSidebarItem" : null
+                }
                 onClick={() =>
                   this.setState({
                     balanceSheetOption: true,
@@ -52,7 +51,7 @@ export class CompanyDetailFinancial extends Component {
                     ratiosOption: false
                   })
                 }
-               >
+              >
                 <img
                   src={balanceSheet}
                   alt="Balance Sheet"
@@ -65,7 +64,9 @@ export class CompanyDetailFinancial extends Component {
               <a
                 id="item2"
                 href="#table2"
-                className={this.state.cashflowOption ? "financialsSidebarItem" : null}
+                className={
+                  this.state.cashflowOption ? "financialsSidebarItem" : null
+                }
                 onClick={() =>
                   this.setState({
                     balanceSheetOption: false,
@@ -87,7 +88,9 @@ export class CompanyDetailFinancial extends Component {
               <a
                 id="item3"
                 href="#table3"
-                className={this.state.profitLossOption ? "financialsSidebarItem" : null}
+                className={
+                  this.state.profitLossOption ? "financialsSidebarItem" : null
+                }
                 onClick={() =>
                   this.setState({
                     balanceSheetOption: false,
@@ -109,8 +112,10 @@ export class CompanyDetailFinancial extends Component {
               <a
                 id="item4"
                 href="#table4"
-                 className={this.state.ratiosOption ? "financialsSidebarItem" : null}
-                 onClick={() =>
+                className={
+                  this.state.ratiosOption ? "financialsSidebarItem" : null
+                }
+                onClick={() =>
                   this.setState({
                     balanceSheetOption: false,
                     cashflowOption: false,
@@ -132,10 +137,11 @@ export class CompanyDetailFinancial extends Component {
           </sidebar>
 
           <div className="financialsAllTablesDiv">
-            <h1 className="financialsTitle" id="table1">Balance Sheet </h1>
+            <h1 className="financialsTitle" id="table1">
+              Balance Sheet{" "}
+            </h1>
 
             <div className="financialTableContainer">
-              
               <table className="financialTableData">
                 <tr className="financialTableDataTitleRow">
                   <td className="financialTableDataTitleNames">ddshsj</td>
@@ -170,44 +176,92 @@ export class CompanyDetailFinancial extends Component {
                         })}
                       </td>
 
-                      <td>{date["Current Assets"]}</td>
-                      <td>{date["Intangible Assets"]}</td>
-                      <td>{date["Cash & Cash Equivalents"]}</td>
-                      <td>{date["Goodwill"]}</td>
-                      <td className="financialsTotalTD">
-                        {date["Total Assets"]}
-                      </td>
+                      {date["Current Assets"] ? (
+                        <td>{date["Current Assets"]}</td>
+                      ) : (
+                        <td>-</td>
+                      )}
+                      {date["Intangible Assets"] ? (
+                        <td>{date["Intangible Assets"]}</td>
+                      ) : (
+                        <td>-</td>
+                      )}
+                      {date["Cash & Cash Equivalents"] ? (
+                        <td>{date["Cash & Cash Equivalents"]}</td>
+                      ) : (
+                        <td>-</td>
+                      )}
+                      {date["Goodwill"] ? (
+                        <td>{date["Goodwill"]}</td>
+                      ) : (
+                        <td>-</td>
+                      )}
+                      {date["Total Assets"] ? (
+                        <td className="financialsTotalTD">
+                          {date["Total Assets"]}
+                        </td>
+                      ) : (
+                        <td className="financialsTotalTD">-</td>
+                      )}
 
                       <hr className="financialsTableHR"></hr>
 
-                      <td>{date["Accounts Payable"]}</td>
-                      <td>{date["Receivables"]}</td>
-                      <td>{date["Current Liabilities"]}</td>
-                      <td className="financialsTotalTD">
-                        {date["Total Liabilities"]}
-                      </td>
+                      {date["Accounts Payable"] ? (
+                        <td>{date["Accounts Payable"]}</td>
+                      ) : (
+                        <td>-</td>
+                      )}
+                      {date["Receivables"] ? (
+                        <td>{date["Receivables"]}</td>
+                      ) : (
+                        <td>-</td>
+                      )}
+                      {date["Current Liabilities"] ? (
+                        <td>{date["Current Liabilities"]}</td>
+                      ) : (
+                        <td>-</td>
+                      )}
+                      {date["Total Liabilities"] ? (
+                        <td className="financialsTotalTD">
+                          {date["Total Liabilities"]}
+                        </td>
+                      ) : (
+                        <td className="financialsTotalTD">-</td>
+                      )}
 
-                      <td>{date["Preferred Equity"]}</td>
-                      <td>{date["Total Noncurrent Liabilities"]}</td>
-                      <td className="financialsTotalTD">
-                        {date["Equity Before Minorities"]}
-                      </td>
-
-                      {/* <hr className='financialsTableHR'></hr> */}
+                      {date["Preferred Equity"] ? (
+                        <td>{date["Preferred Equity"]}</td>
+                      ) : (
+                        <td>-</td>
+                      )}
+                      {date["Total Noncurrent Liabilities"] ? (
+                        <td>{date["Total Noncurrent Liabilities"]}</td>
+                      ) : (
+                        <td>-</td>
+                      )}
+                      {date["Equity Before Minorities"] ? (
+                        <td className="financialsTotalTD">
+                          {date["Equity Before Minorities"]}
+                        </td>
+                      ) : (
+                        <td className="financialsTotalTD">-</td>
+                      )}
                     </tr>
                   </>
                 ))}
               </table>
             </div>
 
-            <h1 className="financialsTitle" id="table2">Cash Flow </h1>
+            <h1 className="financialsTitle" id="table2">
+              Cash Flow{" "}
+            </h1>
             <div className="financialTableContainer">
               <table className="financialTableData">
-                <tr>
+                <tr className="financialTableDataTitleRow">
                   <td className="financialTableDataTitleNames">ddshsj</td>
 
                   <td>Depreciation & Amortisation</td>
-                  <td>Net Change in PP&E & Intangibles</td>
+                  <td>PP&E & Intangibles</td>
                   <td>Net Change in Cash</td>
                   <td>Cash From Operating Activities</td>
                   <td>Cash From Investing Activities</td>
@@ -226,26 +280,55 @@ export class CompanyDetailFinancial extends Component {
                           year: "numeric"
                         })}
                       </td>
-
-                      <td>{date["Depreciation & Amortisation"]}</td>
-                      <td>{date["Net Change in PP&E & Intangibles"]}</td>
-                      <td>{date["Net Change in Cash"]}</td>
-                      <td>{date["Cash From Operating Activities"]}</td>
-                      <td>{date["Cash From Investing Activities"]}</td>
-                      <td>{date["Cash From Financing Activities"]}</td>
-                      <td className="financialsTotalTD">
-                        {date["Change in Working Capital"]}
-                      </td>
+                      {date["Depreciation & Amortisation"] ? (
+                        <td>{date["Depreciation & Amortisation"]}</td>
+                      ) : (
+                        <td>-</td>
+                      )}{" "}
+                      {date["Net Change in PP&E & Intangibles"] ? (
+                        <td>{date["Net Change in PP&E & Intangibles"]}</td>
+                      ) : (
+                        <td>-</td>
+                      )}{" "}
+                      {date["Net Change in Cash"] ? (
+                        <td>{date["Net Change in Cash"]}</td>
+                      ) : (
+                        <td>-</td>
+                      )}{" "}
+                      {date["Cash From Operating Activities"] ? (
+                        <td>{date["Cash From Operating Activities"]}</td>
+                      ) : (
+                        <td>-</td>
+                      )}{" "}
+                      {date["Cash From Investing Activities"] ? (
+                        <td>{date["Cash From Investing Activities"]}</td>
+                      ) : (
+                        <td>-</td>
+                      )}{" "}
+                      {date["Cash From Financing Activities"] ? (
+                        <td>{date["Cash From Financing Activities"]}</td>
+                      ) : (
+                        <td>-</td>
+                      )}
+                      {date["Change in Working Capital"] ? (
+                        <td className="financialsTotalTD">
+                          {date["Change in Working Capital"]}
+                        </td>
+                      ) : (
+                        <td className="financialsTotalTD">-</td>
+                      )}
                     </tr>
                   </>
                 ))}
               </table>
             </div>
 
-            <h1 className="financialsTitle" id="table3">Profit And Loss </h1>
+            <h1 className="financialsTitle" id="table3">
+              Profit And Loss{" "}
+            </h1>
             <div className="financialTableContainer">
               <table className="financialTableData">
-                <tr>
+                <tr className="financialTableDataTitleRow">
                   <td className="financialTableDataTitleNames">ddshsj</td>
 
                   <td>Revenues</td>
@@ -264,22 +347,35 @@ export class CompanyDetailFinancial extends Component {
                           year: "numeric"
                         })}
                       </td>
-
-                      <td>{date["Revenues"]}</td>
-                      <td>{date["EBIT"]}</td>
-                      <td>{date["Net Profit"]}</td>
-                      <td>{date["R&D"]}</td>
-                      <td>{date["Income Taxes"]}</td>
+                      {date["Revenues"] ? (
+                        <td>{date["Revenues"]}</td>
+                      ) : (
+                        <td>-</td>
+                      )}
+                      {date["EBIT"] ? <td>{date["EBIT"]}</td> : <td>-</td>}
+                      {date["Net Profit"] ? (
+                        <td>{date["Net Profit"]}</td>
+                      ) : (
+                        <td>-</td>
+                      )}
+                      {date["R&D"] ? <td>{date["R&D"]}</td> : <td>-</td>}
+                      {date["Income Taxes"] ? (
+                        <td>{date["Income Taxes"]}</td>
+                      ) : (
+                        <td>-</td>
+                      )}
                     </tr>
                   </>
                 ))}
               </table>
             </div>
 
-            <h1 className="financialsTitle" id="table4">Ratios </h1>
+            <h1 className="financialsTitle" id="table4">
+              Ratios{" "}
+            </h1>
             <div className="financialTableContainer">
               <table className="financialTableData">
-                <tr>
+                <tr className="financialTableDataTitleRow">
                   <td className="financialTableDataTitleNames">ddshsj</td>
 
                   <td>Liabilities to Equity Ratio</td>
@@ -299,13 +395,31 @@ export class CompanyDetailFinancial extends Component {
                           year: "numeric"
                         })}
                       </td>
-
-                      <td>{date["Liabilities to Equity Ratio"]}</td>
-                      <td>{date["Debt to Assets Ratio"]}</td>
-                      <td>{date["Current Ratio"]}</td>
-                      <td>{date["EV / EBITDA"]}</td>
-                      <td>{date["EV / Sales"]}</td>
-                      <td>{date["Operating Income / EV"]}</td>
+                      {date["Liabilities to Equity Ratio"] ? (
+                        <td>{date["Liabilities to Equity Ratio"]}</td>
+                      ) : (
+                        <td>-</td>
+                      )}{date["Debt to Assets Ratio"] ? (
+                        <td>{date["Debt to Assets Ratio"]}</td>
+                      ) : (
+                        <td>-</td>
+                      )}{date["Current Ratio"] ? (
+                        <td>{date["Current Ratio"]}</td>
+                      ) : (
+                        <td>-</td>
+                      )}{date["EV / EBITDA"] ? (
+                        <td>{date["EV / EBITDA"]}</td>
+                      ) : (
+                        <td>-</td>
+                      )}{date["EV / Sales"] ? (
+                        <td>{date["EV / Sales"]}</td>
+                      ) : (
+                        <td>-</td>
+                      )}{date["Operating Income / EV"] ? (
+                        <td>{date["Operating Income / EV"]}</td>
+                      ) : (
+                        <td>-</td>
+                      )}
                     </tr>
                   </>
                 ))}
