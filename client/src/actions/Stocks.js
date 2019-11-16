@@ -57,15 +57,18 @@ export const getIndustries = sector => dispatch => {
 };
 
 export const getGainersLosers = sector => dispatch => {
+  dispatch(startLoading());
   return axios
     .get(url + "gainers-and-losers/" + sector)
     .then(res => {
+      dispatch(stopLoading());
       dispatch({
         type: GAINERS_LOSERS,
         payload: res.data.data
       });
     })
     .catch(err => {
+      dispatch(startLoading());
       console.log(err);
     });
 };
