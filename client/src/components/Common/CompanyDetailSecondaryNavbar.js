@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { getCompanyDetailById } from '../../actions/CompanyDetail'
 import { connect } from 'react-redux'
 import companylogo from './stockslogo.PNG'
+import ReactTooltip from 'react-tooltip'
 
 // importing css file
 import '../../styles/CompanyDetailSecondaryNavbar.css'
@@ -36,6 +37,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                           }
                         />
                       </div>
+
                       <div id='secondary-navbar-ticker_name'>
                         <p>{coms.ticker_name}</p>
                         <p
@@ -48,7 +50,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                         </p>
                         <p id='last_date'>
                           {' '}
-                          Closed price:{' '}
+                          Closed price:(
                           {new Date(coms.share_date).toLocaleDateString(
                             'en-IN',
                             {
@@ -57,7 +59,23 @@ export class CompanyDetailSecondaryNavbar extends Component {
                               year: 'numeric'
                             }
                           )}
+                          )
                         </p>
+                        <div id='voltality'>
+                          Volatility:123456
+                          <div id='abc'>
+                            <i class='fa fa-question-circle' />
+                            <span id='volatility'>
+                              Volatility is a statistical measure of the
+                              dispersion of returns for a given security or
+                              market index. In most cases, the higher the
+                              volatility, the riskier the security. Volatility
+                              is often measured as either the standard deviation
+                              or variance between returns from that same
+                              security or market index.
+                            </span>
+                          </div>
+                        </div>
                       </div>
                     </div>
 
