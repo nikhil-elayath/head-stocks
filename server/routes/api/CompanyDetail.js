@@ -295,6 +295,11 @@ router.post('/analysis', async (req, res, next) => {
         last_date['Avg Basic Shares Outstanding']
       compare.tickerValues['ratio'] = ratio.toFixed(3).toString()
 
+      test =(last_date['Net Profit'] -
+      last_date['Dividends']) /
+    last_date['Avg Basic Shares Outstanding']
+    console.log("test", test)
+
       // for current share price
       while (last_date['Share Price'] == undefined) {
         last_date = ticker_dates.slice(i)[0]
