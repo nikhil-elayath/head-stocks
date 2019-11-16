@@ -242,7 +242,7 @@
   .navbarHS span.icon {
     float: right;
     display: block;
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
     color: #39abf7;

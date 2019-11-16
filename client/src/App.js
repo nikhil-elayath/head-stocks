@@ -10,7 +10,7 @@ import download from "./components/Download";
 // Harshal
 import NavbarDefault from "./components/NavbarDefault";
 import UpdateCompany from "./components/UpdateCompany";
-// nikhil
+ // nikhil
 import CompanyDetail from "./components/CompanyDetail";
 import CompanyDetailSecondaryNavbar from "./components/Common/CompanyDetailSecondaryNavbar";
 // aditya
@@ -28,6 +28,7 @@ function App() {
         {/* Harshal */}
         <NavbarDefault />
         <Route exact path="/updatecompany" component={UpdateCompany} />
+ 
         {/* Bhavana */}
         <Route exact path="/register" component={Register} />
         <Route exact path="/resetpassword" component={ResetPassword} />
