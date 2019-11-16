@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { getCompanyDetailById } from "../../actions/CompanyDetail";
 import { connect } from "react-redux";
+import companylogo from "./stockslogo.PNG";
+
 // importing css file
 import "../../styles/CompanyDetailSecondaryNavbar.css";
 import { Link } from "react-router-dom";
@@ -11,120 +13,139 @@ export class CompanyDetailSecondaryNavbar extends Component {
   state = {
     overview: true,
     financial: false,
-    analysis: false
+    analysis: false,
   };
   render() {
-    this.props.company.result
-      ? console.log(this.props.company.result)
+    this.props.company
+      ? console.log(this.props.company)
       : console.log("Wait..");
     return (
       <div>
         <div id="company-details-tab-container">
           <div>
-            {this.props.company.result ? (
+            {this.props.company ? (
               <div>
-                <h1>{this.props.company.result.ticker_name}</h1>
-                <ul id="company-detail-content-container">
-                  <Link
-                    className="company-link"
-                    // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
-                    to={{
-                      pathname:
-                        "/companydetail/" + this.props.company.result.ticker_id
-                    }}
-                  >
-                    <span
-                      id="company-detail-overview-click"
-                      onClick={() => {
-                        // changing the values of the state while clicking, the clicked component will be set to true others will be false
-                        this.setState({
-                          overview: true,
-                          financial: false,
-                          analysis: false
-                        });
-                        console.log("Overview clicked");
-                      }}
-                    >
-                      <li
-                        id="comapany-detail-overview-li"
-                        // different css properties based on the value of the state
-                        className={
-                          this.state.overview
-                            ? "options-selected-li"
-                            : "options-li"
-                        }
-                      >
-                        Overview
-                      </li>
-                    </span>
-                  </Link>
-                  {/* Financials  */}
-                  <div id="company-detail-financial">
-                    <Link
-                      className="company-link"
-                      to={{
+                {this.props.company.map(coms => (
+                  <>
+                    <div id="secondary-navbar-img-name-container">
+                      <div id="secondary-navbar-img">
+                        <img
+                          id="stocks_img"
+                          src={
+                            coms.image == null
+                              ? companylogo
+                              : "data:image/jpeg;base64," + coms.image
+                          }
+                        />
+                      </div>
+                      <div id="secondary-navbar-ticker_name">
+                        <p>{coms.ticker_name}</p>
+                        <p>{coms.last_market_cap}</p>
+                        <p id="last_date"> closed price:{coms.share_date}</p>
+                      </div>
+                    </div>
+
+                    <h1>{this.props.company.ticker_name}</h1>
+                    <ul id="company-detail-content-container">
+                      <Link
+                        className="company-link"
                         // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
-
-                        pathname:
-                          "/financial/" + this.props.company.result.ticker_id
-                      }}
-                    >
-                      <span
-                        id="company-financial-click"
-                        onClick={() => {
-                          this.setState({
-                            overview: false,
-                            financial: true,
-                            analysis: false
-                          });
+                        to={{
+                          pathname: "/companydetail/" + coms.id,
                         }}
                       >
-                        <li
-                          id="company-detail-financial-li"
-                          className={
-                            this.state.financial
-                              ? "options-selected-li"
-                              : "options-li"
-                          }
+                        <span
+                          id="company-detail-overview-click"
+                          onClick={() => {
+                            // changing the values of the state while clicking, the clicked component will be set to true others will be false
+                            this.setState({
+                              overview: true,
+                              financial: false,
+                              analysis: false,
+                            });
+                            console.log("Overview clicked");
+                          }}
                         >
-                          Financials
-                        </li>
-                      </span>
-                    </Link>
-                  </div>
+                          <li
+                            id="comapany-detail-overview-li"
+                            // different css properties based on the value of the state
+                            className={
+                              this.state.overview
+                                ? "options-selected-li"
+                                : "options-li"
+                            }
+                          >
+                            Overview
+                          </li>
+                        </span>
+                      </Link>
+                      {/* Financials  */}
+                      <div id="company-detail-financial">
+                        <Link
+                          className="company-link"
+                          to={{
+                            // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
 
-                  <div id="company-detail-analysis">
-                    <Link
-                      className="company-link"
-                      to={{
-                        pathname:
-                          "/analysis/" + this.props.company.result.ticker_id
-                      }}
-                    >
-                      <span
-                        id="company-analysis-click"
-                        onClick={() => {
-                          this.setState({
-                            overview: false,
-                            financial: false,
-                            analysis: true
-                          });
-                        }}
-                      >
-                        <li
-                          id="company-detail-analysis-li"
-                          className={
-                            this.state.analysis
-                              ? "options-selected-li"
-                              : "options-li"
-                          }
+                            pathname: "/financial/" + coms.id,
+                          }}
                         >
-                          Analysis
-                        </li>
-                      </span>
-                    </Link>
-                  </div>
-                </ul>
+                          <span
+                            id="company-financial-click"
+                            onClick={() => {
+                              this.setState({
+                                overview: false,
+                                financial: true,
+                                analysis: false,
+                              });
+                            }}
+                          >
+                            <li
+                              id="company-detail-financial-li"
+                              className={
+                                this.state.financial
+                                  ? "options-selected-li"
+                                  : "options-li"
+                              }
+                            >
+                              Financials
+                            </li>
+                          </span>
+                        </Link>
+                      </div>
+
+                      <div id="company-detail-analysis">
+                        <Link
+                          className="company-link"
+                          to={{
+                            pathname: "/analysis/" + coms.id,
+                          }}
+                        >
+                          <span
+                            id="company-analysis-click"
+                            onClick={() => {
+                              this.setState({
+                                overview: false,
+                                financial: false,
+                                analysis: true,
+                              });
+                            }}
+                          >
+                            <li
+                              id="company-detail-analysis-li"
+                              className={
+                                this.state.analysis
+                                  ? "options-selected-li"
+                                  : "options-li"
+                              }
+                            >
+                              Analysis
+                            </li>
+                          </span>
+                        </Link>
+                      </div>
+                    </ul>
+                  </>
+                ))}
               </div>
             ) : (
               <p />
@@ -136,7 +157,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
   }
 }
 const mapStateToProps = state => ({
-  company: state.CompanyDetailReducer.company
+  company: state.CompanyDetailReducer.company,
 });
 export default connect(mapStateToProps, { getCompanyDetailById })(
   CompanyDetailSecondaryNavbar

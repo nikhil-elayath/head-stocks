@@ -36,9 +36,9 @@ export const getCompanyDetailById = id => dispatch => {
           type: COMPANY_DETAIL_BY_ID,
           payload: res.data.data,
         });
-        console.log(res.data.data.result.sector);
+        console.log("apksodk", res.data.data["0"].sector);
         let sector = {
-          sector: res.data.data.result.sector,
+          sector: res.data.data["0"].sector,
         };
         console.log("obj sector from action", sector);
 
@@ -124,7 +124,7 @@ export const downloadOhlcDataCompany = ohlc => {
 
 // getting company dates by id
 export const getCompanyDatesById = id => dispatch => {
-  console.log("get companydetails by id from actions", id);
+  // console.log("get companydetails by id from actions", id);
   try {
     return axios
       .get("http://localhost:2001/api/companydetail/financial/" + id)
