@@ -14,11 +14,13 @@ import ratios from "./ratios.png";
 export class CompanyDetailFinancial extends Component {
   state = {
     balanceSheetOption: true,
-    cashFlowOption: false,
+    cashflowOption: false,
     profitLossOption: false,
     ratiosOption: false
 
   };
+
+  
 
   componentDidMount() {
     // getting the id from the params
@@ -34,10 +36,23 @@ export class CompanyDetailFinancial extends Component {
         <SecondaryNavbar />
         <div className="financialsMainGrid">
           <sidebar className="financialsSidebar">
-            <div className="financialsSidebarOptions">
-              <section id="item1" 
-              //  className={this.state.balanceSheetOption ? "financialsSidebarItem" : null}
-              >
+            <div
+              className="financialsSidebarOptions"
+              id="financialsSidebarMain"
+            >
+              <a
+                id="item1"
+                href="#table1"
+                className={this.state.balanceSheetOption ? "financialsSidebarItem" : null}
+                onClick={() =>
+                  this.setState({
+                    balanceSheetOption: true,
+                    cashflowOption: false,
+                    profitLossOption: false,
+                    ratiosOption: false
+                  })
+                }
+               >
                 <img
                   src={balanceSheet}
                   alt="Balance Sheet"
@@ -46,49 +61,81 @@ export class CompanyDetailFinancial extends Component {
                   style={{ margin: "20px 10px 10px 10px" }}
                 />
                 <p className="financialsSidebarOptionsP">Balance Sheet</p>
-              </section>
-              <section id="item2" 
-              //  className={this.state.balanceSheetOption ? "financialsSidebarItem" : null}
+              </a>
+              <a
+                id="item2"
+                href="#table2"
+                className={this.state.cashflowOption ? "financialsSidebarItem" : null}
+                onClick={() =>
+                  this.setState({
+                    balanceSheetOption: false,
+                    cashflowOption: true,
+                    profitLossOption: false,
+                    ratiosOption: false
+                  })
+                }
               >
                 <img
                   src={cashFlow}
-                  alt="Balance Sheet"
+                  alt="Cash Flow"
                   width="80px"
                   height="80px"
                   style={{ margin: "20px 10px 10px 10px" }}
                 />
-                <p className="financialsSidebarOptionsP">Balance Sheet</p>
-              </section>
-              <section id="item3" 
-              //  className={this.state.balanceSheetOption ? "financialsSidebarItem" : null}
+                <p className="financialsSidebarOptionsP">Cash Flow</p>
+              </a>
+              <a
+                id="item3"
+                href="#table3"
+                className={this.state.profitLossOption ? "financialsSidebarItem" : null}
+                onClick={() =>
+                  this.setState({
+                    balanceSheetOption: false,
+                    cashflowOption: false,
+                    profitLossOption: true,
+                    ratiosOption: false
+                  })
+                }
               >
                 <img
                   src={profitloss}
-                  alt="Balance Sheet"
+                  alt="Profit & Loss"
                   width="80px"
                   height="80px"
                   style={{ margin: "20px 10px 10px 10px" }}
                 />
-                <p className="financialsSidebarOptionsP">Balance Sheet</p>
-              </section>
-              <section id="item4" 
-              //  className={this.state.balanceSheetOption ? "financialsSidebarItem" : null}
+                <p className="financialsSidebarOptionsP">Profit & Loss</p>
+              </a>
+              <a
+                id="item4"
+                href="#table4"
+                 className={this.state.ratiosOption ? "financialsSidebarItem" : null}
+                 onClick={() =>
+                  this.setState({
+                    balanceSheetOption: false,
+                    cashflowOption: false,
+                    profitLossOption: false,
+                    ratiosOption: true
+                  })
+                }
               >
                 <img
                   src={ratios}
-                  alt="Balance Sheet"
+                  alt="Ratios"
                   width="80px"
                   height="80px"
                   style={{ margin: "20px 10px 10px 10px" }}
                 />
-                <p className="financialsSidebarOptionsP">Balance Sheet</p>
-              </section>
+                <p className="financialsSidebarOptionsP">Ratios</p>
+              </a>
             </div>
           </sidebar>
 
           <div className="financialsAllTablesDiv">
-            <h1 className="financialsTitle">Balance Sheet </h1>
+            <h1 className="financialsTitle" id="table1">Balance Sheet </h1>
+
             <div className="financialTableContainer">
+              
               <table className="financialTableData">
                 <tr className="financialTableDataTitleRow">
                   <td className="financialTableDataTitleNames">ddshsj</td>
@@ -153,7 +200,7 @@ export class CompanyDetailFinancial extends Component {
               </table>
             </div>
 
-            <h1 className="financialsTitle">Cash Flow </h1>
+            <h1 className="financialsTitle" id="table2">Cash Flow </h1>
             <div className="financialTableContainer">
               <table className="financialTableData">
                 <tr>
@@ -195,7 +242,7 @@ export class CompanyDetailFinancial extends Component {
               </table>
             </div>
 
-            <h1 className="financialsTitle">Profit And Loss </h1>
+            <h1 className="financialsTitle" id="table3">Profit And Loss </h1>
             <div className="financialTableContainer">
               <table className="financialTableData">
                 <tr>
@@ -229,7 +276,7 @@ export class CompanyDetailFinancial extends Component {
               </table>
             </div>
 
-            <h1 className="financialsTitle">Ratios </h1>
+            <h1 className="financialsTitle" id="table4">Ratios </h1>
             <div className="financialTableContainer">
               <table className="financialTableData">
                 <tr>
