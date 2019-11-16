@@ -49,11 +49,11 @@ router.get("/singleNews/:id", async (req, res, next) => {
   }
 });
 
-router.get("/index", async (req, res) => {
+router.get("/index", async (req, res, next) => {
   try {
     let tickerDetails = await stocksData.find(
       { isIndex: true },
-      { ticker_name: 1, ticker_dates: 1 }
+      { ticker_name: 1, ticker_dates: 1, ticker_id: 1, _id: 0 }
     );
     let change = [];
     tickerDetails.forEach(function(elem) {
@@ -61,6 +61,7 @@ router.get("/index", async (req, res) => {
       let result = Object.values(elem._doc.ticker_dates);
       last_date_value = result.slice(-1)[0];
       let ticker_name = elem._doc.ticker_name;
+      let ticker_id = elem._doc.ticker_id;
       let closing = last_date_value.closing.toFixed(2);
       let opening = last_date_value.opening;
       let percentChange = ((closing - opening) * 100) / opening;
@@ -75,12 +76,15 @@ router.get("/index", async (req, res) => {
       }
       change.push(name);
       name["ticker_name"] = ticker_name;
+      name["ticker_id"] = ticker_id;
       name.tickerValues["closing_price"] = closing;
     });
+    let finalData = {};
+    finalData.isIndex = true;
+    finalData.index = change;
     res.status(200).json({
       status: 200,
-      data: change,
-
+      data: [finalData],
       message: "Retrieved name of all indexes"
     });
   } catch (err) {

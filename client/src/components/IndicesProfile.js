@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-import { getIndicesById, getOhlcChartIndex } from "../actions/Indices";
+import {
+  getIndicesById,
+  getOhlcChartIndex,
+  getOhlcIndicesById
+} from "../actions/Indices";
 import { connect } from "react-redux";
 import "../styles/IndicesProfile.css";
 import Loader from "react-loader-spinner";
@@ -8,33 +12,80 @@ export class IndicesProfile extends Component {
   componentDidMount() {
     this.props.getIndicesById(this.props.match.params.id);
     this.props.getOhlcChartIndex(this.props.match.params.id);
+    let time = {
+      time: "1w"
+    };
+    this.props.getOhlcIndicesById(this.props.match.params.id, time);
   }
+
+  state = {
+    week: true
+  };
+
+  weekClick = () => {
+    let time = {
+      time: "1w"
+    };
+    this.props.getOhlcIndicesById(this.props.match.params.id, time);
+    this.setState({
+      week: true
+    });
+  };
+
+  monthClick = () => {
+    let time = {
+      time: "1m"
+    };
+    this.props.getOhlcIndicesById(this.props.match.params.id, time);
+    this.setState({
+      week: false
+    });
+  };
+
   render() {
-    console.log(this.props.sector);
     return (
       <div>
         <div id="indicesMainContainer">
           {this.props.singleIndex.map(index => (
             <>
               <div id="indicesLeftContainer">
-                <h1>{index.ticker_name}</h1>
-                <p>
-                  Closed Price :{" "}
-                  {Number(index.ticker_dates["2019-11-05"].closing).toFixed(2)}
-                </p>
-                {/* <hr /> */}
+                <div id="indicesTopLeft">
+                  <h1>{index.ticker_name}</h1>
+                  <div>
+                    <button id="downloadButton">
+                      <i class="fa fa-download"></i> Download
+                    </button>
+                  </div>
+                </div>
+
+                <div id="indicesNav">
+                  <a id="indexClose">
+                    {index.close} <sub>USD</sub>
+                  </a>
+                  <a id="indexOpen">{index.open}</a>
+                  <a id="indexOpen">{index.high}</a>
+                  <a id="indexOpen">{index.adjclose}</a>
+                </div>
+                <div id="indicesNavName">
+                  <a id="indexCloseName">
+                    CLOSE (
+                    {new Date(index.date).toLocaleDateString("en-IN", {
+                      month: "short",
+                      day: "2-digit",
+                      year: "numeric"
+                    })}
+                    )
+                  </a>
+                  <a id="indexOpenName">OPEN</a>
+                  <a id="indexOpenName">HIGH</a>
+                  <a id="indexOpenName">ADJCLOSE</a>
+                </div>
               </div>
+              <h3 id="indicesHeaderLabel">Stock Chart</h3>
               <div id="indicesGraphContainer">
-                <h3>Stock Chart</h3>
-                {/* {this.props.isLoading ? ( 
-                  <div style={{ margin: "200px 500px" }}>
-                    <Loader
-                      type={Loader}
-                      color="#2c3e50"
-                      height="100"
-                      width="400"
-                    />
-                    <img src={loader} alt="loading..." />
+                {this.props.isLoading ? (
+                  <div style={{ margin: "200px 600px" }}>
+                    <Loader type={Loader} color="#2c3e50" height="100" />
                   </div>
                 ) : (
                   <div
@@ -55,21 +106,72 @@ export class IndicesProfile extends Component {
                       }}
                     />
                   </div>
-                )} */}
+                )}
               </div>
+              <h3 id="indicesHeaderLabel">Historic Prices</h3>
               <div id="losersGainersContainer">
-                <h3>Historic Prices</h3>
-                <h4>Date : </h4>
+                <div id="indicesButtonContainer">
+                  <b>Range : </b>{" "}
+                  <button
+                    id={
+                      this.state.week === true
+                        ? "weekButtonactive"
+                        : "weekButton"
+                    }
+                    onClick={this.weekClick}
+                  >
+                    1w
+                  </button>
+                  <button
+                    id={
+                      this.state.week === false
+                        ? "monthButtonactive"
+                        : "monthButton"
+                    }
+                    onClick={this.monthClick}
+                  >
+                    1m
+                  </button>
+                </div>
+
                 <table id="historicTable">
-                  <tr>
-                    <th>Date</th>
-                    <th>Open</th>
-                    <th>High</th>
-                    <th>Low</th>
-                    <th>Close</th>
-                    <th>Adj Close</th>
-                    <th>Volume</th>
-                  </tr>
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Open</th>
+                      <th>High</th>
+                      <th>Low</th>
+                      <th>Close</th>
+                      <th>Adj Close</th>
+                      <th>Volume</th>
+                    </tr>
+                  </thead>
+                  {this.props.ohlcdata.map(data => (
+                    <tbody>
+                      {data.map(value => (
+                        <>
+                          <tr>
+                            <td>
+                              {new Date(value.date).toLocaleDateString(
+                                "en-IN",
+                                {
+                                  month: "short",
+                                  day: "2-digit",
+                                  year: "numeric"
+                                }
+                              )}
+                            </td>
+                            <td>{value.open}</td>
+                            <td>{value.high}</td>
+                            <td>{value.low}</td>
+                            <td>{value.close}</td>
+                            <td>{value.adjclose}</td>
+                            <td>{value.volume}</td>
+                          </tr>
+                        </>
+                      ))}
+                    </tbody>
+                  ))}
                 </table>
               </div>
             </>
@@ -82,9 +184,11 @@ export class IndicesProfile extends Component {
 const mapStateToProps = state => ({
   singleIndex: state.indexReducer.singleIndex,
   ohlcChart: state.indexReducer.ohlcChart,
-  isLoading: state.LoadingReducer.isLoading
+  isLoading: state.LoadingReducer.isLoading,
+  ohlcdata: state.indexReducer.ohlcdata
 });
 export default connect(mapStateToProps, {
   getIndicesById,
-  getOhlcChartIndex
+  getOhlcChartIndex,
+  getOhlcIndicesById
 })(IndicesProfile);

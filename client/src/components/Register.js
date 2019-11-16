@@ -162,13 +162,12 @@ export class Register extends Component {
         <div id="registerMainContainer">
           <div id="registerLeftContainer">
             <h1 id="welcome" className="w3-container w3-center w3-animate-left">
-              Features :
+              Benefits of SignUp:
             </h1>
             <p className="w3-container w3-center w3-animate-left">
-              <ul>
-                <li>Can see Detailed Comparisons</li>
-                <li>Download Reports</li>
-                <li>Screener Search</li>
+              <ul id="registerBenefits">
+                <li>Detailed Comparison between Companies</li>
+                <li>Can Download Financial Reports</li>
               </ul>
             </p>
           </div>
@@ -307,7 +306,6 @@ const mapStateToProps = state => ({
   error: state.usersReducer.error
 });
 
-export default connect(
-  mapStateToProps,
-  { createUser, sendOtp, verifyOtp }
-)(Register);
+export default connect(mapStateToProps, { createUser, sendOtp, verifyOtp })(
+  Register
+);
