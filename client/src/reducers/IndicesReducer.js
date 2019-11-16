@@ -1,8 +1,13 @@
-import { GET_INDICES_BYID, OHLC_CHART_INDEX } from "../actions/Types";
+import {
+  GET_INDICES_BYID,
+  OHLC_CHART_INDEX,
+  OHLC_INDICES_DATA
+} from "../actions/Types";
 
 const initialstate = {
   singleIndex: [],
-  ohlcChart: []
+  ohlcChart: [],
+  ohlcdata: []
 };
 
 export default function(state = initialstate, action) {
@@ -11,6 +16,8 @@ export default function(state = initialstate, action) {
       return { ...state, singleIndex: action.payload };
     case OHLC_CHART_INDEX:
       return { ...state, ohlcChart: action.payload };
+    case OHLC_INDICES_DATA:
+      return { ...state, ohlcdata: action.payload };
     default:
       return state;
   }

@@ -119,6 +119,17 @@
     0 17px 50px 0 rgba(231, 226, 226, 0.24);
 }
 
+#registerBenefits {
+  list-style: none;
+  text-align: left;
+}
+
+#registerBenefits li:before {
+  content: "✓";
+  color: #39abf7;
+  transition-delay: 2s;
+}
+
 @media screen and (min-width: 430px) {
   #registerMainContainer {
     grid-template-rows: 675px;

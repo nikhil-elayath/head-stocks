@@ -21,7 +21,12 @@ export class TickerTable extends Component {
           {this.props.tableData.map((current, index) => (
             <tr>
               {this.props.isIndex == true ? (
-                <td>{current.ticker_name ? current.ticker_name : null}</td>
+                <Link
+                  to={{ pathname: "/indexProfile/" + current.ticker_id }}
+                  style={{ textDecoration: "none" }}
+                >
+                  <td>{current.ticker_name ? current.ticker_name : null}</td>
+                </Link>
               ) : (
                 <Link
                   to={{ pathname: "/companydetail/" + current.ticker_id }}

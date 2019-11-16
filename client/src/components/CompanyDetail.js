@@ -45,6 +45,15 @@ export class CompanyDetail extends Component {
                 </>
               ))}
             </div>
+            <div id="company-detail-recommendation">
+              {this.props.company.map(coms => (
+                <>
+                  <h3>
+                    <span>{coms.profile}</span>
+                  </h3>
+                </>
+              ))}
+            </div>
           </div>
         ) : (
           <p />

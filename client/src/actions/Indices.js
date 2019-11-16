@@ -1,8 +1,4 @@
-import {
-  GET_INDICES_BYID,
-  OHLC_CHART_INDEX,
-  GET_ALL_SECTORS_INDEX
-} from "./Types";
+import { GET_INDICES_BYID, OHLC_CHART_INDEX, OHLC_INDICES_DATA } from "./Types";
 import axios from "axios";
 import { startLoading, stopLoading } from "./LoadingAction";
 const url = "http://localhost:2001/api/indicesprofile/";
@@ -22,7 +18,22 @@ export const getIndicesById = index => dispatch => {
     });
 };
 
-// Fetching OHLC Chart for index
+export const getOhlcIndicesById = (index, range) => dispatch => {
+  console.log(range);
+  return axios
+    .post(url + "ohlcdata/" + index, range)
+    .then(res => {
+      dispatch({
+        type: OHLC_INDICES_DATA,
+        payload: res.data.data
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+// Fetching OHLC Chart for company
 export const getOhlcChartIndex = id => dispatch => {
   dispatch(startLoading());
   try {

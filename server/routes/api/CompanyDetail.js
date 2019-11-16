@@ -40,10 +40,22 @@ router.get("/:id", async (req, res, next) => {
       } else {
         Market_cap = last_date["Market Capitalisation"];
       }
-
       compare["last_market_cap"] = Market_cap;
 
+      //fetching last share price
+      if (last_date["Share Price"] == undefined) {
+        share_price = "-";
+      } else {
+        share_price = last_date["Share Price"];
+        share_date = last_date["date"];
+      }
+      compare["last_share_price"] = share_price;
+      compare["share_date"] = share_date;
+
+      //fetching the last date
+
       company_details.push(compare);
+      console.log(company_details);
     });
 
     if (result < 0) {

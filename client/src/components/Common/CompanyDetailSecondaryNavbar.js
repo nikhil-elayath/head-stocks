@@ -40,6 +40,8 @@ export class CompanyDetailSecondaryNavbar extends Component {
                       </div>
                       <div id="secondary-navbar-ticker_name">
                         <p>{coms.ticker_name}</p>
+                        <p>{coms.last_market_cap}</p>
+                        <p id="last_date"> closed price:{coms.share_date}</p>
                       </div>
                     </div>
 
