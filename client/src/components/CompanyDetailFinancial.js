@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import {
-  // getCompanyDetailById,
-  getCompanyDatesById
-} from "../actions/CompanyDetail";
 import { connect } from "react-redux";
 import SecondaryNavbar from "../components/Common/CompanyDetailSecondaryNavbar";
 import "../styles/CompanyDetailFinancial.css";
+// importing action
+import { getCompanyDatesById } from "../actions/CompanyDetail";
+// images for the sidebar
 import balanceSheet from "./bl.png";
 import cashFlow from "./cf.png";
 import profitloss from "./pl.png";
@@ -23,7 +22,6 @@ export class CompanyDetailFinancial extends Component {
     // getting the id from the params
     const id = this.props.match.params.id;
     // PASSING THE ID TO THE ACTION
-    // this.props.getCompanyDetailById(id);
     this.props.getCompanyDatesById(id);
   }
   render() {
@@ -399,23 +397,28 @@ export class CompanyDetailFinancial extends Component {
                         <td>{date["Liabilities to Equity Ratio"]}</td>
                       ) : (
                         <td>-</td>
-                      )}{date["Debt to Assets Ratio"] ? (
+                      )}
+                      {date["Debt to Assets Ratio"] ? (
                         <td>{date["Debt to Assets Ratio"]}</td>
                       ) : (
                         <td>-</td>
-                      )}{date["Current Ratio"] ? (
+                      )}
+                      {date["Current Ratio"] ? (
                         <td>{date["Current Ratio"]}</td>
                       ) : (
                         <td>-</td>
-                      )}{date["EV / EBITDA"] ? (
+                      )}
+                      {date["EV / EBITDA"] ? (
                         <td>{date["EV / EBITDA"]}</td>
                       ) : (
                         <td>-</td>
-                      )}{date["EV / Sales"] ? (
+                      )}
+                      {date["EV / Sales"] ? (
                         <td>{date["EV / Sales"]}</td>
                       ) : (
                         <td>-</td>
-                      )}{date["Operating Income / EV"] ? (
+                      )}
+                      {date["Operating Income / EV"] ? (
                         <td>{date["Operating Income / EV"]}</td>
                       ) : (
                         <td>-</td>
@@ -433,10 +436,8 @@ export class CompanyDetailFinancial extends Component {
 }
 
 const mapStateToProps = state => ({
-  // company: state.CompanyDetailReducer.company,
   dates: state.CompanyDetailReducer.dates
 });
 export default connect(mapStateToProps, {
-  // getCompanyDetailById ,
   getCompanyDatesById
 })(CompanyDetailFinancial);
