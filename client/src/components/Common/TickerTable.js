@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 
 export class TickerTable extends Component {
   render() {
-    console.log(this.props.isIndex);
-    console.log(this.props.tableData);
     return (
       <div className="table__container">
         <table className="ticker__table">

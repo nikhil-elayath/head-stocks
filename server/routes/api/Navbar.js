@@ -17,7 +17,7 @@ router.post("/search", async (req, res) => {
     { ticker_name: 1, ticker_id: 1, industry: 1, _id: 0 }
   );
 
-  if (result < 0) {
+  if (result.length == 0) {
     res.status(400).json({
       status: 400,
       data: result,
@@ -32,38 +32,37 @@ router.post("/search", async (req, res) => {
   });
 });
 
-
 //updates the company data - Harshal
 
 // file system - to store and read the uploaded file
-const fs = require("fs");
-// to accept the uploaded file from the frontend
-const multer = require("multer");
-// to access the values stored in the file
-const csv = require("csv-parse");
-// converts csv data to independent string values 
-const csvtojson = require("csvtojson");
-// uploads the file to the directory
-var upload= multer({dest: 'uploads/'})
-router.post("/updateCompany", upload.single('file'), async (req, res) => {
-  // console.log(req.file)
-  
-  var file = req.file
-  fs.createReadStream(file.path).pipe(csv()).on('data', function (data) {
-    var i;
-    for (i = 0; i < data.length; i++) {
-    console.log(i);
-      console.log(csvtojson(data).params[i])
-    }
+// const fs = require("fs");
+// // to accept the uploaded file from the frontend
+// const multer = require("multer");
+// // to access the values stored in the file
+// const csv = require("csv-parse");
+// // converts csv data to independent string values
+// const csvtojson = require("csvtojson");
+// // uploads the file to the directory
+// var upload= multer({dest: 'uploads/'})
+// router.post("/updateCompany", upload.single('file'), async (req, res) => {
+//   // console.log(req.file)
 
-    // csvData = data.toString('utf8');
-    // console.log(csvData);
-    // console.log(data[0])
-    // console.log(data[1])
-    // console.log(file.path)
+//   var file = req.file
+//   fs.createReadStream(file.path).pipe(csv()).on('data', function (data) {
+//     var i;
+//     for (i = 0; i < data.length; i++) {
+//     console.log(i);
+//       console.log(csvtojson(data).params[i])
+//     }
 
-  })
-  
-});
+//     // csvData = data.toString('utf8');
+//     // console.log(csvData);
+//     // console.log(data[0])
+//     // console.log(data[1])
+//     // console.log(file.path)
+
+//   })
+
+// });
 
 module.exports = router;

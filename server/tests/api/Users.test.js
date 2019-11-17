@@ -16,28 +16,28 @@ describe("Testing Users API", () => {
   });
 
   // To create a new user and return a status of 200
-  // it("(Create a new user) should return a status of 200 and a success message on creation of a new user", done => {
-  //   let data = {
-  //     name: "Piyush",
-  //     email: "guptapiyush@gmail.com",
-  //     phone: "7418529635",
-  //     password: "piyush",
-  //     isAdmin: false
-  //   };
-  //   let payload = JSON.stringify(data);
-  //   console.log(payload);
-  //   request(app)
-  //     .post("/api/users/signup")
-  //     .send(payload)
-  //     .set("Content-type", "application/json")
-  //     .then(response => {
-  //       console.log("response.body", response);
-  //       expect(response.status).toBe(200);
-  //       expect(response.body).toEqual(expect.any(Object));
-  //       expect(response.body.message).toBe("Created One user Successfully");
-  //       done();
-  //     });
-  // });
+  it("(Create a new user) should return a status of 200 and a success message on creation of a new user", done => {
+    let data = {
+      name: "Piyushgvb",
+      email: "guptapiyush@gmail.com",
+      phone: "7418529635",
+      password: "piyush",
+      isAdmin: false
+    };
+    let payload = JSON.stringify(data);
+    console.log(payload);
+    request(app)
+      .post("/api/users/signup")
+      .send(payload)
+      .set("Content-type", "application/json")
+      .then(response => {
+        console.log("response.body", response);
+        expect(response.status).toBe(200);
+        expect(response.body).toEqual(expect.any(Object));
+        expect(response.body.message).toBe("Created One user Successfully");
+        done();
+      });
+  });
 
   // Successfull login should return status of 200
   it("(Successful Login) should return a status of 200  when user logs in successfully", done => {
@@ -330,9 +330,9 @@ describe("Testing Users API", () => {
       .send(payload)
       .set("Content-type", "application/json")
       .then(response => {
-        expect(response.statusCode).toBe(200);
+        expect(response.statusCode).toBe(400);
         expect(response.body).toEqual(expect.any(Object));
-        expect(response.body.message).toBe("Email verified");
+        expect(response.body.message).toBe("Invalid OTP.");
         done();
       });
   });
