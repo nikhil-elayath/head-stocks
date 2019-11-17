@@ -5,7 +5,12 @@ import {
   GET_SIMILAR_TABLE,
   COMPANY_DATES_BY_ID,
   GET_DROP_DOWN,
-  GET_GAUGE_COMPANY1
+  GET_GAUGE_COMPANY1,
+  GET_GAUGE_COMPANY2,
+  ASSETS_COMPANY1,
+  ASSETS_COMPANY2,
+  MONTECARLO_COMPANY1,
+  MONTECARLO_COMPANY2
 } from "../actions/Types";
 
 const initialState = {
@@ -15,7 +20,12 @@ const initialState = {
   similar_company: [],
   dates: [],
   drop_down_data: [],
-  gauge1: []
+  gauge1: [],
+  gauge2: [],
+  monteCarlo1: [],
+  monteCarlo2: [],
+  assets1: [],
+  assets2: []
 };
 
 export default function(state = initialState, action) {
@@ -49,6 +59,16 @@ export default function(state = initialState, action) {
       return { ...state, ohlc_chart: action.payload };
     case GET_GAUGE_COMPANY1:
       return { ...state, gauge1: action.payload };
+    case GET_GAUGE_COMPANY2:
+      return { ...state, gauge2: action.payload };
+    case MONTECARLO_COMPANY1:
+      return { ...state, monteCarlo1: action.payload };
+    case MONTECARLO_COMPANY2:
+      return { ...state, monteCarlo2: action.payload };
+    case ASSETS_COMPANY1:
+      return { ...state, assets1: action.payload };
+    case ASSETS_COMPANY2:
+      return { ...state, assets2: action.payload };
     default:
       return state;
   }

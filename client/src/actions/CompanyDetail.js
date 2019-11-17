@@ -5,7 +5,12 @@ import {
   OHLC_CHART,
   GET_SIMILAR_TABLE,
   GET_DROP_DOWN,
-  GET_GAUGE_COMPANY1
+  GET_GAUGE_COMPANY1,
+  GET_GAUGE_COMPANY2,
+  MONTECARLO_COMPANY1,
+  MONTECARLO_COMPANY2,
+  ASSETS_COMPANY1,
+  ASSETS_COMPANY2
 } from "./Types";
 import { startLoading, stopLoading } from "./LoadingAction";
 import axios from "axios";
@@ -141,7 +146,28 @@ export const getCompanyDatesById = id => dispatch => {
   }
 };
 
+// Gauge for Company1
 export const getGaugeCompany1 = ticker => dispatch => {
+  dispatch(startLoading());
+  try {
+    return axios
+      .get("http://localhost:5000/gaugeCompany1/" + ticker)
+      .then(res => {
+        dispatch(stopLoading());
+        dispatch({
+          type: GET_GAUGE_COMPANY1,
+
+          payload: res.data
+        });
+      });
+  } catch (err) {
+    dispatch(startLoading());
+    console.log(err);
+  }
+};
+
+// gauge fro company2
+export const getGaugeCompany2 = ticker => dispatch => {
   dispatch(startLoading());
   try {
     return axios
@@ -149,7 +175,87 @@ export const getGaugeCompany1 = ticker => dispatch => {
       .then(res => {
         dispatch(stopLoading());
         dispatch({
-          type: GET_GAUGE_COMPANY1,
+          type: GET_GAUGE_COMPANY2,
+
+          payload: res.data
+        });
+      });
+  } catch (err) {
+    dispatch(startLoading());
+    console.log(err);
+  }
+};
+
+// Montre Carlo Prediction for Company1
+export const getmonteCarloCompany1 = ticker => dispatch => {
+  dispatch(startLoading());
+  try {
+    return axios
+      .get("http://localhost:5000/monteCarloCompany1/" + ticker)
+      .then(res => {
+        dispatch(stopLoading());
+        dispatch({
+          type: MONTECARLO_COMPANY1,
+
+          payload: res.data
+        });
+      });
+  } catch (err) {
+    dispatch(startLoading());
+    console.log(err);
+  }
+};
+
+// Monte Carlo Prediction for Company2
+export const getmonteCarloCompany2 = ticker => dispatch => {
+  dispatch(startLoading());
+  try {
+    return axios
+      .get("http://localhost:5000/monteCarloCompany2/" + ticker)
+      .then(res => {
+        dispatch(stopLoading());
+        dispatch({
+          type: MONTECARLO_COMPANY1,
+
+          payload: res.data
+        });
+      });
+  } catch (err) {
+    dispatch(startLoading());
+    console.log(err);
+  }
+};
+
+// Assets and Liabilities Graph for Company1
+export const getAssetsCompany1 = ticker => dispatch => {
+  dispatch(startLoading());
+  try {
+    return axios
+      .get("http://localhost:5000/assetsCompany1/" + ticker)
+      .then(res => {
+        dispatch(stopLoading());
+        dispatch({
+          type: ASSETS_COMPANY1,
+
+          payload: res.data
+        });
+      });
+  } catch (err) {
+    dispatch(startLoading());
+    console.log(err);
+  }
+};
+
+// Assets and Liabilities Graph for Company1
+export const getAssetsCompany2 = ticker => dispatch => {
+  dispatch(startLoading());
+  try {
+    return axios
+      .get("http://localhost:5000/assetsCompany2/" + ticker)
+      .then(res => {
+        dispatch(stopLoading());
+        dispatch({
+          type: ASSETS_COMPANY2,
 
           payload: res.data
         });
