@@ -195,7 +195,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                           id="downloadButton"
                           onClick={async () => {
                             fetch(
-                              "http://localhost:2001/api/companydetail/indicatorsdata/" +
+                              "http://localhost:2001/api/companydetail/download/" +
                                 coms.ticker_name
                             ).then(response => {
                               response.blob().then(blob => {

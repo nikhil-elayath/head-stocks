@@ -369,91 +369,18 @@ router.post("/dropdown", async (req, res, next) => {
   }
 });
 
-//download[piyush]
-const pg = require("pg-promise")();
-const db = pg("postgres://postgres:123456@localhost:5432/headstocks");
-
-//Converts JSON data To CSV
-function JSONToCSVConvertor(JSONData, ShowLabel) {
-  //If JSONData is not an object then JSON.parse will parse the JSON string in an Object
-  var arrData = typeof JSONData != "object" ? JSON.parse(JSONData) : JSONData;
-  var CSV = "";
-  //This condition will generate the Label/Header
-  if (ShowLabel) {
-    var row = "";
-
-    //This loop will extract the label from 1st index of on array
-    for (var index in arrData[0]) {
-      //Now convert each value to string and comma-seprated
-      row += index + ",";
-    }
-    row = row.slice(0, -1);
-    //append Label row with line break
-    CSV += row + "\r\n";
-  }
-
-  //1st loop is to extract each row
-  for (var i = 0; i < arrData.length; i++) {
-    var row = "";
-    //2nd loop will extract each column and convert it in string comma-seprated
-    for (var index in arrData[i]) {
-      row += arrData[i][index] + ",";
-    }
-    row.slice(0, row.length - 1);
-    //add a line break after each row
-    CSV += row + "\r\n";
-  }
-
-  if (CSV == "") {
-    return "Invalid data";
-  }
-
-  return CSV;
-}
-
-//get indicatornames and values for a specific ticker
-router.get("/indicatorsdata/:ticker_name", async (req, res, next) => {
-  try {
-    let ticker_name = req.params.ticker_name;
-    const result = await db.any(
-      `select * from simfin where ticker='${ticker_name}'`
-    );
-    if (!result)
-      return res.status(404).json({
-        message: "No record found"
-      });
-    else {
-      var jsonObject = JSON.stringify(result);
-      // Convert JSON to CSV
-      let csvdata = JSONToCSVConvertor(jsonObject, true);
-
-      res.send(csvdata);
-    }
-  } catch (err) {
-    next(err);
-    console.log(err);
-  }
-});
-router.get("/ohlc/:ticker_name", async (req, res, next) => {
-  try {
-    let ticker_name = req.params.ticker_name;
-    const result = await db.any(
-      `select ticker,dates,opening,high,low,closing,adjclose,volume from yahoodata where ticker='${ticker_name}'`
-    );
-    if (!result)
-      return res.status(404).json({
-        message: "No record found"
-      });
-    else {
-      var jsonObject = JSON.stringify(result);
-      // Convert JSON to CSV
-      let csvdata = JSONToCSVConvertor(jsonObject, true);
-      res.send(csvdata);
-    }
-  } catch (err) {
-    next(err);
-    console.log(err);
-  }
-});
+//download
+// router.get("/download/:ticker_name", async (req, res, next) => {
+//   const ticker_name = req.params.ticker_name;
+//   res.download(
+//     path.join(
+//       __dirname,
+//       "../../db-init/stock-data/yahoo-data/company/" + ticker_name + ".csv"
+//     ),
+//     function(err) {
+//       console.log(err);
+//     }
+//   );
+// });
 
 module.exports = router;
