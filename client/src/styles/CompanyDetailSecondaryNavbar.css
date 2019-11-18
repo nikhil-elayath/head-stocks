@@ -33,7 +33,7 @@
 
 #abc #volatility {
   visibility: hidden;
-  width: 300px;
+  width: 168px;
   background-color: #2c3e50;
   color: #fff;
   text-align: justify;
@@ -183,9 +183,33 @@
   #secondary-navbar-img-name-container {
     grid-area: 1/4;
     grid-column: 1/4;
+    justify-content: center;
   }
   #bla {
     grid-area: 3/4;
     grid-column: 1/4;
+  }
+
+  #secondary-nav-values {
+    justify-content: center;
+  }
+
+  #voltality {
+    margin: 0px;
+    padding: 0px 10px 0px 30px;
+  }
+
+  #bla {
+    padding: 0px 70px 0px 0px;
+  }
+
+  #comapany-detail-overview-li {
+    grid-area: a;
+    margin: 0px 12px 0px 0px;
+  }
+
+  #company-detail-financial-li {
+    grid-area: b;
+    margin: 0px 12px 0px 0px;
   }
 }

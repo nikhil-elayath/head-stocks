@@ -106,22 +106,24 @@ export class CompanyDetailAnalysis extends Component {
         </div>
         <div id="analysis-financial-positional-grid-container">
           <div id="analysis-financial-positional-1">
-            <iframe
-              id="assets1"
-              src={this.props.assets1}
-              style={{
-                width: "500px",
-                height: "500px",
-                outline: "none",
-                border: "none"
-              }}
-            />
+            <div id="stocks_assests">
+              <iframe
+                id="assets1"
+                src={this.props.assets1}
+                style={{
+                  width: "650px",
+                  height: "500px",
+                  outline: "none",
+                  border: "none"
+                }}
+              />
+            </div>
           </div>
           <div id="analysis-financial-positional-2">
             <iframe
               src={this.props.assets2}
               style={{
-                width: "500px",
+                width: "650px",
                 height: "500px",
                 outline: "none",
                 border: "none"

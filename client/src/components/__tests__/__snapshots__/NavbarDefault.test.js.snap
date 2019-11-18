@@ -55,6 +55,7 @@ exports[`Testing Navbar Component should mount the component 1`] = `
   </div>
   <div
     className="navbarSearchBox"
+    id="navbarSearchBoxDiv"
   >
     <span
       className="navbarSearchSpan"

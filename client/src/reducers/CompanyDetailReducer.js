@@ -10,7 +10,8 @@ import {
   ASSETS_COMPANY1,
   ASSETS_COMPANY2,
   MONTECARLO_COMPANY1,
-  MONTECARLO_COMPANY2
+  MONTECARLO_COMPANY2,
+  VOLATILITY
 } from "../actions/Types";
 
 const initialState = {
@@ -25,7 +26,8 @@ const initialState = {
   monteCarlo1: [],
   monteCarlo2: [],
   assets1: [],
-  assets2: []
+  assets2: [],
+  voltality: []
 };
 
 export default function(state = initialState, action) {
@@ -69,6 +71,8 @@ export default function(state = initialState, action) {
       return { ...state, assets1: action.payload };
     case ASSETS_COMPANY2:
       return { ...state, assets2: action.payload };
+    case VOLATILITY:
+      return { ...state, voltality: action.payload };
     default:
       return state;
   }
