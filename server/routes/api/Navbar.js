@@ -5,31 +5,35 @@ const stocksData = require("../../model/stocksModel");
 //gets the search results from database - Harshal
 router.post("/search", async (req, res) => {
   // selecting the database "stocks
+  // try {
+    let result = await stocksData.find(
+      //  search the results in two different attributes
+      {
+        $or: [
+          { industry: req.body.searchInput },
+          { ticker_name: { $regex: req.body.searchInput, $options: "i" } }
+        ]
+      },
+      { ticker_name: 1, ticker_id: 1, industry: 1, _id: 0 }
+    );
 
-  let result = await stocksData.find(
-    //  search the results in two different attributes
-    {
-      $or: [
-        { industry: req.body.searchInput },
-        { ticker_name: { $regex: req.body.searchInput, $options: "i" } }
-      ]
-    },
-    { ticker_name: 1, ticker_id: 1, industry: 1, _id: 0 }
-  );
-
-  if (result.length == 0) {
-    res.status(400).json({
-      status: 400,
-      data: result,
-      message: "No Data Found"
-    });
-  }
-  // If successfully executes then sends this response to the search action
-  res.status(200).json({
-    status: 200,
-    data: result,
-    message: "Retrieved Search Result successfully"
-  });
+    if (result.length == 0) {
+       res.status(400).json({
+        status: 400,
+        data: result,
+        message: "No Data Found"
+      });
+    } else {
+      // If successfully executes then sends this response to the search action
+       res.status(200).json({
+        status: 200,
+        data: result,
+        message: "Retrieved Search Result successfully"
+      });
+    }
+  // } catch (err) {
+  //   next(err);
+  // }
 });
 
 //updates the company data - Harshal

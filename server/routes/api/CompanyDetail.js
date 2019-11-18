@@ -189,12 +189,12 @@ router.get("/financial/:id", async (req, res, next) => {
       function(err, result) {
         // console.log("start");
         // console.log("end");
-        if (!result) {
+        if (result.length == 0) {
           if (err) console.log(err);
           return res.status(400).json({
             status: 400,
             data: result,
-            message: "Retrieved dates Successfully"
+            message: "No Dates Found"
           });
         } else {
           if (err) throw err;
@@ -295,10 +295,10 @@ router.post("/analysis", async (req, res, next) => {
         last_date["Avg Basic Shares Outstanding"];
       compare.tickerValues["ratio"] = ratio.toFixed(3).toString();
 
-      test =(last_date['Net Profit'] -
-      last_date['Dividends']) /
-    last_date['Avg Basic Shares Outstanding']
-    console.log("test", test)
+      test =
+        (last_date["Net Profit"] - last_date["Dividends"]) /
+        last_date["Avg Basic Shares Outstanding"];
+      console.log("test", test);
 
       // for current share price
       while (last_date["Share Price"] == undefined) {
