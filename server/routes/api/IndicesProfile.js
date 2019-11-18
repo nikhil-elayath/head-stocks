@@ -117,7 +117,8 @@ router.post("/ohlcdata/:id", async (req, res, next) => {
       name["date"] = ticker_dates.date;
       index.push(name);
     });
-    index = index.reverse();
+    var index1=[]
+    index1 = index.reverse();
     if (result.length == 0) {
       res.status(400).json({
         status: 400,
@@ -127,7 +128,7 @@ router.post("/ohlcdata/:id", async (req, res, next) => {
     } else {
       res.status(200).json({
         status: 200,
-        data: [index],
+        data: [index1],
         message: "Retrieved Data successfully"
       });
     }

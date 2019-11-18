@@ -129,12 +129,13 @@ router.get("/gainers-and-losers/:sector", async (req, res) => {
     });
 
     var sorted = gainers;
-    sorted = sorted.sort(function(obj1, obj2) {
+    var sorted1 = [];
+    sorted1 = sorted.sort(function(obj1, obj2) {
       return (
         obj2.tickerValues.change_percent - obj1.tickerValues.change_percent
       );
     });
-    var losers = sorted;
+    var losers = sorted1;
     var reverse = [];
     for (i = losers.length - 1; i > losers.length - 11; i--) {
       reverse.push(losers[i]);

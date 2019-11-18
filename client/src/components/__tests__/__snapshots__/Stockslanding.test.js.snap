@@ -15,7 +15,20 @@ exports[`Testing Stocks Component should mount the component 1`] = `
         onChange={[Function]}
         type="text"
         value="Basic Materials"
-      />
+      >
+        <option
+          id="sector0"
+          name="choice"
+        >
+          Technology
+        </option>
+        <option
+          id="sector1"
+          name="choice"
+        >
+          Healthcare
+        </option>
+      </select>
       <select
         className="stocks_dropdown"
         id="stocks_dropdown_industries"
@@ -28,6 +41,18 @@ exports[`Testing Stocks Component should mount the component 1`] = `
           name="choice"
         >
           Select an Industry
+        </option>
+        <option
+          id="industry0"
+          name="choice"
+        >
+          Compauter H/w
+        </option>
+        <option
+          id="industry1"
+          name="choice"
+        >
+          online Media
         </option>
       </select>
     </div>
