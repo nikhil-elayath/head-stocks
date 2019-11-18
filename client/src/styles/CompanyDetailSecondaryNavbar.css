@@ -11,7 +11,7 @@
   box-shadow: 0px 4px 6px 0px #cacaca;
 }
 #company-details-tab-container {
-  padding: 0px 0px 0px 10px;
+  padding: 0px 50px 0px 50px;
   /* grid-template-rows: 1fr 1fr; */
   display: grid;
   grid-template-areas: "overview  analysis";
@@ -23,20 +23,24 @@
 }
 #bla {
   grid-area: analysis;
+  margin: 0px;
+  padding: 30px 0px 0px 0px;
 }
 #secondary-navbar-bla {
-  margin: 40px 150px 0px 0px;
+  margin: 0px;
+  padding: 0px;
 }
 
 #abc #volatility {
   visibility: hidden;
   width: 300px;
-  background-color: #39abf7;
+  background-color: #2c3e50;
   color: #fff;
   text-align: justify;
   border-radius: 6px;
   padding: 15px 15px 15px 15px;
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 400;
 
   /* Position the tooltip */
   position: absolute;
@@ -51,14 +55,15 @@
 }
 
 #abc {
-  margin: 0px 0px 0px 10px;
+  margin: 0px;
+  padding: 0px;
 }
 /* child within parent container */
 /* grid within grid  */
 
 /* tabs */
 #company-detail-content-container {
-  /* padding: 10px 10px 10px 10px; */
+  padding: 20px 0px 0px 0px;
   grid-template-rows: 1fr;
   display: flex;
   grid-template-areas: "a b c";
@@ -73,12 +78,11 @@
 
 #comapany-detail-overview-li {
   grid-area: a;
-  /* color: red; */
-  /* margin: 50px 50px 50px 50px; */
+  margin: 0px 50px 0px 0px;
 }
 #company-detail-financial-li {
   grid-area: b;
-  /* color: yellowgreen; */
+  margin: 0px 50px 0px 0px;
 }
 
 #secondary-download-button {
@@ -132,11 +136,35 @@
 #kk {
   font-size: 12px;
   color: #707070;
+  margin: 0px;
+  padding: 0px;
 }
+
+#voltality_tooltip {
+  display: flex;
+  margin: 0px;
+  padding: 0px;
+}
+
+#voltality {
+  margin: 0px;
+  padding: 0px 0px 0px 60px;
+}
+
+#voltality p {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+#secondary-nav-values {
+  display: flex;
+  justify-content: flex-end;
+}
+
 /* FOR MOBILE  */
 @media only screen and (max-width: 426px) {
   #company-details-tab-container {
-    padding: 0px 0px 0px 10px;
+    padding: 0px 20px 0px 20px;
     /* grid-template-rows: 2fr; */
     display: grid;
     grid-template-areas:
