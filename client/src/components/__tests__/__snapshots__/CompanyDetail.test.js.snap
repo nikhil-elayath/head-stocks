@@ -53,7 +53,8 @@ exports[`Testing Company Detail Component should mount the component 1`] = `
       id="company-detail-recommendation"
     >
       <img
-        src="data:image/jpeg;base64,gauge.png"
+        id="img_gauge"
+        src="data:image/jpeg;base64,undefined"
       />
     </div>
   </div>

@@ -288,7 +288,7 @@ export class Register extends Component {
                     </button>
                   </>
                 ) : (
-                  <button onClick={this.sendOTP} id="resetPasswordButton">
+                  <button onClick={this.sendOTP} id="#registerFormButton">
                     Proceed
                   </button>
                 )}
