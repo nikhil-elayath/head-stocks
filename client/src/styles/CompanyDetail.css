@@ -31,14 +31,14 @@
 /* FOR DESKTOP  */
 @media screen and (min-width: 480px) {
   #company-detail-grid-container {
-    padding: 20px;
+    padding: 20px 50px 20px 50px;
     grid-template-rows: 1fr;
     display: grid;
     grid-template-areas: "profile recommendation";
     /* "chart chart"; */
     grid-template-columns: 1fr 1fr;
     /* overflow-x: scroll; */
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
   }
 
   #company-detail-profile > h3 {
@@ -61,7 +61,8 @@
 
   #company-detail-recommendation {
     grid-area: recommendation;
-    height: 102px;
+    text-align: center;
+    /* height: 102px; */
     /* border: 2px solid black; */
   }
 

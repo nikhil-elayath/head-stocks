@@ -14,7 +14,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
   state = {
     overview: true,
     financial: false,
-    analysis: false,
+    analysis: false
   };
   render() {
     this.props.company
@@ -45,42 +45,41 @@ export class CompanyDetailSecondaryNavbar extends Component {
 
                         <div id="secondary-navbar-ticker_name">
                           <p>{coms.ticker_name}</p>
-                          <p
-                            id="#indexClose
-"
-                          >
+                          <p id="#indexClose">
                             {coms.last_share_price}
 
                             <sub id="secondary-navbar-sub">USD</sub>
                           </p>
                           <p id="last_date">
-                            Closed price:(
+                            CLOSE (
                             {new Date(coms.share_date).toLocaleDateString(
                               "en-IN",
                               {
                                 month: "short",
                                 day: "2-digit",
-                                year: "numeric",
+                                year: "numeric"
                               }
                             )}
                             )
                           </p>
-                          <div id="voltality">
+                          {/* <div id="voltality">
                             <p> 123456 </p>
-                            <div id="kk">Volatility </div>
-                            <div id="abc">
-                              <i class="fa fa-question-circle" />
-                              <span id="volatility">
-                                Volatility is a statistical measure of the
-                                dispersion of returns for a given security or
-                                market index. In most cases, the higher the
-                                volatility, the riskier the security. Volatility
-                                is often measured as either the standard
-                                deviation or variance between returns from that
-                                same security or market index.
-                              </span>
+                            <div id="voltality_tooltip">
+                              <div id="kk">VOLATILITY </div>
+                              <div id="abc">
+                                <i class="fa fa-question-circle" />
+                                <span id="volatility">
+                                  Volatility is a statistical measure of the
+                                  dispersion of returns for a given security or
+                                  market index. In most cases, the higher the
+                                  volatility, the riskier the security.
+                                  Volatility is often measured as either the
+                                  standard deviation or variance between returns
+                                  from that same security or market index.
+                                </span>
+                              </div>
                             </div>
-                          </div>
+                          </div> */}
                         </div>
                         <div />
                       </div>
@@ -89,7 +88,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                           className="company-link"
                           // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
                           to={{
-                            pathname: "/companydetail/" + coms.id,
+                            pathname: "/companydetail/" + coms.id
                           }}
                         >
                           <span
@@ -99,7 +98,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                               this.setState({
                                 overview: true,
                                 financial: false,
-                                analysis: false,
+                                analysis: false
                               });
                               console.log("Overview clicked");
                             }}
@@ -124,7 +123,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                             to={{
                               // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
 
-                              pathname: "/financial/" + coms.id,
+                              pathname: "/financial/" + coms.id
                             }}
                           >
                             <span
@@ -133,7 +132,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                                 this.setState({
                                   overview: false,
                                   financial: true,
-                                  analysis: false,
+                                  analysis: false
                                 });
                               }}
                             >
@@ -155,7 +154,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                           <Link
                             className="company-link"
                             to={{
-                              pathname: "/analysis/" + coms.id,
+                              pathname: "/analysis/" + coms.id
                             }}
                           >
                             <span
@@ -164,7 +163,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                                 this.setState({
                                   overview: false,
                                   financial: false,
-                                  analysis: true,
+                                  analysis: true
                                 });
                               }}
                             >
@@ -182,17 +181,40 @@ export class CompanyDetailSecondaryNavbar extends Component {
                           </Link>
                         </div>
                       </ul>
-                      <div id="secondary-nav-values">values</div>
+                      <div id="secondary-nav-values">
+                        <div id="voltality">
+                          <p> 123456 </p>
+                          <div id="voltality_tooltip">
+                            <div id="kk">VOLATILITY </div>
+                            <div id="abc">
+                              <i class="fa fa-question-circle" />
+                              <span id="volatility">
+                                Volatility is a statistical measure of the
+                                dispersion of returns for a given security or
+                                market index. In most cases, the higher the
+                                volatility, the riskier the security. Volatility
+                                is often measured as either the standard
+                                deviation or variance between returns from that
+                                same security or market index.
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        {/* ------------------------------------------------------------------ */}
+                        <div id="voltality">
+                          <p> 123456M </p>
+                          <div id="kk">MARKET CAP </div>
+                        </div>
+                        {/* --------------------------------------------------------------------------- */}
+                      </div>
                     </>
 
                     <div id="bla">
                       <div id="secondary-navbar-bla">
                         {/* second grid of secondaru navbar */}
-                        <div id="secondary-download-button">
-                          <button id="downloadButton">
-                            <i class="fa fa-download" /> Download
-                          </button>
-                        </div>
+                        <button id="downloadButton">
+                          <i class="fa fa-download" /> Download
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -209,7 +231,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
   }
 }
 const mapStateToProps = state => ({
-  company: state.CompanyDetailReducer.company,
+  company: state.CompanyDetailReducer.company
 });
 export default connect(mapStateToProps, { getCompanyDetailById })(
   CompanyDetailSecondaryNavbar
