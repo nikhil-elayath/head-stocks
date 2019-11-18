@@ -5,54 +5,6 @@ import { CompanyDetailFinancial } from "../CompanyDetailFinancial";
 
 const getCompanyDatesById = jest.fn();
 
-// const balancesheet = [
-//   {
-//     sector: 'technology',
-//     industry: 'Computer',
-//     employees: '123456',
-//     profile: 'profile',
-//     cashequivalents: '123',
-//     currentassests: '123',
-//     totalassests: '123',
-//     accountpayable: '123',
-//     receivables: '123',
-//     totalliabilities: '123',
-//     currentliabilities: '123',
-//     preferredequity: '123',
-//     equitybeforeminorities: '123',
-//     minorityinterests: '123',
-//     noncurrentliabilities: '123',
-//     netincome: '123',
-//     revenues: '123',
-//     FOIT: '123',
-//     netprofit: '123',
-//     RandD: '123',
-//     incometax: '123',
-//     currentliabilities: '123',
-//     preferredequity: '123',
-//     equitybeforeminorities: '123',
-//     minorityinterests: '123',
-//     noncurrentliabilities: '123',
-//     netincome: '123',
-//     revenues: '123',
-//     FOIT: '123',
-//     netprofit: '123',
-//     RandD: '123',
-//     incometax: '123',
-//     currentliabilities: '123',
-//     preferredequity: '123'
-//   }
-// ]
-// const company=[]
-// const financialsText = [
-//   {
-//     table1: "Balance Sheet",
-//     table2: "Cash Flow",
-//     table3: "Profit Ans Loss",
-//     table4: "Ratios"
-//    }
-// ];
-
 const wrapper = shallow(
   <CompanyDetailFinancial
     getCompanyDatesById={getCompanyDatesById}

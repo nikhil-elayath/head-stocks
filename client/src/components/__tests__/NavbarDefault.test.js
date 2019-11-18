@@ -2,23 +2,18 @@ import React from "react";
 import { NavbarDefault } from "../NavbarDefault";
 import { shallow, mount } from "enzyme";
 
+// import renderer from 'react-test-renderer';
+// import { Link } from 'react-router-dom';
+// import { StaticRouter } from 'react-router'
+
 const navbar = jest.fn();
 const searchContent = jest.fn();
-const navbarText = [
-  {
-    name1: "HEADSTOCKS",
-    name2: "STOCKS",
-    option1: "Login",
-    option2: "Stocks",
-    search1: "Search Results"
-  }
-];
+
 
 const wrapper = shallow(
   <NavbarDefault
     navbar={navbar}
     searchContent={searchContent}
-    navbarText={navbarText}
   />
 );
 
@@ -33,6 +28,9 @@ describe("Testing Navbar Component", () => {
 
   it("should have a division with name navbarID", () => {
     expect(wrapper.find("#navbarID")).toBeTruthy();
+  });
+  it("should have a division with name navbarSearchBoxDiv", () => {
+    expect(wrapper.find("#navbarSearchBoxDiv")).toBeTruthy();
   });
   it("should display the market cap", () => {
     expect(wrapper.find("#navbarLogoText1").text()).toBe("HEADSTOCKS");
@@ -65,10 +63,7 @@ describe("Testing Navbar Component", () => {
     expect(wrapper.state().stocks).toBe(false);
     expect(wrapper.state().login).toBe(false);
   });
-  // it("should simulate button click on Cancel button click ", () => {
-  //   wrapper.find("#navbarSearchCancelClick").simulate("click");
-  //   expect(wrapper.state().searchInputChanged).toBe(true);
-  // });
+  
   it("checks for on Search function to be called", () => {
     const e = { preventDefault: () => {} };
     jest.spyOn(e, "preventDefault");
@@ -84,6 +79,10 @@ describe("Testing Navbar Component", () => {
     let onSearch = jest.spyOn(wrapper.instance(), "onSearch");
     expect(onSearch).toBeTruthy();
   });
+  it("should check for presense of my hamburg function function", () => {
+    let myhamburgfunction = jest.spyOn(wrapper.instance(), "myhamburgfunction");
+    expect(myhamburgfunction).toBeTruthy();
+  });
 
   it("should check for presense of OnChange function", () => {
     let OnChange = jest.spyOn(wrapper.instance(), "OnChange");
@@ -97,6 +96,27 @@ describe("Testing Navbar Component", () => {
         .props().placeholder
     ).toBe("Search for ticker");
   });
+
+
+  // it("should simulate button click on Cancel button click ", () => {
+  //   wrapper.find("#navbarSearchCancelClick").simulate("click");
+  //   expect(wrapper.state().searchInputChanged).toBe(true);
+  // });
+
+
+  // Does Not Affect the Coverage
+  // id="linknavbar1"
+  // test('Link matches snapshot', () => {
+  //   const component = renderer.create(
+  //     <StaticRouter location="#linknavbar1" navbar={navbar}>
+  //       <Link to="/companydetail/9" />
+  //     </StaticRouter>
+  //   );
+  //   let tree = component.toJSON();
+  //   expect(tree).toMatchSnapshot();
+  // })
+
+
 });
 
 
