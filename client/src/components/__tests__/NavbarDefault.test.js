@@ -66,7 +66,7 @@ describe("Testing Navbar Component", () => {
     expect(wrapper.state().login).toBe(false);
   });
   // it("should simulate button click on Cancel button click ", () => {
-  //   wrapper.find("#navbarSearchResultsOptionClick").simulate("click");
+  //   wrapper.find("#navbarSearchCancelClick").simulate("click");
   //   expect(wrapper.state().searchInputChanged).toBe(true);
   // });
   it("checks for on Search function to be called", () => {

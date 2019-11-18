@@ -167,6 +167,7 @@ export class NavbarDefault extends Component {
             <div className="navbarSearchResultsFound">
               <button
                 className="navbarSearchResultsCancelButton"
+                id="navbarSearchCancelClick"
                 onClick={() =>
                   this.setState({
                     searchInputChanged: false
@@ -199,7 +200,7 @@ export class NavbarDefault extends Component {
                       to={{
                         pathname: "/companydetail/" + result.ticker_id
                       }}
-                       onClick={() =>
+                      onClick={() =>
                         this.setState({
                           searchInputChanged: false
                           // ,searchInput: ""
