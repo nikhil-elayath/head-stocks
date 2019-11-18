@@ -2,12 +2,15 @@
 
 #company-analysis-similar-cimpany-dropdown {
   text-align: center;
+  padding: 20px 50px 20px 50px;
 }
 #analysis-stock-chart {
   background-color: #cacaca;
+  padding: 20px 50px 20px 50px;
 }
 #analysis-price-summary {
   background-color: #cacaca;
+  padding: 20px 50px 20px 50px;
 }
 
 /* FOR RECOMMENDATION  */
@@ -16,13 +19,16 @@
   display: grid;
   grid-template-areas: "company1" "company2";
   grid-template-columns: 1fr 1fr;
+  padding: 20px 50px 20px 50px;
 }
 #analysis-recommendation-1 {
   grid-area: company1;
+  text-align: center;
 }
 
 #analysis-recommendation-2 {
   grid-area: company2;
+  text-align: center;
 }
 
 /* FOR FINANCIAL POSITIONAL GRAPH  */
@@ -36,9 +42,25 @@
 
 #analysis-financial-positional-1 {
   grid-area: "financial-graph-1";
+  text-align: center;
 }
 #analysis-financial-positional-2 {
   grid-area: "financial-graph-2";
+  text-align: center;
+}
+#analysis-gauge-1 {
+  width: 250px;
+}
+#analysis-gauge-2 {
+  width: 250px;
+}
+
+#analysis-financial-positional-1 {
+  display: none;
+}
+
+#analysis-financial-positional-2 {
+  display: none;
 }
 
 /* FOR DESKTOP  */
@@ -47,6 +69,7 @@
     display: grid;
     grid-template-areas: "company1 company2";
     grid-template-columns: 1fr 1fr;
+    padding: 20px 50px 20px 50px;
   }
   #analysis-recommendation-1 {
     grid-area: company1;
@@ -61,6 +84,7 @@
   #analysis-financial-positional-grid-container {
     display: grid;
     grid-template-areas: "financial-graph-1  financial-graph-2";
+    padding: 20px 50px 20px 50px;
   }
 
   #analysis-financial-positional-1 {
@@ -68,5 +92,17 @@
   }
   #analysis-financial-positional-2 {
     grid-area: "financial-graph-2";
+  }
+  #analysis-gauge-1 {
+    width: 500px;
+  }
+  #analysis-gauge-2 {
+    width: 500px;
+  }
+  #analysis-financial-positional-1 {
+    display: contents;
+  }
+  #analysis-financial-positional-2 {
+    display: contents;
   }
 }

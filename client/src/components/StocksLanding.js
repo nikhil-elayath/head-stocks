@@ -194,7 +194,7 @@ export class StocksLanding extends Component {
                     {this.state.pageStocks.map((stocks, index) =>
                       stocks ? (
                         <div
-                          id={"stocks_grid_details" + index}
+                          id="stocks_grid_details"
                           onClick={() => {
                             this.props.history.push(
                               "/companydetail/" + stocks.ticker_id, //pushing to the company details page with ticker id of a stock when that particular stock card is clicked
@@ -212,9 +212,7 @@ export class StocksLanding extends Component {
                             }
                           />
                           {/* <img id="stocks_edit" alt="edit" src={editlogo} /> */}
-                          <div id={"stocks_ticker" + index}>
-                            {stocks["ticker_name"]}
-                          </div>
+                          <div id="stocks_ticker">{stocks["ticker_name"]}</div>
                           {/* mapping the ticker name from the api*/}
                           <div id="stocks_name">{}</div>
                           <div id="stocks_flex_details_one">

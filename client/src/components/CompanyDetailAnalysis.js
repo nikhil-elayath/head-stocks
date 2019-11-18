@@ -9,7 +9,7 @@ import {
   getmonteCarloCompany1,
   getmonteCarloCompany2,
   getAssetsCompany1,
-  getAssetsCompany2,
+  getAssetsCompany2
 } from "../actions/CompanyDetail";
 import { connect } from "react-redux";
 import "../styles/CompanyDetailAnalysis.css";
@@ -31,7 +31,7 @@ export class CompanyDetailAnalysis extends Component {
   // this action is to plot the graph
   OnSelectTicker = e => {
     this.setState({
-      ticker_name: e.target.value,
+      ticker_name: e.target.value
     });
     this.props.getGaugeCompany2(e.target.value);
     this.props.getAssetsCompany2(e.target.value);
@@ -105,25 +105,27 @@ export class CompanyDetailAnalysis extends Component {
         </div>
         <div id="analysis-financial-positional-grid-container">
           <div id="analysis-financial-positional-1">
-            <iframe
-              id="assets1"
-              src={this.props.assets1}
-              style={{
-                width: "500px",
-                height: "500px",
-                outline: "none",
-                border: "none",
-              }}
-            />
+            <div id="stocks_assests">
+              <iframe
+                id="assets1"
+                src={this.props.assets1}
+                style={{
+                  width: "650px",
+                  height: "500px",
+                  outline: "none",
+                  border: "none"
+                }}
+              />
+            </div>
           </div>
           <div id="analysis-financial-positional-2">
             <iframe
               src={this.props.assets2}
               style={{
-                width: "500px",
+                width: "650px",
                 height: "500px",
                 outline: "none",
-                border: "none",
+                border: "none"
               }}
             />
           </div>
@@ -143,7 +145,7 @@ const mapStateToProps = state => ({
   maonteCarlo1: state.CompanyDetailReducer.maonteCarlo1,
   maonteCarlo2: state.CompanyDetailReducer.drop_down_data,
   assets1: state.CompanyDetailReducer.assets1,
-  assets2: state.CompanyDetailReducer.assets2,
+  assets2: state.CompanyDetailReducer.assets2
 });
 export default connect(mapStateToProps, {
   getCompanyDetailById,
@@ -154,5 +156,5 @@ export default connect(mapStateToProps, {
   getmonteCarloCompany1,
   getmonteCarloCompany2,
   getAssetsCompany1,
-  getAssetsCompany2,
+  getAssetsCompany2
 })(CompanyDetailAnalysis);

@@ -6,11 +6,12 @@ import {
   GET_SIMILAR_TABLE,
   GET_DROP_DOWN,
   GET_GAUGE_COMPANY1,
+  VOLATILITY,
   GET_GAUGE_COMPANY2,
   MONTECARLO_COMPANY1,
   MONTECARLO_COMPANY2,
   ASSETS_COMPANY1,
-  ASSETS_COMPANY2,
+  ASSETS_COMPANY2
 } from "./Types";
 import { startLoading, stopLoading } from "./LoadingAction";
 import axios from "axios";
@@ -23,7 +24,7 @@ export const getCompanyDetail = () => dispatch => {
       .then(res => {
         dispatch({
           type: COMPANY_DETAIL,
-          payload: res.data.data,
+          payload: res.data.data
         });
       });
   } catch (err) {
@@ -40,10 +41,10 @@ export const getCompanyDetailById = id => dispatch => {
       .then(res => {
         dispatch({
           type: COMPANY_DETAIL_BY_ID,
-          payload: res.data.data,
+          payload: res.data.data
         });
         let sector = {
-          sector: res.data.data["0"].sector,
+          sector: res.data.data["0"].sector
         };
         console.log("obj sector from action", sector);
 
@@ -67,7 +68,7 @@ export const getDropDownData = sector => dispatch => {
       .then(res => {
         dispatch({
           type: GET_DROP_DOWN,
-          payload: res.data.data,
+          payload: res.data.data
         });
         console.log("from then of drop down action");
       });
@@ -87,7 +88,7 @@ export const getSimilarTable = sector => dispatch => {
         dispatch({
           type: GET_SIMILAR_TABLE,
 
-          payload: res.data.data,
+          payload: res.data.data
         });
         console.log("from then of similar table");
         dispatch(getDropDownData(sector));
@@ -107,7 +108,7 @@ export const getOhlcChart = id => dispatch => {
       dispatch({
         type: OHLC_CHART,
 
-        payload: res.data,
+        payload: res.data
       });
     });
   } catch (err) {
@@ -137,7 +138,7 @@ export const getCompanyDatesById = id => dispatch => {
       .then(res => {
         dispatch({
           type: COMPANY_DATES_BY_ID,
-          payload: res.data.data,
+          payload: res.data.data
         });
       });
   } catch (err) {
@@ -156,7 +157,7 @@ export const getGaugeCompany1 = ticker => dispatch => {
         dispatch({
           type: GET_GAUGE_COMPANY1,
 
-          payload: res.data,
+          payload: res.data
         });
       });
   } catch (err) {
@@ -176,7 +177,7 @@ export const getGaugeCompany2 = ticker => dispatch => {
         dispatch({
           type: GET_GAUGE_COMPANY2,
 
-          payload: res.data,
+          payload: res.data
         });
       });
   } catch (err) {
@@ -196,7 +197,7 @@ export const getmonteCarloCompany1 = ticker => dispatch => {
         dispatch({
           type: MONTECARLO_COMPANY1,
 
-          payload: res.data,
+          payload: res.data
         });
       });
   } catch (err) {
@@ -216,7 +217,7 @@ export const getmonteCarloCompany2 = ticker => dispatch => {
         dispatch({
           type: MONTECARLO_COMPANY1,
 
-          payload: res.data,
+          payload: res.data
         });
       });
   } catch (err) {
@@ -235,7 +236,7 @@ export const getAssetsCompany1 = ticker => dispatch => {
         dispatch({
           type: ASSETS_COMPANY1,
 
-          payload: res.data,
+          payload: res.data
         });
       });
   } catch (err) {
@@ -254,9 +255,25 @@ export const getAssetsCompany2 = ticker => dispatch => {
         dispatch({
           type: ASSETS_COMPANY2,
 
-          payload: res.data,
+          payload: res.data
         });
       });
+  } catch (err) {
+    dispatch(startLoading());
+  }
+};
+
+export const getVolatility = ticker => dispatch => {
+  dispatch(startLoading());
+  try {
+    return axios.get("http://localhost:5000/voltality/" + ticker).then(res => {
+      dispatch(stopLoading());
+      dispatch({
+        type: VOLATILITY,
+
+        payload: res.data
+      });
+    });
   } catch (err) {
     dispatch(startLoading());
   }

@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-import { getCompanyDetailById } from "../../actions/CompanyDetail";
+import {
+  getCompanyDetailById,
+  getVolatility
+} from "../../actions/CompanyDetail";
 import { connect } from "react-redux";
 import companylogo from "./stockslogo.PNG";
 import ReactTooltip from "react-tooltip";
@@ -9,12 +12,14 @@ import "../../styles/CompanyDetailSecondaryNavbar.css";
 import { Link } from "react-router-dom";
 
 export class CompanyDetailSecondaryNavbar extends Component {
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.getVolatility("AAPL");
+  }
   // DEFINING THE STATE WITH OVERVIEW AS DEFAULT AND REST TWO OPTIONS FALSE
   state = {
     overview: true,
     financial: false,
-    analysis: false,
+    analysis: false
   };
   render() {
     this.props.company
@@ -57,29 +62,11 @@ export class CompanyDetailSecondaryNavbar extends Component {
                               {
                                 month: "short",
                                 day: "2-digit",
-                                year: "numeric",
+                                year: "numeric"
                               }
                             )}
                             )
                           </p>
-                          {/* <div id="voltality">
-                            <p> 123456 </p>
-                            <div id="voltality_tooltip">
-                              <div id="kk">VOLATILITY </div>
-                              <div id="abc">
-                                <i class="fa fa-question-circle" />
-                                <span id="volatility">
-                                  Volatility is a statistical measure of the
-                                  dispersion of returns for a given security or
-                                  market index. In most cases, the higher the
-                                  volatility, the riskier the security.
-                                  Volatility is often measured as either the
-                                  standard deviation or variance between returns
-                                  from that same security or market index.
-                                </span>
-                              </div>
-                            </div>
-                          </div> */}
                         </div>
                         <div />
                       </div>
@@ -88,7 +75,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                           className="company-link"
                           // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
                           to={{
-                            pathname: "/companydetail/" + coms.id,
+                            pathname: "/companydetail/" + coms.id
                           }}
                         >
                           <span
@@ -98,7 +85,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                               this.setState({
                                 overview: true,
                                 financial: false,
-                                analysis: false,
+                                analysis: false
                               });
                               console.log("Overview clicked");
                             }}
@@ -123,7 +110,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                             to={{
                               // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
 
-                              pathname: "/financial/" + coms.id,
+                              pathname: "/financial/" + coms.id
                             }}
                           >
                             <span
@@ -132,7 +119,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                                 this.setState({
                                   overview: false,
                                   financial: true,
-                                  analysis: false,
+                                  analysis: false
                                 });
                               }}
                             >
@@ -154,7 +141,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                           <Link
                             className="company-link"
                             to={{
-                              pathname: "/analysis/" + coms.id,
+                              pathname: "/analysis/" + coms.id
                             }}
                           >
                             <span
@@ -163,7 +150,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                                 this.setState({
                                   overview: false,
                                   financial: false,
-                                  analysis: true,
+                                  analysis: true
                                 });
                               }}
                             >
@@ -183,7 +170,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                       </ul>
                       <div id="secondary-nav-values">
                         <div id="voltality">
-                          <p> 123456 </p>
+                          <p> {this.props.voltality} </p>
                           <div id="voltality_tooltip">
                             <div id="kk">VOLATILITY </div>
                             <div id="abc">
@@ -250,7 +237,9 @@ export class CompanyDetailSecondaryNavbar extends Component {
 }
 const mapStateToProps = state => ({
   company: state.CompanyDetailReducer.company,
+  voltality: state.CompanyDetailReducer.voltality
 });
-export default connect(mapStateToProps, { getCompanyDetailById })(
-  CompanyDetailSecondaryNavbar
-);
+export default connect(mapStateToProps, {
+  getCompanyDetailById,
+  getVolatility
+})(CompanyDetailSecondaryNavbar);
