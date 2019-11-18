@@ -13,7 +13,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
   state = {
     overview: true,
     financial: false,
-    analysis: false
+    analysis: false,
   };
   render() {
     this.props.company
@@ -54,7 +54,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                               {
                                 month: "short",
                                 day: "2-digit",
-                                year: "numeric"
+                                year: "numeric",
                               }
                             )}
                             )
@@ -67,7 +67,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                           className="company-link"
                           // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
                           to={{
-                            pathname: "/companydetail/" + coms.id
+                            pathname: "/companydetail/" + coms.id,
                           }}
                         >
                           <span
@@ -77,7 +77,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                               this.setState({
                                 overview: true,
                                 financial: false,
-                                analysis: false
+                                analysis: false,
                               });
                               console.log("Overview clicked");
                             }}
@@ -102,7 +102,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                             to={{
                               // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
 
-                              pathname: "/financial/" + coms.id
+                              pathname: "/financial/" + coms.id,
                             }}
                           >
                             <span
@@ -111,7 +111,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                                 this.setState({
                                   overview: false,
                                   financial: true,
-                                  analysis: false
+                                  analysis: false,
                                 });
                               }}
                             >
@@ -133,7 +133,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                           <Link
                             className="company-link"
                             to={{
-                              pathname: "/analysis/" + coms.id
+                              pathname: "/analysis/" + coms.id,
                             }}
                           >
                             <span
@@ -142,7 +142,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                                 this.setState({
                                   overview: false,
                                   financial: false,
-                                  analysis: true
+                                  analysis: true,
                                 });
                               }}
                             >
@@ -195,21 +195,13 @@ export class CompanyDetailSecondaryNavbar extends Component {
                           id="downloadButton"
                           onClick={async () => {
                             fetch(
-<<<<<<< HEAD
-                              "http://localhost:2001/api/companydetail/indicatorsdata/" +
-=======
                               "http://localhost:2001/api/companydetail/download/" +
->>>>>>> c685c0b769c7f7963329de1dec9dcbdfe33a5670
                                 coms.ticker_name
                             ).then(response => {
                               response.blob().then(blob => {
                                 let url = window.URL.createObjectURL(blob);
                                 let a = document.createElement("a");
                                 a.href = url;
-<<<<<<< HEAD
-=======
-
->>>>>>> c685c0b769c7f7963329de1dec9dcbdfe33a5670
                                 a.download = coms.ticker_name + ".csv";
                                 a.click();
                               });
@@ -257,7 +249,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
   }
 }
 const mapStateToProps = state => ({
-  company: state.CompanyDetailReducer.company
+  company: state.CompanyDetailReducer.company,
 });
 export default connect(mapStateToProps, { getCompanyDetailById })(
   CompanyDetailSecondaryNavbar
