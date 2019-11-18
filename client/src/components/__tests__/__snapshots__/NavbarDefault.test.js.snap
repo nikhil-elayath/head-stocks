@@ -1,12 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Testing Navbar Component Link matches snapshot 1`] = `
-<a
-  href="/companydetail/9"
-  onClick={[Function]}
-/>
-`;
-
 exports[`Testing Navbar Component should mount the component 1`] = `
 <div
   className="navbarHS"
