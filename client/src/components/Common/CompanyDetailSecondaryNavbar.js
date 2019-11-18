@@ -49,7 +49,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                             id="#indexClose
 "
                           >
-                            {coms.last_market_cap}
+                            {coms.last_share_price}
 
                             <sub id="secondary-navbar-sub">USD</sub>
                           </p>
