@@ -9,43 +9,43 @@ import {
 import { shallow } from "enzyme";
 
 const stocks = [
-  {
-    ticker_id: 169,
-    ticker_name: "ANTM",
-    ticker_logo: "image",
-    MarketCap: "21223.9902",
-    "Share Price": "51.35"
-  }
-];
-const gainersLosers = [
-  {
-    isIndex: false,
-    gainers: [
-      {
-        tickerValues: {
-          change_percent: "+30.37",
-          "Market Cap": "68.00M",
-          "Share Price": "4.38"
-        },
-        ticker_name: "HPJ",
-        ticker_id: 1030
-      }
-    ],
-    losers: [
-      {
-        tickerValues: {
-          change_percent: "-33.33",
-          "Market Cap": "13.00M",
-          "Share Price": "0.03"
-        },
-        ticker_name: "TGLO",
-        ticker_id: 2007
-      }
-    ]
-  }
-];
-const sectors = ["Technology", "Healthcare"];
-const industries = ["Compauter H/w", "online Media"];
+    {
+      ticker_id: 169,
+      ticker_name: "ANTM",
+      ticker_logo: "image",
+      MarketCap: "21223.9902",
+      "Share Price": "51.35"
+    }
+  ],
+  gainersLosers = [
+    {
+      isIndex: false,
+      gainers: [
+        {
+          tickerValues: {
+            change_percent: "+30.37",
+            "Market Cap": "68.00M",
+            "Share Price": "4.38"
+          },
+          ticker_name: "HPJ",
+          ticker_id: 1030
+        }
+      ],
+      losers: [
+        {
+          tickerValues: {
+            change_percent: "-33.33",
+            "Market Cap": "13.00M",
+            "Share Price": "0.03"
+          },
+          ticker_name: "TGLO",
+          ticker_id: 2007
+        }
+      ]
+    }
+  ],
+  sectors = ["Technology", "Healthcare"],
+  industries = ["Compauter H/w", "online Media"];
 
 const wrapper = shallow(
   <StocksLanding
@@ -106,7 +106,7 @@ describe("Testing Stocks Component", () => {
     expect(wrapper.find("#stocks_closed_price").text()).toBe("51.35");
   });
   it("Market cap should be shown in each stocks card", () => {
-    expect(wrapper.find("stocks_market_cap").text).toBe("21223.9902");
+    expect(wrapper.find("stocks_market_cap").text()).toBe("21223.9902");
   });
   it("should check for presense of OnSelectSector function", () => {
     let OnSelectSector = jest.spyOn(wrapper.instance(), "OnSelectSector");
