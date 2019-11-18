@@ -130,7 +130,7 @@ exports[`Testing Register Component should mount the component 1`] = `
         </p>
         <p>
           <button
-            id="#registerFormButton"
+            id="registerFormButton"
             onClick={[Function]}
           >
             Proceed

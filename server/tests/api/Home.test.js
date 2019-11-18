@@ -41,7 +41,6 @@ describe("Testing Users API", () => {
   });
 
   it("(View Change of all indices) should return a status code of 200,a message in the body,the data should be an object", done => {
-    let id = 11;
     request(app)
       .get("/api/home/index")
       .then(res => {

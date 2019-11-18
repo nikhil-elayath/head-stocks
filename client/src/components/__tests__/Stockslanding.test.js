@@ -44,8 +44,8 @@ const stocks = [
       ]
     }
   ],
-  sectors = [],
-  industries = [];
+  sectors = ["Technology", "Healthcare"],
+  industries = ["Compauter H/w", "online Media"];
 
 const wrapper = shallow(
   <StocksLanding
@@ -67,6 +67,15 @@ describe("Testing Stocks Component", () => {
   it("should mount the component", () => {
     expect(wrapper).toMatchSnapshot();
   });
+
+  it("should check for component did mount as a function", () => {
+    const componentDidMount = jest.spyOn(
+      StocksLanding.prototype,
+      "componentDidMount"
+    );
+    wrapper.instance().componentDidMount();
+    expect(componentDidMount).toHaveBeenCalled();
+  });
   it("Table should have button with text Gainers", () => {
     expect(wrapper.find("#button_stocks_gainers").text()).toBe("Gainers");
   });
@@ -85,13 +94,13 @@ describe("Testing Stocks Component", () => {
     wrapper.find("#stocks_dropdown_sectors").simulate("change");
   });
   it("should simulate click on stocks card ", () => {
-    wrapper.find("stocks_grid_details").simulate("click");
+    wrapper.find("#stocks_grid_details0").simulate("click");
   });
   it("Company logo should be shown in each stocks card", () => {
     expect(wrapper.find("#stocks_img").text()).toBe("image");
   });
   it("Ticker Name should be shown in each stocks card", () => {
-    expect(wrapper.find("#stocks_ticker").text()).toBe("ANTM");
+    expect(wrapper.find("#stocks_ticker").props().children).toBe("ANTM");
   });
   it("Closed price should be shown in each stocks card", () => {
     expect(wrapper.find("#stocks_closed_price").text()).toBe("51.35");
@@ -118,5 +127,17 @@ describe("Testing Stocks Component", () => {
   it("should check for presense of loadMoreItems function", () => {
     let loadMoreItems = jest.spyOn(wrapper.instance(), "loadMoreItems");
     expect(loadMoreItems).toBeTruthy();
+  });
+
+  it("Ticker Name should be shown in each stocks card", () => {
+    expect(wrapper.find("#industry0").props().children).toBe(industries[0]);
+  });
+
+  it("Ticker Name should be shown in each stocks card", () => {
+    expect(wrapper.find("#sector0").props.children).toBe(sectors[0]);
+  });
+
+  it("should have ticker_name click on stocks card ", () => {
+    expect(wrapper.find("#stocks_ticker").props().children).toBe(sectors[0]);
   });
 });
