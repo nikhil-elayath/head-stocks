@@ -33,19 +33,17 @@
   min-width: 100px;
 }
 .financialTableData tr td:first-of-type {
-  font-size: 12px;
-  /* font-weight: bold; */
-  min-width: 200px;
+  font-size: 10px;
+  min-width: 120px;
   position: sticky;
   left: 0px;
   background-color: white;
-  
 }
 .financialsTotalTD {
   font-size: 12px !important;
   font-weight: bold;
 }
- 
+
 @media only screen and (min-width: 426px) {
   .financialTableContainer {
     padding: 0px 0px 0px 0px;
@@ -60,7 +58,7 @@
     text-align: center;
     font-size: 14px;
     padding: 5px 15px;
-   }
+  }
   /* .financialTableContainer td:nth-child(even) {
     background-color: #f2f2f2;
   } */
