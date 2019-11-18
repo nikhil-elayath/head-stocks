@@ -20,8 +20,7 @@ router.post("/signup", async (req, res, next) => {
   try {
     // Validating if JOI constraints match
     const { error } = validate(req.body);
-    if (error)
-      return res.status(400).send({ message: error.details[0].message });
+    if (error) return res.status(400).send(error.details[0].message);
 
     // Checking if a user exists with the same email
     let existing_user = await User.findOne({

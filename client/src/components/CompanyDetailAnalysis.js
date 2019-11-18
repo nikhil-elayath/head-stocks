@@ -4,6 +4,12 @@ import {
   getCompanyDetailById,
   getSimilarTable,
   getDropDownData,
+  getGaugeCompany1,
+  getGaugeCompany2,
+  getmonteCarloCompany1,
+  getmonteCarloCompany2,
+  getAssetsCompany1,
+  getAssetsCompany2
 } from "../actions/CompanyDetail";
 import { connect } from "react-redux";
 import { classBody } from "@babel/types";
@@ -21,7 +27,7 @@ export class CompanyDetailAnalysis extends Component {
   // this action is to plot the graph
   OnSelectSector = e => {
     this.setState({
-      ticker_name: e.target.value,
+      ticker_name: e.target.value
     });
   };
 
@@ -43,7 +49,7 @@ export class CompanyDetailAnalysis extends Component {
                   "Net Profit",
                   "P/E ratio",
                   "Share Price",
-                  "ROCE%",
+                  "ROCE%"
                 ]}
                 tableData={this.props.similar_company["0"]}
               />
@@ -78,9 +84,21 @@ const mapStateToProps = state => ({
   company: state.CompanyDetailReducer.company,
   similar_company: state.CompanyDetailReducer.similar_company,
   drop_down_data: state.CompanyDetailReducer.drop_down_data,
+  gauge1: state.CompanyDetailReducer.gauge1,
+  gauge2: state.CompanyDetailReducer.gauge2,
+  maonteCarlo1: state.CompanyDetailReducer.maonteCarlo1,
+  maonteCarlo2: state.CompanyDetailReducer.drop_down_data,
+  assets1: state.CompanyDetailReducer.assets1,
+  assets2: state.CompanyDetailReducer.assets2
 });
 export default connect(mapStateToProps, {
   getCompanyDetailById,
   getSimilarTable,
   getDropDownData,
+  getGaugeCompany1,
+  getGaugeCompany2,
+  getmonteCarloCompany1,
+  getmonteCarloCompany2,
+  getAssetsCompany1,
+  getAssetsCompany2
 })(CompanyDetailAnalysis);
