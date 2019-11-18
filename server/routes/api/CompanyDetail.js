@@ -187,12 +187,12 @@ router.get("/financial/:id", async (req, res, next) => {
       function(err, result) {
         // console.log("start");
         // console.log("end");
-        if (!result) {
+        if (result.length == 0) {
           if (err) console.log(err);
           return res.status(400).json({
             status: 400,
             data: result,
-            message: "Retrieved dates Successfully",
+            message: "No Dates Found"
           });
         } else {
           if (err) throw err;

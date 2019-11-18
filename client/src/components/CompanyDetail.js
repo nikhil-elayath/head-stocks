@@ -72,7 +72,7 @@ export class CompanyDetail extends Component {
           // PLOTTIGN THE GRAPH
           <div
             style={{
-              border: "1px solid #cacaca",
+              // border: "1px solid #cacaca",
               width: "97%",
               margin: "auto",
               marginBottom: "20px",

@@ -1,4 +1,4 @@
-import { NEWS_BY_ID, ALL_NEWS } from "../../actions/Types";
+import { NEWS_BY_ID, ALL_NEWS, GET_ALL_INDICES } from "../../actions/Types";
 import homeReducer from "../homeReducer";
 
 describe("Testing Home reducer", () => {
@@ -69,5 +69,18 @@ describe("Testing Home reducer", () => {
     };
     returnedState = homeReducer(initialState, action);
     expect(returnedState).toEqual({ news: initialState.news });
+  });
+
+  it("should return a state object with user array equal to the payload in the action when the action type is GET_USER (when the returned state is initial state)", () => {
+    const action = {
+      type: GET_ALL_INDICES,
+      payload: [{}, {}, {}]
+    };
+    const returnedState = homeReducer(undefined, action);
+    expect(returnedState).toEqual({
+      news: [],
+      singleNews: [{}],
+      indices: action.payload
+    });
   });
 });
