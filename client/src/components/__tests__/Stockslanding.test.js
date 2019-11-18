@@ -13,8 +13,8 @@ const stocks = [
       ticker_id: 169,
       ticker_name: "ANTM",
       ticker_logo: "image",
-      MarketCap: 21223.9902,
-      "Share Price": 51.35
+      MarketCap: "21223.9902",
+      "Share Price": "51.35"
     }
   ],
   gainersLosers = [
@@ -81,14 +81,23 @@ describe("Testing Stocks Component", () => {
     wrapper.find("#button_stocks_losers").simulate("click");
     expect(wrapper.state().gainersClick).toBe(false);
   });
-  // it("should simulate change on selector dropdown ", () => {
-  //   wrapper.find("#stocks_dropdown_sectors").simulate("change");
-  // });
+  it("should simulate change on selector dropdown ", () => {
+    wrapper.find("#stocks_dropdown_sectors").simulate("change");
+  });
   it("should simulate click on stocks card ", () => {
     wrapper.find("stocks_grid_details").simulate("click");
   });
-  it("Closed price should be shown in each stocks card", () => {
+  it("Company logo should be shown in each stocks card", () => {
+    expect(wrapper.find("#stocks_img").text()).toBe("image");
+  });
+  it("Ticker Name should be shown in each stocks card", () => {
     expect(wrapper.find("#stocks_ticker").text()).toBe("ANTM");
+  });
+  it("Closed price should be shown in each stocks card", () => {
+    expect(wrapper.find("#stocks_closed_price").text()).toBe("51.35");
+  });
+  it("Market cap should be shown in each stocks card", () => {
+    expect(wrapper.find("stocks_market_cap").text()).toBe("21223.9902");
   });
   it("should check for presense of OnSelectSector function", () => {
     let OnSelectSector = jest.spyOn(wrapper.instance(), "OnSelectSector");

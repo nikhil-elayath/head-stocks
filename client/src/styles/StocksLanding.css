@@ -68,7 +68,7 @@
   justify-content: center;
 }
 
-#stocks_details_title {
+.stocks_details_title {
   color: #707070;
   margin-right: 5px;
 }
