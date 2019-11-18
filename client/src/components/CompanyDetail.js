@@ -17,7 +17,7 @@ export class CompanyDetail extends Component {
     const id = this.props.match.params.id;
     this.props.getCompanyDetailById(id);
     this.props.getOhlcChart("AAPL");
-    this.props.getGaugeCompany1("AAPL");
+    // this.props.getGaugeCompany1("AAPL");
   }
   render() {
     console.log(this.props.gauge1);
@@ -53,11 +53,8 @@ export class CompanyDetail extends Component {
             </div>
             <div id="company-detail-recommendation">
               <img
-                src={
-                  this.props.gauge1
-                    ? "data:image/jpeg;base64," + this.props.gauge1
-                    : "data:image/jpeg;base64," + gauge
-                }
+                id="img_gauge"
+                src={"data:image/jpeg;base64," + this.props.gauge1}
               />
             </div>
           </div>

@@ -16,7 +16,7 @@ import {
 const initialState = {
   company: [],
   balance_sheet: [],
-  ohlc_chart: [],
+  ohlcChart: [],
   similar_company: [],
   dates: [],
   drop_down_data: [],
@@ -56,7 +56,7 @@ export default function(state = initialState, action) {
         drop_down_data: action.payload
       };
     case OHLC_CHART:
-      return { ...state, ohlc_chart: action.payload };
+      return { ...state, ohlcChart: action.payload };
     case GET_GAUGE_COMPANY1:
       return { ...state, gauge1: action.payload };
     case GET_GAUGE_COMPANY2:

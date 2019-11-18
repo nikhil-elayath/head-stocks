@@ -62,13 +62,13 @@ router.get("/:id", async (req, res, next) => {
       res.status(400).json({
         status: 400,
         data: company_details,
-        message: "No companies found",
+        message: "No companies found"
       });
     } else {
       res.status(200).json({
         status: 200,
         data: company_details,
-        message: "company by id recieved",
+        message: "company by id recieved"
       });
     }
   } catch {}
@@ -87,13 +87,13 @@ router.get("/financial/:id", async (req, res, next) => {
         {
           $match: {
             // ticker_name : "AAPL"
-            ticker_id: +id,
+            ticker_id: +id
             // ,
             // 'ticker_dates.date' : {
             //   $lte : new Date("2019-06-31"),
             //   $gte :  new Date("2018-03-25")
             // }
-          },
+          }
         },
         {
           $project: {
@@ -106,8 +106,8 @@ router.get("/financial/:id", async (req, res, next) => {
                   $and: [
                     { $eq: [{ $month: "$ticker_dates.date" }, 3] },
                     { $lte: [{ $dayOfMonth: "$ticker_dates.date" }, 31] },
-                    { $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25] },
-                  ],
+                    { $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25] }
+                  ]
                 },
                 "first",
                 {
@@ -116,8 +116,8 @@ router.get("/financial/:id", async (req, res, next) => {
                       $and: [
                         { $eq: [{ $month: "$ticker_dates.date" }, 6] },
                         { $lte: [{ $dayOfMonth: "$ticker_dates.date" }, 30] },
-                        { $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25] },
-                      ],
+                        { $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25] }
+                      ]
                     },
                     "second",
                     {
@@ -126,12 +126,12 @@ router.get("/financial/:id", async (req, res, next) => {
                           $and: [
                             { $eq: [{ $month: "$ticker_dates.date" }, 9] },
                             {
-                              $lte: [{ $dayOfMonth: "$ticker_dates.date" }, 30],
+                              $lte: [{ $dayOfMonth: "$ticker_dates.date" }, 30]
                             },
                             {
-                              $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25],
-                            },
-                          ],
+                              $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25]
+                            }
+                          ]
                         },
                         "third",
                         {
@@ -142,28 +142,28 @@ router.get("/financial/:id", async (req, res, next) => {
                                 {
                                   $lte: [
                                     { $dayOfMonth: "$ticker_dates.date" },
-                                    31,
-                                  ],
+                                    31
+                                  ]
                                 },
                                 {
                                   $gt: [
                                     { $dayOfMonth: "$ticker_dates.date" },
-                                    25,
-                                  ],
-                                },
-                              ],
+                                    25
+                                  ]
+                                }
+                              ]
                             },
                             "fourth",
-                            "fifth",
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            },
-          },
+                            "fifth"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
         },
         { $match: { quarter: { $ne: "fifth" } } },
 
@@ -171,18 +171,18 @@ router.get("/financial/:id", async (req, res, next) => {
           $group: {
             _id: {
               year: { $year: "$ticker_dates.date" },
-              month: { $month: "$ticker_dates.date" },
+              month: { $month: "$ticker_dates.date" }
             },
-            date_values: { $push: "$ticker_dates" },
-          },
+            date_values: { $push: "$ticker_dates" }
+          }
         },
         {
           $sort: {
             "_id.year": -1,
-            "_id.month": -1,
+            "_id.month": -1
             // 'ticker_dates.date':-1,
-          },
-        },
+          }
+        }
       ],
       function(err, result) {
         // console.log("start");
@@ -209,7 +209,7 @@ router.get("/financial/:id", async (req, res, next) => {
           res.status(200).json({
             status: 200,
             data: datesCF,
-            message: "Retrieved dates Successfully",
+            message: "Retrieved dates Successfully"
           });
         }
       }
@@ -325,13 +325,13 @@ router.post("/analysis", async (req, res, next) => {
       res.status(400).json({
         status: 400,
         data: compare,
-        message: "No news Found",
+        message: "No news Found"
       });
     } else {
       res.status(200).json({
         status: 200,
         data: [similar_sector_data],
-        message: "Retrieved all news Successfully",
+        message: "Retrieved all news Successfully"
       });
     }
   } catch (err) {
@@ -355,17 +355,104 @@ router.post("/dropdown", async (req, res, next) => {
       res.status(400).json({
         status: 400,
         data: result,
-        message: "No companies found",
+        message: "No companies found"
       });
     } else {
       res.status(200).json({
         status: 200,
         data: result,
-        message: "Similar companies for dropdown retrieved",
+        message: "Similar companies for dropdown retrieved"
       });
     }
   } catch {
     console.log("From catch of dropdown api");
+  }
+});
+
+//download[piyush]
+const pg = require("pg-promise")();
+const db = pg("postgres://postgres:123456@localhost:5432/headstocks");
+
+//Converts JSON data To CSV
+function JSONToCSVConvertor(JSONData, ShowLabel) {
+  //If JSONData is not an object then JSON.parse will parse the JSON string in an Object
+  var arrData = typeof JSONData != "object" ? JSON.parse(JSONData) : JSONData;
+  var CSV = "";
+  //This condition will generate the Label/Header
+  if (ShowLabel) {
+    var row = "";
+
+    //This loop will extract the label from 1st index of on array
+    for (var index in arrData[0]) {
+      //Now convert each value to string and comma-seprated
+      row += index + ",";
+    }
+    row = row.slice(0, -1);
+    //append Label row with line break
+    CSV += row + "\r\n";
+  }
+
+  //1st loop is to extract each row
+  for (var i = 0; i < arrData.length; i++) {
+    var row = "";
+    //2nd loop will extract each column and convert it in string comma-seprated
+    for (var index in arrData[i]) {
+      row += arrData[i][index] + ",";
+    }
+    row.slice(0, row.length - 1);
+    //add a line break after each row
+    CSV += row + "\r\n";
+  }
+
+  if (CSV == "") {
+    return "Invalid data";
+  }
+
+  return CSV;
+}
+
+//get indicatornames and values for a specific ticker
+router.get("/indicatorsdata/:ticker_name", async (req, res, next) => {
+  try {
+    let ticker_name = req.params.ticker_name;
+    const result = await db.any(
+      `select * from simfin where ticker='${ticker_name}'`
+    );
+    if (!result)
+      return res.status(404).json({
+        message: "No record found"
+      });
+    else {
+      var jsonObject = JSON.stringify(result);
+      // Convert JSON to CSV
+      let csvdata = JSONToCSVConvertor(jsonObject, true);
+
+      res.send(csvdata);
+    }
+  } catch (err) {
+    next(err);
+    console.log(err);
+  }
+});
+router.get("/ohlc/:ticker_name", async (req, res, next) => {
+  try {
+    let ticker_name = req.params.ticker_name;
+    const result = await db.any(
+      `select ticker,dates,opening,high,low,closing,adjclose,volume from yahoodata where ticker='${ticker_name}'`
+    );
+    if (!result)
+      return res.status(404).json({
+        message: "No record found"
+      });
+    else {
+      var jsonObject = JSON.stringify(result);
+      // Convert JSON to CSV
+      let csvdata = JSONToCSVConvertor(jsonObject, true);
+      res.send(csvdata);
+    }
+  } catch (err) {
+    next(err);
+    console.log(err);
   }
 });
 
