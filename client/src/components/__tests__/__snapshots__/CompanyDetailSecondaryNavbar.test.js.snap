@@ -1,0 +1,188 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Company Detail Secondary navbar Component should mount the component 1`] = `
+<div>
+  <div
+    id="parent"
+  >
+    <div>
+      <div
+        id="company-details-tab-container"
+      >
+        <div
+          id="secondary-navbar-img-name-container"
+        >
+          <div
+            id="secondary-navbar-img"
+          >
+            <img
+              id="stocks_img"
+              src="stockslogo.PNG"
+            />
+          </div>
+          <div
+            id="secondary-navbar-ticker_name"
+          >
+            <p />
+            <p
+              id="indexClose"
+            >
+              aapl
+              <sub
+                id="secondary-navbar-sub"
+              >
+                USD
+              </sub>
+            </p>
+            <p
+              id="last_date"
+            >
+              CLOSE (
+              Jan 01, 123456
+              )
+            </p>
+          </div>
+          <div />
+        </div>
+        <ul
+          id="company-detail-content-container"
+        >
+          <Link
+            className="company-link"
+            to={
+              Object {
+                "pathname": "/companydetail/undefined",
+              }
+            }
+          >
+            <span
+              id="company-detail-overview-click"
+              onClick={[Function]}
+            >
+              <li
+                className="options-selected-li"
+                id="comapany-detail-overview-li"
+              >
+                Overview
+              </li>
+            </span>
+          </Link>
+          <div
+            id="company-detail-financial"
+          >
+            <Link
+              className="company-link"
+              to={
+                Object {
+                  "pathname": "/financial/undefined",
+                }
+              }
+            >
+              <span
+                id="company-financial-click"
+                onClick={[Function]}
+              >
+                <li
+                  className="options-li"
+                  id="company-detail-financial-li"
+                >
+                  Financials
+                </li>
+              </span>
+            </Link>
+          </div>
+          <div
+            id="company-detail-analysis"
+          >
+            <Link
+              className="company-link"
+              to={
+                Object {
+                  "pathname": "/analysis/undefined",
+                }
+              }
+            >
+              <span
+                id="company-analysis-click"
+                onClick={[Function]}
+              >
+                <li
+                  className="options-li"
+                  id="company-detail-analysis-li"
+                >
+                  Analysis
+                </li>
+              </span>
+            </Link>
+          </div>
+        </ul>
+        <div
+          id="secondary-nav-values"
+        >
+          <div
+            id="voltality"
+          >
+            <p>
+               123456 
+            </p>
+            <div
+              id="voltality_tooltip"
+            >
+              <div
+                id="kk"
+              >
+                VOLATILITY 
+              </div>
+              <div
+                id="abc"
+              >
+                <i
+                  class="fa fa-question-circle"
+                />
+                <span
+                  id="volatility"
+                >
+                  Volatility is a statistical measure of the dispersion of returns for a given security or market index. In most cases, the higher the volatility, the riskier the security. Volatility is often measured as either the standard deviation or variance between returns from that same security or market index.
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            id="voltality"
+          >
+            <p
+              id="market_cap"
+            >
+               
+              123456
+               
+            </p>
+            <div
+              id="kk"
+            >
+              MARKET CAP
+            </div>
+          </div>
+        </div>
+        <div
+          id="bla"
+        >
+          <div
+            id="secondary-navbar-bla"
+          >
+            <button
+              id="downloadButton"
+              onClick={[Function]}
+            >
+              <i
+                class="fa fa-download"
+              />
+               Download
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
