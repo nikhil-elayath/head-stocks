@@ -73,8 +73,6 @@ export class StocksLanding extends Component {
       this.setState({
         items: this.state.items + 10
       });
-
-      console.log("Stocks", this.props.stocks);
       this.displayCompanies(this.props.stocks);
     }, 1000);
   };
@@ -138,9 +136,11 @@ export class StocksLanding extends Component {
                 value={this.state.sector}
                 onChange={this.OnSelectSector}
               >
-                {this.props.sectors.map(sectors => (
+                {this.props.sectors.map((sectors, index) => (
                   <>
-                    <option name="choice">{sectors}</option>
+                    <option name="choice" id={"sector" + index}>
+                      {sectors}
+                    </option>
                     {/*mapping all the sectors to select from the dropdown*/}
                   </>
                 ))}
@@ -154,9 +154,11 @@ export class StocksLanding extends Component {
                 onChange={this.OnSelectIndustry} //on change perform this function
               >
                 <option name="choice">Select an Industry</option>
-                {this.props.industries.map(industries => (
+                {this.props.industries.map((industries, index) => (
                   <>
-                    <option name="choice">{industries}</option>
+                    <option name="choice" id={"industry" + index}>
+                      {industries}
+                    </option>
                     {/* mapping all the industries in the dropdown based on the selected sector*/}
                   </>
                 ))}
@@ -189,10 +191,10 @@ export class StocksLanding extends Component {
                   }
                 >
                   <div id="stocks_grid_container">
-                    {this.state.pageStocks.map(stocks =>
+                    {this.state.pageStocks.map((stocks, index) =>
                       stocks ? (
                         <div
-                          id="stocks_grid_details"
+                          id={"stocks_grid_details" + index}
                           onClick={() => {
                             this.props.history.push(
                               "/companydetail/" + stocks.ticker_id, //pushing to the company details page with ticker id of a stock when that particular stock card is clicked
@@ -210,7 +212,9 @@ export class StocksLanding extends Component {
                             }
                           />
                           {/* <img id="stocks_edit" alt="edit" src={editlogo} /> */}
-                          <div id="stocks_ticker">{stocks["ticker_name"]}</div>
+                          <div id={"stocks_ticker" + index}>
+                            {stocks["ticker_name"]}
+                          </div>
                           {/* mapping the ticker name from the api*/}
                           <div id="stocks_name">{}</div>
                           <div id="stocks_flex_details_one">
