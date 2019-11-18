@@ -54,4 +54,34 @@ describe("Testing ComapnyDetail API", () => {
         done();
       });
   });
+
+  it("(Returns Reports data) should return a status code of 200,the body should be an object,a message in the body,the data should be an object", done => {
+    let id = 9;
+    request(app)
+      .post("/api/dropdown")
+      .then(res => {
+        expect(res.status).toBe(200);
+        expect(res.body).toEqual(expect.any(Object));
+        expect(res.body.data).toEqual(expect.any(Object));
+        expect(res.body.message).toBe(
+          "Similar companies for dropdown retrieved"
+        );
+        done();
+      });
+  });
+
+  //analysis
+  it("(Returns Reports data) should return a status code of 200,the body should be an object,a message in the body,the data should be an object", done => {
+    request(app)
+      .post("/api/analysis")
+      .then(res => {
+        expect(res.status).toBe(200);
+        expect(res.body).toEqual(expect.any(Object));
+        expect(res.body.data).toEqual(expect.any(Object));
+        expect(res.body.message).toBe(
+          "Similar companies for dropdown retrieved"
+        );
+        done();
+      });
+  });
 });

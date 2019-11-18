@@ -370,17 +370,17 @@ router.post("/dropdown", async (req, res, next) => {
 });
 
 //download
-router.get("/download/:ticker_name", async (req, res, next) => {
-  const ticker_name = req.params.ticker_name;
-  res.download(
-    path.join(
-      __dirname,
-      "../../db-init/stock-data/yahoo-data/company/" + ticker_name + ".csv"
-    ),
-    function(err) {
-      console.log(err);
-    }
-  );
-});
+// router.get("/download/:ticker_name", async (req, res, next) => {
+//   const ticker_name = req.params.ticker_name;
+//   res.download(
+//     path.join(
+//       __dirname,
+//       "../../db-init/stock-data/yahoo-data/company/" + ticker_name + ".csv"
+//     ),
+//     function(err) {
+//       console.log(err);
+//     }
+//   );
+// });
 
 module.exports = router;
