@@ -30,22 +30,23 @@ export class CompanyDetail extends Component {
         {this.props.company ? (
           <div id="company-detail-grid-container">
             <div id="company-detail-profile">
-              {this.props.company.map(coms => (
+              {this.props.company.map(company => (
                 <>
                   <h3>
-                    Market Cap : <span>{coms.last_market_cap}</span>
+                    Market Cap :
+                    <span id="market_cap">{company.last_market_cap}</span>
                   </h3>
                   <h3>
-                    Sector : <span>{coms.sector}</span>
+                    Sector : <span id="sector">{company.sector}</span>
                   </h3>
                   <h3>
-                    Industry : <span>{coms.industry}</span>
+                    Industry : <span id="industry">{company.industry}</span>
                   </h3>
                   <h3>
-                    Employees : <span>{coms.employees}</span>
+                    Employees : <span id="employee">{company.employees}</span>
                   </h3>
                   <h3>
-                    <span>{coms.profile}</span>
+                    <span id="profile">{company.profile}</span>
                   </h3>
                 </>
               ))}
