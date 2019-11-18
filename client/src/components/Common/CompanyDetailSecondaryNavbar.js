@@ -49,7 +49,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                             id="#indexClose
 "
                           >
-                            {coms.last_market_cap}
+                            {coms.last_share_price}
 
                             <sub id="secondary-navbar-sub">USD</sub>
                           </p>
@@ -66,7 +66,8 @@ export class CompanyDetailSecondaryNavbar extends Component {
                             )
                           </p>
                           <div id="voltality">
-                            Volatility: 123456
+                            <p> 123456 </p>
+                            <div id="kk">Volatility </div>
                             <div id="abc">
                               <i class="fa fa-question-circle" />
                               <span id="volatility">
