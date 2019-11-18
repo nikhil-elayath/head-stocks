@@ -79,6 +79,7 @@ export class NavbarDefault extends Component {
         <Link to="/">
           <div className="navbarLogoName">
             <span
+              id="navbarLogoText1"
               className="active"
               onClick={() =>
                 this.setState({
@@ -88,7 +89,7 @@ export class NavbarDefault extends Component {
                 })
               }
             >
-              HEAD<b>STOCKS</b>
+              HEAD<b id="navbarLogoText2">STOCKS</b>
             </span>
           </div>
         </Link>
@@ -109,6 +110,7 @@ export class NavbarDefault extends Component {
                 className={
                   this.state.login ? "tabactive linkdecornone" : "linkdecornone"
                 }
+                id="navbarLoginText"
               >
                 Login
               </Link>
@@ -134,6 +136,7 @@ export class NavbarDefault extends Component {
               className={
                 this.state.stocks ? "tabactive linkdecornone" : "linkdecornone"
               }
+              id="navbarStocksText"
             >
               Stocks
             </Link>
@@ -148,8 +151,12 @@ export class NavbarDefault extends Component {
               autoComplete="off"
               placeholder="Search for ticker"
               onChange={this.OnChange}
+              id="navbarSearchInput"
             />
-            <button onClick={this.onSearch}>
+            <button
+              id="navbarSearchResultsSearchButton"
+              onClick={this.onSearch}
+            >
               <i className="fa fa-search"></i>
             </button>
           </span>
@@ -192,7 +199,7 @@ export class NavbarDefault extends Component {
                       to={{
                         pathname: "/companydetail/" + result.ticker_id
                       }}
-                      onClick={() =>
+                       onClick={() =>
                         this.setState({
                           searchInputChanged: false
                           // ,searchInput: ""
