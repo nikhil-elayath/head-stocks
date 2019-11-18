@@ -14,7 +14,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
   state = {
     overview: true,
     financial: false,
-    analysis: false
+    analysis: false,
   };
   render() {
     this.props.company
@@ -22,55 +22,54 @@ export class CompanyDetailSecondaryNavbar extends Component {
       : console.log("Wait..");
     return (
       <div>
-<<<<<<< HEAD
-        <div id='parent'>
+        <div id="parent">
           {this.props.company ? (
             <div>
               {this.props.company.map(coms => (
                 <>
-                  <div id='company-details-tab-container'>
+                  <div id="company-details-tab-container">
                     {/* <div> */}
 
                     <>
-                      <div id='secondary-navbar-img-name-container'>
-                        <div id='secondary-navbar-img'>
+                      <div id="secondary-navbar-img-name-container">
+                        <div id="secondary-navbar-img">
                           <img
-                            id='stocks_img'
+                            id="stocks_img"
                             src={
                               coms.image == null
                                 ? companylogo
-                                : 'data:image/jpeg;base64,' + coms.image
+                                : "data:image/jpeg;base64," + coms.image
                             }
                           />
                         </div>
 
-                        <div id='secondary-navbar-ticker_name'>
+                        <div id="secondary-navbar-ticker_name">
                           <p>{coms.ticker_name}</p>
                           <p
-                            id='#indexClose
-'
+                            id="#indexClose
+"
                           >
                             {coms.last_market_cap}
 
-                            <sub id='secondary-navbar-sub'>USD</sub>
+                            <sub id="secondary-navbar-sub">USD</sub>
                           </p>
-                          <p id='last_date'>
+                          <p id="last_date">
                             Closed price:(
                             {new Date(coms.share_date).toLocaleDateString(
-                              'en-IN',
+                              "en-IN",
                               {
-                                month: 'short',
-                                day: '2-digit',
-                                year: 'numeric'
+                                month: "short",
+                                day: "2-digit",
+                                year: "numeric",
                               }
                             )}
                             )
                           </p>
-                          <div id='voltality'>
+                          <div id="voltality">
                             Volatility: 123456
-                            <div id='abc'>
-                              <i class='fa fa-question-circle' />
-                              <span id='volatility'>
+                            <div id="abc">
+                              <i class="fa fa-question-circle" />
+                              <span id="volatility">
                                 Volatility is a statistical measure of the
                                 dispersion of returns for a given security or
                                 market index. In most cases, the higher the
@@ -80,156 +79,37 @@ export class CompanyDetailSecondaryNavbar extends Component {
                                 same security or market index.
                               </span>
                             </div>
-=======
-        <div id="company-details-tab-container">
-          <div>
-            {this.props.company ? (
-              <div>
-                {this.props.company.map(coms => (
-                  <>
-                    <div id="secondary-navbar-img-name-container">
-                      <div id="secondary-navbar-img">
-                        <img
-                          id="stocks_img"
-                          src={
-                            coms.image == null
-                              ? companylogo
-                              : "data:image/jpeg;base64," + coms.image
-                          }
-                        />
-                      </div>
-
-                      <div id="secondary-navbar-ticker_name">
-                        <p>{coms.ticker_name}</p>
-                        <p
-                          id="#indexClose
-"
-                        >
-                          {coms.last_market_cap}
-
-                          <sub id="secondary-navbar-sub">USD</sub>
-                        </p>
-                        <p id="last_date">
-                          {" "}
-                          Closed price:(
-                          {new Date(coms.share_date).toLocaleDateString(
-                            "en-IN",
-                            {
-                              month: "short",
-                              day: "2-digit",
-                              year: "numeric"
-                            }
-                          )}
-                          )
-                        </p>
-                        <div id="voltality">
-                          Volatility:123456
-                          <div id="abc">
-                            <i class="fa fa-question-circle" />
-                            <span id="volatility">
-                              Volatility is a statistical measure of the
-                              dispersion of returns for a given security or
-                              market index. In most cases, the higher the
-                              volatility, the riskier the security. Volatility
-                              is often measured as either the standard deviation
-                              or variance between returns from that same
-                              security or market index.
-                            </span>
->>>>>>> c564df2b5941990c10e147c44e5054569c49887f
                           </div>
                         </div>
                         <div />
                       </div>
-<<<<<<< HEAD
-                      <ul id='company-detail-content-container'>
-                        <Link
-                          className='company-link'
-                          // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
-                          to={{
-                            pathname: '/companydetail/' + coms.id
-                          }}
-                        >
-                          <span
-                            id='company-detail-overview-click'
-=======
-                    </div>
-
-                    <h1>{this.props.company.ticker_name}</h1>
-                    <ul id="company-detail-content-container">
-                      <Link
-                        className="company-link"
-                        // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
-                        to={{
-                          pathname: "/companydetail/" + coms.id
-                        }}
-                      >
-                        <span
-                          id="company-detail-overview-click"
-                          onClick={() => {
-                            // changing the values of the state while clicking, the clicked component will be set to true others will be false
-                            this.setState({
-                              overview: true,
-                              financial: false,
-                              analysis: false
-                            });
-                            console.log("Overview clicked");
-                          }}
-                        >
-                          <li
-                            id="comapany-detail-overview-li"
-                            // different css properties based on the value of the state
-                            className={
-                              this.state.overview
-                                ? "options-selected-li"
-                                : "options-li"
-                            }
-                          >
-                            Overview
-                          </li>
-                        </span>
-                      </Link>
-                      {/* Financials  */}
-                      <div id="company-detail-financial">
+                      <ul id="company-detail-content-container">
                         <Link
                           className="company-link"
+                          // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
                           to={{
-                            // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
-
-                            pathname: "/financial/" + coms.id
+                            pathname: "/companydetail/" + coms.id,
                           }}
                         >
                           <span
-                            id="company-financial-click"
->>>>>>> c564df2b5941990c10e147c44e5054569c49887f
+                            id="company-detail-overview-click"
                             onClick={() => {
                               // changing the values of the state while clicking, the clicked component will be set to true others will be false
                               this.setState({
                                 overview: true,
                                 financial: false,
-                                analysis: false
-<<<<<<< HEAD
-                              })
-                              console.log('Overview clicked')
+                                analysis: false,
+                              });
+                              console.log("Overview clicked");
                             }}
                           >
                             <li
-                              id='comapany-detail-overview-li'
+                              id="comapany-detail-overview-li"
                               // different css properties based on the value of the state
                               className={
                                 this.state.overview
-                                  ? 'options-selected-li'
-                                  : 'options-li'
-=======
-                              });
-                            }}
-                          >
-                            <li
-                              id="company-detail-financial-li"
-                              className={
-                                this.state.financial
                                   ? "options-selected-li"
                                   : "options-li"
->>>>>>> c564df2b5941990c10e147c44e5054569c49887f
                               }
                             >
                               Overview
@@ -237,58 +117,31 @@ export class CompanyDetailSecondaryNavbar extends Component {
                           </span>
                         </Link>
                         {/* Financials  */}
-                        <div id='company-detail-financial'>
+                        <div id="company-detail-financial">
                           <Link
-                            className='company-link'
+                            className="company-link"
                             to={{
                               // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
 
-<<<<<<< HEAD
-                              pathname: '/financial/' + coms.id
+                              pathname: "/financial/" + coms.id,
                             }}
                           >
                             <span
-                              id='company-financial-click'
+                              id="company-financial-click"
                               onClick={() => {
                                 this.setState({
                                   overview: false,
                                   financial: true,
-                                  analysis: false
-                                })
+                                  analysis: false,
+                                });
                               }}
-=======
-                      <div id="company-detail-analysis">
-                        <Link
-                          className="company-link"
-                          to={{
-                            pathname: "/analysis/" + coms.id
-                          }}
-                        >
-                          <span
-                            id="company-analysis-click"
-                            onClick={() => {
-                              this.setState({
-                                overview: false,
-                                financial: false,
-                                analysis: true
-                              });
-                            }}
-                          >
-                            <li
-                              id="company-detail-analysis-li"
-                              className={
-                                this.state.analysis
-                                  ? "options-selected-li"
-                                  : "options-li"
-                              }
->>>>>>> c564df2b5941990c10e147c44e5054569c49887f
                             >
                               <li
-                                id='company-detail-financial-li'
+                                id="company-detail-financial-li"
                                 className={
                                   this.state.financial
-                                    ? 'options-selected-li'
-                                    : 'options-li'
+                                    ? "options-selected-li"
+                                    : "options-li"
                                 }
                               >
                                 Financials
@@ -297,29 +150,29 @@ export class CompanyDetailSecondaryNavbar extends Component {
                           </Link>
                         </div>
 
-                        <div id='company-detail-analysis'>
+                        <div id="company-detail-analysis">
                           <Link
-                            className='company-link'
+                            className="company-link"
                             to={{
-                              pathname: '/analysis/' + coms.id
+                              pathname: "/analysis/" + coms.id,
                             }}
                           >
                             <span
-                              id='company-analysis-click'
+                              id="company-analysis-click"
                               onClick={() => {
                                 this.setState({
                                   overview: false,
                                   financial: false,
-                                  analysis: true
-                                })
+                                  analysis: true,
+                                });
                               }}
                             >
                               <li
-                                id='company-detail-analysis-li'
+                                id="company-detail-analysis-li"
                                 className={
                                   this.state.analysis
-                                    ? 'options-selected-li'
-                                    : 'options-li'
+                                    ? "options-selected-li"
+                                    : "options-li"
                                 }
                               >
                                 Analysis
@@ -328,44 +181,23 @@ export class CompanyDetailSecondaryNavbar extends Component {
                           </Link>
                         </div>
                       </ul>
-                              <div id="secondary-nav-values">
-                                values
-                      </div>
+                      <div id="secondary-nav-values">values</div>
                     </>
 
-                    <div id='bla'>
-                      <div id='secondary-navbar-bla'>
+                    <div id="bla">
+                      <div id="secondary-navbar-bla">
                         {/* second grid of secondaru navbar */}
-                        <div id='secondary-download-button'>
-                          <button id='downloadButton'>
-                            <i class='fa fa-download' /> Download
+                        <div id="secondary-download-button">
+                          <button id="downloadButton">
+                            <i class="fa fa-download" /> Download
                           </button>
                         </div>
                       </div>
-<<<<<<< HEAD
                     </div>
                   </div>
                   <></>
                 </>
               ))}
-=======
-                    </ul>
-                  </>
-                ))}
-              </div>
-            ) : (
-              <p />
-            )}
-          </div>
-          <div id="bla">
-            <div id="secondary-navbar-bla">
-              {/* second grid of secondaru navbar */}
-              <div id="secondary-download-button">
-                <button id="downloadButton">
-                  <i class="fa fa-download" /> Download
-                </button>
-              </div>
->>>>>>> c564df2b5941990c10e147c44e5054569c49887f
             </div>
           ) : (
             <p />
@@ -376,7 +208,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
   }
 }
 const mapStateToProps = state => ({
-  company: state.CompanyDetailReducer.company
+  company: state.CompanyDetailReducer.company,
 });
 export default connect(mapStateToProps, { getCompanyDetailById })(
   CompanyDetailSecondaryNavbar
