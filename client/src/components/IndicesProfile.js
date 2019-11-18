@@ -149,10 +149,11 @@ export class IndicesProfile extends Component {
                   </thead>
                   {this.props.ohlcdata.map((data, index) => (
                     <tbody>
-                      {data.map(value => (
+                      {data.map((value, index1) => (
                         <>
+                          {console.log(index1)}
                           <tr>
-                            <td id={"date" + index}>
+                            <td id={"ohlcdate" + index1}>
                               {new Date(value.date).toLocaleDateString(
                                 "en-IN",
                                 {

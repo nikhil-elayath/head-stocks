@@ -1,12 +1,29 @@
 import React from "react";
 import { StocksLanding } from "../StocksLanding";
-import { getCompany } from "../../actions/Stocks";
+import {
+  getCompany,
+  getSectors,
+  getIndustries,
+  getGainersLosers
+} from "../../actions/Stocks";
 import { shallow, mount } from "enzyme";
 
-const stocks = jest.fn();
+var stocks = [],
+  gainersLosers = [],
+  sectors = [],
+  industries = [];
 
 const wrapper = shallow(
-  <StocksLanding stocks={stocks} getCompany={getCompany} />
+  <StocksLanding
+    stocks={stocks}
+    gainersLosers={gainersLosers}
+    sectors={sectors}
+    industries={industries}
+    getCompany={getCompany}
+    getSectors={getSectors}
+    getIndustries={getIndustries}
+    getGainersLosers={getGainersLosers}
+  />
 );
 
 describe("Testing stocks Component", () => {

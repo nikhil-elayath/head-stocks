@@ -15,13 +15,6 @@ exports[`Testing Navbar Component should mount the component 1`] = `
         className="active"
         onClick={[Function]}
       >
-        <img
-          alt="logo"
-          className="navbarlogoimage"
-          height="30px"
-          src="fakelogo.png"
-          width="30px"
-        />
         HEAD
         <b>
           STOCKS
@@ -32,13 +25,11 @@ exports[`Testing Navbar Component should mount the component 1`] = `
   <div
     className="navbarLoginOptions"
   >
-    <span
-      className=""
-      onClick={[Function]}
-    >
+    <span>
       <Link
         className="linkdecornone"
-        to="/Login"
+        onClick={[Function]}
+        to="/login"
       >
         Login
       </Link>
@@ -47,12 +38,10 @@ exports[`Testing Navbar Component should mount the component 1`] = `
   <div
     className="navbarStockOptions"
   >
-    <span
-      className=""
-      onClick={[Function]}
-    >
+    <span>
       <Link
         className="linkdecornone"
+        onClick={[Function]}
         to="/Stocks"
       >
         Stocks
@@ -66,22 +55,23 @@ exports[`Testing Navbar Component should mount the component 1`] = `
       className="navbarSearchSpan"
     >
       <input
+        autoComplete="off"
         name="searchInput"
         onChange={[Function]}
-        placeholder="Search for a company or ticker"
+        placeholder="Search for ticker"
         type="text"
       />
       <button
         onClick={[Function]}
       >
-        <img
-          alt="Search Icon"
-          height="15px"
-          src="search.png"
-          width="15px"
+        <i
+          className="fa fa-search"
         />
       </button>
     </span>
+    <div
+      className="navbarSearchResultsNotFound"
+    />
   </div>
   <span
     className="icon"
