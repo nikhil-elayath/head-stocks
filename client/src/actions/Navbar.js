@@ -19,7 +19,10 @@ export const searchContent = searchInput => dispatch => {
         );
       });
   } catch (err) {
-    console.log(err);
+    dispatch({
+      err
+    });
+    //  console.log(err);
   }
 };
 

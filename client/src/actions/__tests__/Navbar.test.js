@@ -4,10 +4,11 @@ import moxios from "moxios";
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 
+const url = "http://localhost:2001/api/navbar/";
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-describe("Testing Navbar Action", () => {
+describe("Testing Users Action", () => {
   beforeEach(() => {
     moxios.install();
   });
@@ -20,7 +21,7 @@ describe("Testing Navbar Action", () => {
     let searchString = {
       searchInput: "AAPL"
     };
-    moxios.stubRequest("http://localhost:2001/api/navbar/search", {
+    moxios.stubRequest(url + "search", {
       status: 200,
       response: { data: responseOfApi }
     });
@@ -31,22 +32,6 @@ describe("Testing Navbar Action", () => {
         payload: responseOfApi
       }
     ];
-    return store.dispatch(action.searchContent(searchString)).then(() => {
-      expect(store.getActions()).toEqual(expectedResponse);
-    });
-  });
-
-  it("should get search results ang return status code of 400 with a message", () => {
-    const responseOfApi = [];
-    let searchString = {
-      searchInput: "123456"
-    };
-    moxios.stubRequest("http://localhost:2001/api/navbar/search", {
-      status: 400,
-      response: { data: responseOfApi }
-    });
-    const store = mockStore({});
-    const expectedResponse = [];
     return store.dispatch(action.searchContent(searchString)).then(() => {
       expect(store.getActions()).toEqual(expectedResponse);
     });
