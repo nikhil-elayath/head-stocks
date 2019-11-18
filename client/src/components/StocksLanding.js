@@ -12,7 +12,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 import Table from "../components/Common/TickerTable";
-import PopupboxManager from "react-popupbox";
+// import PopupboxManager from "react-popupbox";
 
 export class StocksLanding extends Component {
   state = {
@@ -81,44 +81,44 @@ export class StocksLanding extends Component {
 
   // --------------------------------------------------------------------------------------------------
 
-  updatePopupbox = () => {
-    const content = (
-      <div>
-        <span>Update popupbox with new content and config</span>
-        <button onClick={PopupboxManager.close}>Close</button>
-      </div>
-    );
+  // updatePopupbox = () => {
+  //   const content = (
+  //     <div>
+  //       <span>Update popupbox with new content and config</span>
+  //       <button onClick={PopupboxManager.close}>Close</button>
+  //     </div>
+  //   );
 
-    PopupboxManager.update({
-      content,
-      config: {
-        titleBar: {
-          text: "Updated!"
-        }
-      }
-    });
-  };
+  //   PopupboxManager.update({
+  //     content,
+  //     config: {
+  //       titleBar: {
+  //         text: "Updated!"
+  //       }
+  //     }
+  //   });
+  // };
 
-  openPopupbox() {
-    const content = (
-      <div>
-        <span>Open popupbox</span>
-        <button onClick={this.updatePopupbox}>Update!</button>
-      </div>
-    );
+  // openPopupbox = () => {
+  //   const content = (
+  //     <div>
+  //       <span>Open popupbox</span>
+  //       <button onClick={this.updatePopupbox}>Update!</button>
+  //     </div>
+  //   );
 
-    PopupboxManager.open({
-      content,
-      config: {
-        titleBar: {
-          enable: true,
-          text: "Step 1"
-        },
-        fadeIn: true,
-        fadeInSpeed: 500
-      }
-    });
-  }
+  //   PopupboxManager.open({
+  //     content,
+  //     config: {
+  //       titleBar: {
+  //         enable: true,
+  //         text: "Step 1"
+  //       },
+  //       fadeIn: true,
+  //       fadeInSpeed: 500
+  //     }
+  //   });
+  // }
 
   // ------------------------------------------------------------------------------------------------------
 
@@ -154,7 +154,6 @@ export class StocksLanding extends Component {
                 <option name="choice">Select an Industry</option>
                 {this.props.industries.map(industries => (
                   <>
-                    {console.log(industries)}
                     <option name="choice">{industries}</option>
                     {/* mapping all the industries in the dropdown based on the selected sector*/}
                   </>
@@ -192,14 +191,23 @@ export class StocksLanding extends Component {
                       stocks ? (
                         <div
                           id="stocks_grid_details"
-                          // onClick={() => {
-                          //   this.props.history.push(
-                          //     "/companydetail/" + stocks.ticker_id, //pushing to the company details page with ticker id of a stock when that particular stock card is clicked
-                          //     { stocks }
-                          //   );
-                          // }}
+                          onClick={() => {
+                            this.props.history.push(
+                              "/companydetail/" + stocks.ticker_id, //pushing to the company details page with ticker id of a stock when that particular stock card is clicked
+                              { stocks }
+                            );
+                          }}
                         >
-                          {/* <img id="stocks_edit" src={editlogo} /> */}
+                          <img
+                            id="stocks_img"
+                            alt="logo"
+                            src={
+                              stocks.ticker_logo == null
+                                ? companylogo
+                                : "data:image/jpeg;base64," + stocks.ticker_logo
+                            }
+                          />
+                          {/* <img id="stocks_edit" alt="edit" src={editlogo} /> */}
                           <div id="stocks_ticker">{stocks["ticker_name"]}</div>
                           {/* mapping the ticker name from the api*/}
                           <div id="stocks_name">{}</div>
@@ -215,9 +223,6 @@ export class StocksLanding extends Component {
                             <div id="stocks_details">
                               {stocks["MarketCap"]}M
                             </div>
-                            <button onClick={this.openPopupbox}>
-                              Click me
-                            </button>
                             {/* mapping the market cap from the api */}
                           </div>
                         </div>
@@ -231,7 +236,7 @@ export class StocksLanding extends Component {
               <div id="stocks_div_buttons">
                 <button
                   id={
-                    this.state.gainersClick == true //changing the color of gainers button when clicked on it
+                    this.state.gainersClick === true //changing the color of gainers button when clicked on it
                       ? "stocks_gainers"
                       : "stocks_losers"
                   }
@@ -241,7 +246,7 @@ export class StocksLanding extends Component {
                 </button>
                 <button
                   id={
-                    this.state.gainersClick == false //changing the color of losers button when clicked on it
+                    this.state.gainersClick === false //changing the color of losers button when clicked on it
                       ? "stocks_gainers"
                       : "stocks_losers"
                   }
@@ -258,7 +263,7 @@ export class StocksLanding extends Component {
                   "Share Price"
                 ]}
                 tableData={
-                  this.state.gainersClick == true //displaying the gainers data in the table if state of gainersClick is true that is when gainers button is clicked else losers data is displayed
+                  this.state.gainersClick === true //displaying the gainers data in the table if state of gainersClick is true that is when gainers button is clicked else losers data is displayed
                     ? this.props.gainersLosers["0"].gainers
                     : this.props.gainersLosers["0"].losers
                 }
