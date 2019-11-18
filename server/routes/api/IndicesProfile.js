@@ -38,9 +38,7 @@ router.get("/singleindex/:id", async (req, res, next) => {
       name["high"] = high;
       name["low"] = low;
     });
-    let finalData = {};
-    finalData.last = change;
-    if (!result) {
+    if (result.length == 0) {
       res.status(400).json({
         status: 400,
         data: null,
@@ -59,18 +57,18 @@ router.get("/singleindex/:id", async (req, res, next) => {
 });
 
 //provides downloadable format according to the required market index[p]
-router.get("/download/:index", async (req, res, next) => {
-  const index = req.params.index;
-  res.download(
-    path.join(
-      __dirname,
-      "../../db-init/stock-data/yahoo-data/index/^" + index + ".csv"
-    ),
-    function(err) {
-      console.log(err);
-    }
-  );
-});
+// router.get("/download/:index", async (req, res, next) => {
+//   const index = req.params.index;
+//   res.download(
+//     path.join(
+//       __dirname,
+//       "../../db-init/stock-data/yahoo-data/index/^" + index + ".csv"
+//     ),
+//     function(err) {
+//       console.log(err);
+//     }
+//   );
+// });
 
 router.post("/ohlcdata/:id", async (req, res, next) => {
   try {
@@ -120,7 +118,7 @@ router.post("/ohlcdata/:id", async (req, res, next) => {
       index.push(name);
     });
     index = index.reverse();
-    if (!result) {
+    if (result.length == 0) {
       res.status(400).json({
         status: 400,
         data: result,

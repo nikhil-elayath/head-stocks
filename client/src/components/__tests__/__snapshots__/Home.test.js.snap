@@ -64,93 +64,113 @@ exports[`Testing home Component should mount the component 1`] = `
       id="homecontainer"
     >
       <div
-        id="homeleftsidecontainer"
+        style={
+          Object {
+            "margin": "200px 500px",
+          }
+        }
       >
-        <h1>
-          News
-        </h1>
-        <div>
+        <Loader
+          className=""
+          color="#2c3e50"
+          height="100"
+          style={Object {}}
+          timeout={0}
+          type={[Function]}
+          visible={true}
+          width="400"
+        >
           <div
-            id="recent-news"
-          />
-          <div
-            className="div-newspage"
+            aria-busy="true"
+            className=""
+            style={Object {}}
           >
-            <div
-              id="news-list"
+            <Audio
+              className=""
+              color="#2c3e50"
+              height="100"
+              label="audio-loading"
+              style={Object {}}
+              timeout={0}
+              type={[Function]}
+              visible={true}
+              width="400"
             >
-              <p
-                id="recent-news-title0"
-                onClick={[Function]}
+              <svg
+                aria-label="audio-loading"
+                fill="#2c3e50"
+                height="100"
+                viewBox="0 0 55 80"
+                width="400"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                Master Blaster Sachin baby
-              </p>
-              <p
-                id="newsdivider"
-              >
-                <hr />
-              </p>
-            </div>
+                <g
+                  transform="matrix(1 0 0 -1 0 80)"
+                >
+                  <rect
+                    height="20"
+                    rx="3"
+                    width="10"
+                  >
+                    <animate
+                      attributeName="height"
+                      begin="0s"
+                      calcMode="linear"
+                      dur="4.3s"
+                      repeatCount="indefinite"
+                      values="20;45;57;80;64;32;66;45;64;23;66;13;64;56;34;34;2;23;76;79;20"
+                    />
+                  </rect>
+                  <rect
+                    height="80"
+                    rx="3"
+                    width="10"
+                    x="15"
+                  >
+                    <animate
+                      attributeName="height"
+                      begin="0s"
+                      calcMode="linear"
+                      dur="2s"
+                      repeatCount="indefinite"
+                      values="80;55;33;5;75;23;73;33;12;14;60;80"
+                    />
+                  </rect>
+                  <rect
+                    height="50"
+                    rx="3"
+                    width="10"
+                    x="30"
+                  >
+                    <animate
+                      attributeName="height"
+                      begin="0s"
+                      calcMode="linear"
+                      dur="1.4s"
+                      repeatCount="indefinite"
+                      values="50;34;78;23;56;23;34;76;80;54;21;50"
+                    />
+                  </rect>
+                  <rect
+                    height="30"
+                    rx="3"
+                    width="10"
+                    x="45"
+                  >
+                    <animate
+                      attributeName="height"
+                      begin="0s"
+                      calcMode="linear"
+                      dur="2s"
+                      repeatCount="indefinite"
+                      values="30;45;13;80;56;72;45;76;34;23;67;30"
+                    />
+                  </rect>
+                </g>
+              </svg>
+            </Audio>
           </div>
-          <div
-            className="div-newspage"
-          >
-            <div
-              id="news-list"
-            >
-              <p
-                id="recent-news-title1"
-                onClick={[Function]}
-              >
-                BCCI President elections coming up
-              </p>
-              <p
-                id="newsdivider"
-              >
-                <hr />
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        id="homemiddlecontainer"
-      >
-        <div>
-          <h3
-            id="headline"
-          />
-          <img
-            id="image"
-            src="welcome.svg"
-          />
-          <p
-            id="headlineDescription"
-          />
-        </div>
-      </div>
-      <div
-        id="homerightsidecontainer"
-      >
-        <h1>
-          Indices
-        </h1>
-        <div>
-          <table
-            id="homeIndicesTable"
-          >
-            <th>
-              Indices
-            </th>
-            <th>
-              Last
-            </th>
-            <th>
-              Chng %
-            </th>
-             
-          </table>
-        </div>
+        </Loader>
       </div>
     </div>
   </body>

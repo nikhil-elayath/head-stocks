@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing IndicesProfile Component should mount the component 1`] = `
+<IndicesProfile
+  data={
+    Array [
+      Array [
+        Object {
+          "adjclose": 2546,
+          "close": 2546,
+          "date": "29-Nov-2019",
+          "high": 2546,
+          "low": 2546,
+          "open": 2546,
+          "volume": 2546,
+        },
+        Object {
+          "adjclose": 2546,
+          "close": 2546,
+          "date": "29-Nov-2019",
+          "high": 2546,
+          "low": 2546,
+          "open": 2546,
+          "volume": 2546,
+        },
+      ],
+    ]
+  }
+  getIndicesById={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          1,
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  getOhlcChartIndex={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          1,
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  getOhlcIndicesById={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          1,
+          Object {
+            "time": "1w",
+          },
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  indicesProfile={[MockFunction]}
+  match={
+    Object {
+      "isExact": true,
+      "params": Object {
+        "id": 1,
+      },
+      "path": "",
+      "url": "",
+    }
+  }
+  singleIndex={Array []}
+>
+  <div>
+    <div
+      id="indicesMainContainer"
+    />
+  </div>
+</IndicesProfile>
+`;

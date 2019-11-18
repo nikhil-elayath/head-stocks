@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const stocksData = require("../../model/stocksModel");
 
-//get companies by industries
+//get all the companies by industries
 router.get("/companies/:industry", async (req, res, next) => {
   // console.log("companies by industry called");
   try {
@@ -37,7 +37,7 @@ router.get("/companies/:industry", async (req, res, next) => {
       data.push(name);
     });
     // console.log("companies by industry:", result);
-    if (result < 0) {
+    if (result.length == 0) {
       res.status(400).json({
         status: 400,
         data: data,
@@ -55,21 +55,12 @@ router.get("/companies/:industry", async (req, res, next) => {
     next(err);
   }
 });
-module.exports = router;
 
 //getting all the company sectors
 router.get("/companysectors", async (req, res) => {
   let result = await stocksData.distinct("sector", {
     sector: { $exists: true }
   });
-
-  if (result < 0) {
-    res.status(400).json({
-      status: 400,
-      data: null,
-      message: "No Sector Found"
-    });
-  }
   // If successfully executes then sends this response to the search action
   res.status(200).json({
     status: 200,
@@ -77,7 +68,6 @@ router.get("/companysectors", async (req, res) => {
     message: "Retrieved All Sectors Successfully"
   });
 });
-module.exports = router;
 
 //gainers and losers based on sector
 router.get("/gainers-and-losers/:sector", async (req, res) => {
@@ -153,16 +143,23 @@ router.get("/gainers-and-losers/:sector", async (req, res) => {
     finalData.isIndex = false;
     finalData.gainers = sorted.slice(0, 10);
     finalData.losers = reverse;
-    res.status(200).json({
-      status: 200,
-      data: [finalData],
-      message: "Retrieved name of all indexes"
-    });
+    if (tickerDetails.length == 0) {
+      res.status(400).json({
+        status: 400,
+        data: result,
+        message: "No Data Found"
+      });
+    } else {
+      res.status(200).json({
+        status: 200,
+        data: [finalData],
+        message: "Retrieved name of all indexes"
+      });
+    }
   } catch (err) {
     // console.log(err);
   }
 });
-module.exports = router;
 
 //getting all the industries based on a sector
 router.get("/industries/:sector", async (req, res, next) => {
@@ -174,7 +171,7 @@ router.get("/industries/:sector", async (req, res, next) => {
       .find({ sector: sector }, "industry")
       .distinct("industry");
     // console.log("industries by sector:", result);
-    if (result < 0) {
+    if (result.length == 0) {
       res.status(400).json({
         status: 400,
         data: result,
@@ -191,4 +188,5 @@ router.get("/industries/:sector", async (req, res, next) => {
     next(err);
   }
 });
+
 module.exports = router;

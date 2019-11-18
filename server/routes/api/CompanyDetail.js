@@ -58,7 +58,7 @@ router.get("/:id", async (req, res, next) => {
       console.log(company_details);
     });
 
-    if (result < 0) {
+    if (result.length == 0) {
       res.status(400).json({
         status: 400,
         data: company_details,
@@ -294,6 +294,11 @@ router.post("/analysis", async (req, res, next) => {
           last_date["Dividends"]) /
         last_date["Avg Basic Shares Outstanding"];
       compare.tickerValues["ratio"] = ratio.toFixed(3).toString();
+
+      test =(last_date['Net Profit'] -
+      last_date['Dividends']) /
+    last_date['Avg Basic Shares Outstanding']
+    console.log("test", test)
 
       // for current share price
       while (last_date["Share Price"] == undefined) {

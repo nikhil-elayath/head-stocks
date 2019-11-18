@@ -1,0 +1,72 @@
+/* FOR MOBILE  */
+
+#company-analysis-similar-cimpany-dropdown {
+  text-align: center;
+}
+#analysis-stock-chart {
+  background-color: #cacaca;
+}
+#analysis-price-summary {
+  background-color: #cacaca;
+}
+
+/* FOR RECOMMENDATION  */
+
+#analysis-recommendation-grid-container {
+  display: grid;
+  grid-template-areas: "company1" "company2";
+  grid-template-columns: 1fr 1fr;
+}
+#analysis-recommendation-1 {
+  grid-area: company1;
+}
+
+#analysis-recommendation-2 {
+  grid-area: company2;
+}
+
+/* FOR FINANCIAL POSITIONAL GRAPH  */
+
+#analysis-financial-positional-grid-container {
+  display: grid;
+  grid-template-areas:
+    "financial-graph-1"
+    "financial-graph-2";
+}
+
+#analysis-financial-positional-1 {
+  grid-area: "financial-graph-1";
+}
+#analysis-financial-positional-2 {
+  grid-area: "financial-graph-2";
+}
+
+/* FOR DESKTOP  */
+@media screen and (min-width: 480px) {
+  #analysis-recommendation-grid-container {
+    display: grid;
+    grid-template-areas: "company1 company2";
+    grid-template-columns: 1fr 1fr;
+  }
+  #analysis-recommendation-1 {
+    grid-area: company1;
+  }
+
+  #analysis-recommendation-2 {
+    grid-area: company2;
+  }
+
+  /* FOR FINANCIAL POSITION GRAPH 
+   */
+  #analysis-financial-positional-grid-container {
+    display: grid;
+    grid-template-areas: "financial-graph-1  financial-graph-2";
+  }
+
+  #analysis-financial-positional-1 {
+    grid-area: "financial-graph-1";
+  }
+  #analysis-financial-positional-2 {
+    grid-area: "financial-graph-2";
+  }
+}

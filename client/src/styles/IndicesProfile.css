@@ -5,10 +5,11 @@
 }
 
 #indicesMainContainer {
-  width: 97%;
+  width: 100%;
   margin: 5px auto;
   display: grid;
-  grid-template-rows: 250px 250px 250px;
+  grid-template-rows: 130px auto auto auto 550px;
+  grid-template-columns: 1fr;
   grid-gap: 10px;
 }
 
@@ -181,6 +182,7 @@
     margin: 5px auto;
     display: grid;
     grid-template-rows: 130px auto 550px;
+    grid-template-columns: 1fr;
     grid-gap: 10px;
   }
 

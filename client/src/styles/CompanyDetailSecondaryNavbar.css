@@ -1,3 +1,5 @@
+/* FOR DESKTOP  */
+
 #company-detail-content-container > div {
   color: #2c3e50;
   font-size: 20px;
@@ -5,17 +7,19 @@
 
 /* parent container */
 /* main grid  */
-
+#parent {
+  box-shadow: 0px 4px 6px 0px #cacaca;
+}
 #company-details-tab-container {
   padding: 0px 0px 0px 10px;
-  grid-template-rows: 1fr;
+  /* grid-template-rows: 1fr 1fr; */
   display: grid;
-  grid-template-areas: "overview financial analysis";
+  grid-template-areas: "overview  analysis";
   /* "chart chart"; */
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   /* overflow-x: scroll; */
   overflow-y: scroll;
-  box-shadow: 0px 4px 6px 0px #cacaca;
+  /* box-shadow: 0px 4px 6px 0px #cacaca; */
 }
 #bla {
   grid-area: analysis;
@@ -38,10 +42,7 @@
   position: absolute;
   z-index: 1;
 }
-#voltality {
-  display: flex;
-  font-size: 15px;
-}
+
 #fa-question-circle {
   margin: 10px 10px 10px 5px;
 }
@@ -59,7 +60,7 @@
 #company-detail-content-container {
   /* padding: 10px 10px 10px 10px; */
   grid-template-rows: 1fr;
-  display: grid;
+  display: flex;
   grid-template-areas: "a b c";
   /* "chart chart"; */
   grid-template-columns: 1fr 1fr 1fr;
@@ -128,5 +129,35 @@
 #secondary-navbar-sub {
   font-size: 10px;
 }
-@media only screen and (min-width: 426px) {
+#kk {
+  font-size: 12px;
+  color: #707070;
+}
+/* FOR MOBILE  */
+@media only screen and (max-width: 426px) {
+  #company-details-tab-container {
+    padding: 0px 0px 0px 10px;
+    /* grid-template-rows: 2fr; */
+    display: grid;
+    grid-template-areas:
+      "overview"
+      " financial";
+    grid-template-columns: 1fr;
+    /* overflow-x: scroll; */
+    overflow-y: scroll;
+    box-shadow: 0px 4px 6px 0px #cacaca;
+  }
+
+  #secondary-nav-values {
+    grid-area: 2/4;
+    grid-column: 1/4;
+  }
+  #secondary-navbar-img-name-container {
+    grid-area: 1/4;
+    grid-column: 1/4;
+  }
+  #bla {
+    grid-area: 3/4;
+    grid-column: 1/4;
+  }
 }
