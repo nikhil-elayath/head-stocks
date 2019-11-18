@@ -21,8 +21,8 @@ export class CompanyDetailAnalysis extends Component {
 
     console.log("From analysis component", id);
     this.props.getCompanyDetailById(id);
-    this.props.getGaugeCompany1("AAPL");
-    this.props.getGaugeCompany2("ACN");
+    // this.props.getGaugeCompany1("AAPL");
+    // this.props.getGaugeCompany2("ACN");
     this.props.getAssetsCompany1("AAPL");
     this.props.getAssetsCompany2("ACN");
   }
@@ -38,6 +38,7 @@ export class CompanyDetailAnalysis extends Component {
   };
 
   render() {
+    console.log(this.props.assets1);
     return (
       <div>
         {/* checking whether the data has been loaded into the reducer and if it is then getSimilarTabl which will have a parameter sector from the data loaded in the reducer  */}

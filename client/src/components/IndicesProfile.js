@@ -53,8 +53,31 @@ export class IndicesProfile extends Component {
                 <div id="indicesTopLeft">
                   <h1>{index.ticker_name}</h1>
                   <div>
-                    <button id="downloadButton">
+                    {/* <button id="downloadButton">
                       <i class="fa fa-download" /> Download
+                    </button> */}
+                    <button
+                      id="downloadButton"
+                      type="button"
+                      onClick={async () => {
+                        fetch(
+                          "http://localhost:2001/api/indicesprofile/download/" +
+                            index.ticker_name
+                        ).then(response => {
+                          response.blob().then(blob => {
+                            let url = window.URL.createObjectURL(blob);
+                            let a = document.createElement("a");
+                            a.href = url;
+                            a.download = index.ticker_name + ".csv";
+                            a.click();
+                          });
+                          //window.location.href = response.url;
+                        });
+                        // this.props.downloadOHLC("AAPL");
+                      }}
+                    >
+                      <i class="fa fa-download" />
+                      Download
                     </button>
                   </div>
                 </div>

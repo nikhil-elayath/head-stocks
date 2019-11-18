@@ -192,7 +192,7 @@ router.get("/financial/:id", async (req, res, next) => {
           return res.status(400).json({
             status: 400,
             data: result,
-            message: "No Dates Found"
+            message: "No Dates Found",
           });
         } else {
           if (err) throw err;
@@ -368,5 +368,19 @@ router.post("/dropdown", async (req, res, next) => {
     console.log("From catch of dropdown api");
   }
 });
+
+//download
+// router.get("/download/:ticker_name", async (req, res, next) => {
+//   const ticker_name = req.params.ticker_name;
+//   res.download(
+//     path.join(
+//       __dirname,
+//       "../../db-init/stock-data/yahoo-data/company/" + ticker_name + ".csv"
+//     ),
+//     function(err) {
+//       console.log(err);
+//     }
+//   );
+// });
 
 module.exports = router;

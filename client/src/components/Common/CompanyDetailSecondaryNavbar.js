@@ -5,7 +5,6 @@ import {
 } from "../../actions/CompanyDetail";
 import { connect } from "react-redux";
 import companylogo from "./stockslogo.PNG";
-import ReactTooltip from "react-tooltip";
 
 // importing css file
 import "../../styles/CompanyDetailSecondaryNavbar.css";
@@ -33,8 +32,6 @@ export class CompanyDetailSecondaryNavbar extends Component {
               {this.props.company.map(coms => (
                 <>
                   <div id="company-details-tab-container">
-                    {/* <div> */}
-
                     <>
                       <div id="secondary-navbar-img-name-container">
                         <div id="secondary-navbar-img">
@@ -50,7 +47,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
 
                         <div id="secondary-navbar-ticker_name">
                           <p>{coms.ticker_name}</p>
-                          <p id="#indexClose">
+                          <p id="indexClose">
                             {coms.last_share_price}
 
                             <sub id="secondary-navbar-sub">USD</sub>
@@ -189,8 +186,8 @@ export class CompanyDetailSecondaryNavbar extends Component {
                         </div>
                         {/* ------------------------------------------------------------------ */}
                         <div id="voltality">
-                          <p> 123456M </p>
-                          <div id="kk">MARKET CAP </div>
+                          <p id="market_cap"> {coms.last_market_cap} </p>
+                          <div id="kk">MARKET CAP</div>
                         </div>
                         {/* --------------------------------------------------------------------------- */}
                       </div>
@@ -204,13 +201,13 @@ export class CompanyDetailSecondaryNavbar extends Component {
                           onClick={async () => {
                             fetch(
                               "http://localhost:2001/api/companydetail/download/" +
-                                this.state.ticker_name
+                                coms.ticker_name
                             ).then(response => {
                               response.blob().then(blob => {
                                 let url = window.URL.createObjectURL(blob);
                                 let a = document.createElement("a");
                                 a.href = url;
-                                a.download = "AAPL.csv";
+                                a.download = coms.ticker_name + ".csv";
                                 a.click();
                               });
                               //window.location.href = response.url;
@@ -219,6 +216,27 @@ export class CompanyDetailSecondaryNavbar extends Component {
                           }}
                         >
                           <i class="fa fa-download" /> Download
+                        </button>
+                        <button
+                          id="downloadButton"
+                          onClick={async () => {
+                            fetch(
+                              "http://localhost:2001/api/companydetail/ohlc/" +
+                                coms.ticker_name
+                            ).then(response => {
+                              response.blob().then(blob => {
+                                let url = window.URL.createObjectURL(blob);
+                                let a = document.createElement("a");
+                                a.href = url;
+                                a.download = coms.ticker_name + ".csv";
+                                a.click();
+                              });
+                              //window.location.href = response.url;
+                            });
+                            // this.props.downloadOHLC("AAPL");
+                          }}
+                        >
+                          <i class="fa fa-download" /> Downloadohlc
                         </button>
                       </div>
                     </div>

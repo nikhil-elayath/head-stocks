@@ -66,6 +66,10 @@
     /* border: 2px solid black; */
   }
 
+  #img_gauge {
+    width: 100px;
+  }
+
   #test {
     border-left: 1px solid #cacaca;
     height: 500px;
