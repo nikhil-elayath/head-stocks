@@ -9,9 +9,10 @@ import {
   getmonteCarloCompany1,
   getmonteCarloCompany2,
   getAssetsCompany1,
-  getAssetsCompany2
+  getAssetsCompany2,
 } from "../actions/CompanyDetail";
 import { connect } from "react-redux";
+import "../styles/CompanyDetailAnalysis.css";
 import { classBody } from "@babel/types";
 import Table from "./Common/TickerTable";
 
@@ -27,7 +28,7 @@ export class CompanyDetailAnalysis extends Component {
   // this action is to plot the graph
   OnSelectSector = e => {
     this.setState({
-      ticker_name: e.target.value
+      ticker_name: e.target.value,
     });
   };
 
@@ -49,7 +50,7 @@ export class CompanyDetailAnalysis extends Component {
                   "Net Profit",
                   "P/E ratio",
                   "Share Price",
-                  "ROCE%"
+                  "ROCE%",
                 ]}
                 tableData={this.props.similar_company["0"]}
               />
@@ -58,23 +59,35 @@ export class CompanyDetailAnalysis extends Component {
             <p>Loading </p>
           )}
         </div>
-        <select
-          type="text"
-          id="stocks_dropdown"
-          name="sector"
-          onChange={this.OnSelectTicker}
-        >
-          {this.props.drop_down_data.map(companies => (
-            <>
-              <option name="choice">{companies.ticker_name}</option>
-            </>
-          ))}
-        </select>
-        <div id="analysis-stock-chart"></div>
 
-        <div id="analysis-stock-chart"></div>
+        {/* DROPDOWN FOR SIMILAR COMPANIES  */}
+        <div id="company-analysis-similar-cimpany-dropdown">
+          <select
+            type="text"
+            id="stocks_dropdown"
+            name="sector"
+            onChange={this.OnSelectTicker}
+          >
+            {this.props.drop_down_data.map(companies => (
+              <>
+                <option name="choice">{companies.ticker_name}</option>
+              </>
+            ))}
+          </select>
+        </div>
+        <div id="analysis-stock-chart">stock chart</div>
+        <div id="analysis-price-summary">price summary</div>
 
-        <div id="analysis-stock-chart"></div>
+        <div id="analysis-recommendation-grid-container">
+          <div id="analysis-recommendation-1">recommendation 1</div>
+          <div id="analysis-recommendation-2">recommendation 2</div>
+        </div>
+        <div id="analysis-financial-positional-grid-container">
+          <div id="analysis-financial-positional-1">financial position 1</div>
+          <div id="analysis-financial-positional-2">financial position 2</div>
+        </div>
+
+        {/* parent div  */}
       </div>
     );
   }
@@ -89,7 +102,7 @@ const mapStateToProps = state => ({
   maonteCarlo1: state.CompanyDetailReducer.maonteCarlo1,
   maonteCarlo2: state.CompanyDetailReducer.drop_down_data,
   assets1: state.CompanyDetailReducer.assets1,
-  assets2: state.CompanyDetailReducer.assets2
+  assets2: state.CompanyDetailReducer.assets2,
 });
 export default connect(mapStateToProps, {
   getCompanyDetailById,
@@ -100,5 +113,5 @@ export default connect(mapStateToProps, {
   getmonteCarloCompany1,
   getmonteCarloCompany2,
   getAssetsCompany1,
-  getAssetsCompany2
+  getAssetsCompany2,
 })(CompanyDetailAnalysis);

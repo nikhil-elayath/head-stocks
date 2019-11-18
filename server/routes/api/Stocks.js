@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const stocksData = require("../../model/stocksModel");
 
-//get companies by industries
+//get all the companies by industries
 router.get("/companies/:industry", async (req, res, next) => {
   // console.log("companies by industry called");
   try {
@@ -55,7 +55,6 @@ router.get("/companies/:industry", async (req, res, next) => {
     next(err);
   }
 });
-module.exports = router;
 
 //getting all the company sectors
 router.get("/companysectors", async (req, res) => {
@@ -69,7 +68,6 @@ router.get("/companysectors", async (req, res) => {
     message: "Retrieved All Sectors Successfully"
   });
 });
-module.exports = router;
 
 //gainers and losers based on sector
 router.get("/gainers-and-losers/:sector", async (req, res) => {
@@ -162,7 +160,6 @@ router.get("/gainers-and-losers/:sector", async (req, res) => {
     // console.log(err);
   }
 });
-module.exports = router;
 
 //getting all the industries based on a sector
 router.get("/industries/:sector", async (req, res, next) => {
@@ -191,4 +188,5 @@ router.get("/industries/:sector", async (req, res, next) => {
     next(err);
   }
 });
+
 module.exports = router;

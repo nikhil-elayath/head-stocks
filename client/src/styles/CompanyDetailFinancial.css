@@ -19,8 +19,7 @@
 }
 .financialsSidebar {
   display: none;
-  
- }
+}
 .financialsAllTablesDiv {
   grid-area: table;
   display: block;
@@ -30,12 +29,8 @@
   text-align: center;
 }
 
-
-
-
 @media only screen and (min-width: 426px) {
   .financialsMainGrid {
-  
     margin-top: 10px;
     width: 100%;
     grid-gap: 10px;
@@ -55,14 +50,13 @@
     grid-area: tables;
     display: block;
     height: 580px;
-     overflow-y: scroll;
+    overflow-y: scroll;
     padding: 20px 100px 250px 100px;
   }
   .financialsTitle {
     font-size: 30px;
     text-align: left;
   }
-  
 
   /* sidebar css */
   .financialsSidebarOptions {
@@ -82,21 +76,18 @@
     height: 145px;
     grid-area: bs;
     text-decoration: none;
-
   }
   .financialsSidebarOptions #item2 {
     grid-area: cf;
     height: 145px;
     display: block;
     text-decoration: none;
-
   }
   .financialsSidebarOptions #item3 {
     display: block;
     height: 145px;
     grid-area: pl;
     text-decoration: none;
-    
   }
   .financialsSidebarOptions #item4 {
     grid-area: ratios;
@@ -104,10 +95,10 @@
     text-decoration: none;
     display: block;
   }
-  .financialsSidebarItem{
-      background-color: #39abf7;
-      color: white;
-    }
+  .financialsSidebarItem {
+    background-color: #39abf7;
+    color: white;
+  }
   .financialsSidebarOptionsP {
     font-size: 13px;
     font-weight: bold;
