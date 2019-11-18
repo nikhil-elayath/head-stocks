@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {
   getCompanyDetailById,
   getOhlcChart,
-  getGaugeCompany1
+  getGaugeCompany1,
 } from "../actions/CompanyDetail";
 import { connect } from "react-redux";
 // importing css file
@@ -30,22 +30,23 @@ export class CompanyDetail extends Component {
         {this.props.company ? (
           <div id="company-detail-grid-container">
             <div id="company-detail-profile">
-              {this.props.company.map(coms => (
+              {this.props.company.map(company => (
                 <>
                   <h3>
-                    Market Cap : <span>{coms.last_market_cap}</span>
+                    Market Cap :
+                    <span id="market_cap">{company.last_market_cap}</span>
                   </h3>
                   <h3>
-                    Sector : <span>{coms.sector}</span>
+                    Sector : <span id="sector">{company.sector}</span>
                   </h3>
                   <h3>
-                    Industry : <span>{coms.industry}</span>
+                    Industry : <span id="industry">{company.industry}</span>
                   </h3>
                   <h3>
-                    Employees : <span>{coms.employees}</span>
+                    Employees : <span id="employee">{company.employees}</span>
                   </h3>
                   <h3>
-                    <span>{coms.profile}</span>
+                    <span id="profile">{company.profile}</span>
                   </h3>
                 </>
               ))}
@@ -74,7 +75,7 @@ export class CompanyDetail extends Component {
               border: "1px solid #cacaca",
               width: "97%",
               margin: "auto",
-              marginBottom: "20px"
+              marginBottom: "20px",
             }}
           >
             <iframe
@@ -83,7 +84,7 @@ export class CompanyDetail extends Component {
                 width: "100%",
                 height: "550px",
                 outline: "none",
-                border: "none"
+                border: "none",
               }}
             />
           </div>
@@ -97,10 +98,10 @@ const mapStateToProps = state => ({
   similar_company: state.CompanyDetailReducer.similar_company,
   gauge1: state.CompanyDetailReducer.gauge1,
   ohlc_chart: state.CompanyDetailReducer.ohlc_chart,
-  isLoading: state.LoadingReducer.isLoading
+  isLoading: state.LoadingReducer.isLoading,
 });
 export default connect(mapStateToProps, {
   getOhlcChart,
   getCompanyDetailById,
-  getGaugeCompany1
+  getGaugeCompany1,
 })(CompanyDetail);

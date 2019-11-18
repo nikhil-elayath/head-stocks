@@ -3,9 +3,60 @@
 exports[`Testing Company Detail Component should mount the component 1`] = `
 <div>
   <Connect(CompanyDetailSecondaryNavbar) />
-  <p>
-    Loading..
-  </p>
+  <div
+    id="company-detail-grid-container"
+  >
+    <div
+      id="company-detail-profile"
+    >
+      <h3>
+        Market Cap :
+        <span
+          id="market_cap"
+        >
+          123456
+        </span>
+      </h3>
+      <h3>
+        Sector : 
+        <span
+          id="sector"
+        >
+          technology
+        </span>
+      </h3>
+      <h3>
+        Industry : 
+        <span
+          id="industry"
+        >
+          Computer
+        </span>
+      </h3>
+      <h3>
+        Employees : 
+        <span
+          id="employee"
+        >
+          132
+        </span>
+      </h3>
+      <h3>
+        <span
+          id="profile"
+        >
+          profile
+        </span>
+      </h3>
+    </div>
+    <div
+      id="company-detail-recommendation"
+    >
+      <img
+        src="data:image/jpeg;base64,gauge.png"
+      />
+    </div>
+  </div>
   <div
     style={
       Object {
