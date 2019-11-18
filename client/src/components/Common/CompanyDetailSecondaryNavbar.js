@@ -45,16 +45,13 @@ export class CompanyDetailSecondaryNavbar extends Component {
 
                         <div id="secondary-navbar-ticker_name">
                           <p>{coms.ticker_name}</p>
-                          <p
-                            id="#indexClose
-"
-                          >
+                          <p id="#indexClose">
                             {coms.last_share_price}
 
                             <sub id="secondary-navbar-sub">USD</sub>
                           </p>
                           <p id="last_date">
-                            Closed price:(
+                            CLOSE (
                             {new Date(coms.share_date).toLocaleDateString(
                               "en-IN",
                               {
@@ -65,22 +62,24 @@ export class CompanyDetailSecondaryNavbar extends Component {
                             )}
                             )
                           </p>
-                          <div id="voltality">
+                          {/* <div id="voltality">
                             <p> 123456 </p>
-                            <div id="kk">Volatility </div>
-                            <div id="abc">
-                              <i class="fa fa-question-circle" />
-                              <span id="volatility">
-                                Volatility is a statistical measure of the
-                                dispersion of returns for a given security or
-                                market index. In most cases, the higher the
-                                volatility, the riskier the security. Volatility
-                                is often measured as either the standard
-                                deviation or variance between returns from that
-                                same security or market index.
-                              </span>
+                            <div id="voltality_tooltip">
+                              <div id="kk">VOLATILITY </div>
+                              <div id="abc">
+                                <i class="fa fa-question-circle" />
+                                <span id="volatility">
+                                  Volatility is a statistical measure of the
+                                  dispersion of returns for a given security or
+                                  market index. In most cases, the higher the
+                                  volatility, the riskier the security.
+                                  Volatility is often measured as either the
+                                  standard deviation or variance between returns
+                                  from that same security or market index.
+                                </span>
+                              </div>
                             </div>
-                          </div>
+                          </div> */}
                         </div>
                         <div />
                       </div>
@@ -182,17 +181,58 @@ export class CompanyDetailSecondaryNavbar extends Component {
                           </Link>
                         </div>
                       </ul>
-                      <div id="secondary-nav-values">values</div>
+                      <div id="secondary-nav-values">
+                        <div id="voltality">
+                          <p> 123456 </p>
+                          <div id="voltality_tooltip">
+                            <div id="kk">VOLATILITY </div>
+                            <div id="abc">
+                              <i class="fa fa-question-circle" />
+                              <span id="volatility">
+                                Volatility is a statistical measure of the
+                                dispersion of returns for a given security or
+                                market index. In most cases, the higher the
+                                volatility, the riskier the security. Volatility
+                                is often measured as either the standard
+                                deviation or variance between returns from that
+                                same security or market index.
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        {/* ------------------------------------------------------------------ */}
+                        <div id="voltality">
+                          <p> 123456M </p>
+                          <div id="kk">MARKET CAP </div>
+                        </div>
+                        {/* --------------------------------------------------------------------------- */}
+                      </div>
                     </>
 
                     <div id="bla">
                       <div id="secondary-navbar-bla">
                         {/* second grid of secondaru navbar */}
-                        <div id="secondary-download-button">
-                          <button id="downloadButton">
-                            <i class="fa fa-download" /> Download
-                          </button>
-                        </div>
+                        <button
+                          id="downloadButton"
+                          onClick={async () => {
+                            fetch(
+                              "http://localhost:2001/api/companydetail/download/" +
+                                this.state.ticker_name
+                            ).then(response => {
+                              response.blob().then(blob => {
+                                let url = window.URL.createObjectURL(blob);
+                                let a = document.createElement("a");
+                                a.href = url;
+                                a.download = "AAPL.csv";
+                                a.click();
+                              });
+                              //window.location.href = response.url;
+                            });
+                            // this.props.downloadOHLC("AAPL");
+                          }}
+                        >
+                          <i class="fa fa-download" /> Download
+                        </button>
                       </div>
                     </div>
                   </div>

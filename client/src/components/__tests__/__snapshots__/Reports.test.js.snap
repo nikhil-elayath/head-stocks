@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Navbar Component should mount the component 1`] = `
+<div
+  className="financialTableContainer"
+>
+  <table
+    className="financialTableData"
+  >
+    <tr>
+      <td
+        className="financialTableDataTitle"
+      >
+        Indicator Name
+      </td>
+      <td
+        className="financialTableDataTitle"
+      >
+         
+        Jan 23
+      </td>
+    </tr>
+    <tr>
+      <td>
+        test2
+      </td>
+      <td>
+        123
+      </td>
+    </tr>
+    <tr>
+      <td>
+        test3
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="financialsTotalTD"
+      >
+        Total Assets
+      </td>
+      <td
+        className="financialsTotalTD"
+      >
+        123
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="financialsTotalTD"
+      >
+        Total Liabilities
+      </td>
+      <td
+        className="financialsTotalTD"
+      >
+        -
+      </td>
+    </tr>
+  </table>
+</div>
+`;

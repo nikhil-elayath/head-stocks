@@ -13,10 +13,13 @@ exports[`Testing Navbar Component should mount the component 1`] = `
     >
       <span
         className="active"
+        id="navbarLogoText1"
         onClick={[Function]}
       >
         HEAD
-        <b>
+        <b
+          id="navbarLogoText2"
+        >
           STOCKS
         </b>
       </span>
@@ -28,6 +31,7 @@ exports[`Testing Navbar Component should mount the component 1`] = `
     <span>
       <Link
         className="linkdecornone"
+        id="navbarLoginText"
         onClick={[Function]}
         to="/login"
       >
@@ -41,6 +45,7 @@ exports[`Testing Navbar Component should mount the component 1`] = `
     <span>
       <Link
         className="linkdecornone"
+        id="navbarStocksText"
         onClick={[Function]}
         to="/Stocks"
       >
@@ -56,12 +61,14 @@ exports[`Testing Navbar Component should mount the component 1`] = `
     >
       <input
         autoComplete="off"
+        id="navbarSearchInput"
         name="searchInput"
         onChange={[Function]}
         placeholder="Search for ticker"
         type="text"
       />
       <button
+        id="navbarSearchResultsSearchButton"
         onClick={[Function]}
       >
         <i
