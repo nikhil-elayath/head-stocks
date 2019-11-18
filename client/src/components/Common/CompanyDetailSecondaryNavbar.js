@@ -66,7 +66,8 @@ export class CompanyDetailSecondaryNavbar extends Component {
                             )
                           </p>
                           <div id="voltality">
-                            Volatility: 123456
+                            <p> 123456 </p>
+                            <div id="kk">Volatility </div>
                             <div id="abc">
                               <i class="fa fa-question-circle" />
                               <span id="volatility">
