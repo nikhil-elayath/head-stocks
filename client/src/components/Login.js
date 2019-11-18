@@ -67,7 +67,7 @@ export class Login extends Component {
               id="loginwelcome"
               className="w3-container w3-center w3-animate-left"
             >
-              Welcome ,
+              Welcome Back,
             </h1>
             <p className="w3-container w3-center w3-animate-left">
               An Investment in Knowledge <br />
@@ -113,7 +113,7 @@ export class Login extends Component {
                   value={this.state.email}
                 />
               </p>
-                <p id="loginErrorMessage">{this.state.errors.email}</p>
+              <p id="loginErrorMessage">{this.state.errors.email}</p>
               <p>
                 <input
                   id="loginInput"
@@ -159,7 +159,4 @@ const mapStateToProps = state => ({
   error: state.usersReducer.error
 });
 
-export default connect(
-  mapStateToProps,
-  { login }
-)(Login);
+export default connect(mapStateToProps, { login })(Login);

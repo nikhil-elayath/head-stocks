@@ -1,24 +1,23 @@
+/* FOR MOBILE  */
+
 #company-detail-grid-container {
   padding: 10px 10px 10px 10px;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr;
   display: grid;
   grid-template-areas:
-    "profile "
+    "profile"
     "recommendation";
-  /* "chart chart"; */
   grid-template-columns: 1fr;
-  /* overflow-x: scroll; */
-  overflow-y: scroll;
+  font-size: 10px;
+
+  text-align: justify;
 }
+
 #company-detail-recommendation {
   grid-area: recommendation;
-  /* height: 102px; */
-  /* border: 2px solid black; */
 }
 #company-detail-profile {
   grid-area: profile;
-  /* height: 102px; */
-  /* border: 2px solid black; */
 }
 #company-detail-profile > h3 > span {
   /* color: red; */
@@ -41,10 +40,7 @@
     /* overflow-x: scroll; */
     overflow-y: scroll;
   }
-  /* #company-detail-profile > p {
-  color: #707070;
-  font-size: 20px;
-} */
+
   #company-detail-profile > h3 {
     /* color: #707070; */
     font-size: 20px;
