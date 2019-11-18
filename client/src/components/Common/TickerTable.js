@@ -11,11 +11,10 @@ export class TickerTable extends Component {
           <thead className="ticker__tableHeader">
             <tr>
               {this.props.tableHeaders.map((data, index) => (
-                <th>{data}</th>
+                <th id={"TickerHeaders" + index}>{data}</th>
               ))}
             </tr>
           </thead>
-          {console.log("tabledata", typeof this.props.tableData)}
           {this.props.tableData.map((current, index) => (
             <tr>
               {this.props.isIndex == true ? (
@@ -42,7 +41,10 @@ export class TickerTable extends Component {
                         </td>
                       ) : current.tickerValues[keyName].substring(0, 1) ==
                         "+" ? (
-                        <td style={{ color: "#27ae60" }}>
+                        <td
+                          style={{ color: "#27ae60" }}
+                          id={"tickerValues" + index}
+                        >
                           {current.tickerValues[keyName]}
                         </td>
                       ) : (

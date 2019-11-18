@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Register Component should mount the component 1`] = `
+<div
+  className="table__container"
+>
+  <table
+    className="ticker__table"
+  >
+    <thead
+      className="ticker__tableHeader"
+    >
+      <tr>
+        <th
+          id="TickerHeaders0"
+        >
+          Ticker
+        </th>
+        <th
+          id="TickerHeaders1"
+        >
+          Chng%
+        </th>
+        <th
+          id="TickerHeaders2"
+        >
+          MarketCap
+        </th>
+        <th
+          id="TickerHeaders3"
+        >
+          Share PRice
+        </th>
+      </tr>
+    </thead>
+    <tr>
+      <Link
+        style={
+          Object {
+            "textDecoration": "none",
+          }
+        }
+        to={
+          Object {
+            "pathname": "/companydetail/undefined",
+          }
+        }
+      >
+        <td>
+          AAPL
+        </td>
+      </Link>
+    </tr>
+    <tr>
+      <Link
+        style={
+          Object {
+            "textDecoration": "none",
+          }
+        }
+        to={
+          Object {
+            "pathname": "/companydetail/undefined",
+          }
+        }
+      >
+        <td />
+      </Link>
+      <td
+        id="tickerValues0"
+        style={
+          Object {
+            "color": "#27ae60",
+          }
+        }
+      >
+        +2.13
+      </td>
+      <td>
+        213456.00
+      </td>
+      <td>
+        2.13
+      </td>
+    </tr>
+  </table>
+</div>
+`;

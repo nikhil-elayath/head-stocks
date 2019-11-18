@@ -34,7 +34,7 @@ export class Register extends Component {
   };
 
   register = e => {
-    e.preventDefault();
+    // e.preventDefault();
     if (this.validateForm()) {
       let user = {
         name: this.state.name,
