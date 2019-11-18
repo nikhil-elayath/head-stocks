@@ -132,7 +132,8 @@ export class StocksLanding extends Component {
             <div id="stocks_filter">
               <select
                 type="text"
-                id="stocks_dropdown"
+                id="stocks_dropdown_sectors"
+                className="stocks_dropdown"
                 name="sector"
                 value={this.state.sector}
                 onChange={this.OnSelectSector}
@@ -146,7 +147,8 @@ export class StocksLanding extends Component {
               </select>
               <select
                 type="text"
-                id="stocks_dropdown"
+                className="stocks_dropdown"
+                id="stocks_dropdown_industries"
                 name="industries"
                 value={this.state.industry} //changing the value of industry when selected
                 onChange={this.OnSelectIndustry} //on change perform this function
@@ -235,7 +237,8 @@ export class StocksLanding extends Component {
             <div id="stocks_table">
               <div id="stocks_div_buttons">
                 <button
-                  id={
+                  id="button_stocks_gainers"
+                  className={
                     this.state.gainersClick === true //changing the color of gainers button when clicked on it
                       ? "stocks_gainers"
                       : "stocks_losers"
@@ -245,7 +248,8 @@ export class StocksLanding extends Component {
                   Gainers
                 </button>
                 <button
-                  id={
+                  id="button_stocks_losers"
+                  className={
                     this.state.gainersClick === false //changing the color of losers button when clicked on it
                       ? "stocks_gainers"
                       : "stocks_losers"

@@ -1,15 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Testing stocks Component should mount the component 1`] = `
+exports[`Testing Stocks Component should mount the component 1`] = `
 <div>
   <div
     id="stocks_main_container"
   >
-    <p>
-      STOCKS
-    </p>
     <div
-      id="stocks_main_grid_container "
+      id="stocks_filter"
+    >
+      <select
+        className="stocks_dropdown"
+        id="stocks_dropdown_sectors"
+        name="sector"
+        onChange={[Function]}
+        type="text"
+        value="Basic Materials"
+      />
+      <select
+        className="stocks_dropdown"
+        id="stocks_dropdown_industries"
+        name="industries"
+        onChange={[Function]}
+        type="text"
+        value="Building Materials"
+      >
+        <option
+          name="choice"
+        >
+          Select an Industry
+        </option>
+      </select>
+    </div>
+    <div
+      id="stocks_main_grid_container"
     >
       <InfiniteScroll
         dataLength={0}
@@ -22,26 +45,26 @@ exports[`Testing stocks Component should mount the component 1`] = `
             }
           >
             <b>
-              Yay! You have seen all Teams
+              Yay! You have seen all the stocks
             </b>
           </p>
         }
         hasMore={true}
         height={600}
         loader={
-          <Loader
-            className=""
-            color="#2c3e50"
-            style={
-              Object {
-                "margin": "200px 700px",
-              }
-            }
-            textAlign="center"
-            timeout={0}
-            type={[Function]}
-            visible={true}
-          />
+          <div
+            id="stocks_loader"
+          >
+            <Loader
+              className=""
+              color="#2c3e50"
+              style={Object {}}
+              textAlign="center"
+              timeout={0}
+              type={[Function]}
+              visible={true}
+            />
+          </div>
         }
         next={[Function]}
       >
@@ -49,6 +72,51 @@ exports[`Testing stocks Component should mount the component 1`] = `
           id="stocks_grid_container"
         />
       </InfiniteScroll>
+    </div>
+    <div
+      id="stocks_table"
+    >
+      <div
+        id="stocks_div_buttons"
+      >
+        <button
+          className="stocks_gainers"
+          id="button_stocks_gainers"
+          onClick={[Function]}
+        >
+          Gainers
+        </button>
+        <button
+          className="stocks_losers"
+          id="button_stocks_losers"
+          onClick={[Function]}
+        >
+          Losers
+        </button>
+      </div>
+      <Connect(TickerTable)
+        tableData={
+          Array [
+            Object {
+              "tickerValues": Object {
+                "Market Cap": "68.00M",
+                "Share Price": "4.38",
+                "change_percent": "+30.37",
+              },
+              "ticker_id": 1030,
+              "ticker_name": "HPJ",
+            },
+          ]
+        }
+        tableHeaders={
+          Array [
+            "Ticker",
+            "Chng (%)",
+            "Market Cap",
+            "Share Price",
+          ]
+        }
+      />
     </div>
   </div>
 </div>
