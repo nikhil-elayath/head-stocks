@@ -143,7 +143,7 @@ export class NavbarDefault extends Component {
           </span>
         </div>
 
-        <div className="navbarSearchBox">
+        <div className="navbarSearchBox" id="navbarSearchBoxDiv">
           <span className="navbarSearchSpan">
             <input
               type="text"
