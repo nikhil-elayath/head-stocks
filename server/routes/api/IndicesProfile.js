@@ -38,8 +38,6 @@ router.get("/singleindex/:id", async (req, res, next) => {
       name["high"] = high;
       name["low"] = low;
     });
-    let finalData = {};
-    finalData.last = change;
     if (result.length == 0) {
       res.status(400).json({
         status: 400,
