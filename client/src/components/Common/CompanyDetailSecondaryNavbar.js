@@ -195,21 +195,13 @@ export class CompanyDetailSecondaryNavbar extends Component {
                           id="downloadButton"
                           onClick={async () => {
                             fetch(
-<<<<<<< HEAD
                               "http://localhost:2001/api/companydetail/indicatorsdata/" +
-=======
-                              "http://localhost:2001/api/companydetail/download/" +
->>>>>>> c685c0b769c7f7963329de1dec9dcbdfe33a5670
                                 coms.ticker_name
                             ).then(response => {
                               response.blob().then(blob => {
                                 let url = window.URL.createObjectURL(blob);
                                 let a = document.createElement("a");
                                 a.href = url;
-<<<<<<< HEAD
-=======
-
->>>>>>> c685c0b769c7f7963329de1dec9dcbdfe33a5670
                                 a.download = coms.ticker_name + ".csv";
                                 a.click();
                               });

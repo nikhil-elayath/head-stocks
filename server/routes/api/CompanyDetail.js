@@ -192,7 +192,7 @@ router.get("/financial/:id", async (req, res, next) => {
           return res.status(400).json({
             status: 400,
             data: result,
-            message: "No Dates Found",
+            message: "No Dates Found"
           });
         } else {
           if (err) throw err;
@@ -369,7 +369,6 @@ router.post("/dropdown", async (req, res, next) => {
   }
 });
 
-<<<<<<< HEAD
 //download[piyush]
 const pg = require("pg-promise")();
 const db = pg("postgres://postgres:123456@localhost:5432/headstocks");
@@ -456,20 +455,5 @@ router.get("/ohlc/:ticker_name", async (req, res, next) => {
     console.log(err);
   }
 });
-=======
-//download
-// router.get("/download/:ticker_name", async (req, res, next) => {
-//   const ticker_name = req.params.ticker_name;
-//   res.download(
-//     path.join(
-//       __dirname,
-//       "../../db-init/stock-data/yahoo-data/company/" + ticker_name + ".csv"
-//     ),
-//     function(err) {
-//       console.log(err);
-//     }
-//   );
-// });
->>>>>>> c685c0b769c7f7963329de1dec9dcbdfe33a5670
 
 module.exports = router;
