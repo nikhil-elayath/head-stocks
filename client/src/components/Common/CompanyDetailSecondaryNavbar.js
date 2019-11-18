@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { getCompanyDetailById } from "../../actions/CompanyDetail";
 import { connect } from "react-redux";
 import companylogo from "./stockslogo.PNG";
-import ReactTooltip from "react-tooltip";
 
 // importing css file
 import "../../styles/CompanyDetailSecondaryNavbar.css";
@@ -28,8 +27,6 @@ export class CompanyDetailSecondaryNavbar extends Component {
               {this.props.company.map(coms => (
                 <>
                   <div id="company-details-tab-container">
-                    {/* <div> */}
-
                     <>
                       <div id="secondary-navbar-img-name-container">
                         <div id="secondary-navbar-img">
@@ -45,7 +42,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
 
                         <div id="secondary-navbar-ticker_name">
                           <p>{coms.ticker_name}</p>
-                          <p id="#indexClose">
+                          <p id="indexClose">
                             {coms.last_share_price}
 
                             <sub id="secondary-navbar-sub">USD</sub>
@@ -62,24 +59,6 @@ export class CompanyDetailSecondaryNavbar extends Component {
                             )}
                             )
                           </p>
-                          {/* <div id="voltality">
-                            <p> 123456 </p>
-                            <div id="voltality_tooltip">
-                              <div id="kk">VOLATILITY </div>
-                              <div id="abc">
-                                <i class="fa fa-question-circle" />
-                                <span id="volatility">
-                                  Volatility is a statistical measure of the
-                                  dispersion of returns for a given security or
-                                  market index. In most cases, the higher the
-                                  volatility, the riskier the security.
-                                  Volatility is often measured as either the
-                                  standard deviation or variance between returns
-                                  from that same security or market index.
-                                </span>
-                              </div>
-                            </div>
-                          </div> */}
                         </div>
                         <div />
                       </div>
@@ -202,8 +181,8 @@ export class CompanyDetailSecondaryNavbar extends Component {
                         </div>
                         {/* ------------------------------------------------------------------ */}
                         <div id="voltality">
-                          <p> 123456M </p>
-                          <div id="kk">MARKET CAP </div>
+                          <p id="market_cap"> {coms.last_market_cap} </p>
+                          <div id="kk">MARKET CAP</div>
                         </div>
                         {/* --------------------------------------------------------------------------- */}
                       </div>
@@ -216,13 +195,21 @@ export class CompanyDetailSecondaryNavbar extends Component {
                           id="downloadButton"
                           onClick={async () => {
                             fetch(
+<<<<<<< HEAD
                               "http://localhost:2001/api/companydetail/indicatorsdata/" +
+=======
+                              "http://localhost:2001/api/companydetail/download/" +
+>>>>>>> c685c0b769c7f7963329de1dec9dcbdfe33a5670
                                 coms.ticker_name
                             ).then(response => {
                               response.blob().then(blob => {
                                 let url = window.URL.createObjectURL(blob);
                                 let a = document.createElement("a");
                                 a.href = url;
+<<<<<<< HEAD
+=======
+
+>>>>>>> c685c0b769c7f7963329de1dec9dcbdfe33a5670
                                 a.download = coms.ticker_name + ".csv";
                                 a.click();
                               });

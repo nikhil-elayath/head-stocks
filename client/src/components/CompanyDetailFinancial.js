@@ -145,7 +145,7 @@ export class CompanyDetailFinancial extends Component {
 
           <div className="financialsAllTablesDiv">
             <h1 className="financialsTitle" id="table1">
-              Balance Sheet{" "}
+              Balance Sheet
             </h1>
 
             
@@ -169,7 +169,7 @@ export class CompanyDetailFinancial extends Component {
               />
             {/* </div> */}
             <h1 className="financialsTitle" id="table2">
-              Cash Flow{" "}
+              Cash Flow
             </h1>
             <ReportsTable
                 headers={[
@@ -187,7 +187,7 @@ export class CompanyDetailFinancial extends Component {
               />
             
             <h1 className="financialsTitle" id="table3">
-              Profit And Loss{" "}
+              Profit And Loss
             </h1>
             <ReportsTable
                 headers={[
@@ -202,7 +202,7 @@ export class CompanyDetailFinancial extends Component {
               />
 
             <h1 className="financialsTitle" id="table4">
-              Ratios{" "}
+              Ratios
             </h1>
             <ReportsTable
                 headers={[
