@@ -179,6 +179,15 @@ exports[`Testing Company Detail Secondary navbar Component should mount the comp
               />
                Download
             </button>
+            <button
+              id="downloadButton"
+              onClick={[Function]}
+            >
+              <i
+                class="fa fa-download"
+              />
+               Downloadohlc
+            </button>
           </div>
         </div>
       </div>

@@ -69,14 +69,14 @@ describe("Testing Company Detail Secondary navbar Component", () => {
     wrapper.find("#company-detail-analysis").simulate("click", e);
   });
 
-  it("should display the market cap", () => {
-    expect(wrapper.find("#volatility").text()).toBe(
-      "Volatility is a statistical measure of the dispersion of returns for a given security or market index. In most cases, the higher the volatility, the riskier the security. Volatility is often measured as either the standard deviation or variance between returns from that same security or market index."
-    );
-  });
-  it("should display the market cap", () => {
-    expect(wrapper.find("#kk").text()).toBe("VOLATILITY");
-  });
+  // it("should display the market cap", () => {
+  //   expect(wrapper.find("#volatility").text()).toBe(
+  //     "Volatility is a statistical measure of the dispersion of returns for a given security or market index. In most cases, the higher the volatility, the riskier the security. Volatility is often measured as either the standard deviation or variance between returns from that same security or market index."
+  //   );
+  // });
+  // it("should display the market cap", () => {
+  //   expect(wrapper.find("#kk").text()).toBe("VOLATILITY");
+  // });
 
   //on click function
 });

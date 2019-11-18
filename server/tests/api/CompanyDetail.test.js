@@ -15,8 +15,35 @@ describe("Testing ComapnyDetail API", () => {
       });
   });
 
+  //negative
+  it("(Negs should return a status code of 200,the body should be an object,a message in the body,the data should be an object", done => {
+    let id = 0;
+    request(app)
+      .get("/api/companydetail/" + id)
+      .then(res => {
+        expect(res.status).toBe(400);
+        expect(res.body).toEqual(expect.any(Object));
+        expect(res.body.data).toEqual(expect.any(Object));
+        expect(res.body.message).toBe("No companies found");
+        done();
+      });
+  });
+
   it("(Doud not Return data of company specified) should return a status code of 400,the body should be an object,a message in the body,the data should be an object", done => {
     let id = 7894;
+    request(app)
+      .get("/api/companydetail/" + id)
+      .then(res => {
+        expect(res.status).toBe(400);
+        expect(res.body).toEqual(expect.any(Object));
+        expect(res.body.data).toEqual(expect.any(Object));
+        expect(res.body.message).toBe("No companies found");
+        done();
+      });
+  });
+  //negative
+  it("(Negative ot Return data of company specified) should return a status code of 400,the body should be an object,a message in the body,the data should be an object", done => {
+    let id = -1;
     request(app)
       .get("/api/companydetail/" + id)
       .then(res => {
@@ -70,12 +97,14 @@ describe("Testing ComapnyDetail API", () => {
       });
   });
 
-  //analysis
+  // negative
+
   it("(Returns Reports data) should return a status code of 200,the body should be an object,a message in the body,the data should be an object", done => {
+    let id = 9;
     request(app)
-      .post("/api/analysis")
+      .post("/api/dropdown")
       .then(res => {
-        expect(res.status).toBe(200);
+        expect(res.status).toBe(400);
         expect(res.body).toEqual(expect.any(Object));
         expect(res.body.data).toEqual(expect.any(Object));
         expect(res.body.message).toBe(
@@ -84,4 +113,19 @@ describe("Testing ComapnyDetail API", () => {
         done();
       });
   });
+
+  //analysis
+  // it("(Returns Reports data) should return a status code of 200,the body should be an object,a message in the body,the data should be an object", done => {
+  //   request(app)
+  //     .post("/api/analysis")
+  //     .then(res => {
+  //       expect(res.status).toBe(200);
+  //       expect(res.body).toEqual(expect.any(Object));
+  //       expect(res.body.data).toEqual(expect.any(Object));
+  //       expect(res.body.message).toBe(
+  //         "Similar companies for dropdown retrieved"
+  //       );
+  //       done();
+  //     });
+  // });
 });
