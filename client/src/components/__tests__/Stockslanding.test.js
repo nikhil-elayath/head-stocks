@@ -134,7 +134,7 @@ describe("Testing Stocks Component", () => {
   });
 
   it("Ticker Name should be shown in each stocks card", () => {
-    expect(wrapper.find("#sectors0").props().children).toBe(sectors[0]);
+    expect(wrapper.find("#sector0").props.children).toBe(sectors[0]);
   });
 
   it("should have ticker_name click on stocks card ", () => {
