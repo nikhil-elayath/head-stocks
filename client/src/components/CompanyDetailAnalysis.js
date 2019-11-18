@@ -9,12 +9,10 @@ import {
   getmonteCarloCompany1,
   getmonteCarloCompany2,
   getAssetsCompany1,
-  getAssetsCompany2
+  getAssetsCompany2,
 } from "../actions/CompanyDetail";
 import { connect } from "react-redux";
 import "../styles/CompanyDetailAnalysis.css";
-import { classBody } from "@babel/types";
-import Table from "./Common/TickerTable";
 import gauge from "./Common/gauge.png";
 
 export class CompanyDetailAnalysis extends Component {
@@ -33,15 +31,13 @@ export class CompanyDetailAnalysis extends Component {
   // this action is to plot the graph
   OnSelectTicker = e => {
     this.setState({
-      ticker_name: e.target.value
+      ticker_name: e.target.value,
     });
     this.props.getGaugeCompany2(e.target.value);
     this.props.getAssetsCompany2(e.target.value);
   };
 
   render() {
-    console.log(this.props);
-    console.log(this.props.similar_company ? this.props.similar_company : "NA");
     return (
       <div>
         {/* checking whether the data has been loaded into the reducer and if it is then getSimilarTabl which will have a parameter sector from the data loaded in the reducer  */}
@@ -88,6 +84,7 @@ export class CompanyDetailAnalysis extends Component {
         <div id="analysis-recommendation-grid-container">
           <div id="analysis-recommendation-1">
             <img
+              id="analysis-gauge-1"
               src={
                 this.props.gauge1
                   ? "data:image/jpeg;base64," + this.props.gauge1
@@ -97,6 +94,7 @@ export class CompanyDetailAnalysis extends Component {
           </div>
           <div id="analysis-recommendation-2">
             <img
+              id="analysis-gauge-2"
               src={
                 this.props.gauge2
                   ? "data:image/jpeg;base64," + this.props.gauge2
@@ -108,12 +106,13 @@ export class CompanyDetailAnalysis extends Component {
         <div id="analysis-financial-positional-grid-container">
           <div id="analysis-financial-positional-1">
             <iframe
+              id="assets1"
               src={this.props.assets1}
               style={{
                 width: "500px",
                 height: "500px",
                 outline: "none",
-                border: "none"
+                border: "none",
               }}
             />
           </div>
@@ -124,7 +123,7 @@ export class CompanyDetailAnalysis extends Component {
                 width: "500px",
                 height: "500px",
                 outline: "none",
-                border: "none"
+                border: "none",
               }}
             />
           </div>
@@ -144,7 +143,7 @@ const mapStateToProps = state => ({
   maonteCarlo1: state.CompanyDetailReducer.maonteCarlo1,
   maonteCarlo2: state.CompanyDetailReducer.drop_down_data,
   assets1: state.CompanyDetailReducer.assets1,
-  assets2: state.CompanyDetailReducer.assets2
+  assets2: state.CompanyDetailReducer.assets2,
 });
 export default connect(mapStateToProps, {
   getCompanyDetailById,
@@ -155,5 +154,5 @@ export default connect(mapStateToProps, {
   getmonteCarloCompany1,
   getmonteCarloCompany2,
   getAssetsCompany1,
-  getAssetsCompany2
+  getAssetsCompany2,
 })(CompanyDetailAnalysis);

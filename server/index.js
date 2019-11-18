@@ -32,7 +32,7 @@ app.use("/api/home/", home);
 //Nikhil
 app.use("/api/companydetail/", companydetails);
 app.use("/api/analysis/", companydetails);
-// app.use("/api/", companydetails);
+app.use("/api/", companydetails);
 
 app.use("/api/sector/", company);
 
