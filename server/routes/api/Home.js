@@ -7,19 +7,12 @@ const stocksData = require("../../model/stocksModel");
 router.get("/allnews", async (req, res, next) => {
   try {
     let result = await newsData.find({});
-    if (result < 0) {
-      res.status(400).json({
-        status: 400,
-        data: result,
-        message: "No news Found"
-      });
-    } else {
-      res.status(200).json({
-        status: 200,
-        data: result,
-        message: "Retrieved all news Successfully"
-      });
-    }
+
+    res.status(200).json({
+      status: 200,
+      data: result,
+      message: "Retrieved all news Successfully"
+    });
   } catch (err) {
     next(err);
   }
@@ -31,10 +24,10 @@ router.get("/singleNews/:id", async (req, res, next) => {
     let id = req.params.id;
     console.log(id);
     let result = await newsData.find({ new_id: req.params.id });
-    if (result < 0) {
+    if (result.length == 0) {
       res.status(400).json({
         status: 400,
-        data: null,
+        data: result,
         message: "No news Found"
       });
     } else {

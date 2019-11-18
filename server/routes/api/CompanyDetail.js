@@ -58,7 +58,7 @@ router.get("/:id", async (req, res, next) => {
       console.log(company_details);
     });
 
-    if (result < 0) {
+    if (result.length == 0) {
       res.status(400).json({
         status: 400,
         data: company_details,

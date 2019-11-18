@@ -1,11 +1,15 @@
 import React, { Component } from "react";
-import { getCompanyDetailById, getOhlcChart } from "../actions/CompanyDetail";
+import {
+  getCompanyDetailById,
+  getOhlcChart,
+  getGaugeCompany1
+} from "../actions/CompanyDetail";
 import { connect } from "react-redux";
 // importing css file
 import "../styles/CompanyDetail.css";
 import SecondaryNavbar from "../components/Common/CompanyDetailSecondaryNavbar";
-// import loader from "./Common/Loader.gif";
 import Loader from "react-loader-spinner";
+import gauge from "./Common/gauge.png";
 
 export class CompanyDetail extends Component {
   componentDidMount() {
@@ -13,9 +17,10 @@ export class CompanyDetail extends Component {
     const id = this.props.match.params.id;
     this.props.getCompanyDetailById(id);
     this.props.getOhlcChart("AAPL");
+    this.props.getGaugeCompany1("AAPL");
   }
   render() {
-    console.log(this.props);
+    console.log(this.props.ohlc_chart);
     // console.log(this.props.company.tname);
     return (
       <div>
@@ -46,13 +51,13 @@ export class CompanyDetail extends Component {
               ))}
             </div>
             <div id="company-detail-recommendation">
-              {this.props.company.map(coms => (
-                <>
-                  <h3>
-                    <span>{coms.profile}</span>
-                  </h3>
-                </>
-              ))}
+              <img
+                src={
+                  this.props.gauge1
+                    ? "data:image/jpeg;base64," + this.props.gauge1
+                    : "data:image/jpeg;base64," + gauge
+                }
+              />
             </div>
           </div>
         ) : (
@@ -61,7 +66,6 @@ export class CompanyDetail extends Component {
         {this.props.isLoading ? ( // use to display loader [piyush]
           <div style={{ margin: "200px 500px" }}>
             <Loader type={Loader} color="#2c3e50" height="100" width="400" />
-            {/* <img src={loader} alt="loading..." /> */}
           </div>
         ) : (
           // PLOTTIGN THE GRAPH
@@ -70,7 +74,7 @@ export class CompanyDetail extends Component {
               border: "1px solid #cacaca",
               width: "97%",
               margin: "auto",
-              marginBottom: "20px",
+              marginBottom: "20px"
             }}
           >
             <iframe
@@ -79,7 +83,7 @@ export class CompanyDetail extends Component {
                 width: "100%",
                 height: "550px",
                 outline: "none",
-                border: "none",
+                border: "none"
               }}
             />
           </div>
@@ -91,10 +95,12 @@ export class CompanyDetail extends Component {
 const mapStateToProps = state => ({
   company: state.CompanyDetailReducer.company,
   similar_company: state.CompanyDetailReducer.similar_company,
-
+  gauge1: state.CompanyDetailReducer.gauge1,
   ohlc_chart: state.CompanyDetailReducer.ohlc_chart,
-  isLoading: state.LoadingReducer.isLoading,
+  isLoading: state.LoadingReducer.isLoading
 });
-export default connect(mapStateToProps, { getOhlcChart, getCompanyDetailById })(
-  CompanyDetail
-);
+export default connect(mapStateToProps, {
+  getOhlcChart,
+  getCompanyDetailById,
+  getGaugeCompany1
+})(CompanyDetail);

@@ -10,6 +10,7 @@ import cashFlow from "./cf.png";
 import profitloss from "./pl.png";
 import ratios from "./ratios.png";
 
+import ReportsTable from "./Reports";
 export class CompanyDetailFinancial extends Component {
   state = {
     balanceSheetOption: true,
@@ -25,6 +26,14 @@ export class CompanyDetailFinancial extends Component {
     this.props.getCompanyDatesById(id);
   }
   render() {
+    let report = this.props
+      ? this.props.dates
+        ? this.props.dates.length > 0
+          ? this.props.dates
+          : []
+        : []
+      : [];
+
     return (
       <div>
         {/* CALLING THE SECONDARY NAVBAR  */}
@@ -139,295 +148,76 @@ export class CompanyDetailFinancial extends Component {
               Balance Sheet{" "}
             </h1>
 
-            <div className="financialTableContainer">
-              <table className="financialTableData">
-                <tr className="financialTableDataTitleRow">
-                  <td className="financialTableDataTitleNames">ddshsj</td>
-
-                  <td>Current Assets</td>
-                  <td>Intangible Assets</td>
-                  <td>Cash & Cash Equivalents</td>
-                  <td>Goodwill</td>
-                  <td className="financialsTotalTD">Total Assets</td>
-
-                  <hr className="financialsTableHR"></hr>
-
-                  <td>Accounts Payable</td>
-                  <td>Receivables</td>
-                  <td>Current Liabilities</td>
-                  <td className="financialsTotalTD">Total Liabilities</td>
-
-                  <td>Preferred Equity</td>
-                  <td>Total Noncurrent Liabilities</td>
-                  <td className="financialsTotalTD">
-                    Equity Before Minorities
-                  </td>
-                </tr>
-                {this.props.dates.map(date => (
-                  <>
-                    <tr>
-                      <td className="financialTableDataTitle">
-                        {new Date(date["date"]).toLocaleDateString("en-IN", {
-                          month: "short",
-                          day: "2-digit",
-                          year: "numeric"
-                        })}
-                      </td>
-
-                      {date["Current Assets"] ? (
-                        <td>{date["Current Assets"]}</td>
-                      ) : (
-                        <td>-</td>
-                      )}
-                      {date["Intangible Assets"] ? (
-                        <td>{date["Intangible Assets"]}</td>
-                      ) : (
-                        <td>-</td>
-                      )}
-                      {date["Cash & Cash Equivalents"] ? (
-                        <td>{date["Cash & Cash Equivalents"]}</td>
-                      ) : (
-                        <td>-</td>
-                      )}
-                      {date["Goodwill"] ? (
-                        <td>{date["Goodwill"]}</td>
-                      ) : (
-                        <td>-</td>
-                      )}
-                      {date["Total Assets"] ? (
-                        <td className="financialsTotalTD">
-                          {date["Total Assets"]}
-                        </td>
-                      ) : (
-                        <td className="financialsTotalTD">-</td>
-                      )}
-
-                      <hr className="financialsTableHR"></hr>
-
-                      {date["Accounts Payable"] ? (
-                        <td>{date["Accounts Payable"]}</td>
-                      ) : (
-                        <td>-</td>
-                      )}
-                      {date["Receivables"] ? (
-                        <td>{date["Receivables"]}</td>
-                      ) : (
-                        <td>-</td>
-                      )}
-                      {date["Current Liabilities"] ? (
-                        <td>{date["Current Liabilities"]}</td>
-                      ) : (
-                        <td>-</td>
-                      )}
-                      {date["Total Liabilities"] ? (
-                        <td className="financialsTotalTD">
-                          {date["Total Liabilities"]}
-                        </td>
-                      ) : (
-                        <td className="financialsTotalTD">-</td>
-                      )}
-
-                      {date["Preferred Equity"] ? (
-                        <td>{date["Preferred Equity"]}</td>
-                      ) : (
-                        <td>-</td>
-                      )}
-                      {date["Total Noncurrent Liabilities"] ? (
-                        <td>{date["Total Noncurrent Liabilities"]}</td>
-                      ) : (
-                        <td>-</td>
-                      )}
-                      {date["Equity Before Minorities"] ? (
-                        <td className="financialsTotalTD">
-                          {date["Equity Before Minorities"]}
-                        </td>
-                      ) : (
-                        <td className="financialsTotalTD">-</td>
-                      )}
-                    </tr>
-                  </>
-                ))}
-              </table>
-            </div>
-
+            
+              <ReportsTable
+                headers={[
+                  "date",
+                  "Current Assets",
+                  "Intangible Assets",
+                  "Cash & Cash Equivalents",
+                  "Goodwill",
+                  "Total Assets",
+                  "Accounts Payable",
+                  "Receivables",
+                  "Current Liabilities",
+                  "Total Liabilities",
+                  "Preferred Equity",
+                  "Total Noncurrent Liabilities",
+                  "Equity Before Minorities"
+                ]}
+                reportdata={report}
+              />
+            {/* </div> */}
             <h1 className="financialsTitle" id="table2">
               Cash Flow{" "}
             </h1>
-            <div className="financialTableContainer">
-              <table className="financialTableData">
-                <tr className="financialTableDataTitleRow">
-                  <td className="financialTableDataTitleNames">ddshsj</td>
-
-                  <td>Depreciation & Amortisation</td>
-                  <td>PP&E & Intangibles</td>
-                  <td>Net Change in Cash</td>
-                  <td>Cash From Operating Activities</td>
-                  <td>Cash From Investing Activities</td>
-                  <td>Cash From Financing Activities</td>
-                  <td className="financialsTotalTD">
-                    Change in Working Capital
-                  </td>
-                </tr>
-                {this.props.dates.map(date => (
-                  <>
-                    <tr>
-                      <td className="financialTableDataTitle">
-                        {new Date(date["date"]).toLocaleDateString("en-IN", {
-                          month: "short",
-                          day: "2-digit",
-                          year: "numeric"
-                        })}
-                      </td>
-                      {date["Depreciation & Amortisation"] ? (
-                        <td>{date["Depreciation & Amortisation"]}</td>
-                      ) : (
-                        <td>-</td>
-                      )}{" "}
-                      {date["Net Change in PP&E & Intangibles"] ? (
-                        <td>{date["Net Change in PP&E & Intangibles"]}</td>
-                      ) : (
-                        <td>-</td>
-                      )}{" "}
-                      {date["Net Change in Cash"] ? (
-                        <td>{date["Net Change in Cash"]}</td>
-                      ) : (
-                        <td>-</td>
-                      )}{" "}
-                      {date["Cash From Operating Activities"] ? (
-                        <td>{date["Cash From Operating Activities"]}</td>
-                      ) : (
-                        <td>-</td>
-                      )}{" "}
-                      {date["Cash From Investing Activities"] ? (
-                        <td>{date["Cash From Investing Activities"]}</td>
-                      ) : (
-                        <td>-</td>
-                      )}{" "}
-                      {date["Cash From Financing Activities"] ? (
-                        <td>{date["Cash From Financing Activities"]}</td>
-                      ) : (
-                        <td>-</td>
-                      )}
-                      {date["Change in Working Capital"] ? (
-                        <td className="financialsTotalTD">
-                          {date["Change in Working Capital"]}
-                        </td>
-                      ) : (
-                        <td className="financialsTotalTD">-</td>
-                      )}
-                    </tr>
-                  </>
-                ))}
-              </table>
-            </div>
-
+            <ReportsTable
+                headers={[
+                  "date",
+                  "Depreciation & Amortisation",
+                  "PP&E & Intangibles",
+                  "Net Change in PP&E & Intangibles",
+                  "Net Change in Cash",
+                  "Cash From Operating Activities",
+                  "Cash From Investing Activities",
+                  "Cash From Financing Activities",
+                  "Change in Working Capital"
+                ]}
+                reportdata={report}
+              />
+            
             <h1 className="financialsTitle" id="table3">
               Profit And Loss{" "}
             </h1>
-            <div className="financialTableContainer">
-              <table className="financialTableData">
-                <tr className="financialTableDataTitleRow">
-                  <td className="financialTableDataTitleNames">ddshsj</td>
-
-                  <td>Revenues</td>
-                  <td>EBIT</td>
-                  <td>Net Profit</td>
-                  <td>R&D</td>
-                  <td>Income Taxes</td>
-                </tr>
-                {this.props.dates.map(date => (
-                  <>
-                    <tr>
-                      <td className="financialTableDataTitle">
-                        {new Date(date["date"]).toLocaleDateString("en-IN", {
-                          month: "short",
-                          day: "2-digit",
-                          year: "numeric"
-                        })}
-                      </td>
-                      {date["Revenues"] ? (
-                        <td>{date["Revenues"]}</td>
-                      ) : (
-                        <td>-</td>
-                      )}
-                      {date["EBIT"] ? <td>{date["EBIT"]}</td> : <td>-</td>}
-                      {date["Net Profit"] ? (
-                        <td>{date["Net Profit"]}</td>
-                      ) : (
-                        <td>-</td>
-                      )}
-                      {date["R&D"] ? <td>{date["R&D"]}</td> : <td>-</td>}
-                      {date["Income Taxes"] ? (
-                        <td>{date["Income Taxes"]}</td>
-                      ) : (
-                        <td>-</td>
-                      )}
-                    </tr>
-                  </>
-                ))}
-              </table>
-            </div>
+            <ReportsTable
+                headers={[
+                  "date",
+                  "Revenues",
+                  "EBIT",
+                  "Net Profit",
+                  "R&D",
+                  "Income Taxes",
+                  ]}
+                reportdata={report}
+              />
 
             <h1 className="financialsTitle" id="table4">
               Ratios{" "}
             </h1>
-            <div className="financialTableContainer">
-              <table className="financialTableData">
-                <tr className="financialTableDataTitleRow">
-                  <td className="financialTableDataTitleNames">ddshsj</td>
+            <ReportsTable
+                headers={[
+                  "date",
+                  "Liabilities to Equity Ratio",
+                  "Debt to Assets Ratio",
+                  "Current Ratio",
+                  "EV / EBITDA",
+                  "EV / Sales",
+                  "Operating Income / EV"
 
-                  <td>Liabilities to Equity Ratio</td>
-                  <td>Debt to Assets Ratio</td>
-                  <td>Current Ratio</td>
-                  <td>EV / EBITDA</td>
-                  <td>EV / Sales</td>
-                  <td>Operating Income / EV</td>
-                </tr>
-                {this.props.dates.map(date => (
-                  <>
-                    <tr>
-                      <td className="financialTableDataTitle">
-                        {new Date(date["date"]).toLocaleDateString("en-IN", {
-                          month: "short",
-                          day: "2-digit",
-                          year: "numeric"
-                        })}
-                      </td>
-                      {date["Liabilities to Equity Ratio"] ? (
-                        <td>{date["Liabilities to Equity Ratio"]}</td>
-                      ) : (
-                        <td>-</td>
-                      )}
-                      {date["Debt to Assets Ratio"] ? (
-                        <td>{date["Debt to Assets Ratio"]}</td>
-                      ) : (
-                        <td>-</td>
-                      )}
-                      {date["Current Ratio"] ? (
-                        <td>{date["Current Ratio"]}</td>
-                      ) : (
-                        <td>-</td>
-                      )}
-                      {date["EV / EBITDA"] ? (
-                        <td>{date["EV / EBITDA"]}</td>
-                      ) : (
-                        <td>-</td>
-                      )}
-                      {date["EV / Sales"] ? (
-                        <td>{date["EV / Sales"]}</td>
-                      ) : (
-                        <td>-</td>
-                      )}
-                      {date["Operating Income / EV"] ? (
-                        <td>{date["Operating Income / EV"]}</td>
-                      ) : (
-                        <td>-</td>
-                      )}
-                    </tr>
-                  </>
-                ))}
-              </table>
-            </div>
+                  ]}
+                reportdata={report}
+              />
+            
           </div>
         </div>
       </div>

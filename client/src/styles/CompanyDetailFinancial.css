@@ -14,11 +14,19 @@
   grid-template-areas: "table";
 }
 
+.financialsTitle {
+  font-size: 20px;
+}
 .financialsSidebar {
   display: none;
+<<<<<<< HEAD
   /* height: 500px; */
   /* grid-area: side; */
 }
+=======
+  
+ }
+>>>>>>> c564df2b5941990c10e147c44e5054569c49887f
 .financialsAllTablesDiv {
   grid-area: table;
   display: block;
@@ -27,66 +35,12 @@
   padding: 5px 15px 65px 15px;
   text-align: center;
 }
-/* .financialsTitle {
-  font-size: 30px;
-} */
 
-.financialsTitle {
-  font-size: 20px;
-}
 
-.financialTableContainer {
-  padding: 0px 0px 0px 0px;
-  width: 100%;
-  overflow-x: scroll;
-  box-shadow: 0px 1px 5px #2c3e50;
-  margin-bottom: 20px;
-}
 
-.financialTableDataTitleNames {
-  background-color: #2c3e50 !important;
-  color: #2c3e50;
-}
-.financialTableData {
-  border-collapse: collapse;
-}
-
-/* converting row to column  */
-.financialTableContainer tr > * {
-  display: block;
-}
-.financialTableContainer tr {
-  display: table-cell;
-}
-
-.financialTableDataTitle {
-  background-color: #2c3e50 !important;
-  color: white;
-}
-.financialTableContainer td {
-  text-align: center;
-  font-size: 10px;
-  padding: 6px 0px;
-  width: 100px;
-}
-.financialTableContainer tr:first-child td {
-  font-size: 10px;
-  font-weight: bold;
-  width: 152px;
-}
-.financialsTotalTD {
-  font-size: 12px !important;
-  font-weight: bold;
-}
-.financialsTableHR {
-  margin: 0px;
-  padding: 0px;
-  border: 0.5px solid #2c3e50;
-}
 @media only screen and (min-width: 426px) {
   .financialsMainGrid {
-    /* text-align: center; */
-    /* color: white; */
+  
     margin-top: 10px;
     width: 100%;
     grid-gap: 10px;
@@ -113,6 +67,7 @@
     font-size: 30px;
     text-align: left;
   }
+<<<<<<< HEAD
   .financialTableContainer {
     padding: 0px 0px 0px 0px;
     width: 100%;
@@ -153,6 +108,9 @@
     padding: 0px;
     border: 0.5px solid #2c3e50;
   } */
+=======
+  
+>>>>>>> c564df2b5941990c10e147c44e5054569c49887f
 
   /* sidebar css */
   .financialsSidebarOptions {

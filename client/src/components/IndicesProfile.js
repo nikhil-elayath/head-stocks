@@ -43,6 +43,7 @@ export class IndicesProfile extends Component {
   };
 
   render() {
+    console.log(this.props.ohlcChart);
     return (
       <div>
         <div id="indicesMainContainer">
@@ -53,7 +54,7 @@ export class IndicesProfile extends Component {
                   <h1>{index.ticker_name}</h1>
                   <div>
                     <button id="downloadButton">
-                      <i class="fa fa-download"></i> Download
+                      <i class="fa fa-download" /> Download
                     </button>
                   </div>
                 </div>
@@ -89,18 +90,18 @@ export class IndicesProfile extends Component {
                   </div>
                 ) : (
                   <div
-                    style={{
-                      border: "1px solid #cacaca",
-                      width: "97%",
-                      margin: "auto",
-                      marginBottom: "20px"
-                    }}
+                  // style={{
+                  //   border: "1px solid #cacaca",
+                  //   width: "97%",
+                  //   margin: "auto",
+                  //   marginBottom: "20px"
+                  // }}
                   >
                     <iframe
-                      src={this.props.ohlc_chart}
+                      src={this.props.ohlcChart}
                       style={{
                         width: "100%",
-                        height: "550px",
+                        height: "500px",
                         outline: "none",
                         border: "none"
                       }}
@@ -146,12 +147,12 @@ export class IndicesProfile extends Component {
                       <th>Volume</th>
                     </tr>
                   </thead>
-                  {this.props.ohlcdata.map(data => (
+                  {this.props.ohlcdata.map((data, index) => (
                     <tbody>
                       {data.map(value => (
                         <>
                           <tr>
-                            <td>
+                            <td id={"date" + index}>
                               {new Date(value.date).toLocaleDateString(
                                 "en-IN",
                                 {
