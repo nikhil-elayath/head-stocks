@@ -194,50 +194,34 @@ export class CompanyDetailSecondaryNavbar extends Component {
                     </>
 
                     <div id="bla">
-                      <div id="secondary-navbar-bla">
-                        {/* second grid of secondaru navbar */}
-                        <button
-                          id="downloadButton"
-                          onClick={async () => {
-                            fetch(
-                              "http://localhost:2001/api/companydetail/indicatorsdata/" +
-                                coms.ticker_name
-                            ).then(response => {
-                              response.blob().then(blob => {
-                                let url = window.URL.createObjectURL(blob);
-                                let a = document.createElement("a");
-                                a.href = url;
-                                a.download = coms.ticker_name + ".csv";
-                                a.click();
+                      {localStorage.getItem("token") ? (
+                        <div id="secondary-navbar-bla">
+                          {/* second grid of secondaru navbar */}
+                          <button
+                            id="downloadButton"
+                            onClick={async () => {
+                              fetch(
+                                "http://localhost:2001/api/companydetail/indicatorsdata/" +
+                                  coms.ticker_name
+                              ).then(response => {
+                                response.blob().then(blob => {
+                                  let url = window.URL.createObjectURL(blob);
+                                  let a = document.createElement("a");
+                                  a.href = url;
+                                  a.download = coms.ticker_name + ".csv";
+                                  a.click();
+                                });
+                                //window.location.href = response.url;
                               });
-                              //window.location.href = response.url;
-                            });
-                            // this.props.downloadOHLC("AAPL");
-                          }}
-                        >
-                          <i class="fa fa-download" /> Download
-                        </button>
-                        {/* <button
-                          id="downloadButton"
-                          onClick={async () => {
-                            fetch(
-                              "http://localhost:2001/api/companydetail/ohlc/" +
-                                coms.ticker_name
-                            ).then(response => {
-                              response.blob().then(blob => {
-                                let url = window.URL.createObjectURL(blob);
-                                let a = document.createElement("a");
-                                a.href = url;
-                                a.download = coms.ticker_name + ".csv";
-                                a.click();
-                              });
-                              //window.location.href = response.url;
-                            });
-                          }}
-                        >
-                          <i class="fa fa-download" /> Downloadohlc
-                        </button> */}
-                      </div>
+                              // this.props.downloadOHLC("AAPL");
+                            }}
+                          >
+                            <i class="fa fa-download" /> Download
+                          </button>
+                        </div>
+                      ) : (
+                        <div style={{ display: "none" }}></div>
+                      )}
                     </div>
                   </div>
                   <></>
