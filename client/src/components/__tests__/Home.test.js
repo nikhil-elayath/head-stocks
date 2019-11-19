@@ -33,7 +33,7 @@ describe("Testing home Component", () => {
   });
 
   it("should check for headline description in news section", () => {
-    expect(wrapper.find("#recent-news-title0").text()).toBe(news[0].headline);
+    expect(wrapper.find("#recent-news-title").text()).toBe(news[0].headline);
   });
 
   it("should simulate  News Click", () => {
@@ -43,5 +43,10 @@ describe("Testing home Component", () => {
         .at(0)
         .simulate("click")
     );
+  });
+  it("checks for componenetDidMount  to be called", () => {
+    const componentDidMount = jest.spyOn(Home.prototype, "componentDidMount");
+    wrapper.instance().componentDidMount();
+    expect(componentDidMount).toHaveBeenCalled();
   });
 });
