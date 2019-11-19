@@ -34,7 +34,7 @@ export const login = (user, history) => dispatch => {
     .post(url + "login", user)
     .then(res => {
       localStorage.setItem("token", res.data.data);
-
+      history.push("/");
       dispatch({
         type: LOGIN,
         payload: res.data.data
@@ -42,8 +42,7 @@ export const login = (user, history) => dispatch => {
     })
     .catch(err => {
       dispatch({
-        type: ERROR_TYPE,
-        payload: err.response.data.message
+        type: ERROR_TYPE
       });
     });
 };
