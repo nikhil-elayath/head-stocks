@@ -25,7 +25,7 @@ export class CompanyDetail extends Component {
     return (
       <div>
         {/* CALLING SECONDARY NAVBAR  */}
-        <SecondaryNavbar />
+        <SecondaryNavbar selected="overview" />
         {/* TERNARY OPERATOR TO CHECK WHETHER THE DATA IS LOADED IN THE REDUCER AND IF IT IS IT WILL BE MAPPED  */}
         {this.props.company ? (
           <div id="company-detail-grid-container">
@@ -39,7 +39,6 @@ export class CompanyDetail extends Component {
                   <h3>
                     Sector : <span id="sector">{company.sector}</span>
                   </h3>{" "}
-                  */}
                   <h3>
                     Industry : <span id="industry">{company.industry}</span>
                   </h3>

@@ -16,7 +16,7 @@ export class CompanyDetailFinancial extends Component {
     balanceSheetOption: true,
     cashflowOption: false,
     profitLossOption: false,
-    ratiosOption: false
+    ratiosOption: false,
   };
 
   componentDidMount() {
@@ -37,7 +37,7 @@ export class CompanyDetailFinancial extends Component {
     return (
       <div>
         {/* CALLING THE SECONDARY NAVBAR  */}
-        <SecondaryNavbar />
+        <SecondaryNavbar selected="financial" />
         <div className="financialsMainGrid">
           <sidebar className="financialsSidebar">
             <div
@@ -55,7 +55,7 @@ export class CompanyDetailFinancial extends Component {
                     balanceSheetOption: true,
                     cashflowOption: false,
                     profitLossOption: false,
-                    ratiosOption: false
+                    ratiosOption: false,
                   })
                 }
               >
@@ -79,7 +79,7 @@ export class CompanyDetailFinancial extends Component {
                     balanceSheetOption: false,
                     cashflowOption: true,
                     profitLossOption: false,
-                    ratiosOption: false
+                    ratiosOption: false,
                   })
                 }
               >
@@ -103,7 +103,7 @@ export class CompanyDetailFinancial extends Component {
                     balanceSheetOption: false,
                     cashflowOption: false,
                     profitLossOption: true,
-                    ratiosOption: false
+                    ratiosOption: false,
                   })
                 }
               >
@@ -127,7 +127,7 @@ export class CompanyDetailFinancial extends Component {
                     balanceSheetOption: false,
                     cashflowOption: false,
                     profitLossOption: false,
-                    ratiosOption: true
+                    ratiosOption: true,
                   })
                 }
               >
@@ -148,76 +148,73 @@ export class CompanyDetailFinancial extends Component {
               Balance Sheet
             </h1>
 
-            
-              <ReportsTable
-                headers={[
-                  "date",
-                  "Current Assets",
-                  "Intangible Assets",
-                  "Cash & Cash Equivalents",
-                  "Goodwill",
-                  "Total Assets",
-                  "Accounts Payable",
-                  "Receivables",
-                  "Current Liabilities",
-                  "Total Liabilities",
-                  "Preferred Equity",
-                  "Total Noncurrent Liabilities",
-                  "Equity Before Minorities"
-                ]}
-                reportdata={report}
-              />
+            <ReportsTable
+              headers={[
+                "date",
+                "Current Assets",
+                "Intangible Assets",
+                "Cash & Cash Equivalents",
+                "Goodwill",
+                "Total Assets",
+                "Accounts Payable",
+                "Receivables",
+                "Current Liabilities",
+                "Total Liabilities",
+                "Preferred Equity",
+                "Total Noncurrent Liabilities",
+                "Equity Before Minorities",
+              ]}
+              reportdata={report}
+            />
             {/* </div> */}
             <h1 className="financialsTitle" id="table2">
               Cash Flow
             </h1>
             <ReportsTable
-                headers={[
-                  "date",
-                  "Depreciation & Amortisation",
-                  "PP&E & Intangibles",
-                  "Net Change in PP&E & Intangibles",
-                  "Net Change in Cash",
-                  "Cash From Operating Activities",
-                  "Cash From Investing Activities",
-                  "Cash From Financing Activities",
-                  "Change in Working Capital"
-                ]}
-                reportdata={report}
-              />
-            
+              headers={[
+                "date",
+                "Depreciation & Amortisation",
+                "PP&E & Intangibles",
+                "Net Change in PP&E & Intangibles",
+                "Net Change in Cash",
+                "Cash From Operating Activities",
+                "Cash From Investing Activities",
+                "Cash From Financing Activities",
+                "Change in Working Capital",
+              ]}
+              reportdata={report}
+            />
+
             <h1 className="financialsTitle" id="table3">
               Profit And Loss
             </h1>
             <ReportsTable
-                headers={[
-                  "date",
-                  "Revenues",
-                  "EBIT",
-                  "Net Profit",
-                  "R&D",
-                  "Income Taxes",
-                  ]}
-                reportdata={report}
-              />
+              headers={[
+                "date",
+                "Revenues",
+                "EBIT",
+                "Net Profit",
+                "R&D",
+                "Income Taxes",
+              ]}
+              reportdata={report}
+            />
 
             <h1 className="financialsTitle" id="table4">
               Ratios
             </h1>
             <ReportsTable
-                headers={[
-                  "date",
-                  "Liabilities to Equity Ratio",
-                  "Debt to Assets Ratio",
-                  "Current Ratio",
-                  "EV / EBITDA",
-                  "EV / Sales",
-                  "Operating Income / EV"
-
-                  ]}
-                reportdata={report}
-              />
-            
+              headers={[
+                "date",
+                "Liabilities to Equity Ratio",
+                "Debt to Assets Ratio",
+                "Current Ratio",
+                "EV / EBITDA",
+                "EV / Sales",
+                "Operating Income / EV",
+              ]}
+              reportdata={report}
+            />
           </div>
         </div>
       </div>
@@ -226,8 +223,8 @@ export class CompanyDetailFinancial extends Component {
 }
 
 const mapStateToProps = state => ({
-  dates: state.CompanyDetailReducer.dates
+  dates: state.CompanyDetailReducer.dates,
 });
 export default connect(mapStateToProps, {
-  getCompanyDatesById
+  getCompanyDatesById,
 })(CompanyDetailFinancial);
