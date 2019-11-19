@@ -30,6 +30,10 @@
 .ticker__table tr:nth-child(odd) {
   background-color: var(--table-header-background);
 }
+
+#tcikerNameReuse:hover {
+  color: #39abf7;
+}
 /* @media (max-width: 480px) {
   .table__container {
     max-width: 400px;

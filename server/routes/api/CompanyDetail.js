@@ -58,7 +58,6 @@ router.get("/:id", async (req, res, next) => {
       // fetching the last date
 
       company_details.push(compare);
-      console.log(company_details);
     });
 
     if (result.length == 0) {
@@ -364,7 +363,6 @@ router.post("/analysis", async (req, res, next) => {
       test =
         (last_date["Net Profit"] - last_date["Dividends"]) /
         last_date["Avg Basic Shares Outstanding"];
-      console.log("test", test);
 
       // for current share price
       while (last_date["Share Price"] == undefined) {

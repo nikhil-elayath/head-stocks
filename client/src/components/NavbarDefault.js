@@ -117,7 +117,9 @@ export class NavbarDefault extends Component {
             </span>
           ) : (
             <span onClick={this.removeToken}>
-              <Link to="/">Logout</Link>
+              <Link to="/" style={{ textDecoration: "none" }}>
+                Logout
+              </Link>
             </span>
           )}
         </div>

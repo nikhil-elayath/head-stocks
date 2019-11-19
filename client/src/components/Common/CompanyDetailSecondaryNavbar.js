@@ -53,7 +53,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                             <sub id="secondary-navbar-sub">USD</sub>
                           </p>
                           <p id="last_date">
-                            CLOSE (
+                            CLOSED PRICE (
                             {new Date(coms.share_date).toLocaleDateString(
                               "en-IN",
                               {
@@ -134,36 +134,41 @@ export class CompanyDetailSecondaryNavbar extends Component {
                           </Link>
                         </div>
 
-                        <div id="company-detail-analysis">
-                          <Link
-                            className="company-link"
-                            to={{
-                              pathname: "/analysis/" + coms.id,
-                            }}
-                          >
-                            <span
-                              id="company-analysis-click"
-                              onClick={() => {
-                                this.setState({
-                                  overview: false,
-                                  financial: false,
-                                  analysis: true,
-                                });
+                        {/* CHECKING THE TOKEN TO SEE WHETHER THE USER IS LOGGED IN OR NOT AND THEN DISPLAYING THE TAB. */}
+                        {localStorage.getItem("token") ? (
+                          <div id="company-detail-analysis">
+                            <Link
+                              className="company-link"
+                              to={{
+                                pathname: "/analysis/" + coms.id,
                               }}
                             >
-                              <li
-                                id="company-detail-analysis-li"
-                                className={
-                                  this.state.analysis
-                                    ? "options-selected-li"
-                                    : "options-li"
-                                }
+                              <span
+                                id="company-analysis-click"
+                                onClick={() => {
+                                  this.setState({
+                                    overview: false,
+                                    financial: false,
+                                    analysis: true,
+                                  });
+                                }}
                               >
-                                Analysis
-                              </li>
-                            </span>
-                          </Link>
-                        </div>
+                                <li
+                                  id="company-detail-analysis-li"
+                                  className={
+                                    this.state.analysis
+                                      ? "options-selected-li"
+                                      : "options-li"
+                                  }
+                                >
+                                  Analysis
+                                </li>
+                              </span>
+                            </Link>
+                          </div>
+                        ) : (
+                          <div style={{ display: "none" }}></div>
+                        )}
                       </ul>
                       <div id="secondary-nav-values">
                         <div id="voltality">
@@ -194,50 +199,34 @@ export class CompanyDetailSecondaryNavbar extends Component {
                     </>
 
                     <div id="bla">
-                      <div id="secondary-navbar-bla">
-                        {/* second grid of secondaru navbar */}
-                        <button
-                          id="downloadButton"
-                          onClick={async () => {
-                            fetch(
-                              "http://localhost:2001/api/companydetail/indicatorsdata/" +
-                                coms.ticker_name
-                            ).then(response => {
-                              response.blob().then(blob => {
-                                let url = window.URL.createObjectURL(blob);
-                                let a = document.createElement("a");
-                                a.href = url;
-                                a.download = coms.ticker_name + ".csv";
-                                a.click();
+                      {localStorage.getItem("token") ? (
+                        <div id="secondary-navbar-bla">
+                          {/* second grid of secondaru navbar */}
+                          <button
+                            id="downloadButton"
+                            onClick={async () => {
+                              fetch(
+                                "http://localhost:2001/api/companydetail/indicatorsdata/" +
+                                  coms.ticker_name
+                              ).then(response => {
+                                response.blob().then(blob => {
+                                  let url = window.URL.createObjectURL(blob);
+                                  let a = document.createElement("a");
+                                  a.href = url;
+                                  a.download = coms.ticker_name + ".csv";
+                                  a.click();
+                                });
+                                //window.location.href = response.url;
                               });
-                              //window.location.href = response.url;
-                            });
-                            // this.props.downloadOHLC("AAPL");
-                          }}
-                        >
-                          <i class="fa fa-download" /> Download
-                        </button>
-                        {/* <button
-                          id="downloadButton"
-                          onClick={async () => {
-                            fetch(
-                              "http://localhost:2001/api/companydetail/ohlc/" +
-                                coms.ticker_name
-                            ).then(response => {
-                              response.blob().then(blob => {
-                                let url = window.URL.createObjectURL(blob);
-                                let a = document.createElement("a");
-                                a.href = url;
-                                a.download = coms.ticker_name + ".csv";
-                                a.click();
-                              });
-                              //window.location.href = response.url;
-                            });
-                          }}
-                        >
-                          <i class="fa fa-download" /> Downloadohlc
-                        </button> */}
-                      </div>
+                              // this.props.downloadOHLC("AAPL");
+                            }}
+                          >
+                            <i class="fa fa-download" /> Download
+                          </button>
+                        </div>
+                      ) : (
+                        <div style={{ display: "none" }}></div>
+                      )}
                     </div>
                   </div>
                   <></>

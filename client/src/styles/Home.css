@@ -87,6 +87,9 @@
   color: #fafafa;
   border-top: 1px solid #2c3e50;
 }
+#recent-news-title:hover {
+  color: #39abf7;
+}
 
 #positiveIndex {
   color: #27ae60;
