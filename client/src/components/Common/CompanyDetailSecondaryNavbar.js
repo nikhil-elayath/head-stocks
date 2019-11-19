@@ -200,7 +200,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                           id="downloadButton"
                           onClick={async () => {
                             fetch(
-                              "http://localhost:2001/api/companydetail/download/" +
+                              "http://localhost:2001/api/companydetail/indicatorsdata/" +
                                 coms.ticker_name
                             ).then(response => {
                               response.blob().then(blob => {
@@ -217,7 +217,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                         >
                           <i class="fa fa-download" /> Download
                         </button>
-                        <button
+                        {/* <button
                           id="downloadButton"
                           onClick={async () => {
                             fetch(
@@ -237,7 +237,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                           }}
                         >
                           <i class="fa fa-download" /> Downloadohlc
-                        </button>
+                        </button> */}
                       </div>
                     </div>
                   </div>
