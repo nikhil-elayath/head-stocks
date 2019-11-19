@@ -57,20 +57,19 @@ router.get("/:id", async (req, res, next) => {
       // fetching the last date
 
       company_details.push(compare);
-      console.log(company_details);
     });
 
     if (result.length == 0) {
       res.status(400).json({
         status: 400,
         data: company_details,
-        message: "No companies found",
+        message: "No companies found"
       });
     } else {
       res.status(200).json({
         status: 200,
         data: company_details,
-        message: "company by id recieved",
+        message: "company by id recieved"
       });
     }
   } catch {}
@@ -89,13 +88,13 @@ router.get("/financial/:id", async (req, res, next) => {
         {
           $match: {
             // ticker_name : "AAPL"
-            ticker_id: +id,
+            ticker_id: +id
             // ,
             // 'ticker_dates.date' : {
             //   $lte : new Date("2019-06-31"),
             //   $gte :  new Date("2018-03-25")
             // }
-          },
+          }
         },
         {
           $project: {
@@ -106,8 +105,8 @@ router.get("/financial/:id", async (req, res, next) => {
                   $and: [
                     { $eq: [{ $month: "$ticker_dates.date" }, 3] },
                     { $lte: [{ $dayOfMonth: "$ticker_dates.date" }, 31] },
-                    { $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25] },
-                  ],
+                    { $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25] }
+                  ]
                 },
                 "first",
                 {
@@ -116,8 +115,8 @@ router.get("/financial/:id", async (req, res, next) => {
                       $and: [
                         { $eq: [{ $month: "$ticker_dates.date" }, 6] },
                         { $lte: [{ $dayOfMonth: "$ticker_dates.date" }, 30] },
-                        { $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25] },
-                      ],
+                        { $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25] }
+                      ]
                     },
                     "second",
                     {
@@ -126,12 +125,12 @@ router.get("/financial/:id", async (req, res, next) => {
                           $and: [
                             { $eq: [{ $month: "$ticker_dates.date" }, 9] },
                             {
-                              $lte: [{ $dayOfMonth: "$ticker_dates.date" }, 30],
+                              $lte: [{ $dayOfMonth: "$ticker_dates.date" }, 30]
                             },
                             {
-                              $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25],
-                            },
-                          ],
+                              $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25]
+                            }
+                          ]
                         },
                         "third",
                         {
@@ -142,28 +141,28 @@ router.get("/financial/:id", async (req, res, next) => {
                                 {
                                   $lte: [
                                     { $dayOfMonth: "$ticker_dates.date" },
-                                    31,
-                                  ],
+                                    31
+                                  ]
                                 },
                                 {
                                   $gt: [
                                     { $dayOfMonth: "$ticker_dates.date" },
-                                    25,
-                                  ],
-                                },
-                              ],
+                                    25
+                                  ]
+                                }
+                              ]
                             },
                             "fourth",
-                            "fifth",
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            },
-          },
+                            "fifth"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
         },
         { $match: { quarter: { $ne: "fifth" } } },
 
@@ -171,18 +170,18 @@ router.get("/financial/:id", async (req, res, next) => {
           $group: {
             _id: {
               year: { $year: "$ticker_dates.date" },
-              month: { $month: "$ticker_dates.date" },
+              month: { $month: "$ticker_dates.date" }
             },
-            date_values: { $push: "$ticker_dates" },
-          },
+            date_values: { $push: "$ticker_dates" }
+          }
         },
         {
           $sort: {
             "_id.year": -1,
-            "_id.month": -1,
+            "_id.month": -1
             // 'ticker_dates.date':-1,
-          },
-        },
+          }
+        }
       ],
       function(err, result) {
         // console.log("start");
@@ -192,7 +191,7 @@ router.get("/financial/:id", async (req, res, next) => {
           return res.status(400).json({
             status: 400,
             data: result,
-            message: "No Dates Found",
+            message: "No Dates Found"
           });
         } else {
           if (err) throw err;
@@ -209,7 +208,7 @@ router.get("/financial/:id", async (req, res, next) => {
           res.status(200).json({
             status: 200,
             data: datesCF,
-            message: "Retrieved dates Successfully",
+            message: "Retrieved dates Successfully"
           });
         }
       }
@@ -294,7 +293,6 @@ router.post("/analysis", async (req, res, next) => {
       test =
         (last_date["Net Profit"] - last_date["Dividends"]) /
         last_date["Avg Basic Shares Outstanding"];
-      console.log("test", test);
 
       // for current share price
       while (last_date["Share Price"] == undefined) {
@@ -325,13 +323,13 @@ router.post("/analysis", async (req, res, next) => {
       res.status(400).json({
         status: 400,
         data: compare,
-        message: "No news Found",
+        message: "No news Found"
       });
     } else {
       res.status(200).json({
         status: 200,
         data: [similar_sector_data],
-        message: "Retrieved all news Successfully",
+        message: "Retrieved all news Successfully"
       });
     }
   } catch (err) {
@@ -355,13 +353,13 @@ router.post("/dropdown", async (req, res, next) => {
       res.status(400).json({
         status: 400,
         data: result,
-        message: "No companies found",
+        message: "No companies found"
       });
     } else {
       res.status(200).json({
         status: 200,
         data: result,
-        message: "Similar companies for dropdown retrieved",
+        message: "Similar companies for dropdown retrieved"
       });
     }
   } catch {}
