@@ -166,13 +166,13 @@ describe("Testing Register Component", () => {
   it("checks for on edit button function to be called", () => {
     const e = { preventDefault: () => {} };
     jest.spyOn(e, "preventDefault");
-    // wrapper.find("#registerFormButton").simulate("click", e);
-    // expect(e.preventDefault).toBeCalled();
+    wrapper.find("#registerFormButton").simulate("click", e);
+    expect(e.preventDefault).toBeCalled();
   });
 
-  // it("checks for Sign Up button click ", () => {
-  //   wrapper.find("#registerFormButton").simulate("click");
-  // });
+  it("checks for Sign Up button click ", () => {
+    wrapper.find("#registerFormButton").simulate("click");
+  });
 
   it("testing for name input field", () => {
     const event = {

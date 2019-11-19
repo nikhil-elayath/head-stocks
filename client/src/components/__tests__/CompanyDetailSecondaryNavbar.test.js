@@ -3,18 +3,15 @@ import { shallow, mount } from "enzyme";
 import { CompanyDetailSecondaryNavbar } from "../Common/CompanyDetailSecondaryNavbar";
 
 const getCompanyDetailById = jest.fn();
-const getOhlcChart = jest.fn();
-const getGaugeCompany1 = jest.fn();
+
 const click = jest.fn();
+const getVolatility = jest.fn();
 
 const company = [
   {
     last_share_price: "aapl",
     share_date: "123456",
     last_market_cap: "123456",
-    // industry: "Computer",
-    // employees: "132",
-    // profile: "profile",
   },
 ];
 
@@ -23,21 +20,19 @@ const wrapper = shallow(
     getCompanyDetailById={getCompanyDetailById}
     company={company}
     click={click}
+    getVolatility={getVolatility}
   />
 );
 
 describe("Testing Company Detail Secondary navbar Component", () => {
-  //   afterEach(() => {
-  //     jest.clearAllMocks()
-
   it("should mount the component", () => {
     expect(wrapper).toMatchSnapshot();
   });
-  it("should display the market cap", () => {
-    expect(wrapper.find("#indexClose").text()).toBe("aaplUSD");
+  it("Should display the sector of the company", () => {
+    expect(wrapper.find("#CompanyDetailsIndexClose").text()).toBe("aaplUSD");
   });
 
-  it("should display the market cap", () => {
+  it("It should display the Market Cap of the company", () => {
     expect(wrapper.find("#market_cap").text()).toBe(" 123456 ");
   });
 
@@ -68,15 +63,4 @@ describe("Testing Company Detail Secondary navbar Component", () => {
     jest.spyOn(e, "preventDefault");
     wrapper.find("#company-detail-analysis").simulate("click", e);
   });
-
-  it("should display the market cap", () => {
-    expect(wrapper.find("#volatility").text()).toBe(
-      "Volatility is a statistical measure of the dispersion of returns for a given security or market index. In most cases, the higher the volatility, the riskier the security. Volatility is often measured as either the standard deviation or variance between returns from that same security or market index."
-    );
-  });
-  it("should display the market cap", () => {
-    expect(wrapper.find("#kk").text()).toBe("VOLATILITY");
-  });
-
-  //on click function
 });

@@ -9,41 +9,47 @@ import {
   getmonteCarloCompany1,
   getmonteCarloCompany2,
   getAssetsCompany1,
-  getAssetsCompany2
+  getAssetsCompany2,
+  sharePriceComparison,
 } from "../actions/CompanyDetail";
 import { connect } from "react-redux";
 import "../styles/CompanyDetailAnalysis.css";
 import gauge from "./Common/gauge.png";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
+import Table from "./Common/TickerTable";
 
 export class CompanyDetailAnalysis extends Component {
   componentDidMount() {
     const id = this.props.match.params.id;
-
-    console.log("From analysis component", id);
     this.props.getCompanyDetailById(id);
-    // this.props.getGaugeCompany1("AAPL");
-    // this.props.getGaugeCompany2("ACN");
+    this.props.getGaugeCompany1("AAPL");
+    this.props.getGaugeCompany2("ACN");
     this.props.getAssetsCompany1("AAPL");
     this.props.getAssetsCompany2("ACN");
+    this.props.getmonteCarloCompany1("AAPL");
+    this.props.getmonteCarloCompany2("ACN");
+    this.props.sharePriceComparison("AAPL", "ACN");
   }
 
   //function that would change the state value with the value selected and inside which the action function will be called and that ticker name will passed
   // this action is to plot the graph
   OnSelectTicker = e => {
     this.setState({
-      ticker_name: e.target.value
+      ticker_name: e.target.value,
     });
     this.props.getGaugeCompany2(e.target.value);
     this.props.getAssetsCompany2(e.target.value);
+    this.props.getmonteCarloCompany2(e.target.value);
+    this.props.sharePriceComparison("AAPL", e.target.value);
   };
 
   render() {
-    console.log(this.props.assets1);
     return (
       <div>
         {/* checking whether the data has been loaded into the reducer and if it is then getSimilarTabl which will have a parameter sector from the data loaded in the reducer  */}
         <CompanyDetailSecondaryNavbar />
-        {/* <div style={{ width: "1000px", margin: "auto" }}>
+        <div style={{ width: "1000px", margin: "auto" }}>
           {this.props.similar_company["0"] ? (
             <>
               {console.log(this.props.similar_company["0"].similar_sector_data)}
@@ -55,7 +61,7 @@ export class CompanyDetailAnalysis extends Component {
                   "Net Profit",
                   "P/E ratio",
                   "Share Price",
-                  "ROCE%"
+                  "ROCE%",
                 ]}
                 tableData={this.props.similar_company["0"]}
               />
@@ -63,8 +69,9 @@ export class CompanyDetailAnalysis extends Component {
           ) : (
             <p>Loading </p>
           )}
-        </div> */}
+        </div>
         {/* DROPDOWN FOR SIMILAR COMPANIES  */}
+
         <div id="company-analysis-similar-cimpany-dropdown">
           <select
             type="text"
@@ -79,59 +86,92 @@ export class CompanyDetailAnalysis extends Component {
             ))}
           </select>
         </div>
-        <div id="analysis-stock-chart">stock chart</div>
-        <div id="analysis-price-summary">price summary</div>
-        Recommendation
-        <div id="analysis-recommendation-grid-container">
-          <div id="analysis-recommendation-1">
-            <img
-              id="analysis-gauge-1"
-              src={
-                this.props.gauge1
-                  ? "data:image/jpeg;base64," + this.props.gauge1
-                  : gauge
-              }
-            />
-          </div>
-          <div id="analysis-recommendation-2">
-            <img
-              id="analysis-gauge-2"
-              src={
-                this.props.gauge2
-                  ? "data:image/jpeg;base64," + this.props.gauge2
-                  : gauge
-              }
-            />
-          </div>
-        </div>
-        <div id="analysis-financial-positional-grid-container">
-          <div id="analysis-financial-positional-1">
-            <div id="stocks_assests">
-              <iframe
-                id="assets1"
-                src={this.props.assets1}
-                style={{
-                  width: "650px",
-                  height: "500px",
-                  outline: "none",
-                  border: "none"
-                }}
-              />
+        {!this.props.isLoading ? (
+          <div>
+            <div id="analysis-stock-chart"></div>
+            <div id="analysis-financial-positional-grid-container">
+              <div id="analysis-financial-positional-1">
+                <div id="stocks_assests">
+                  <iframe
+                    id="assets1"
+                    src={this.props.monteCarlo1}
+                    style={{
+                      width: "650px",
+                      height: "500px",
+                      outline: "none",
+                      border: "none",
+                    }}
+                  />
+                </div>
+              </div>
+              <div id="analysis-financial-positional-2">
+                <iframe
+                  src={this.props.monteCarlo2}
+                  style={{
+                    width: "650px",
+                    height: "500px",
+                    outline: "none",
+                    border: "none",
+                  }}
+                />
+              </div>
+            </div>
+            Recommendation
+            <div id="analysis-recommendation-grid-container">
+              <div id="analysis-recommendation-1">
+                <img
+                  id="analysis-gauge-1"
+                  src={
+                    this.props.gauge1
+                      ? "data:image/jpeg;base64," + this.props.gauge1
+                      : gauge
+                  }
+                />
+              </div>
+              <div id="analysis-recommendation-2">
+                <img
+                  id="analysis-gauge-2"
+                  src={
+                    this.props.gauge2
+                      ? "data:image/jpeg;base64," + this.props.gauge2
+                      : gauge
+                  }
+                />
+              </div>
+            </div>
+            <div id="analysis-financial-positional-grid-container">
+              <div id="analysis-financial-positional-1">
+                <div id="stocks_assests">
+                  <iframe
+                    id="assets1"
+                    src={this.props.assets1}
+                    style={{
+                      width: "650px",
+                      height: "500px",
+                      outline: "none",
+                      border: "none",
+                    }}
+                  />
+                </div>
+              </div>
+              <div id="analysis-financial-positional-2">
+                <iframe
+                  src={this.props.assets2}
+                  style={{
+                    width: "650px",
+                    height: "500px",
+                    outline: "none",
+                    border: "none",
+                  }}
+                />
+              </div>
             </div>
           </div>
-          <div id="analysis-financial-positional-2">
-            <iframe
-              src={this.props.assets2}
-              style={{
-                width: "650px",
-                height: "500px",
-                outline: "none",
-                border: "none"
-              }}
-            />
+        ) : (
+          <div style={{ margin: "200px 550px" }}>
+            <Loader type={Loader} color="#2c3e50" height="100" width="400" />
           </div>
-        </div>
-        {/* parent div  */}
+        )}
       </div>
     );
   }
@@ -143,10 +183,13 @@ const mapStateToProps = state => ({
   drop_down_data: state.CompanyDetailReducer.drop_down_data,
   gauge1: state.CompanyDetailReducer.gauge1,
   gauge2: state.CompanyDetailReducer.gauge2,
-  maonteCarlo1: state.CompanyDetailReducer.maonteCarlo1,
-  maonteCarlo2: state.CompanyDetailReducer.drop_down_data,
+  monteCarlo1: state.CompanyDetailReducer.monteCarlo1,
+  monteCarlo2: state.CompanyDetailReducer.monteCarlo2,
   assets1: state.CompanyDetailReducer.assets1,
-  assets2: state.CompanyDetailReducer.assets2
+  assets2: state.CompanyDetailReducer.assets2,
+  priceComparison: state.CompanyDetailReducer.priceComparison,
+
+  isLoading: state.LoadingReducer.isLoading,
 });
 export default connect(mapStateToProps, {
   getCompanyDetailById,
@@ -157,5 +200,6 @@ export default connect(mapStateToProps, {
   getmonteCarloCompany1,
   getmonteCarloCompany2,
   getAssetsCompany1,
-  getAssetsCompany2
+  getAssetsCompany2,
+  sharePriceComparison,
 })(CompanyDetailAnalysis);
