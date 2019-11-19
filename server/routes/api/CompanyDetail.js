@@ -86,7 +86,13 @@ router.get("/financial/:id", async (req, res, next) => {
         { $unwind: "$ticker_dates" },
         {
           $match: {
+            // ticker_name : "AAPL"
             ticker_id: +id,
+            // ,
+            // 'ticker_dates.date' : {
+            //   $lte : new Date("2019-06-31"),
+            //   $gte :  new Date("2018-03-25")
+            // }
           },
         },
         {

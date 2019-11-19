@@ -2,5 +2,5 @@ projectKey=headStocks_Server
 serverUrl=http://localhost:9000
 serverVersion=7.7.0.23042
 dashboardUrl=http://localhost:9000/dashboard?id=headStocks_Server
-ceTaskId=AW5-B7DFIYcatLcbcScB
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AW5-B7DFIYcatLcbcScB
+ceTaskId=AW5-x2qqF1pQ_pkPfGEG
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AW5-x2qqF1pQ_pkPfGEG
