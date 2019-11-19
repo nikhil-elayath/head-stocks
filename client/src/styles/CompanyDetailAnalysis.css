@@ -72,10 +72,8 @@
 }
 
 #company_analaysis_table {
-  margin: auto;
-  padding: 20px 0px 0px 0px;
+  padding: 15px 0px 0px 0px;
   text-align: center;
-  width: 92%;
 }
 
 /* FOR DESKTOP  */
@@ -126,5 +124,11 @@
   }
   #compare_analysis {
     text-align: left;
+  }
+  #company_analaysis_table {
+    margin: auto;
+    padding: 20px 0px 0px 0px;
+    text-align: center;
+    width: 92%;
   }
 }
