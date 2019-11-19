@@ -53,7 +53,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                             <sub id="secondary-navbar-sub">USD</sub>
                           </p>
                           <p id="last_date">
-                            CLOSE (
+                            CLOSED PRICE (
                             {new Date(coms.share_date).toLocaleDateString(
                               "en-IN",
                               {
