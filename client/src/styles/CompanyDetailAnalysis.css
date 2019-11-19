@@ -1,7 +1,15 @@
 /* FOR MOBILE  */
-
-#company-analysis-similar-cimpany-dropdown {
+#compare_analysis {
+  margin: 10px 0px 0px 0px;
+  display: flex;
   text-align: center;
+}
+#compare_analysis p {
+  margin: -5px 15px 0px 0px;
+  font-size: 14px;
+  color: #2c3e50;
+}
+#company-analysis-similar-cimpany-dropdown {
   padding: 20px 50px 20px 50px;
 }
 #analysis-stock-chart {
@@ -63,6 +71,13 @@
   display: none;
 }
 
+#company_analaysis_table {
+  margin: auto;
+  padding: 20px 0px 0px 0px;
+  text-align: center;
+  width: 92%;
+}
+
 /* FOR DESKTOP  */
 @media screen and (min-width: 480px) {
   #analysis-recommendation-grid-container {
@@ -104,5 +119,12 @@
   }
   #analysis-financial-positional-2 {
     display: contents;
+  }
+  #compare_analysis p {
+    margin: 5px 15px 0px 0px;
+    font-size: 18px;
+  }
+  #compare_analysis {
+    text-align: left;
   }
 }

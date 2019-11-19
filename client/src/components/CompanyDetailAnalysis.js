@@ -49,7 +49,7 @@ export class CompanyDetailAnalysis extends Component {
       <div>
         {/* checking whether the data has been loaded into the reducer and if it is then getSimilarTabl which will have a parameter sector from the data loaded in the reducer  */}
         <CompanyDetailSecondaryNavbar />
-        <div style={{ width: "1000px", margin: "auto" }}>
+        <div id="company_analaysis_table">
           {this.props.similar_company["0"] ? (
             <>
               {console.log(this.props.similar_company["0"].similar_sector_data)}
@@ -73,18 +73,21 @@ export class CompanyDetailAnalysis extends Component {
         {/* DROPDOWN FOR SIMILAR COMPANIES  */}
 
         <div id="company-analysis-similar-cimpany-dropdown">
-          <select
-            type="text"
-            id="stocks_dropdown"
-            name="sector"
-            onChange={this.OnSelectTicker}
-          >
-            {this.props.drop_down_data.map(companies => (
-              <>
-                <option name="choice">{companies.ticker_name}</option>
-              </>
-            ))}
-          </select>
+          <div id="compare_analysis">
+            <p>Detailed Comparision with: </p>
+            <select
+              type="text"
+              className="stocks_dropdown"
+              name="sector"
+              onChange={this.OnSelectTicker}
+            >
+              {this.props.drop_down_data.map(companies => (
+                <>
+                  <option name="choice">{companies.ticker_name}</option>
+                </>
+              ))}
+            </select>
+          </div>
         </div>
         {!this.props.isLoading ? (
           <div>
