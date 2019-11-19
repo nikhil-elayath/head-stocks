@@ -42,7 +42,8 @@ export const login = (user, history) => dispatch => {
     })
     .catch(err => {
       dispatch({
-        type: ERROR_TYPE
+        type: ERROR_TYPE,
+        payload: err.response.data.message
       });
     });
 };
