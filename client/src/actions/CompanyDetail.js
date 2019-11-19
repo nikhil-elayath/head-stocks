@@ -11,7 +11,8 @@ import {
   MONTECARLO_COMPANY1,
   MONTECARLO_COMPANY2,
   ASSETS_COMPANY1,
-  ASSETS_COMPANY2
+  ASSETS_COMPANY2,
+  SHARE_PRICE_COMPARISON
 } from "./Types";
 import { startLoading, stopLoading } from "./LoadingAction";
 import axios from "axios";
@@ -215,7 +216,7 @@ export const getmonteCarloCompany2 = ticker => dispatch => {
       .then(res => {
         dispatch(stopLoading());
         dispatch({
-          type: MONTECARLO_COMPANY1,
+          type: MONTECARLO_COMPANY2,
 
           payload: res.data
         });
@@ -274,6 +275,24 @@ export const getVolatility = ticker => dispatch => {
         payload: res.data
       });
     });
+  } catch (err) {
+    dispatch(startLoading());
+  }
+};
+
+export const sharePriceComparison = (ticker1, ticker2) => dispatch => {
+  dispatch(startLoading());
+  try {
+    return axios
+      .get("http://localhost:5000/shareprice/" + ticker1 + "/" + ticker2)
+      .then(res => {
+        dispatch(stopLoading());
+        dispatch({
+          type: SHARE_PRICE_COMPARISON,
+
+          payload: res.data
+        });
+      });
   } catch (err) {
     dispatch(startLoading());
   }
