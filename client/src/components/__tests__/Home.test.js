@@ -39,7 +39,7 @@ describe("Testing home Component", () => {
   it("should simulate  News Click", () => {
     expect(
       wrapper
-        .find("p")
+        .find("#recent-news-title")
         .at(0)
         .simulate("click")
     );
