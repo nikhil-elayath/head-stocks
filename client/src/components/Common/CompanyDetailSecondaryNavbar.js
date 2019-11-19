@@ -133,37 +133,40 @@ export class CompanyDetailSecondaryNavbar extends Component {
                             </span>
                           </Link>
                         </div>
-
-                        <div id="company-detail-analysis">
-                          <Link
-                            className="company-link"
-                            to={{
-                              pathname: "/analysis/" + coms.id,
-                            }}
-                          >
-                            <span
-                              id="company-analysis-click"
-                              onClick={() => {
-                                this.setState({
-                                  overview: false,
-                                  financial: false,
-                                  analysis: true,
-                                });
+                        {localStorage.getItem("token") ? (
+                          <div id="company-detail-analysis">
+                            <Link
+                              className="company-link"
+                              to={{
+                                pathname: "/analysis/" + coms.id,
                               }}
                             >
-                              <li
-                                id="company-detail-analysis-li"
-                                className={
-                                  this.state.analysis
-                                    ? "options-selected-li"
-                                    : "options-li"
-                                }
+                              <span
+                                id="company-analysis-click"
+                                onClick={() => {
+                                  this.setState({
+                                    overview: false,
+                                    financial: false,
+                                    analysis: true,
+                                  });
+                                }}
                               >
-                                Analysis
-                              </li>
-                            </span>
-                          </Link>
-                        </div>
+                                <li
+                                  id="company-detail-analysis-li"
+                                  className={
+                                    this.state.analysis
+                                      ? "options-selected-li"
+                                      : "options-li"
+                                  }
+                                >
+                                  Analysis
+                                </li>
+                              </span>
+                            </Link>
+                          </div>
+                        ) : (
+                          <div style={{ display: "none" }}></div>
+                        )}
                       </ul>
                       <div id="secondary-nav-values">
                         <div id="voltality">
