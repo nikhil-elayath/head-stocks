@@ -67,7 +67,7 @@ export class Login extends Component {
               id="loginwelcome"
               className="w3-container w3-center w3-animate-left"
             >
-              Welcome Back,
+              Welcome Back!
             </h1>
             <p className="w3-container w3-center w3-animate-left">
               An Investment in Knowledge <br />
