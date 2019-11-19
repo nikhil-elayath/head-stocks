@@ -4,7 +4,7 @@ import {
   RESET_PASSWORD,
   SEND_OTP,
   VERIFY_OTP,
-  ERROR_TYPE
+  ERROR_TYPE,
 } from "./Types";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
@@ -17,13 +17,13 @@ export const createUser = user => dispatch => {
     .then(res => {
       dispatch({
         type: CREATE_USER,
-        payload: res.data.data
+        payload: res.data.data,
       });
     })
     .catch(err => {
       dispatch({
         type: ERROR_TYPE,
-        payload: err.response.data.message
+        payload: err.response.data.message,
       });
     });
 };
@@ -34,16 +34,16 @@ export const login = (user, history) => dispatch => {
     .post(url + "login", user)
     .then(res => {
       localStorage.setItem("token", res.data.data);
-
+      history.push("/");
       dispatch({
         type: LOGIN,
-        payload: res.data.data
+        payload: res.data.data,
       });
     })
     .catch(err => {
       dispatch({
         type: ERROR_TYPE,
-        payload: err.response.data.message
+        payload: err.response.data.message,
       });
     });
 };
@@ -55,7 +55,7 @@ export const resetPassword = user => dispatch => {
     .then(res => {
       dispatch({
         type: RESET_PASSWORD,
-        payload: res.data.data
+        payload: res.data.data,
       });
     })
     .catch(err => {
@@ -71,14 +71,14 @@ export const sendOtp = user => dispatch => {
     .then(res => {
       dispatch({
         type: SEND_OTP,
-        payload: res.data.data
+        payload: res.data.data,
       });
       console.log(res.data.data);
     })
     .catch(err => {
       dispatch({
         type: ERROR_TYPE,
-        payload: err.response.data.message
+        payload: err.response.data.message,
       });
       console.log(err.response.data.message);
     });
@@ -91,13 +91,13 @@ export const verifyOtp = user => dispatch => {
     .then(res => {
       dispatch({
         type: VERIFY_OTP,
-        payload: res.data.data
+        payload: res.data.data,
       });
     })
     .catch(err => {
       dispatch({
         type: ERROR_TYPE,
-        payload: err.response.data.message
+        payload: err.response.data.message,
       });
       console.log(err.response.data.message);
     });

@@ -25,11 +25,11 @@ export class CompanyDetailAnalysis extends Component {
     this.props.getCompanyDetailById(id);
     this.props.getGaugeCompany1("AAPL");
     this.props.getGaugeCompany2("ACN");
-    this.props.getAssetsCompany1("AAPL");
-    this.props.getAssetsCompany2("ACN");
-    this.props.getmonteCarloCompany1("AAPL");
-    this.props.getmonteCarloCompany2("ACN");
-    this.props.sharePriceComparison("AAPL", "ACN");
+    // this.props.getAssetsCompany1("AAPL");
+    // this.props.getAssetsCompany2("ACN");
+    // this.props.getmonteCarloCompany1("AAPL");
+    // this.props.getmonteCarloCompany2("ACN");
+    // this.props.sharePriceComparison("AAPL", "ACN");
   }
 
   //function that would change the state value with the value selected and inside which the action function will be called and that ticker name will passed
@@ -39,9 +39,9 @@ export class CompanyDetailAnalysis extends Component {
       ticker_name: e.target.value,
     });
     this.props.getGaugeCompany2(e.target.value);
-    this.props.getAssetsCompany2(e.target.value);
-    this.props.getmonteCarloCompany2(e.target.value);
-    this.props.sharePriceComparison("AAPL", e.target.value);
+    // this.props.getAssetsCompany2(e.target.value);
+    // this.props.getmonteCarloCompany2(e.target.value);
+    // this.props.sharePriceComparison("AAPL", e.target.value);
   };
 
   render() {
@@ -91,13 +91,26 @@ export class CompanyDetailAnalysis extends Component {
         </div>
         {!this.props.isLoading ? (
           <div>
-            <div id="analysis-stock-chart"></div>
+            <div id="analysis-stock-chart">
+              {" "}
+              <p id="analysis_graph_title">Share Price Comparision</p>
+              <iframe
+                id="assets1"
+                src="https://plot.ly/~nikhile/436.embed"
+                style={{
+                  width: "100%",
+                  height: "500px",
+                  outline: "none",
+                  border: "none",
+                }}
+              />
+            </div>
             <div id="analysis-financial-positional-grid-container">
               <div id="analysis-financial-positional-1">
                 <div id="stocks_assests">
                   <iframe
                     id="assets1"
-                    src={this.props.monteCarlo1}
+                    src="https://plot.ly/~nikhile/432.embed"
                     style={{
                       width: "650px",
                       height: "500px",
@@ -109,7 +122,7 @@ export class CompanyDetailAnalysis extends Component {
               </div>
               <div id="analysis-financial-positional-2">
                 <iframe
-                  src={this.props.monteCarlo2}
+                  src="https://plot.ly/~nikhile/434.embed"
                   style={{
                     width: "650px",
                     height: "500px",
@@ -119,7 +132,7 @@ export class CompanyDetailAnalysis extends Component {
                 />
               </div>
             </div>
-            Recommendation
+            <p id="analysis_graph_title">Recommendation</p>
             <div id="analysis-recommendation-grid-container">
               <div id="analysis-recommendation-1">
                 <img
@@ -147,7 +160,7 @@ export class CompanyDetailAnalysis extends Component {
                 <div id="stocks_assests">
                   <iframe
                     id="assets1"
-                    src={this.props.assets1}
+                    src="https://plot.ly/~nikhile/428.embed"
                     style={{
                       width: "650px",
                       height: "500px",
@@ -159,7 +172,7 @@ export class CompanyDetailAnalysis extends Component {
               </div>
               <div id="analysis-financial-positional-2">
                 <iframe
-                  src={this.props.assets2}
+                  src="https://plot.ly/~nikhile/430.embed"
                   style={{
                     width: "650px",
                     height: "500px",

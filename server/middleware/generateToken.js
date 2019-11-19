@@ -4,8 +4,8 @@ var LocalStorage = require("node-localstorage").LocalStorage;
 localStorage = new LocalStorage("./scratch");
 
 module.exports = payload => {
-  const token = jwt.sign(payload, config.get("privatekey"), {
-    expiresIn: "12s"
+  const token = jwt.sign(payload, "headStocks", {
+    expiresIn: "12s",
   });
 
   return token;
