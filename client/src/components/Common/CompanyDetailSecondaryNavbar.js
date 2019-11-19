@@ -133,6 +133,8 @@ export class CompanyDetailSecondaryNavbar extends Component {
                             </span>
                           </Link>
                         </div>
+
+                        {/* CHECKING THE TOKEN TO SEE WHETHER THE USER IS LOGGED IN OR NOT AND THEN DISPLAYING THE TAB. */}
                         {localStorage.getItem("token") ? (
                           <div id="company-detail-analysis">
                             <Link

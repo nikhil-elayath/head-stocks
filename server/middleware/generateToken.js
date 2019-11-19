@@ -5,7 +5,7 @@ localStorage = new LocalStorage("./scratch");
 
 module.exports = payload => {
   const token = jwt.sign(payload, "headStocks", {
-    expiresIn: "12s"
+    expiresIn: "12s",
   });
 
   return token;
