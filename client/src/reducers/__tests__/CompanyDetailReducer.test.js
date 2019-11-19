@@ -238,7 +238,8 @@ describe("Testing Company Details Reducer", () => {
     });
   });
 
-  it("should return a state object with user array equal to the payload in the action when the action type is COMOANY_DETAIL (when the returned state is initial state)", () => {
+  //test for Financials dates data stored inthe reducer array "dates"
+  it("(Get Financials Dates Data)should return a state object with user array equal to the payload in the action when the action type is COMPANY_DATES_BY_ID (when the returned state is initial state)", () => {
     const action = {
       type: COMPANY_DATES_BY_ID,
       payload: [{}, {}, {}]
