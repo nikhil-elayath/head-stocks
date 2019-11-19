@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {
   getCompanyDetailById,
-  getVolatility
+  getVolatility,
 } from "../../actions/CompanyDetail";
 import { connect } from "react-redux";
 import companylogo from "./stockslogo.PNG";
@@ -18,7 +18,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
   state = {
     overview: true,
     financial: false,
-    analysis: false
+    analysis: false,
   };
   render() {
     this.props.company
@@ -47,7 +47,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
 
                         <div id="secondary-navbar-ticker_name">
                           <p>{coms.ticker_name}</p>
-                          <p id="indexClose">
+                          <p id="CompanyDetailsIndexClose">
                             {coms.last_share_price}
 
                             <sub id="secondary-navbar-sub">USD</sub>
@@ -59,7 +59,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                               {
                                 month: "short",
                                 day: "2-digit",
-                                year: "numeric"
+                                year: "numeric",
                               }
                             )}
                             )
@@ -72,7 +72,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                           className="company-link"
                           // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
                           to={{
-                            pathname: "/companydetail/" + coms.id
+                            pathname: "/companydetail/" + coms.id,
                           }}
                         >
                           <span
@@ -82,7 +82,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                               this.setState({
                                 overview: true,
                                 financial: false,
-                                analysis: false
+                                analysis: false,
                               });
                               console.log("Overview clicked");
                             }}
@@ -101,44 +101,43 @@ export class CompanyDetailSecondaryNavbar extends Component {
                           </span>
                         </Link>
                         {/* Financials  */}
-                        <div id="company-detail-financial">
-                          <Link
-                            className="company-link"
-                            to={{
-                              // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
+                        {/* <div id="company-detail-financial"> */}
+                        <Link
+                          className="company-link"
+                          onClick={() => {
+                            this.setState({
+                              overview: false,
+                              financial: true,
+                              analysis: false,
+                            });
+                          }}
+                          to={{
+                            // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
 
-                              pathname: "/financial/" + coms.id
-                            }}
-                          >
-                            <span
-                              id="company-financial-click"
-                              onClick={() => {
-                                this.setState({
-                                  overview: false,
-                                  financial: true,
-                                  analysis: false
-                                });
-                              }}
+                            pathname: "/financial/" + coms.id,
+                          }}
+                        >
+                          {" "}
+                          <span id="company-financial-click">
+                            <li
+                              id="company-detail-financial-li"
+                              className={
+                                this.state.financial
+                                  ? "options-selected-li"
+                                  : "options-li"
+                              }
                             >
-                              <li
-                                id="company-detail-financial-li"
-                                className={
-                                  this.state.financial
-                                    ? "options-selected-li"
-                                    : "options-li"
-                                }
-                              >
-                                Financials
-                              </li>
-                            </span>
-                          </Link>
-                        </div>
+                              Financials
+                            </li>
+                          </span>
+                        </Link>
+                        {/* </div> */}
 
                         <div id="company-detail-analysis">
                           <Link
                             className="company-link"
                             to={{
-                              pathname: "/analysis/" + coms.id
+                              pathname: "/analysis/" + coms.id,
                             }}
                           >
                             <span
@@ -147,7 +146,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                                 this.setState({
                                   overview: false,
                                   financial: false,
-                                  analysis: true
+                                  analysis: true,
                                 });
                               }}
                             >
@@ -200,7 +199,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                           id="downloadButton"
                           onClick={async () => {
                             fetch(
-                              "http://localhost:2001/api/companydetail/download/" +
+                              "http://localhost:2001/api/companydetail/indicatorsdata/" +
                                 coms.ticker_name
                             ).then(response => {
                               response.blob().then(blob => {
@@ -217,7 +216,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                         >
                           <i class="fa fa-download" /> Download
                         </button>
-                        <button
+                        {/* <button
                           id="downloadButton"
                           onClick={async () => {
                             fetch(
@@ -233,11 +232,10 @@ export class CompanyDetailSecondaryNavbar extends Component {
                               });
                               //window.location.href = response.url;
                             });
-                            // this.props.downloadOHLC("AAPL");
                           }}
                         >
                           <i class="fa fa-download" /> Downloadohlc
-                        </button>
+                        </button> */}
                       </div>
                     </div>
                   </div>
@@ -255,9 +253,9 @@ export class CompanyDetailSecondaryNavbar extends Component {
 }
 const mapStateToProps = state => ({
   company: state.CompanyDetailReducer.company,
-  voltality: state.CompanyDetailReducer.voltality
+  voltality: state.CompanyDetailReducer.voltality,
 });
 export default connect(mapStateToProps, {
   getCompanyDetailById,
-  getVolatility
+  getVolatility,
 })(CompanyDetailSecondaryNavbar);

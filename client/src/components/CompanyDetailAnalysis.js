@@ -10,7 +10,7 @@ import {
   getmonteCarloCompany2,
   getAssetsCompany1,
   getAssetsCompany2,
-  sharePriceComparison
+  sharePriceComparison,
 } from "../actions/CompanyDetail";
 import { connect } from "react-redux";
 import "../styles/CompanyDetailAnalysis.css";
@@ -36,7 +36,7 @@ export class CompanyDetailAnalysis extends Component {
   // this action is to plot the graph
   OnSelectTicker = e => {
     this.setState({
-      ticker_name: e.target.value
+      ticker_name: e.target.value,
     });
     this.props.getGaugeCompany2(e.target.value);
     this.props.getAssetsCompany2(e.target.value);
@@ -61,7 +61,7 @@ export class CompanyDetailAnalysis extends Component {
                   "Net Profit",
                   "P/E ratio",
                   "Share Price",
-                  "ROCE%"
+                  "ROCE%",
                 ]}
                 tableData={this.props.similar_company["0"]}
               />
@@ -102,7 +102,7 @@ export class CompanyDetailAnalysis extends Component {
                       width: "650px",
                       height: "500px",
                       outline: "none",
-                      border: "none"
+                      border: "none",
                     }}
                   />
                 </div>
@@ -114,7 +114,7 @@ export class CompanyDetailAnalysis extends Component {
                     width: "650px",
                     height: "500px",
                     outline: "none",
-                    border: "none"
+                    border: "none",
                   }}
                 />
               </div>
@@ -152,7 +152,7 @@ export class CompanyDetailAnalysis extends Component {
                       width: "650px",
                       height: "500px",
                       outline: "none",
-                      border: "none"
+                      border: "none",
                     }}
                   />
                 </div>
@@ -164,7 +164,7 @@ export class CompanyDetailAnalysis extends Component {
                     width: "650px",
                     height: "500px",
                     outline: "none",
-                    border: "none"
+                    border: "none",
                   }}
                 />
               </div>
@@ -192,7 +192,7 @@ const mapStateToProps = state => ({
   assets2: state.CompanyDetailReducer.assets2,
   priceComparison: state.CompanyDetailReducer.priceComparison,
 
-  isLoading: state.LoadingReducer.isLoading
+  isLoading: state.LoadingReducer.isLoading,
 });
 export default connect(mapStateToProps, {
   getCompanyDetailById,
@@ -204,5 +204,5 @@ export default connect(mapStateToProps, {
   getmonteCarloCompany2,
   getAssetsCompany1,
   getAssetsCompany2,
-  sharePriceComparison
+  sharePriceComparison,
 })(CompanyDetailAnalysis);
