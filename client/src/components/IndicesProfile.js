@@ -52,34 +52,38 @@ export class IndicesProfile extends Component {
               <div id="indicesLeftContainer">
                 <div id="indicesTopLeft">
                   <h1>{index.ticker_name}</h1>
-                  <div>
-                    {/* <button id="downloadButton">
+                  {localStorage.getItem("token") ? (
+                    <div>
+                      {/* <button id="downloadButton">
                       <i class="fa fa-download" /> Download
                     </button> */}
-                    <button
-                      id="downloadButton"
-                      type="button"
-                      onClick={async () => {
-                        fetch(
-                          "http://localhost:2001/api/indicesprofile/download/" +
-                            index.ticker_name
-                        ).then(response => {
-                          response.blob().then(blob => {
-                            let url = window.URL.createObjectURL(blob);
-                            let a = document.createElement("a");
-                            a.href = url;
-                            a.download = index.ticker_name + ".csv";
-                            a.click();
+                      <button
+                        id="downloadButton"
+                        type="button"
+                        onClick={async () => {
+                          fetch(
+                            "http://localhost:2001/api/indicesprofile/download/" +
+                              index.ticker_name
+                          ).then(response => {
+                            response.blob().then(blob => {
+                              let url = window.URL.createObjectURL(blob);
+                              let a = document.createElement("a");
+                              a.href = url;
+                              a.download = index.ticker_name + ".csv";
+                              a.click();
+                            });
+                            //window.location.href = response.url;
                           });
-                          //window.location.href = response.url;
-                        });
-                        // this.props.downloadOHLC("AAPL");
-                      }}
-                    >
-                      <i class="fa fa-download" />
-                      Download
-                    </button>
-                  </div>
+                          // this.props.downloadOHLC("AAPL");
+                        }}
+                      >
+                        <i class="fa fa-download" />
+                        Download
+                      </button>
+                    </div>
+                  ) : (
+                    <div style={{ display: "none" }}></div>
+                  )}
                 </div>
 
                 <div id="indicesNav">
