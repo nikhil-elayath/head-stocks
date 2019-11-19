@@ -162,12 +162,13 @@ export class Register extends Component {
         <div id="registerMainContainer">
           <div id="registerLeftContainer">
             <h1 id="welcome" className="w3-container w3-center w3-animate-left">
-              Benefits of SignUp:
+              Benefits of SignUp
             </h1>
             <p className="w3-container w3-center w3-animate-left">
               <ul id="registerBenefits">
-                <li>Detailed Comparison between Companies</li>
-                <li>Can Download Financial Reports</li>
+                <li>Detailed comparison between Companies</li>
+                <li>Can download Financial Reports</li>
+                <li>Can download Indices Reports</li>
               </ul>
             </p>
           </div>
