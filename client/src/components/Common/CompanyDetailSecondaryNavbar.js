@@ -102,36 +102,37 @@ export class CompanyDetailSecondaryNavbar extends Component {
                         </Link>
                         {/* Financials  */}
                         {/* <div id="company-detail-financial"> */}
-                        <Link
-                          className="company-link"
-                          onClick={() => {
-                            this.setState({
-                              overview: false,
-                              financial: true,
-                              analysis: false,
-                            });
-                          }}
-                          to={{
-                            // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
 
-                            pathname: "/financial/" + coms.id,
-                          }}
-                        >
-                          {" "}
-                          <span id="company-financial-click">
-                            <li
-                              id="company-detail-financial-li"
-                              className={
-                                this.state.financial
-                                  ? "options-selected-li"
-                                  : "options-li"
-                              }
+                        <div id="company-detail-financial">
+                          <Link
+                            className="company-link"
+                            to={{
+                              pathname: "/financial/" + coms.id,
+                            }}
+                          >
+                            <span
+                              id="company-financial-click"
+                              onClick={() => {
+                                this.setState({
+                                  overview: false,
+                                  financial: true,
+                                  analysis: false,
+                                });
+                              }}
                             >
-                              Financials
-                            </li>
-                          </span>
-                        </Link>
-                        {/* </div> */}
+                              <li
+                                id="company-detail-financial-li"
+                                className={
+                                  this.state.financial
+                                    ? "options-selected-li"
+                                    : "options-li"
+                                }
+                              >
+                                Financials
+                              </li>
+                            </span>
+                          </Link>
+                        </div>
 
                         <div id="company-detail-analysis">
                           <Link
