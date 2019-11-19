@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const stocksData = require("../../model/stocksModel");
-//used to provide path for downloadable file
+//used to provide path for downloadable file[piyush]
 const path = require("path");
 
 router.get("/singleindex/:id", async (req, res, next) => {
@@ -56,7 +56,7 @@ router.get("/singleindex/:id", async (req, res, next) => {
   }
 });
 
-//provides downloadable format according to the required market index[p]
+//provides downloadable format according to the required market index[piyush]
 router.get("/download/:index", async (req, res, next) => {
   const index = req.params.index;
   res.download(
@@ -117,7 +117,7 @@ router.post("/ohlcdata/:id", async (req, res, next) => {
       name["date"] = ticker_dates.date;
       index.push(name);
     });
-    var index1=[]
+    var index1 = [];
     index1 = index.reverse();
     if (result.length == 0) {
       res.status(400).json({
