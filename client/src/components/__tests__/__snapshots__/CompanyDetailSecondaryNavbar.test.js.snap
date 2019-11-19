@@ -123,7 +123,8 @@ exports[`Testing Company Detail Secondary navbar Component should mount the comp
             id="voltality"
           >
             <p>
-               123456 
+               
+               
             </p>
             <div
               id="voltality_tooltip"
