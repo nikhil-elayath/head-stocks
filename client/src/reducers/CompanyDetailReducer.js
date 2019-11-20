@@ -20,6 +20,7 @@ const initialState = {
   balance_sheet: [],
   ohlcChart: [],
   similar_company: [],
+  // storing the dates data returned from the COMPANY_DATES_BY_ID action type.
   dates: [],
   drop_down_data: [],
   gauge1: [],
@@ -39,6 +40,10 @@ export default function(state = initialState, action) {
         ...state,
         company: action.payload
       };
+    // Action to get all the dates of a particular company
+    // used in Company Detail's Financial Component
+    // accepts input as ticker_id Eg:9,789,etc
+    // returns all the dates of Company
     case COMPANY_DATES_BY_ID:
       return {
         ...state,

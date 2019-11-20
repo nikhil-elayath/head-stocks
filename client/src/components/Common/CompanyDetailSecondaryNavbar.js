@@ -15,11 +15,11 @@ export class CompanyDetailSecondaryNavbar extends Component {
     this.props.getVolatility("AAPL");
   }
   // DEFINING THE STATE WITH OVERVIEW AS DEFAULT AND REST TWO OPTIONS FALSE
-  state = {
-    overview: true,
-    financial: false,
-    analysis: false,
-  };
+  // state = {
+  //   overview: true,
+  //   financial: false,
+  //   analysis: false,
+  // };
   render() {
     this.props.company
       ? console.log(this.props.company)
@@ -77,21 +77,21 @@ export class CompanyDetailSecondaryNavbar extends Component {
                         >
                           <span
                             id="company-detail-overview-click"
-                            onClick={() => {
-                              // changing the values of the state while clicking, the clicked component will be set to true others will be false
-                              this.setState({
-                                overview: true,
-                                financial: false,
-                                analysis: false,
-                              });
-                              console.log("Overview clicked");
-                            }}
+                            // onClick={() => {
+                            //   // changing the values of the state while clicking, the clicked component will be set to true others will be false
+                            //   // this.setState({
+                            //   //   overview: true,
+                            //   //   financial: false,
+                            //   //   analysis: false,
+                            //   // });
+                            //   console.log("Overview clicked");
+                            // }}
                           >
                             <li
                               id="comapany-detail-overview-li"
                               // different css properties based on the value of the state
                               className={
-                                this.state.overview
+                                this.props.selected === "overview"
                                   ? "options-selected-li"
                                   : "options-li"
                               }
@@ -112,18 +112,18 @@ export class CompanyDetailSecondaryNavbar extends Component {
                           >
                             <span
                               id="company-financial-click"
-                              onClick={() => {
-                                this.setState({
-                                  overview: false,
-                                  financial: true,
-                                  analysis: false,
-                                });
-                              }}
+                              // onClick={() => {
+                              //   this.setState({
+                              //     overview: false,
+                              //     financial: true,
+                              //     analysis: false,
+                              //   });
+                              // }}
                             >
                               <li
                                 id="company-detail-financial-li"
                                 className={
-                                  this.state.financial
+                                  this.props.selected === "financial"
                                     ? "options-selected-li"
                                     : "options-li"
                                 }
@@ -156,7 +156,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                                 <li
                                   id="company-detail-analysis-li"
                                   className={
-                                    this.state.analysis
+                                    this.props.selected === "analysis"
                                       ? "options-selected-li"
                                       : "options-li"
                                   }

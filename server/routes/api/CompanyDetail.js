@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 var result;
+
 // used to provide path for downloadable file [piyush]
 const path = require("path");
 const pg = require("pg-promise")();
@@ -75,21 +76,36 @@ router.get("/:id", async (req, res, next) => {
   } catch {}
 });
 
-// new financials
+// new financials - Harshal Patil
+// Gets data of a particular company according to  the dates of their reports data in an descending order
 router.get("/financial/:id", async (req, res, next) => {
   try {
+    // stores the Id of the Company that is recieved from params
     let id = req.params.id;
+    // an empty array datesCF that will help to filter the results recieved from the database
     let datesCF = [];
-    let reports = { tickerValues: {} };
+    //
+    // let reports = { tickerValues: {} };
     // variable
+
+    // Aggregate function to find and store the data
+    // according to dates in an descending order
+    // (Most recent data is displayed First)
     stocksData.aggregate(
       [
+        // Deconstucts the array field
+        // replaces the array field with the respective element
         { $unwind: "$ticker_dates" },
         {
+          // finds the data for a particular company based on its ticker_id in database
           $match: {
-            // ticker_name : "AAPL"
             ticker_id: +id
+
+            // finds the data for a particular company based on its ticker_name in database
+            // ticker_name : "AAPL"
             // ,
+
+            // sets a range of dates for what the data is needed
             // 'ticker_dates.date' : {
             //   $lte : new Date("2019-06-31"),
             //   $gte :  new Date("2018-03-25")
@@ -97,19 +113,38 @@ router.get("/financial/:id", async (req, res, next) => {
           }
         },
         {
+          //$project limits the amount of data sent to the application
           $project: {
+            // only the ticker_dates data is used
             ticker_dates: 1,
+            // Differentiating the data in different quarter of a year based on date
             quarter: {
+              //Multiple conditional statements to check which quarter the data must be added
+              // 1st conditional Statement($cond) to check if the data is of first quarter
               $cond: [
                 {
+                  // $and to check all condition are satisfied
                   $and: [
+                    //  $month extrates the month(mm) of the date(dd/mm/yyyy) value in data
+                    //  checks if the month value in date is 3
                     { $eq: [{ $month: "$ticker_dates.date" }, 3] },
+                    // $dayOfmonth extrats the day(dd) of the date(dd/mm/yyyy) value from the data
+                    // $lte(less than or equal to) Query Selector
+                    // to set the maximum date
+                    // which is 31st (OR 30th in some cases)
                     { $lte: [{ $dayOfMonth: "$ticker_dates.date" }, 31] },
+                    // $gt(greater than) Query Selector
+                    // to set the minimum date which is 25th
                     { $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25] }
                   ]
                 },
+                // sets the quarter name as first
+                // the quarter is an object
+                // that will contain all the dates
+                // data objects inside an array
                 "first",
                 {
+                  // 2nd conditional Statement($cond) to check if the data is of second quarter
                   $cond: [
                     {
                       $and: [
@@ -120,6 +155,7 @@ router.get("/financial/:id", async (req, res, next) => {
                     },
                     "second",
                     {
+                      // 3rd conditional Statement($cond) to check if the data is of third quarter
                       $cond: [
                         {
                           $and: [
@@ -134,6 +170,7 @@ router.get("/financial/:id", async (req, res, next) => {
                         },
                         "third",
                         {
+                          // $th conditional Statement($cond) to check if the data is of forth quarter
                           $cond: [
                             {
                               $and: [
@@ -153,6 +190,10 @@ router.get("/financial/:id", async (req, res, next) => {
                               ]
                             },
                             "fourth",
+                            // If date does not belong t the specified quarters
+                            // add those dates to the 'fifth' quarter
+                            // which will be removed in the further part of query
+                            // all dates in fifth quarter are not needed.
                             "fifth"
                           ]
                         }
@@ -164,47 +205,76 @@ router.get("/financial/:id", async (req, res, next) => {
             }
           }
         },
+        // ALl the dates belonging to the fifth quarter are removed.
+        // $ne (not equal) helps to get data from all quarters except the 'fifth' quarter
         { $match: { quarter: { $ne: "fifth" } } },
 
         {
+          // Grouping the results from the required quarters.
+          // $group combines and creates the object as we need
+          // as the result of the query
           $group: {
+            // _id is used for string the year and month of the data of each quarter distinctly.
             _id: {
+              // Year of the quarter is extracted and stored
               year: { $year: "$ticker_dates.date" },
+              // Month of the quarter is extracted and stored
               month: { $month: "$ticker_dates.date" }
             },
+            // all the data of quarters is stores in the key named date_values
+            // $push is used to store the dates in this key
             date_values: { $push: "$ticker_dates" }
           }
         },
         {
+          // Sorting the data in descending order
+          // $sort helps to sort the data on the basis of
+          // year and month
           $sort: {
+            // _id key has the values stored of year and month
+            //example:  _id{year:2009, month: 4}
             "_id.year": -1,
             "_id.month": -1
             // 'ticker_dates.date':-1,
           }
         }
       ],
+      // function to sort the result in the desired form
+      // send the response Or result to the front-end
       function(err, result) {
-        // console.log("start");
-        // console.log("end");
+        //checks if result is recieved from query
         if (result.length == 0) {
+          // checks for error
           if (err) console.log(err);
+          // response of API when no result is found.
           return res.status(400).json({
             status: 400,
             data: result,
             message: "No Dates Found"
           });
         } else {
+          // block executes when results is recieved from the query
           if (err) throw err;
+          // converting the result of query in the desired form
+          // traversing in each value of the result
           for (let i of result) {
+            // traversing in the dates within each quarter
             for (dates of i.date_values) {
+              // checks for a particular key to be present on a single date
+              // Some Common Keys can be used here Eg:Total Assets, Net Profit,etc
               if (dates.hasOwnProperty("Revenues")) {
                 // console.log(dates);
+                // if 'Key' found then that date data is pushed into
+                // the empty array(datesCF) declared on top
                 datesCF.push(dates);
                 // console.log(y)
               }
             }
           }
           // console.log(datesCF);
+
+          // On Successful Execution Of the API
+          // response of API when Result is found.
           res.status(200).json({
             status: 200,
             data: datesCF,
