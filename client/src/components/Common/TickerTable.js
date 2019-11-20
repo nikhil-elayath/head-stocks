@@ -22,14 +22,18 @@ export class TickerTable extends Component {
                   to={{ pathname: "/indexProfile/" + current.ticker_id }}
                   style={{ textDecoration: "none" }}
                 >
-                  <td>{current.ticker_name ? current.ticker_name : null}</td>
+                  <td id="tcikerNameReuse">
+                    {current.ticker_name ? current.ticker_name : null}
+                  </td>
                 </Link>
               ) : (
                 <Link
                   to={{ pathname: "/companydetail/" + current.ticker_id }}
                   style={{ textDecoration: "none" }}
                 >
-                  <td>{current.ticker_name ? current.ticker_name : null}</td>
+                  <td id="tcikerNameReuse">
+                    {current.ticker_name ? current.ticker_name : null}
+                  </td>
                 </Link>
               )}
               {current.tickerValues

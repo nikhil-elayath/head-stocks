@@ -48,7 +48,7 @@ export class CompanyDetailAnalysis extends Component {
     return (
       <div>
         {/* checking whether the data has been loaded into the reducer and if it is then getSimilarTabl which will have a parameter sector from the data loaded in the reducer  */}
-        <CompanyDetailSecondaryNavbar />
+        <CompanyDetailSecondaryNavbar selected="analysis" />
         <div id="company_analaysis_table">
           {this.props.similar_company["0"] ? (
             <>

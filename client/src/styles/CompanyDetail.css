@@ -28,6 +28,10 @@
   color: red;
 }
 
+#img_gauge {
+  width: 300px;
+}
+
 /* FOR DESKTOP  */
 @media screen and (min-width: 480px) {
   #company-detail-grid-container {
@@ -67,7 +71,7 @@
   }
 
   #img_gauge {
-    width: 100px;
+    width: 500px;
   }
 
   #test {
