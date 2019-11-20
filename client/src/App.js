@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Register from "./components/Register";
 import ResetPassword from "./components/ResetPassword";
 import Login from "./components/Login";
+import UserProfile from "./components/UserProfile";
 // Piyush
 import home from "./components/Home";
 // Harshal
@@ -18,7 +19,6 @@ import CompanyDetailFinancial from "./components/CompanyDetailFinancial";
 import CompanyDetailAnalysis from "./components/CompanyDetailAnalysis";
 import Footer from "./components/Footer";
 import IndicesProfile from "./components/IndicesProfile";
-// import Download from "e:/Download";
 
 function App() {
   return (
@@ -32,6 +32,7 @@ function App() {
         <Route exact path="/register" component={Register} />
         <Route exact path="/resetpassword" component={ResetPassword} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/profile" component={UserProfile} />
         {/* Piyush */}
         <Route exact path="/" component={home} />
         <Route exact path="/companydetail/:id" component={CompanyDetail} />

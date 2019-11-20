@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css?family=Karla");
+* {
+  font-family: Karla;
+}
+
+#userProfileContainer {
+  width: 100%;
+  display: grid;
+  grid-template-rows: 150px auto;
+}
+
+#userSearch {
+  background: url("../components/Common/profile.jpg") no-repeat;
+  background-size: cover;
+  /* width: auto; */
+  height: 92vh;
+}
+
+#userNavigation {
+  padding: 10px 20px;
+}
+
+@media screen and (min-width: 430px) {
+  #userProfileContainer {
+    width: 100%;
+    grid-template-columns: 250px 1fr;
+  }
+}
