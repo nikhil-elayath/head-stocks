@@ -239,4 +239,26 @@ router.put("/sell", async (req, res, next) => {
     next(err);
   }
 });
+
+router.get("/buyStocks", async (req, res) => {
+  const result = await User.find(
+    {},
+    { company: { $elemMatch: { buy: false } } }
+  );
+  res.status(200).json({
+    status: 200,
+    data: result,
+    message: "Retrieved all stocks purchased by user Successfully"
+  });
+});
+
+router.get("/allStocks", async (req, res) => {
+  const result = await User.find({}, { company: 1, _id: 0 });
+  res.status(200).json({
+    status: 200,
+    data: result,
+    message: "Retrieved history of user Successfully"
+  });
+});
+
 module.exports = router;
