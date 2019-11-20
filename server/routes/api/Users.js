@@ -35,7 +35,8 @@ router.post("/signup", async (req, res, next) => {
         email: req.body.email,
         phone: req.body.phone,
         password: req.body.password,
-        isAdmin: req.body.isAdmin
+        isAdmin: req.body.isAdmin,
+        wallet: 1000000
       });
       // Encrypting the password and storing it in the databsae
       user.password = await bcrypt.hash(user.password, 10);
@@ -173,4 +174,69 @@ router.post("/verify_otp", async (req, res, next) => {
   }
 });
 
+router.put("/buy", async (req, res, next) => {
+  try {
+    // Checks if the user exists with the email specified
+    let username = await User.findOne({ email: req.body.email });
+    if (!username) {
+      return res.status(400).send({ message: "Invalid Credentials" });
+    } else {
+      let current_user = await User.findOneAndUpdate(
+        { email: req.body.email },
+        {
+          $push: {
+            company: {
+              ticker_name: req.body.ticker_name,
+              current_price: req.body.current_price,
+              buy: true,
+              sell: false,
+              buy_date: new Date().toISOString()
+            }
+          },
+          $set: {
+            wallet: username.wallet - req.body.price
+          }
+        }
+      );
+      res.status(200).json({
+        status: 200,
+        message: "Company Added Successfully"
+      });
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.put("/sell", async (req, res, next) => {
+  try {
+    // Checks if the user exists with the email specified
+    let username = await User.findOne({ email: req.body.email });
+    // console.log(username);
+    if (!username) {
+      return res.status(400).send({ message: "Invalid Credentials" });
+    } else {
+      let user = await User.update(
+        { "company.ticker_name": req.body.ticker_name },
+        {
+          $set: {
+            "company.$.buy": false,
+            "company.$.sell": true,
+            "company.$.sell_price": req.body.sell_price,
+            wallet: username.wallet + req.body.price,
+            "company.$.sell_date": new Date().toISOString()
+          }
+        },
+        { upsert: true }
+      );
+      console.log(user);
+      res.status(200).json({
+        status: 200,
+        message: "Company Added Successfully"
+      });
+    }
+  } catch (err) {
+    next(err);
+  }
+});
 module.exports = router;

@@ -9,6 +9,7 @@ import "../styles/Navbar.css";
 import cancel from "./cancel.png";
 import { connect } from "react-redux";
 import { searchContent } from "../actions/Navbar";
+// import { debounce } from "debounce";
 
 export class NavbarDefault extends Component {
   state = {
@@ -50,13 +51,14 @@ export class NavbarDefault extends Component {
             searchInputChanged: true
           });
     }
-
     this.setState({ [event.target.name]: event.target.value });
+    // debounce(() => {
+
     let searchString = {
       searchInput: this.state.searchInput
     };
-
     this.props.searchContent(searchString);
+    // }, 1000);
   };
 
   onSearch = e => {

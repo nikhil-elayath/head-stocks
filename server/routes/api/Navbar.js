@@ -11,7 +11,8 @@ router.post("/search", async (req, res) => {
     {
       $or: [
         // finds the value recieved in the industry Key
-        { industry: req.body.searchInput },
+        { industry: { $regex: req.body.searchInput, $options: "i" }},
+        // finds the value recieved in the ticker_name Key
         { ticker_name: { $regex: req.body.searchInput, $options: "i" } }
       ]
     },
