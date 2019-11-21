@@ -99,6 +99,7 @@
   overflow: auto;
   max-height: 500px;
   text-align: center;
+  z-index: 1;
 }
 
 .navbarSearchResultsCancelButton {

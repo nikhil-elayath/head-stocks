@@ -7,7 +7,9 @@ const users_info = mongoose.Schema({
   email: { type: String, require: true },
   phone: { type: String, require: true },
   password: { type: String, require: true },
-  isAdmin: { type: Boolean, required: true }
+  isAdmin: { type: Boolean, required: true },
+  wallet: { type: Number },
+  company: { type: mongoose.Schema.Types.Mixed }
 });
 
 const User = mongoose.model("User", users_info);
