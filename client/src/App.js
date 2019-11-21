@@ -21,6 +21,8 @@ import CompanyDetailAnalysis from "./components/CompanyDetailAnalysis";
 import Footer from "./components/Footer";
 import IndicesProfile from "./components/IndicesProfile";
 
+// import Download from "e:/Download";
+import Slider from "./components/Slider";
 function App() {
   return (
     <Router>
@@ -50,6 +52,8 @@ function App() {
         <Route exact path="/indexProfile/:id" component={IndicesProfile} />
       </div>
       {/* <Footer /> */}
+
+      <Route exact path="/slider" component={Slider} />
     </Router>
   );
 }

@@ -1,4 +1,9 @@
-import { GET_INDICES_BYID, OHLC_CHART_INDEX, OHLC_INDICES_DATA } from "./Types";
+import {
+  GET_INDICES_BYID,
+  OHLC_CHART_INDEX,
+  OHLC_INDICES_DATA,
+  DOWNLOAD
+} from "./Types";
 import axios from "axios";
 import { startLoading, stopLoading } from "./LoadingAction";
 const url = "http://localhost:2001/api/indicesprofile/";
@@ -53,10 +58,22 @@ export const getOhlcChartIndex = id => dispatch => {
 
 // downloading ohlc data for index[piyush]
 
-export const downloadOhlcDataIndex = index => {
-  try {
-    return axios.get(url + "download/" + index);
-  } catch (err) {
-    console.log(err);
-  }
+// export const downloadOhlcDataIndex = index => {
+//   try {
+//     return axios.get(url + "download/" + index);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
+export const download = report => dispatch => {
+  return axios
+    .post("http://localhost:2001/api/download/report", report)
+    .then(res => {
+      dispatch({
+        type: DOWNLOAD
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
 };

@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import {
   getIndicesById,
   getOhlcChartIndex,
-  getOhlcIndicesById
+  getOhlcIndicesById,
+  download
 } from "../actions/Indices";
 import { connect } from "react-redux";
 import "../styles/IndicesProfile.css";
@@ -21,6 +22,26 @@ export class IndicesProfile extends Component {
   state = {
     week: true
   };
+
+  // downloadReportForIndices = reports => {
+  //   console.log(reports);
+  //   fetch("http://localhost:2001/api/download/report", {
+  //     method: "POST",
+  //     body: reports,
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "appication/json"
+  //     }
+  //   }).then(response => {
+  //     response.blob().then(blob => {
+  //       let url = window.URL.createObjectURL(blob);
+  //       let a = document.createElement("a");
+  //       a.href = url;
+  //       a.download = "file.csv";
+  //       a.click();
+  //     });
+  //   });
+  // };
 
   weekClick = () => {
     let time = {
@@ -44,6 +65,7 @@ export class IndicesProfile extends Component {
 
   render() {
     console.log(this.props.ohlcChart);
+
     return (
       <div>
         <div id="indicesMainContainer">
@@ -76,6 +98,27 @@ export class IndicesProfile extends Component {
                           });
                           // this.props.downloadOHLC("AAPL");
                         }}
+                        // onClick={() => {
+                        //   let reports = {
+                        //     report: this.props.ohlcdata
+                        //   };
+                        //   console.log(reports);
+                        //   fetch("http://localhost:2001/api/download/report", {
+                        //     method: "POST",
+                        //     body: JSON.stringify(reports),
+                        //     headers: {
+                        //       "Content-Type": "appication/json"
+                        //     }
+                        //   }).then(response => {
+                        //     response.blob().then(blob => {
+                        //       let url = window.URL.createObjectURL(blob);
+                        //       let a = document.createElement("a");
+                        //       a.href = url;
+                        //       a.download = "file.csv";
+                        //       a.click();
+                        //     });
+                        //   });
+                        // }}
                       >
                         <i class="fa fa-download" />
                         Download
@@ -219,5 +262,6 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
   getIndicesById,
   getOhlcChartIndex,
-  getOhlcIndicesById
+  getOhlcIndicesById,
+  download
 })(IndicesProfile);
