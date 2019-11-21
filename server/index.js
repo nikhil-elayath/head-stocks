@@ -10,6 +10,8 @@ const home = require("./routes/api/Home");
 const company = require("./routes/api/Stocks");
 const companydetails = require("./routes/api/CompanyDetail");
 const navbar = require("./routes/api/Navbar"); // Harshal
+const upload = require("./routes/api/UploadData"); // Harshal
+
 const indexProfile = require("./routes/api/IndicesProfile");
 
 app.use(cors());
@@ -17,7 +19,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
-    extended: false,
+    extended: false
   })
 );
 
@@ -38,6 +40,7 @@ app.use("/api/sector/", company);
 
 //harshal
 app.use("/api/navbar/", navbar);
+app.use("/api/upload/", upload);
 
 const port = process.env.port || 2001;
 
