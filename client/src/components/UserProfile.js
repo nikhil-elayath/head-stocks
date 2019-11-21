@@ -49,6 +49,7 @@ export class UserProfile extends Component {
       <div>
         <div id="userProfileContainer">
           <UserNavigation />
+
           <div id="userSearch">
             <h1>Welcome to HeadStocks Simulator</h1>
             <input
@@ -95,8 +96,12 @@ export class UserProfile extends Component {
                               title="Close"
                               class="modal-close"
                             >
-                              &times;
+                              close &times;
                             </a>
+                            <h1>CSS Modal</h1>
+                            <div>
+                              The quick brown fox jumped over the lazy dog.
+                            </div>
                           </div>
                         </div>
                       </div>

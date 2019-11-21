@@ -4,12 +4,9 @@ const stocksData = require("../../model/stocksModel");
 
 //gets the search results from database - Harshal
 router.post("/search", async (req, res) => {
-  // selecting the database "stocks
-  // try {
   let result = await stocksData.find(
     //  search the results in two different attributes
     {
-      "ticker_dates.Share Price": { $exists: true },
       $or: [
         // finds the value recieved in the industry Key
         { industry: { $regex: req.body.searchInput, $options: "i" } },
@@ -50,7 +47,7 @@ router.post("/search", async (req, res) => {
     // If successfully executes then sends this response to the search action
     res.status(200).json({
       status: 200,
-      data: result,
+      data: change,
       message: "Retrieved Search Result successfully"
     });
   }
