@@ -1,5 +1,5 @@
 import { SEARCH_CONTENT } from "./Types";
-// import { UPDATE_COMPANY } from "./Types";
+import { UPDATE_COMPANY } from "./Types";
 
 import axios from "axios";
 
@@ -27,20 +27,21 @@ export const searchContent = searchInput => dispatch => {
 };
 
 //updating a company
-// export const updateCompany = data => dispatch => {
-//   try {
-//     return axios
-//       .post("http://localhost:2001/api/navbar/updateCompany",data)
-//       .then(res => {
-//          dispatch({
-//           type: UPDATE_COMPANY,
-//           payload: res.data.data
-//         }
-//         // ,console.log("action value"),
-//         // console.log(data)
-//         );
-//       });
-//   } catch (err) {
-//      console.log(err);
-//   }
-// };
+export const updateCompany = data => dispatch => {
+  try {
+    return axios
+      .post("http://localhost:2001/api/navbar/updateCompany", data)
+      .then(res => {
+        dispatch(
+          {
+            type: UPDATE_COMPANY,
+            payload: res.data.data
+          }
+          // ,console.log("action value"),
+          // console.log(data)
+        );
+      });
+  } catch (err) {
+    console.log(err);
+  }
+};

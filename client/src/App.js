@@ -8,7 +8,7 @@ import Login from "./components/Login";
 import home from "./components/Home";
 // Harshal
 import NavbarDefault from "./components/NavbarDefault";
-// import UpdateCompany from "./components/UpdateCompany";
+import UpdateCompany from "./components/UpdateCompany";
 // nikhil
 import CompanyDetail from "./components/CompanyDetail";
 import CompanyDetailSecondaryNavbar from "./components/Common/CompanyDetailSecondaryNavbar";
@@ -26,7 +26,7 @@ function App() {
       <div>
         {/* Harshal */}
         <NavbarDefault />
-        {/* <Route exact path="/updatecompany" component={UpdateCompany} /> */}
+        <Route exact path="/updatecompany" component={UpdateCompany} />
 
         {/* Bhavana */}
         <Route exact path="/register" component={Register} />
