@@ -1,10 +1,20 @@
 import React, { Component } from "react";
+//[Nikhil] imports for range slider
+import "rc-slider/assets/index.css";
+import "rc-tooltip/assets/bootstrap.css";
+import ReactDOM from "react-dom";
+import Tooltip from "rc-tooltip";
+import Slider from "rc-slider";
+
 import {
   getCompany,
   getSectors,
   getIndustries,
-  getGainersLosers
+  getGainersLosers,
+  //[NIKHIL] SCREENER ACTIONS
+  getScreenerSearch
 } from "../actions/Stocks";
+import Script from "react-load-script";
 import "../styles/StocksLanding.css";
 import companylogo from "./Common/stockslogo.PNG";
 // import editlogo from "./Common/edit.png";
@@ -12,7 +22,17 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 import Table from "../components/Common/TickerTable";
+
 // import PopupboxManager from "react-popupbox";
+var slider;
+
+//[Nikhil] rc-slider
+//package documentation link
+//https://www.npmjs.com/package/rc-slider
+
+//source code http://react-component.github.io/slider/examples/handle.html
+const createSliderWithTooltip = Slider.createSliderWithTooltip;
+const Range = createSliderWithTooltip(Slider.Range);
 
 export class StocksLanding extends Component {
   state = {
@@ -24,7 +44,38 @@ export class StocksLanding extends Component {
     loading: false,
     sector: "Basic Materials",
     industry: "Building Materials",
-    gainersClick: true
+    gainersClick: true,
+
+    //[Nikhil] default slider value
+    dividend_value1: 50,
+    dividend_value2: 80,
+    market_cap_value1: 60,
+    market_cap_value2: 70
+  };
+
+  //for slider handle cange
+  onSliderChange = e => {
+    console.log(e);
+    this.props.getScreenerSearch(e[0], e[1]);
+    console.log("slider 1 change");
+    console.log("first slider", e[0]);
+    console.log("second slider", e[1]);
+
+    //changing the state with the  value selected
+    this.setState({ dividend_value1: e[0] });
+    this.setState({ dividend_value2: e[1] });
+    this.setState({ market_cap_value1: e[0] });
+    this.setState({ market_cap_value2: e[1] });
+  };
+  onSliderChange2 = e => {
+    this.props.getScreenerSearch(e[0], e[1]);
+    console.log("slider 1 change");
+    console.log("first slider", e[0]);
+    console.log("second slider", e[1]);
+
+    //changing the state with the  value selected
+    this.setState({ value1: e[0] });
+    this.setState({ value2: e[1] });
   };
 
   componentDidMount() {
@@ -121,9 +172,50 @@ export class StocksLanding extends Component {
   // ------------------------------------------------------------------------------------------------------
 
   render() {
-    // console.log("Sectors", this.props.stocks ? this.state.pageStocks : "None");
     return (
       <div>
+        <div>
+          <div id="stocks-landing-page-slider">
+            {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
+            <Range
+              // SETTING THE MINIMUM VALUE
+              min={0}
+              // SETTING THE MAXIMUM VALUE
+              max={1000}
+              //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
+              defaultValue={[
+                this.state.dividend_value1,
+                this.state.dividend_value2
+              ]}
+              //ON CHANGING CALLING THE SLIDERCHANGE
+              onChange={this.onSliderChange}
+            />
+          </div>
+          <p>Value: {this.state.dividend_value1}</p>
+          <p>Value: {this.state.dividend_value2}</p>
+        </div>
+        market cap
+        <div>
+          <div id="stocks-landing-page-slider">
+            {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
+            <Range
+              // SETTING THE MINIMUM VALUE
+              min={0}
+              // SETTING THE MAXIMUM VALUE
+              max={1000}
+              //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
+              defaultValue={[
+                this.state.market_cap_value1,
+                this.state.market_cap_value2
+              ]}
+              //ON CHANGING CALLING THE SLIDERCHANGE
+              onChange={this.onSliderChange}
+            />
+          </div>
+          <p>Value: {this.state.market_cap_value1}</p>
+          <p>Value: {this.state.market_cap_value2}</p>
+        </div>
+        {/* ends */}
         {this.props.gainersLosers["0"] ? (
           <div id="stocks_main_container">
             {/* <p>STOCKS</p> */}
@@ -164,6 +256,11 @@ export class StocksLanding extends Component {
                 ))}
               </select>
             </div>
+
+            {/* <div class="slidecontainer"> */}
+
+            {/* </div> */}
+
             <div id="stocks_main_grid_container">
               {this.props.isLoading ? (
                 <div id="stocks_loader">
@@ -308,5 +405,6 @@ export default connect(mapStateToProps, {
   getCompany,
   getSectors,
   getIndustries,
-  getGainersLosers
+  getGainersLosers,
+  getScreenerSearch
 })(StocksLanding);

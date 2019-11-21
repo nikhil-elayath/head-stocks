@@ -190,7 +190,8 @@ router.put("/buy", async (req, res, next) => {
               current_price: req.body.current_price,
               buy: true,
               sell: false,
-              buy_date: new Date().toISOString()
+              buy_date: new Date().toISOString(),
+              buying_quantity: req.body.qty
             }
           },
           $set: {
@@ -224,7 +225,8 @@ router.put("/sell", async (req, res, next) => {
             "company.$.sell": true,
             "company.$.sell_price": req.body.sell_price,
             wallet: username.wallet + req.body.price,
-            "company.$.sell_date": new Date().toISOString()
+            "company.$.sell_date": new Date().toISOString(),
+            "company.$.seeling_quantity": req.body.quantity
           }
         },
         { upsert: true }
@@ -239,4 +241,26 @@ router.put("/sell", async (req, res, next) => {
     next(err);
   }
 });
+
+router.get("/buyStocks", async (req, res) => {
+  const result = await User.find(
+    {},
+    { company: { $elemMatch: { buy: false } } }
+  );
+  res.status(200).json({
+    status: 200,
+    data: result,
+    message: "Retrieved all stocks purchased by user Successfully"
+  });
+});
+
+router.get("/allStocks", async (req, res) => {
+  const result = await User.find({}, { company: 1, _id: 0 });
+  res.status(200).json({
+    status: 200,
+    data: result,
+    message: "Retrieved history of user Successfully"
+  });
+});
+
 module.exports = router;

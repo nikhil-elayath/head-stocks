@@ -1,0 +1,41 @@
+@import url(https://fonts.googleapis.com/css?family=Karla);
+* {
+  font-family: Karla;
+}
+
+#buyStocksContainer {
+  width: 100%;
+  display: grid;
+  grid-template-rows: 150px auto;
+  text-align: center;
+}
+
+#userStocksContainer {
+  background: url("../components/Common/stocks_wallpaper.jpg") no-repeat;
+  background-size: cover;
+  margin-top: 60px;
+  height: 92vh;
+}
+
+#userStocksContainer h1 {
+  text-align: center;
+  font-weight: 700;
+  font-family: Karla;
+  font-size: 40px;
+  margin-top: 200px;
+  color: #2c3e50;
+  text-shadow: 3px 3px 6px #707070;
+}
+
+@media screen and (min-width: 430px) {
+  #buyStocksContainer {
+    width: 100%;
+    grid-template-columns: 250px 1fr;
+    font-family: Karla;
+    margin: auto;
+  }
+
+  #userStocksContainer {
+    margin-top: 0px;
+  }
+}
