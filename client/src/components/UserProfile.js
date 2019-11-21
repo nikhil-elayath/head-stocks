@@ -48,9 +48,7 @@ export class UserProfile extends Component {
     return (
       <div>
         <div id="userProfileContainer">
-          {/* Navigation for User profile */}
           <UserNavigation />
-          {/* Search sectin to Buy Stocks */}
           <div id="userSearch">
             <h1>Welcome to HeadStocks Simulator</h1>
             <input
@@ -69,11 +67,8 @@ export class UserProfile extends Component {
               <div className="search-result">
                 {this.props.results.length != 0 ? (
                   this.props.results.map((stocks, index) => (
-                    <div>
-                      {/* // <span className="search_result_data"> */}
-                      {/* Link to redirect the user to details of player on click -Rohan */}
-
-                      <p
+                    <div id="search_map">
+                      <div
                         style={{
                           fontSize: "18px",
                           paddingTop: "0px ",
@@ -81,8 +76,15 @@ export class UserProfile extends Component {
                           justifyContent: "center"
                         }}
                       >
-                        {" "}
-                        {stocks.ticker_name}
+                        <b> {stocks.ticker_name}</b>
+                      </div>
+                      <div>
+                        <p>
+                          <b>{stocks.price}</b>
+                        </p>
+                        <p>Closed Price</p>
+                      </div>
+                      <div>
                         <a href="#open-modal" id="buyButton">
                           Buy
                         </a>
@@ -95,13 +97,9 @@ export class UserProfile extends Component {
                             >
                               &times;
                             </a>
-                            <h1>CSS Modal</h1>
-                            <div>
-                              The quick brown fox jumped over the lazy dog.
-                            </div>
                           </div>
                         </div>
-                      </p>
+                      </div>
                     </div>
                   ))
                 ) : (

@@ -11,9 +11,9 @@
 }
 
 #userSearch {
-  background: url("../components/Common/profile.jpg") no-repeat;
+  background: url("../components/Common/stocks_wallpaper.jpg") no-repeat;
   background-size: cover;
-  /* width: auto; */
+  margin-top: 60px;
   height: 92vh;
 }
 
@@ -23,11 +23,12 @@
   font-family: Karla;
   margin-top: 100px;
   color: #2c3e50;
+  text-shadow: 4px 4px 6px #bebebe;
 }
 
 #userProfileSearch {
   width: 67%;
-  box-shadow: 0px 4px 6px 0px #cacaca;
+  box-shadow: 4px 4px 6px #707070;
   color: #707070;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
@@ -41,32 +42,16 @@
 /* Serach result */
 .search-result {
   border: 1px solid #c2c2c2;
-  height: auto;
-  width: 70%;
-  margin: auto;
-  margin-top: 10px;
+  height: 150px;
+  overflow-y: scroll;
+  width: 78%;
+  margin: 5px 0px 0px 27px;
   border-radius: 2px;
   background-color: white;
 }
 
-.search_result_data p {
-  color: #2c3e50;
-}
-
-/* .search_result_data {
-  width: 70%;
-  box-shadow: 0px 4px 6px 0px #cacaca;
-  color: #707070;
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
-  padding: 10px;
-  margin-top: 8px;
-  font-size: 20px;
-  outline: none;
-  border: none;
-} */
-
 #userProfileSearchButton {
+  box-shadow: 4px 4px 6px #707070;
   padding: 10px 10px;
   margin-top: 8px;
   margin-right: 16px;
@@ -90,6 +75,7 @@
   border: none;
   text-decoration: none;
   outline: none;
+  margin-top: 100px;
 }
 
 .modal-window {
@@ -144,12 +130,28 @@
   color: #fff;
 }
 
+#search_map {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 50px;
+}
+
+#search_map > div {
+  margin: auto;
+  font-size: 12px;
+  color: #2c3e50;
+}
+
 @media screen and (min-width: 430px) {
   #userProfileContainer {
     width: 100%;
     grid-template-columns: 250px 1fr;
     font-family: Karla;
     margin: auto;
+  }
+
+  #userSearch {
+    margin-top: 0px;
   }
 
   .modal-window > div {
@@ -159,5 +161,31 @@
     font-size: 14px;
     background: #2c3e50;
     color: #fff;
+  }
+
+  .search-result {
+    border: 1px solid #c2c2c2;
+    height: auto;
+    max-height: 400px;
+    overflow-y: scroll;
+    width: 70%;
+    margin: 5px 0px 0px 182px;
+    border-radius: 2px;
+    background-color: white;
+  }
+
+  #search_map > div {
+    margin: auto;
+    font-size: 15px;
+  }
+
+  #search_map {
+    width: 100%;
+    height: 60px;
+    box-shadow: 0px 1px 2px #cacaca;
+  }
+
+  #search_map:hover {
+    box-shadow: 0px 2px 8px #2c3e50;
   }
 }
