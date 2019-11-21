@@ -11,6 +11,7 @@ const company = require("./routes/api/Stocks");
 const companydetails = require("./routes/api/CompanyDetail");
 const navbar = require("./routes/api/Navbar"); // Harshal
 const indexProfile = require("./routes/api/IndicesProfile");
+const screener = require("./routes/api/ScreenerSearch");
 
 app.use(cors());
 
@@ -33,6 +34,7 @@ app.use("/api/home/", home);
 app.use("/api/companydetail/", companydetails);
 app.use("/api/analysis/", companydetails);
 app.use("/api/", companydetails);
+app.use("/api/screener/", screener); //screener
 
 app.use("/api/sector/", company);
 
