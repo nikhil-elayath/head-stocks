@@ -62,7 +62,7 @@ router.post("/updateCompany/:id", upload.single("file"), async (req, res) => {
 
               if (data[0] === "date") {
                 // to check if data is present for the given date
-                dateFormated = new Date(data[1]);
+                dateFormated = new Date(data[i]);
                 // console.log(dateFormated);
 
                 // query to search data for date in database
@@ -85,10 +85,14 @@ router.post("/updateCompany/:id", upload.single("file"), async (req, res) => {
                     $group: {
                       // _id is used for string the year and month of the data of each quarter distinctly.
                       _id: {
-                        // Year of the quarter is extracted and stored
-                        year: { $year: "$ticker_dates.date" },
+                        // $dayOfMonth of the quarter is extracted and stored
+                        day: { $dayOfMonth: "$ticker_dates.date" },
+
                         // Month of the quarter is extracted and stored
-                        month: { $month: "$ticker_dates.date" }
+                        month: { $month: "$ticker_dates.date" },
+
+                        // Year of the quarter is extracted and stored
+                        year: { $year: "$ticker_dates.date" }
                       },
                       date_values: { $push: "$ticker_dates" }
                     }
@@ -102,41 +106,36 @@ router.post("/updateCompany/:id", upload.single("file"), async (req, res) => {
                   console.log("Data already exists for " + dateFormated);
                 }
               }
-            })
-            .on("data", function(data) {
               if (date_present == false) {
                 let mykey = data[0];
                 let myvalue = null;
 
                 if (data[0] === "date") {
-                  myvalue = new Date(data[1]);
+                  myvalue = new Date(data[i]);
                 } else {
-                  myvalue = parseFloat(data[1]);
+                  myvalue = parseFloat(data[i]);
                 }
 
                 newObj[`${mykey}`] = myvalue;
               }
-            })
-            .on("end", function(data) {
               if (newObj.hasOwnProperty("date")) {
                 console.log("Created Object");
                 console.log(newObj);
                 console.log("CSV file successfully processed");
+                //   Updates the data in the database
+                stocksData.updateOne(
+                  { ticker_id: +id },
+                  {
+                    $push: {
+                      ticker_dates: newObj
+                    }
+                  },
+                  function(err, res) {
+                    if (err) throw err;
+                    console.log("Data Updated for" + i);
+                  }
+                );
               }
-
-              // Updates the data in the database
-              // stocksData.updateOne(
-              //   { ticker_id: +id },
-              //   {
-              //     $push: {
-              //       ticker_dates: newObj
-              //     }
-              //   },
-              //   function(err, res) {
-              //     if (err) throw err;
-              //     console.log("1 document updated");
-              //   }
-              // );
             });
         }
       });
