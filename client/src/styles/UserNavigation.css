@@ -1,0 +1,116 @@
+@import url(https://fonts.googleapis.com/css?family=Karla);
+* {
+  font-family: Karla;
+}
+#userNavigationContainer {
+  width: 100%;
+  display: grid;
+  grid-template-rows: 150px;
+  text-align: center;
+}
+
+#userNavigation {
+  color: #2c3e50;
+}
+#userNavigation h1 {
+  font-weight: 700;
+  font-family: Karla;
+}
+#wallet {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 20px;
+}
+
+#walletPrice {
+  font-size: 25px;
+  margin-top: 10px;
+}
+
+#userNavigationButtonContainer {
+  display: flex;
+  font-size: 10px;
+}
+
+#buyStocks {
+  width: 100%;
+  padding: 20px;
+  font-family: Karla;
+  cursor: pointer;
+  color: #707070;
+  background-color: #fff;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #39abf7;
+  border-top: 1px solid #39abf7;
+}
+
+#buyStocks-active {
+  cursor: pointer;
+  width: 100%;
+  padding: 20px;
+  font-family: Karla;
+  color: #fff;
+  background-color: #39abf7;
+  outline: none;
+  border: none;
+}
+
+#myStocks {
+  width: 100%;
+  padding: 20px;
+  cursor: pointer;
+  color: #707070;
+  font-family: Karla;
+  background-color: #fff;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #39abf7;
+}
+
+#myStocks-active {
+  cursor: pointer;
+  width: 100%;
+  padding: 20px;
+  font-family: Karla;
+  color: #fff;
+  background-color: #39abf7;
+  outline: none;
+  border: none;
+}
+
+#historyStocks {
+  width: 100%;
+  padding: 20px;
+  border-top: 1px solid #39abf7;
+  cursor: pointer;
+  font-family: Karla;
+  color: #707070;
+  background-color: #fff;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #39abf7;
+}
+
+#historyStocks-active {
+  cursor: pointer;
+  width: 100%;
+  font-family: Karla;
+  padding: 20px;
+  color: #fff;
+  background-color: #39abf7;
+  outline: none;
+  border: none;
+}
+
+@media screen and (min-width: 430px) {
+  #userNavigationContainer {
+    width: 100%;
+    grid-template-columns: 250px;
+  }
+
+  #userNavigationButtonContainer {
+    display: block;
+    font-size: 15px;
+  }
+}

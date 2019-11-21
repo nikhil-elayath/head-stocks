@@ -13,18 +13,16 @@ import {
   getIndustries,
   getGainersLosers,
   //[NIKHIL] SCREENER ACTIONS
-  getScreenerSearch,
+  getScreenerSearch
 } from "../actions/Stocks";
 import Script from "react-load-script";
 import "../styles/StocksLanding.css";
 import companylogo from "./Common/stockslogo.PNG";
-// import editlogo from "./Common/edit.png";
+import editlogo from "./Common/edit.png";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 import Table from "../components/Common/TickerTable";
-
-// import PopupboxManager from "react-popupbox";
 var slider;
 
 //[Nikhil] rc-slider
@@ -51,7 +49,7 @@ export class StocksLanding extends Component {
     dividend_value1: 50,
     dividend_value2: 80,
     market_cap_value1: 60,
-    market_cap_value2: 70,
+    market_cap_value2: 70
   };
 
   //for slider handle cange
@@ -93,7 +91,7 @@ export class StocksLanding extends Component {
 
   OnSelectSector = e => {
     this.setState({
-      sector: e.target.value, //setting state for the sector
+      sector: e.target.value //setting state for the sector
     });
     this.props.getIndustries(e.target.value); //getting all the industries based on a sector selected
     this.props.getGainersLosers(e.target.value); //getting all the gainers and losers based on a sector selected
@@ -101,7 +99,7 @@ export class StocksLanding extends Component {
 
   OnSelectIndustry = e => {
     this.setState({
-      industry: e.target.value, //setting state for the industry
+      industry: e.target.value //setting state for the industry
     });
     this.props.getCompany(e.target.value); //getting all the companies based on an industry selected
   };
@@ -122,54 +120,11 @@ export class StocksLanding extends Component {
   loadMoreItems = () => {
     setTimeout(() => {
       this.setState({
-        items: this.state.items + 10,
+        items: this.state.items + 10
       });
       this.displayCompanies(this.props.stocks);
     }, 1000);
   };
-
-  // --------------------------------------------------------------------------------------------------
-
-  // updatePopupbox = () => {
-  //   const content = (
-  //     <div>
-  //       <span>Update popupbox with new content and config</span>
-  //       <button onClick={PopupboxManager.close}>Close</button>
-  //     </div>
-  //   );
-
-  //   PopupboxManager.update({
-  //     content,
-  //     config: {
-  //       titleBar: {
-  //         text: "Updated!"
-  //       }
-  //     }
-  //   });
-  // };
-
-  // openPopupbox = () => {
-  //   const content = (
-  //     <div>
-  //       <span>Open popupbox</span>
-  //       <button onClick={this.updatePopupbox}>Update!</button>
-  //     </div>
-  //   );
-
-  //   PopupboxManager.open({
-  //     content,
-  //     config: {
-  //       titleBar: {
-  //         enable: true,
-  //         text: "Step 1"
-  //       },
-  //       fadeIn: true,
-  //       fadeInSpeed: 500
-  //     }
-  //   });
-  // }
-
-  // ------------------------------------------------------------------------------------------------------
 
   render() {
     return (
@@ -186,7 +141,7 @@ export class StocksLanding extends Component {
               //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
               defaultValue={[
                 this.state.dividend_value1,
-                this.state.dividend_value2,
+                this.state.dividend_value2
               ]}
               //ON CHANGING CALLING THE SLIDERCHANGE
               onChange={this.onSliderChange}
@@ -207,7 +162,7 @@ export class StocksLanding extends Component {
               //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
               defaultValue={[
                 this.state.market_cap_value1,
-                this.state.market_cap_value2,
+                this.state.market_cap_value2
               ]}
               //ON CHANGING CALLING THE SLIDERCHANGE
               onChange={this.onSliderChange2}
@@ -292,51 +247,74 @@ export class StocksLanding extends Component {
                   <div id="stocks_grid_container">
                     {this.state.pageStocks.map((stocks, index) =>
                       stocks ? (
-                        <div
-                          id="stocks_grid_details"
-                          onClick={() => {
-                            this.props.history.push(
-                              "/companydetail/" + stocks.ticker_id, //pushing to the company details page with ticker id of a stock when that particular stock card is clicked
-                              { stocks }
-                            );
-                          }}
-                        >
-                          <img
-                            id="stocks_img"
-                            alt="logo"
-                            src={
-                              stocks.ticker_logo == null
-                                ? companylogo
-                                : "data:image/jpeg;base64," + stocks.ticker_logo
-                            }
-                          />
-                          {/* <img id="stocks_edit" alt="edit" src={editlogo} /> */}
-                          <div id="stocks_ticker">{stocks["ticker_name"]}</div>
-                          {/* mapping the ticker name from the api*/}
-                          <div id="stocks_name">{}</div>
-                          <div id="stocks_flex_details_one">
-                            <div
-                              id="stocks_closed_price"
-                              className="stocks_details_title"
-                            >
-                              Closed Price:
+                        <div id="stocks_main_grid_details">
+                          {/* -------------------------- */}
+                          {/* <div class="box"> */}
+                          <a href="#popup1">
+                            <img id="stocks_edit" alt="edit" src={editlogo} />
+                          </a>
+                          {/* </div> */}
+                          <div id="popup1" class="overlay">
+                            <div class="popup">
+                              <h2>Here i am</h2>
+                              <a class="close" href="#">
+                                &times;
+                              </a>
+                              <div class="content">
+                                Thank to pop me out of that button, but now i'm
+                                done so you can close this window.
+                              </div>
                             </div>
-                            <div id="stocks_details">
-                              {stocks["Share Price"]}USD
-                            </div>
-                            {/* mapping the share price from the api */}
                           </div>
-                          <div id="stocks_flex_details_two">
-                            <div
-                              id="stocks_market_cap"
-                              className="stocks_details_title"
-                            >
-                              Market Cap:
+                          {/* -------------------------- */}
+                          <div
+                            id="stocks_grid_details"
+                            onClick={() => {
+                              this.props.history.push(
+                                "/companydetail/" + stocks.ticker_id, //pushing to the company details page with ticker id of a stock when that particular stock card is clicked
+                                { stocks }
+                              );
+                            }}
+                          >
+                            <img
+                              id="stocks_img"
+                              alt="logo"
+                              src={
+                                stocks.ticker_logo == null
+                                  ? companylogo
+                                  : "data:image/jpeg;base64," +
+                                    stocks.ticker_logo
+                              }
+                            />
+                            <div id="stocks_ticker">
+                              {stocks["ticker_name"]}
                             </div>
-                            <div id="stocks_details">
-                              {stocks["MarketCap"]}M
+                            {/* mapping the ticker name from the api*/}
+                            <div id="stocks_name">{}</div>
+                            <div id="stocks_flex_details_one">
+                              <div
+                                id="stocks_closed_price"
+                                className="stocks_details_title"
+                              >
+                                Closed Price:
+                              </div>
+                              <div id="stocks_details">
+                                {stocks["Share Price"]}USD
+                              </div>
+                              {/* mapping the share price from the api */}
                             </div>
-                            {/* mapping the market cap from the api */}
+                            <div id="stocks_flex_details_two">
+                              <div
+                                id="stocks_market_cap"
+                                className="stocks_details_title"
+                              >
+                                Market Cap:
+                              </div>
+                              <div id="stocks_details">
+                                {stocks["MarketCap"]}M
+                              </div>
+                              {/* mapping the market cap from the api */}
+                            </div>
                           </div>
                         </div>
                       ) : null
@@ -375,7 +353,7 @@ export class StocksLanding extends Component {
                   "Ticker",
                   "Chng (%)",
                   "Market Cap",
-                  "Share Price",
+                  "Share Price"
                 ]}
                 tableData={
                   this.state.gainersClick === true //displaying the gainers data in the table if state of gainersClick is true that is when gainers button is clicked else losers data is displayed
@@ -400,7 +378,7 @@ const mapStateToProps = state => ({
   sectors: state.stocksReducer.sectors,
   industries: state.stocksReducer.industries,
   gainersLosers: state.stocksReducer.gainersLosers,
-  isLoading: state.LoadingReducer.isLoading,
+  isLoading: state.LoadingReducer.isLoading
 });
 
 export default connect(mapStateToProps, {
@@ -408,5 +386,5 @@ export default connect(mapStateToProps, {
   getSectors,
   getIndustries,
   getGainersLosers,
-  getScreenerSearch,
+  getScreenerSearch
 })(StocksLanding);
