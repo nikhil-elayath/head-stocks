@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Karla");
+@import url(https://fonts.googleapis.com/css?family=Karla);
 * {
   font-family: Karla;
 }
@@ -7,6 +7,7 @@
   width: 100%;
   display: grid;
   grid-template-rows: 150px auto;
+  text-align: center;
 }
 
 #userSearch {
@@ -16,13 +17,147 @@
   height: 92vh;
 }
 
-#userNavigation {
-  padding: 10px 20px;
+#userSearch h1 {
+  text-align: center;
+  font-weight: 700;
+  font-family: Karla;
+  margin-top: 100px;
+  color: #2c3e50;
+}
+
+#userProfileSearch {
+  width: 67%;
+  box-shadow: 0px 4px 6px 0px #cacaca;
+  color: #707070;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  padding: 10px;
+  margin-top: 8px;
+  font-size: 20px;
+  outline: none;
+  border: none;
+}
+
+/* Serach result */
+.search-result {
+  border: 1px solid #c2c2c2;
+  height: auto;
+  width: 70%;
+  margin: auto;
+  margin-top: 10px;
+  border-radius: 2px;
+  background-color: white;
+}
+
+.search_result_data p {
+  color: #2c3e50;
+}
+
+/* .search_result_data {
+  width: 70%;
+  box-shadow: 0px 4px 6px 0px #cacaca;
+  color: #707070;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  padding: 10px;
+  margin-top: 8px;
+  font-size: 20px;
+  outline: none;
+  border: none;
+} */
+
+#userProfileSearchButton {
+  padding: 10px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #fff;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  color: #707070;
+}
+
+#buyButton {
+  padding: 12px 20px;
+  color: #fff;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+  background-color: #39abf7;
+  color: #fff;
+  border: none;
+  text-decoration: none;
+  outline: none;
+}
+
+.modal-window {
+  position: fixed;
+  background-color: rgba(200, 200, 200, 0.75);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.modal-window:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-window > div {
+  width: 250px;
+  position: relative;
+  margin: 40% auto;
+  padding: 2rem;
+  font-size: 14px;
+  background: #2c3e50;
+  color: #fff;
+}
+
+.modal-window header {
+  font-weight: bold;
+}
+
+.modal-close {
+  color: #fff;
+  line-height: 50px;
+  font-size: 80%;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 70px;
+  text-decoration: none;
+}
+
+.modal-window h1 {
+  font-size: 150%;
+  margin: 0 0 15px;
+  color: #fff;
 }
 
 @media screen and (min-width: 430px) {
   #userProfileContainer {
     width: 100%;
     grid-template-columns: 250px 1fr;
+    font-family: Karla;
+    margin: auto;
+  }
+
+  .modal-window > div {
+    width: 400px;
+    position: relative;
+    margin: 15% auto;
+    font-size: 14px;
+    background: #2c3e50;
+    color: #fff;
   }
 }

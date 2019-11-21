@@ -1,0 +1,53 @@
+@import url(https://fonts.googleapis.com/css?family=Karla);
+* {
+  font-family: Karla;
+}
+#userNavigationContainer {
+  width: 100%;
+  display: grid;
+  grid-template-rows: 150px;
+  text-align: center;
+}
+
+#userNavigation {
+  color: #2c3e50;
+}
+#userNavigation h1 {
+  font-weight: 700;
+  font-family: Karla;
+}
+#wallet {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 20px;
+}
+
+#buyStocks {
+  cursor: pointer;
+  width: 100%;
+  padding: 20px;
+  color: #fff;
+  background-color: #39abf7;
+  outline: none;
+  border: none;
+  font-size: 20px;
+}
+
+#myStocks {
+  width: 100%;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 20px;
+  color: #707070;
+  background-color: #fff;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #39abf7;
+}
+
+@media screen and (min-width: 430px) {
+  #userNavigationContainer {
+    width: 100%;
+    grid-template-columns: 250px;
+  }
+}
