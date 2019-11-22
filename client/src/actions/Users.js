@@ -4,11 +4,44 @@ import {
   RESET_PASSWORD,
   SEND_OTP,
   VERIFY_OTP,
-  ERROR_TYPE
+  ERROR_TYPE,
+  USER_HISTORY,
+  BUY_STOCKS
 } from "./Types";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 const url = "http://localhost:2001/api/users/";
+
+//for  users stock history detail [piyush]
+export const userHistory = email => dispatch => {
+  return axios
+    .get(url + "history/" + email)
+    .then(res => {
+      dispatch({
+        type: USER_HISTORY,
+        payload: res.data.data
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+//for  users stock history detail [piyush]
+export const buyStocks = stocks => dispatch => {
+  console.log(stocks);
+  return axios
+    .put(url + "buy", stocks)
+    .then(res => {
+      dispatch({
+        type: BUY_STOCKS,
+        payload: res.data.data
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
 
 // Create a new user - Bhavana
 export const createUser = user => dispatch => {

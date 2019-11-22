@@ -2,6 +2,112 @@ const express = require("express");
 const router = express.Router();
 const stocksData = require("../../model/stocksModel");
 
+//get all the companies by sectors or industries
+// router.post("/allcompanies/:type", async (req, res, next) => {
+// console.log("companies by sector called");
+// try {
+//   const filter_type = req.body.filter_type;
+//   let type =
+//     filter_type == "sector" ? req.params.sector : req.params.industry;
+// console.log("type is", type);
+// let result = await stocksData.find(
+//   { type: type, "ticker_dates.Share Price": { $exists: true } },
+//   {
+//     ticker_id: 1,
+//     ticker_name: 1,
+//     ticker_dates: 1,
+//     ticker_logo: 1
+//   }
+// );
+// var data = [];
+// result.forEach(function(elem) {
+//   let name = {};
+//   var ticker_dates = elem._doc.ticker_dates;
+//   var ticker_id = elem._doc.ticker_id;
+//   var ticker_name = elem._doc.ticker_name;
+//   var ticker_logo = elem._doc.ticker_logo;
+//   last_date = ticker_dates.slice(-1)[0];
+//   last_date_shareprice = last_date["Share Price"];
+//   Market_cap = last_date["Market Capitalisation"];
+//   name["ticker_id"] = ticker_id;
+//   name["ticker_name"] = ticker_name;
+//   name["ticker_logo"] = ticker_logo;
+//   name["MarketCap"] = Market_cap;
+//   name["Share Price"] = last_date_shareprice;
+//   data.push(name);
+// });
+// console.log("companies by sector:", result);
+// if (result.length == 0) {
+//   res.status(400).json({
+//     status: 400,
+//     data: data,
+//     message: "No Company Found"
+//   });
+// } else {
+// If successfully executes then sends this response to the search action
+//       res.status(200).json({
+//         status: 200,
+//         data: data,
+//         message: "Retrieved all Companies Successfully"
+//       });
+//     }
+//   } catch (err) {
+//     next(err);
+//   }
+// });
+
+//get all the companies by sectors
+router.get("/company/:sector", async (req, res, next) => {
+  // console.log("companies by sector called");
+  try {
+    let sector = req.params.sector;
+    // console.log("sector is", sector);
+    let result = await stocksData.find(
+      { sector: sector, "ticker_dates.Share Price": { $exists: true } },
+      {
+        ticker_id: 1,
+        ticker_name: 1,
+        ticker_dates: 1,
+        ticker_logo: 1
+      }
+    );
+    var data = [];
+    result.forEach(function(elem) {
+      let name = {};
+      var ticker_dates = elem._doc.ticker_dates;
+      var ticker_id = elem._doc.ticker_id;
+      var ticker_name = elem._doc.ticker_name;
+      var ticker_logo = elem._doc.ticker_logo;
+      last_date = ticker_dates.slice(-1)[0];
+      last_date_shareprice = last_date["Share Price"];
+      Market_cap = last_date["Market Capitalisation"];
+      name["ticker_id"] = ticker_id;
+      name["ticker_name"] = ticker_name;
+      name["ticker_logo"] = ticker_logo;
+      name["MarketCap"] = Market_cap;
+      name["Share Price"] = last_date_shareprice;
+      data.push(name);
+    });
+    // console.log("companies by sector:", result);
+    if (result.length == 0) {
+      res.status(400).json({
+        status: 400,
+        data: data,
+        message: "No Company Found"
+      });
+    } else {
+      // If successfully executes then sends this response to the search action
+      res.status(200).json({
+        status: 200,
+        data: data,
+        message: "Retrieved all Companies Successfully"
+      });
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
 //get all the companies by industries
 router.get("/companies/:industry", async (req, res, next) => {
   // console.log("companies by industry called");
@@ -9,12 +115,10 @@ router.get("/companies/:industry", async (req, res, next) => {
     let industry = req.params.industry;
     // console.log("industry is", industry);
     let result = await stocksData.find(
-      { industry: industry },
+      { industry: industry, "ticker_dates.Share Price": { $exists: true } },
       {
         ticker_id: 1,
         ticker_name: 1,
-        industry: 1,
-        _id: 0,
         ticker_dates: 1,
         ticker_logo: 1
       }

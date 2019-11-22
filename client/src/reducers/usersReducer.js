@@ -4,12 +4,15 @@ import {
   RESET_PASSWORD,
   SEND_OTP,
   VERIFY_OTP,
-  ERROR_TYPE
+  ERROR_TYPE,
+  USER_HISTORY,
+  BUY_STOCKS
 } from "../actions/Types";
 
 const initialstate = {
   users: [],
-  error: ""
+  error: "",
+  userhistory: []
 };
 
 export default function(state = initialstate, action) {
@@ -24,8 +27,13 @@ export default function(state = initialstate, action) {
       return state;
     case VERIFY_OTP:
       return state;
+    case USER_HISTORY:
+      return { ...state, userhistory: action.payload };
+    case BUY_STOCKS:
+      return { ...state, users: action.payload };
     case ERROR_TYPE:
       return { ...state, error: action.payload };
+
     default:
       return state;
   }

@@ -1,15 +1,34 @@
 import {
+  GET_COMPANY_BY_SECTOR,
   GET_ALL_COMPANY,
   GET_ALL_SECTORS,
   GET_ALL_INDUSTRIES,
   GAINERS_LOSERS,
-  SCREENER_SEARCH,
+  SCREENER_SEARCH
 } from "./Types";
 import { startLoading, stopLoading } from "./LoadingAction";
 import axios from "axios";
 const url = "http://localhost:2001/api/sector/";
 
-// GET all companies
+// GET companies by sector
+export const getSectorCompany = sector => dispatch => {
+  dispatch(startLoading());
+  return axios
+    .get(url + "company/" + sector)
+    .then(res => {
+      dispatch(stopLoading());
+      dispatch({
+        type: GET_COMPANY_BY_SECTOR,
+        payload: res.data.data
+      });
+    })
+    .catch(err => {
+      dispatch(startLoading());
+      console.log(err);
+    });
+};
+
+// GET companies by industry
 export const getCompany = industry => dispatch => {
   dispatch(startLoading());
   return axios
@@ -18,7 +37,7 @@ export const getCompany = industry => dispatch => {
       dispatch(stopLoading());
       dispatch({
         type: GET_ALL_COMPANY,
-        payload: res.data.data,
+        payload: res.data.data
       });
     })
     .catch(err => {
@@ -34,7 +53,7 @@ export const getSectors = () => dispatch => {
     .then(res => {
       dispatch({
         type: GET_ALL_SECTORS,
-        payload: res.data.data,
+        payload: res.data.data
       });
     })
     .catch(err => {
@@ -42,6 +61,7 @@ export const getSectors = () => dispatch => {
     });
 };
 
+//getting industries by sector
 export const getIndustries = sector => dispatch => {
   console.log("get industries by sector from actions:", sector);
   return axios
@@ -49,7 +69,7 @@ export const getIndustries = sector => dispatch => {
     .then(res => {
       dispatch({
         type: GET_ALL_INDUSTRIES,
-        payload: res.data.data,
+        payload: res.data.data
       });
     })
     .catch(err => {
@@ -63,7 +83,7 @@ export const getGainersLosers = sector => dispatch => {
     .then(res => {
       dispatch({
         type: GAINERS_LOSERS,
-        payload: res.data.data,
+        payload: res.data.data
       });
     })
     .catch(err => {
@@ -71,15 +91,37 @@ export const getGainersLosers = sector => dispatch => {
     });
 };
 // [Nikhil]  get screener search
-export const getScreenerSearch = (value1, value2) => dispatch => {
-  let values = { value1: value1, value2: value2 };
+export const getScreenerSearch = (
+  dividend_value1,
+  dividend_value2,
+  market_cap_value1,
+  market_cap_value2,
+  share_price1,
+  share_price2,
+  price_to_equity_ratio1,
+  price_to_equity_ratio2,
+  debt_to_equity_ratio1,
+  debt_to_equity_ratio2
+) => dispatch => {
+  let values = {
+    dividend_value1: dividend_value1,
+    dividend_value2: dividend_value2,
+    market_cap_value1: market_cap_value1,
+    market_cap_value2: market_cap_value2,
+    share_price1: share_price1,
+    share_price2: share_price2,
+    price_to_equity_ratio1: price_to_equity_ratio1,
+    price_to_equity_ratio2: price_to_equity_ratio2,
+    debt_to_equity_ratio1: debt_to_equity_ratio1,
+    debt_to_equity_ratio2: debt_to_equity_ratio2
+  };
   console.log("from screener search actions", values);
   return axios
     .post("http://localhost:2001/api/screener/screener", values)
     .then(res => {
       dispatch({
         type: SCREENER_SEARCH,
-        payload: res.data.data,
+        payload: res.data.data
       });
     })
     .catch(err => {
