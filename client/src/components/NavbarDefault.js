@@ -6,7 +6,7 @@ import "../styles/Navbar.css";
 
 // logos
 // import user from "./user.svg"
-import cancel from "./cancel.png";
+import cancel from "./Common/cancel.png";
 import { connect } from "react-redux";
 import { searchContent } from "../actions/Navbar";
 // import { debounce } from "debounce";

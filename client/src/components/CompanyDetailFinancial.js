@@ -5,10 +5,10 @@ import "../styles/CompanyDetailFinancial.css";
 // importing action
 import { getCompanyDatesById } from "../actions/CompanyDetail";
 // images for the sidebar
-import balanceSheet from "./bl.png";
-import cashFlow from "./cf.png";
-import profitloss from "./pl.png";
-import ratios from "./ratios.png";
+import balanceSheet from "./Common/bl.png";
+import cashFlow from "./Common/cf.png";
+import profitloss from "./Common/pl.png";
+import ratios from "./Common/ratios.png";
 
 import ReportsTable from "./Reports";
 export class CompanyDetailFinancial extends Component {
