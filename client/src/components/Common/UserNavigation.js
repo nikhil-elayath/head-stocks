@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "../../styles/UserNavigation.css";
 import wallet from "./wallet.png";
 import { Link } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 export default class UserProfile extends Component {
   state = {
@@ -11,13 +12,19 @@ export default class UserProfile extends Component {
   };
 
   render() {
+    var decode = jwt_decode(localStorage.getItem("token"));
     return (
       <div>
         <div id="userNavigationContainer">
           <div id="userNavigation">
-            <h1>Hi Nikhil !</h1>
+            <h1>Hi {decode.name} !</h1>
             <img src={wallet} id="wallet" />{" "}
-            <span id="walletPrice">$15,000</span>
+            <span id="walletPrice">
+              $
+              {String(this.props.wallet).length != 0
+                ? this.props.wallet
+                : decode.wallet}
+            </span>
             <div id="userNavigationButtonContainer">
               <Link to="/profile">
                 <button

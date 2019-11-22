@@ -5,26 +5,14 @@ import {
   SEND_OTP,
   VERIFY_OTP,
   ERROR_TYPE,
-  USER_HISTORY
+  USER_HISTORY,
+  BUY_STOCKS,
+  WALLET,
+  ALL_STOCKS_BOUGHT
 } from "./Types";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 const url = "http://localhost:2001/api/users/";
-
-//for  users stock history detail [piyush]
-export const userHistory = email => dispatch => {
-  return axios
-    .get(url + "history/" + email)
-    .then(res => {
-      dispatch({
-        type: USER_HISTORY,
-        payload: res.data.data
-      });
-    })
-    .catch(err => {
-      console.log(err);
-    });
-};
 
 // Create a new user - Bhavana
 export const createUser = user => dispatch => {
@@ -116,5 +104,70 @@ export const verifyOtp = user => dispatch => {
         payload: err.response.data.message
       });
       console.log(err.response.data.message);
+    });
+};
+
+//for  users stock history detail [piyush]
+export const userHistory = email => dispatch => {
+  return axios
+    .get(url + "history/" + email)
+    .then(res => {
+      dispatch({
+        type: USER_HISTORY,
+        payload: res.data.data
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+//buy Stocks for users - Bhavama
+export const buyStocks = stocks => dispatch => {
+  console.log(stocks);
+  return axios
+    .put(url + "buy", stocks)
+    .then(res => {
+      dispatch({
+        type: BUY_STOCKS,
+        payload: res.data.data
+      });
+      dispatch(getWallet());
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+//Get Wallet Balance
+export const getWallet = email => dispatch => {
+  return axios
+    .post(url + "wallet", email)
+    .then(res => {
+      dispatch({
+        type: WALLET,
+        payload: res.data.data
+      });
+      console.log(res.data.data);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+//Get All Stocks Bought by a user
+export const getAllStocks = email => dispatch => {
+  console.log(email);
+  return axios
+    .post(url + "myStocks", email)
+    .then(res => {
+      dispatch({
+        type: ALL_STOCKS_BOUGHT,
+        payload: res.data.data
+      });
+      console.log(res.data.data);
+    })
+    .catch(err => {
+      console.log(err);
     });
 };

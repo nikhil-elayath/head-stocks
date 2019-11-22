@@ -9,7 +9,6 @@ import Slider from "rc-slider";
 // import RadarSlider from "../charts/graph";
 
 import {
-  getSectorCompany,
   getCompany,
   getSectors,
   getIndustries,
@@ -26,6 +25,10 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 import Table from "../components/Common/TickerTable";
+
+// Harshal
+import UpdateCompany from "./UpdateCompany";
+
 import { stat } from "fs";
 var slider;
 
@@ -46,7 +49,7 @@ export class StocksLanding extends Component {
     pageStocks: [],
     loading: false,
     sector: "Basic Materials",
-    industry: "Select an Industry",
+    industry: "Building Materials",
     gainersClick: true,
 
     //[Nikhil] default slider value
@@ -113,7 +116,16 @@ export class StocksLanding extends Component {
   componentDidMount() {
     //for loading graph.js
     console.log("filter", this.state.filter);
-    this.props.getSectorCompany(this.state.sector); //getting all the companies based on a sector selected
+    // this.props.getSectorCompany(this.state.sector); //getting all the companies based on a sector selected
+    const script = document.createElement("script");
+    script.src = "C:Users\nikhiDesktopgraphgraph.js";
+    script.async = true;
+    script.onload = () => this.scriptLoaded();
+
+    document.body.appendChild(script);
+
+    // this.props.getSectorCompany(this.state.sector); //getting all the companies based on a sector selected
+    this.props.getCompany("sector", this.state.sector);
     this.props.getSectors(); //getting all the sectors
     this.props.getIndustries(this.state.sector); //getting all the industries based on a sector selected
     this.props.getGainersLosers(this.state.sector); //getting all the gainers and losers based on a sector selected
@@ -129,7 +141,7 @@ export class StocksLanding extends Component {
     this.setState({
       sector: e.target.value, //setting state for the sector
     });
-    this.props.getSectorCompany(e.target.value); //getting all the companies based on a sector selected
+    this.props.getCompany("sector", e.target.value);
     this.props.getIndustries(e.target.value); //getting all the industries based on a sector selected
     this.props.getGainersLosers(e.target.value); //getting all the gainers and losers based on a sector selected
   };
@@ -138,7 +150,7 @@ export class StocksLanding extends Component {
     this.setState({
       industry: e.target.value, //setting state for the industry
     });
-    this.props.getCompany(e.target.value); //getting all the companies based on an industry selected
+    this.props.getCompany("industry", e.target.value); //getting all the companies based on an industry selected
   };
 
   displayCompanies = Stocks => {
@@ -595,7 +607,6 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, {
-  getSectorCompany,
   getCompany,
   getSectors,
   getIndustries,

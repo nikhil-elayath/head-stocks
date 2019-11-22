@@ -13,7 +13,7 @@
 #userSearch {
   background: url("../components/Common/stocks_wallpaper.jpg") no-repeat;
   background-size: cover;
-  margin-top: 60px;
+  margin-top: 48px;
   height: 92vh;
 }
 
@@ -183,6 +183,7 @@
 
 #buyingQuantity::placeholder {
   color: #fff;
+  font-weight: lighter;
 }
 
 #buySpecificStock {
