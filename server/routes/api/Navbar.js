@@ -12,7 +12,8 @@ router.post("/search", async (req, res) => {
         { industry: { $regex: req.body.searchInput, $options: "i" } },
         // finds the value recieved in the ticker_name Key
         { ticker_name: { $regex: req.body.searchInput, $options: "i" } }
-      ]
+      ],
+      "ticker_dates.Share Price": { $exists: true }
     },
     { ticker_name: 1, ticker_id: 1, industry: 1, _id: 0, ticker_dates: 1 }
   );
@@ -40,7 +41,7 @@ router.post("/search", async (req, res) => {
   if (result.length == 0) {
     res.status(400).json({
       status: 400,
-      data: change,
+      data: null,
       message: "No Data Found"
     });
   } else {

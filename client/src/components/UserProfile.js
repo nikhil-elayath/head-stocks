@@ -3,17 +3,18 @@ import "../styles/UserProfile.css";
 import UserNavigation from "./Common/UserNavigation";
 import { connect } from "react-redux";
 import { searchContent } from "../actions/Navbar";
-import { Link } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 export class UserProfile extends Component {
   state = {
     // input text in the search box
     searchInput: "",
-    searchInputChanged: false
+    searchInputChanged: false,
+    qty: "",
+    total: 0
   };
 
   OnChange = event => {
-    // search results display
     {
       this.state.searchInputChanged
         ? console.log(this.state.searchInputChanged)
@@ -22,13 +23,11 @@ export class UserProfile extends Component {
           });
     }
     this.setState({ [event.target.name]: event.target.value });
-    // debounce(() => {
 
     let searchString = {
       searchInput: this.state.searchInput
     };
     this.props.searchContent(searchString);
-    // }, 1000);
   };
 
   onSearch = e => {
@@ -39,19 +38,17 @@ export class UserProfile extends Component {
     };
 
     this.props.searchContent(searchString);
-    // this.setState({
-    //   searchInput: ""
-    // });
   };
 
   render() {
+    var deocode = jwt_decode(localStorage.getItem("token"));
     return (
       <div>
         <div id="userProfileContainer">
           <UserNavigation />
 
           <div id="userSearch">
-            <h1>Welcome to HeadStocks Simulator</h1>
+            <h1>Welcome to HeadStocks</h1>
             <input
               type="text"
               placeholder="Search for Stocks you want to buy (E.g . AAPL)"
@@ -81,26 +78,61 @@ export class UserProfile extends Component {
                       </div>
                       <div>
                         <p>
-                          <b>{stocks.price}</b>
+                          <b>${stocks.price}</b>
                         </p>
-                        <p>Closed Price</p>
+                        <p style={{ color: "#707070" }}>Current Price</p>
                       </div>
                       <div>
-                        <a href="#open-modal" id="buyButton">
-                          Buy
-                        </a>
-                        <div id="open-modal" class="modal-window">
-                          <div>
-                            <a
-                              href="#modal-close"
-                              title="Close"
-                              class="modal-close"
-                            >
-                              close &times;
+                        <div class="buyStocksBox">
+                          <a
+                            class="buy"
+                            href="#buyStockspopup1"
+                            onClick={() => {
+                              {
+                                let user = {
+                                  ticker_name: stocks.ticker_name,
+                                  current_price: stocks.price,
+                                  qty: this.state.qty,
+                                  price: this.state.total
+                                };
+                              }
+                            }}
+                          >
+                            Buy
+                          </a>
+                        </div>
+
+                        <div id="buyStockspopup1" class="buyStocksoverlay">
+                          <div class="buyStockspopup">
+                            <h2>{stocks.ticker_name}</h2>
+                            <a class="buyStocksclose" href="#">
+                              &times;
                             </a>
-                            <h1>CSS Modal</h1>
-                            <div>
-                              The quick brown fox jumped over the lazy dog.
+                            <div class="buyStockscontent">
+                              <p>Current Price : ${stocks.price}</p>
+                              <p>
+                                Quantity :{" "}
+                                <input
+                                  type="text"
+                                  // class="quantity"
+                                  id="buyingQuantity"
+                                  name="qty"
+                                  value={this.state.qty}
+                                  onChange={e =>
+                                    this.setState({
+                                      [e.target.name]: e.target.value,
+                                      total: (e.target.value *= Number(
+                                        stocks.price
+                                      ))
+                                    })
+                                  }
+                                />
+                              </p>
+                              <p>
+                                Total Price : $
+                                {Number(this.state.total).toFixed(2)}
+                              </p>
+                              <button id="buySpecificStock">Buy</button>
                             </div>
                           </div>
                         </div>

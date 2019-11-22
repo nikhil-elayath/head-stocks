@@ -23,6 +23,7 @@ export const GET_ALL_INDICES = "GET_ALL_INDICES";
 export const LOADING_START = "LOADING_START";
 export const LOADING_STOP = "LOADING_STOP";
 export const DOWNLOAD = "DOWNLOAD";
+export const USER_HISTORY = "USER_HISTORY";
 
 //NIKHIL
 export const COMPANY_DETAIL = "COMPANY_DETAIL";
