@@ -3,6 +3,7 @@ import "../styles/UserProfile.css";
 import UserNavigation from "./Common/UserNavigation";
 import { connect } from "react-redux";
 import { searchContent } from "../actions/Navbar";
+import { buyStocks } from "../actions/Users";
 import jwt_decode from "jwt-decode";
 
 export class UserProfile extends Component {
@@ -41,11 +42,12 @@ export class UserProfile extends Component {
   };
 
   render() {
-    var deocode = jwt_decode(localStorage.getItem("token"));
+    console.log(this.props.users);
+    var decode = jwt_decode(localStorage.getItem("token"));
     return (
       <div>
         <div id="userProfileContainer">
-          <UserNavigation />
+          <UserNavigation wallet={this.props.users} />
 
           <div id="userSearch">
             <h1>Welcome to HeadStocks</h1>
@@ -84,20 +86,7 @@ export class UserProfile extends Component {
                       </div>
                       <div>
                         <div class="buyStocksBox">
-                          <a
-                            class="buy"
-                            href="#buyStockspopup1"
-                            onClick={() => {
-                              {
-                                let user = {
-                                  ticker_name: stocks.ticker_name,
-                                  current_price: stocks.price,
-                                  qty: this.state.qty,
-                                  price: this.state.total
-                                };
-                              }
-                            }}
-                          >
+                          <a class="buy" href="#buyStockspopup1">
                             Buy
                           </a>
                         </div>
@@ -132,7 +121,23 @@ export class UserProfile extends Component {
                                 Total Price : $
                                 {Number(this.state.total).toFixed(2)}
                               </p>
-                              <button id="buySpecificStock">Buy</button>
+                              <button
+                                id="buySpecificStock"
+                                onClick={() => {
+                                  {
+                                    let user = {
+                                      email: decode.email,
+                                      ticker_name: stocks.ticker_name,
+                                      current_price: stocks.price,
+                                      qty: this.state.qty,
+                                      price: this.state.total
+                                    };
+                                    this.props.buyStocks(user);
+                                  }
+                                }}
+                              >
+                                Buy
+                              </button>
                             </div>
                           </div>
                         </div>
@@ -153,23 +158,10 @@ export class UserProfile extends Component {
 
 const mapStateToProps = state => ({
   results: state.navbarReducer.results,
-  isLoading: state.LoadingReducer.isLoading
+  isLoading: state.LoadingReducer.isLoading,
+  users: state.usersReducer.users
 });
 
-export default connect(mapStateToProps, { searchContent })(UserProfile);
-
-{
-  /* Pop Up for buying n number of stocks
-            <a href="#open-modal" id="buyButton">
-              Buy
-            </a>
-            <div id="open-modal" class="modal-window">
-              <div>
-                <a href="#modal-close" title="Close" class="modal-close">
-                  &times;
-                </a>
-                <h1>CSS Modal</h1>
-                <div>The quick brown fox jumped over the lazy dog.</div>
-              </div>
-            </div> */
-}
+export default connect(mapStateToProps, { searchContent, buyStocks })(
+  UserProfile
+);

@@ -5,7 +5,8 @@ import {
   SEND_OTP,
   VERIFY_OTP,
   ERROR_TYPE,
-  USER_HISTORY
+  USER_HISTORY,
+  BUY_STOCKS
 } from "./Types";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
@@ -18,6 +19,22 @@ export const userHistory = email => dispatch => {
     .then(res => {
       dispatch({
         type: USER_HISTORY,
+        payload: res.data.data
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+//for  users stock history detail [piyush]
+export const buyStocks = stocks => dispatch => {
+  console.log(stocks);
+  return axios
+    .put(url + "buy", stocks)
+    .then(res => {
+      dispatch({
+        type: BUY_STOCKS,
         payload: res.data.data
       });
     })

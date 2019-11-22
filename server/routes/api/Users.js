@@ -68,6 +68,8 @@ router.post("/login", async (req, res, next) => {
     var payload = {
       _id: username._id,
       email: username.email,
+      name: username.name,
+      wallet: username.wallet,
       isAdmin: username.isAdmin
     };
     // Generating the token using the above payload
@@ -195,17 +197,18 @@ router.put("/buy", async (req, res, next) => {
             }
           },
           $set: {
-            wallet: username.wallet - req.body.price
+            wallet: username.wallet - +req.body.price
           }
         }
       );
       res.status(200).json({
         status: 200,
+        data: username.wallet,
         message: "buy stock Successfully"
       });
     }
   } catch (err) {
-    next(err);
+    console.log(err);
   }
 });
 

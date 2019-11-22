@@ -99,7 +99,9 @@ export const getScreenerSearch = (
   share_price1,
   share_price2,
   price_to_equity_ratio1,
-  price_to_equity_ratio2
+  price_to_equity_ratio2,
+  debt_to_equity_ratio1,
+  debt_to_equity_ratio2
 ) => dispatch => {
   let values = {
     dividend_value1: dividend_value1,
@@ -109,7 +111,9 @@ export const getScreenerSearch = (
     share_price1: share_price1,
     share_price2: share_price2,
     price_to_equity_ratio1: price_to_equity_ratio1,
-    price_to_equity_ratio2: price_to_equity_ratio2
+    price_to_equity_ratio2: price_to_equity_ratio2,
+    debt_to_equity_ratio1: debt_to_equity_ratio1,
+    debt_to_equity_ratio2: debt_to_equity_ratio2
   };
   console.log("from screener search actions", values);
   return axios
