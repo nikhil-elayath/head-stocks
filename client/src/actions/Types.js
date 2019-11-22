@@ -9,6 +9,7 @@ export const GET_INDICES_BYID = "GET_INDICES_BYID";
 export const OHLC_CHART_INDEX = "OHLC_CHART_INDEX";
 export const GAINERS_LOSERS = "GAINERS_LOSERS";
 export const OHLC_INDICES_DATA = "OHLC_INDICES_DATA";
+export const BUY_STOCKS = "BUY_STOCKS";
 
 //Aditya
 export const GET_ALL_COMPANY = "GET_ALL_COMPANY";
