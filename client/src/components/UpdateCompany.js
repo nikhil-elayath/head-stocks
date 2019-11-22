@@ -22,12 +22,12 @@ export class UpdateCompany extends Component {
     const data = new FormData();
     data.append("file", this.state.selectedFile);
 
-    // this.props.updateCompany(data, 1);
+    this.props.updateCompany(data, this.props.id);
     // console.log(this.state);
   };
 
   render() {
-    // console.log(this.props)
+    // console.log(this.props);
     return (
       <div>
         <a className="admin_close" href="#">
@@ -59,7 +59,11 @@ export class UpdateCompany extends Component {
                   </li>
                   <li>It should follow the below pattern.</li>
                 </ul>
-                <img src={SampleTable} alt="Sample Table" className="updateCompany_table_image" />
+                <img
+                  src={SampleTable}
+                  alt="Sample Table"
+                  className="updateCompany_table_image"
+                />
               </span>
             </div>
           </>
