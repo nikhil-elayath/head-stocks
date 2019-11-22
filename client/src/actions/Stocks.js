@@ -61,6 +61,7 @@ export const getSectors = () => dispatch => {
     });
 };
 
+//getting industries by sector
 export const getIndustries = sector => dispatch => {
   console.log("get industries by sector from actions:", sector);
   return axios
@@ -108,7 +109,7 @@ export const getScreenerSearch = (
     share_price1: share_price1,
     share_price2: share_price2,
     price_to_equity_ratio1: price_to_equity_ratio1,
-    price_to_equity_ratio2: price_to_equity_ratio2,
+    price_to_equity_ratio2: price_to_equity_ratio2
   };
   console.log("from screener search actions", values);
   return axios
