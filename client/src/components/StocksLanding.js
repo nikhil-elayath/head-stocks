@@ -5,6 +5,7 @@ import "rc-tooltip/assets/bootstrap.css";
 import ReactDOM from "react-dom";
 import Tooltip from "rc-tooltip";
 import Slider from "rc-slider";
+// import RadarSlider from "../charts/graph";
 
 import {
   getCompany,
@@ -56,28 +57,27 @@ export class StocksLanding extends Component {
   onSliderChange = e => {
     console.log(e);
     this.props.getScreenerSearch(e[0], e[1]);
-    console.log("slider 1 change");
-    console.log("first slider", e[0]);
-    console.log("second slider", e[1]);
 
     //changing the state with the  value selected
     this.setState({ dividend_value1: e[0] });
     this.setState({ dividend_value2: e[1] });
-    this.setState({ market_cap_value1: e[0] });
-    this.setState({ market_cap_value2: e[1] });
   };
   onSliderChange2 = e => {
     this.props.getScreenerSearch(e[0], e[1]);
-    console.log("slider 1 change");
-    console.log("first slider", e[0]);
-    console.log("second slider", e[1]);
 
-    //changing the state with the  value selected
-    this.setState({ value1: e[0] });
-    this.setState({ value2: e[1] });
+    this.setState({ market_cap_value1: e[0] });
+    this.setState({ market_cap_value2: e[1] });
   };
 
   componentDidMount() {
+    //for loading graph.js
+    const script = document.createElement("script");
+    script.src = "C:Users\nikhiDesktopgraphgraph.js";
+    script.async = true;
+    script.onload = () => this.scriptLoaded();
+
+    document.body.appendChild(script);
+
     this.props.getCompany(this.state.industry); //getting all the companies based on an industry selected
     this.props.getSectors(); //getting all the sectors
     this.props.getIndustries(this.state.sector); //getting all the industries based on a sector selected
@@ -130,6 +130,7 @@ export class StocksLanding extends Component {
   render() {
     return (
       <div>
+        {/* real code starts here  */}
         <div>
           <div id="stocks-landing-page-slider">
             {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
@@ -165,7 +166,8 @@ export class StocksLanding extends Component {
                 this.state.market_cap_value2
               ]}
               //ON CHANGING CALLING THE SLIDERCHANGE
-              onChange={this.onSliderChange}
+              onChange={this.onSliderChange2}
+              name={"slider1"}
             />
           </div>
           <p>Value: {this.state.market_cap_value1}</p>

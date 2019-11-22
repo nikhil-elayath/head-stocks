@@ -27,10 +27,10 @@ export const searchContent = searchInput => dispatch => {
 };
 
 //updating a company
-export const updateCompany = data => dispatch => {
+export const updateCompany = (data, id) => dispatch => {
   try {
     return axios
-      .post("http://localhost:2001/api/navbar/updateCompany", data)
+      .post("http://localhost:2001/api/upload/updateCompany/" + id, data)
       .then(res => {
         dispatch(
           {
