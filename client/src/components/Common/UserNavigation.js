@@ -47,22 +47,24 @@ export default class UserProfile extends Component {
                   My Stocks
                 </button>
               </Link>
-              <button
-                id={
-                  this.state.historyStocks
-                    ? "historyStocks-active"
-                    : "historyStocks"
-                }
-                onClick={() =>
-                  this.setState({
-                    buyStocks: false,
-                    myStocks: false,
-                    historyStocks: true
-                  })
-                }
-              >
-                History
-              </button>
+              <Link to="/userhistory">
+                <button
+                  id={
+                    this.state.historyStocks
+                      ? "historyStocks-active"
+                      : "historyStocks"
+                  }
+                  onClick={() =>
+                    this.setState({
+                      buyStocks: false,
+                      myStocks: false,
+                      historyStocks: true
+                    })
+                  }
+                >
+                  History
+                </button>
+              </Link>
             </div>
           </div>
         </div>

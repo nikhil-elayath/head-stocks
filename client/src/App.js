@@ -8,6 +8,7 @@ import UserProfile from "./components/UserProfile";
 import UserBuyStocks from "./components/UserBuyStocks";
 // Piyush
 import home from "./components/Home";
+import UserHistory from "./components/UserHistory";
 // Harshal
 import NavbarDefault from "./components/NavbarDefault";
 import UpdateCompany from "./components/UpdateCompany";
@@ -40,6 +41,7 @@ function App() {
         {/* Piyush */}
         <Route exact path="/" component={home} />
         <Route exact path="/companydetail/:id" component={CompanyDetail} />
+        <Route exact path="/userhistory" component={UserHistory} />
         {/* aditya */}
         <Route exact path="/stocks" component={StocksLanding} />
         <Route

@@ -22,7 +22,7 @@ router.get("/allnews", async (req, res, next) => {
 router.get("/singleNews/:id", async (req, res, next) => {
   try {
     let id = req.params.id;
-    console.log(id);
+    // console.log(id);
     let result = await newsData.find({ new_id: req.params.id });
     if (result.length == 0) {
       res.status(400).json({
