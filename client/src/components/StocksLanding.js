@@ -8,6 +8,7 @@ import Slider from "rc-slider";
 // import RadarSlider from "../charts/graph";
 
 import {
+  getSectorCompany,
   getCompany,
   getSectors,
   getIndustries,
@@ -44,7 +45,7 @@ export class StocksLanding extends Component {
     pageStocks: [],
     loading: false,
     sector: "Basic Materials",
-    industry: "Building Materials",
+    industry: "Select an Industry",
     gainersClick: true,
 
     //[Nikhil] default slider value
@@ -112,7 +113,7 @@ export class StocksLanding extends Component {
 
     document.body.appendChild(script);
 
-    this.props.getCompany(this.state.industry); //getting all the companies based on an industry selected
+    this.props.getSectorCompany(this.state.sector); //getting all the companies based on a sector selected
     this.props.getSectors(); //getting all the sectors
     this.props.getIndustries(this.state.sector); //getting all the industries based on a sector selected
     this.props.getGainersLosers(this.state.sector); //getting all the gainers and losers based on a sector selected
@@ -128,6 +129,7 @@ export class StocksLanding extends Component {
     this.setState({
       sector: e.target.value, //setting state for the sector
     });
+    this.props.getSectorCompany(e.target.value); //getting all the companies based on a sector selected
     this.props.getIndustries(e.target.value); //getting all the industries based on a sector selected
     this.props.getGainersLosers(e.target.value); //getting all the gainers and losers based on a sector selected
   };
@@ -489,6 +491,7 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, {
+  getSectorCompany,
   getCompany,
   getSectors,
   getIndustries,

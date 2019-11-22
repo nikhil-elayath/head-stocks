@@ -1,15 +1,34 @@
 import {
+  GET_COMPANY_BY_SECTOR,
   GET_ALL_COMPANY,
   GET_ALL_SECTORS,
   GET_ALL_INDUSTRIES,
   GAINERS_LOSERS,
-  SCREENER_SEARCH,
+  SCREENER_SEARCH
 } from "./Types";
 import { startLoading, stopLoading } from "./LoadingAction";
 import axios from "axios";
 const url = "http://localhost:2001/api/sector/";
 
-// GET all companies
+// GET companies by sector
+export const getSectorCompany = sector => dispatch => {
+  dispatch(startLoading());
+  return axios
+    .get(url + "company/" + sector)
+    .then(res => {
+      dispatch(stopLoading());
+      dispatch({
+        type: GET_COMPANY_BY_SECTOR,
+        payload: res.data.data
+      });
+    })
+    .catch(err => {
+      dispatch(startLoading());
+      console.log(err);
+    });
+};
+
+// GET companies by industry
 export const getCompany = industry => dispatch => {
   dispatch(startLoading());
   return axios
@@ -18,7 +37,7 @@ export const getCompany = industry => dispatch => {
       dispatch(stopLoading());
       dispatch({
         type: GET_ALL_COMPANY,
-        payload: res.data.data,
+        payload: res.data.data
       });
     })
     .catch(err => {
@@ -34,7 +53,7 @@ export const getSectors = () => dispatch => {
     .then(res => {
       dispatch({
         type: GET_ALL_SECTORS,
-        payload: res.data.data,
+        payload: res.data.data
       });
     })
     .catch(err => {
@@ -49,7 +68,7 @@ export const getIndustries = sector => dispatch => {
     .then(res => {
       dispatch({
         type: GET_ALL_INDUSTRIES,
-        payload: res.data.data,
+        payload: res.data.data
       });
     })
     .catch(err => {
@@ -63,7 +82,7 @@ export const getGainersLosers = sector => dispatch => {
     .then(res => {
       dispatch({
         type: GAINERS_LOSERS,
-        payload: res.data.data,
+        payload: res.data.data
       });
     })
     .catch(err => {
@@ -101,7 +120,7 @@ export const getScreenerSearch = (
     .then(res => {
       dispatch({
         type: SCREENER_SEARCH,
-        payload: res.data.data,
+        payload: res.data.data
       });
     })
     .catch(err => {
