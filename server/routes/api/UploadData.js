@@ -122,7 +122,7 @@ router.post("/updateCompany/:id", upload.single("file"), async (req, res) => {
                 console.log("Created Object");
                 console.log(newObj);
                 console.log("CSV file successfully processed");
-                //   Updates the data in the database
+                // Updates the data in the database
                 stocksData.updateOne(
                   { ticker_id: +id },
                   {
