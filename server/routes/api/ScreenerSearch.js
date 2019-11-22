@@ -11,20 +11,35 @@ const stocksData = require("../../model/stocksModel");
 
 router.post("/screener", async (req, res, next) => {
   console.log("body", req.body);
-  const value1 = req.body.value1;
-  const value2 = req.body.value2;
-  // console.log("values", value1, value2);
-  // console.log("screener search api called");
+  const dividend_value1 = req.body.dividend_value1;
+  const dividend_value2 = req.body.dividend_value2;
+  const market_cap_value1 = req.body.market_cap_value1;
+
+  const market_cap_value2 = req.body.market_cap_value2;
+  const price_to_equity_ratio1 = req.body.price_to_equity_ratio1;
+  const price_to_equity_ratio2 = req.body.price_to_equity_ratio2;
+
   const search_result = [];
   try {
     let result = await stocksData
       .find({
-        "ticker_dates.Dividends": { $gt: +value1, $lt: +value2 },
-        "ticker_dates.Market Capitalisation": { $gt: +value1, $lt: +value2 },
+        $and: [
+          {
+            "ticker_dates.Dividends": {
+              $gte: +dividend_value1,
+              $lte: +dividend_value2,
+            },
+          },
+          {
+            "ticker_dates.Market Capitalisation": {
+              $gte: +market_cap_value1,
+              $lte: +market_cap_value2,
+            },
+          },
+        ],
       })
       .limit(5);
-    // .limit(5);
-    // console.log("result", result);
+
     result.forEach(function(elem) {
       let compare = { dividend: {} };
 
@@ -53,9 +68,10 @@ router.post("/screener", async (req, res, next) => {
       }
       compare.dividend["marketcap"] = Market_cap.toString();
       console.log(compare);
+
       search_result.push(compare);
     });
-    console.log(search_result);
+    console.log("printing search result", search_result);
     if (result.length == 0) {
       res.status(400).json({
         status: 400,
