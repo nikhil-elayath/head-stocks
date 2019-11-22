@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {
   getCompanyDetailById,
   getOhlcChart,
-  getGaugeCompany1
+  getGaugeCompany1,
 } from "../actions/CompanyDetail";
 import { connect } from "react-redux";
 // importing css file
@@ -72,7 +72,7 @@ export class CompanyDetail extends Component {
               // border: "1px solid #cacaca",
               width: "97%",
               margin: "auto",
-              marginBottom: "20px"
+              marginBottom: "20px",
             }}
           >
             <iframe
@@ -81,7 +81,7 @@ export class CompanyDetail extends Component {
                 width: "100%",
                 height: "550px",
                 outline: "none",
-                border: "none"
+                border: "none",
               }}
             />
           </div>
@@ -95,10 +95,10 @@ const mapStateToProps = state => ({
   similar_company: state.CompanyDetailReducer.similar_company,
   gauge1: state.CompanyDetailReducer.gauge1,
   ohlc_chart: state.CompanyDetailReducer.ohlc_chart,
-  isLoading: state.LoadingReducer.isLoading
+  isLoading: state.LoadingReducer.isLoading,
 });
 export default connect(mapStateToProps, {
   getOhlcChart,
   getCompanyDetailById,
-  getGaugeCompany1
+  getGaugeCompany1,
 })(CompanyDetail);

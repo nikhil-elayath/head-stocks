@@ -3,14 +3,16 @@ import {
   GET_ALL_COMPANY,
   GAINERS_LOSERS,
   GET_ALL_SECTORS,
-  GET_ALL_INDUSTRIES
+  GET_ALL_INDUSTRIES,
+  SCREENER_SEARCH,
 } from "../actions/Types";
 
 const initialstate = {
   stocks: [],
   gainersLosers: [],
   sectors: [],
-  industries: []
+  industries: [],
+  screener_search: [],
 };
 
 export default function(state = initialstate, action) {
@@ -23,6 +25,8 @@ export default function(state = initialstate, action) {
       return { ...state, gainersLosers: action.payload };
     case GET_ALL_SECTORS:
       return { ...state, sectors: action.payload };
+    case SCREENER_SEARCH:
+      return { ...state, screener_search: action.payload };
     case GET_ALL_INDUSTRIES:
       return { ...state, industries: action.payload };
     default:

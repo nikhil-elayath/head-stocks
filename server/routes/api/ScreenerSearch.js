@@ -22,26 +22,28 @@ router.post("/screener", async (req, res, next) => {
   const search_result = [];
   try {
     let result = await stocksData
+
       .find({
         $and: [
-          {
-            "ticker_dates.Dividends": {
-              $gte: +dividend_value1,
-              $lte: +dividend_value2,
-            },
-          },
+          { sector: req.body.sector },
+          { industry: req.body.industry },
+          // {
+          //   "ticker_dates.Dividends": {
+          //     $gt: 60,
+          //   },
+          //   // ticker_id: 1,
+          // },
           {
             "ticker_dates.Market Capitalisation": {
-              $gte: +market_cap_value1,
-              $lte: +market_cap_value2,
+              $gt: +market_cap_value1,
+              $lt: +market_cap_value2,
             },
           },
         ],
       })
       .limit(5);
-
     result.forEach(function(elem) {
-      let compare = { dividend: {} };
+      let compare = {};
 
       ticker_dates = elem._doc.ticker_dates;
 
@@ -59,15 +61,14 @@ router.post("/screener", async (req, res, next) => {
       var dividend = last_date["Dividends"];
       // console.log("dividend", dividend);
 
-      compare.dividend["dividend"] = dividend.toString();
+      compare["dividend"] = dividend.toString();
       // console.log("printing compare", compare);
       if (last_date["Market Capitalisation"] == undefined) {
         Market_cap = "-";
       } else {
         Market_cap = last_date["Market Capitalisation"];
       }
-      compare.dividend["marketcap"] = Market_cap.toString();
-      console.log(compare);
+      compare["marketcap"] = Market_cap.toString();
 
       search_result.push(compare);
     });
@@ -75,13 +76,13 @@ router.post("/screener", async (req, res, next) => {
     if (result.length == 0) {
       res.status(400).json({
         status: 400,
-        data: result,
+        data: search_result,
         message: "No result",
       });
     } else {
       res.status(200).json({
         status: 200,
-        data: result,
+        data: search_result,
         message: "Retrieved screener result successfully",
       });
     }
