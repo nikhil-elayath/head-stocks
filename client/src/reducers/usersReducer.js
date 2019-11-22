@@ -6,7 +6,9 @@ import {
   VERIFY_OTP,
   ERROR_TYPE,
   USER_HISTORY,
-  BUY_STOCKS
+  BUY_STOCKS,
+  WALLET,
+  ALL_STOCKS_BOUGHT
 } from "../actions/Types";
 
 const initialstate = {
@@ -28,7 +30,11 @@ export default function(state = initialstate, action) {
     case VERIFY_OTP:
       return state;
     case USER_HISTORY:
-      return { ...state, userhistory: action.payload };
+      return state;
+    case WALLET:
+      return { ...state, users: action.payload };
+    case ALL_STOCKS_BOUGHT:
+      return { ...state, users: action.payload };
     case BUY_STOCKS:
       return { ...state, users: action.payload };
     case ERROR_TYPE:

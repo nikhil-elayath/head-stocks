@@ -24,6 +24,10 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 import Table from "../components/Common/TickerTable";
+
+// Harshal
+import UpdateCompany from "./UpdateCompany";
+
 import { stat } from "fs";
 var slider;
 
@@ -359,20 +363,17 @@ export class StocksLanding extends Component {
                         <div id="stocks_main_grid_details">
                           {/* -------------------------- */}
                           {/* <div class="box"> */}
-                          <a href="#editpopup">
+                          <a href={"#editpopup" + stocks.ticker_name}>
                             <img id="stocks_edit" alt="edit" src={editlogo} />
                           </a>
                           {/* </div> */}
-                          <div id="editpopup" class="admin_overlay">
+                          <div
+                            id={"editpopup" + stocks.ticker_name}
+                            class="admin_overlay"
+                          >
                             <div class="admin_popup">
-                              <h2>Edit Stock</h2>
-                              <a class="admin_close" href="#">
-                                &times;
-                              </a>
-                              <div class="admin_content">
-                                <button>Upload</button>
-                                <button>Edit</button>
-                              </div>
+                              <h2>Update {stocks.ticker_name}</h2>
+                              <UpdateCompany id={stocks.ticker_id} />
                             </div>
                           </div>
                           {/* -------------------------- */}

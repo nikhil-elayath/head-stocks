@@ -29,6 +29,8 @@ var upload = multer({ storage: storage });
 router.post("/updateCompany/:id", upload.single("file"), async (req, res) => {
   // stores the Id of the Company that is recieved from params
   let id = req.params.id;
+  // console.log(id);
+
   let idResult = await stocksData.find({ ticker_id: +id });
   // console.log(idResult.length);
 
@@ -122,7 +124,7 @@ router.post("/updateCompany/:id", upload.single("file"), async (req, res) => {
                 console.log("Created Object");
                 console.log(newObj);
                 console.log("CSV file successfully processed");
-                //   Updates the data in the database
+                // Updates the data in the database
                 stocksData.updateOne(
                   { ticker_id: +id },
                   {

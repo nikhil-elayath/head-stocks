@@ -21,7 +21,7 @@ export class UserHistory extends Component {
           <UserNavigation />
           {/*side bar for user detail*/}
           <div id="userhistory">
-            {this.props.userhistory ? (
+            {this.props.userhistory != 0 ? (
               <table id="userhistory_table">
                 <thead id="userhistory_tableHeader">
                   <th>Stocks</th>
@@ -37,7 +37,7 @@ export class UserHistory extends Component {
                         <td>{stocks.ticker_name}</td>
                         <td>{stocks.current_price}</td>
                         {stocks.buy == true ? <td>Bought</td> : <td>Sold</td>}
-                        <td>0</td>
+                        <td>{stocks.buying_quantity}</td>
                         <td>
                           {new Date(stocks.buy_date).toLocaleDateString(
                             "en-In",
@@ -54,7 +54,7 @@ export class UserHistory extends Component {
                 ))}
               </table>
             ) : (
-              <div>No Stocks History</div>
+              <h1>No Stocks History</h1>
             )}
           </div>
         </div>
