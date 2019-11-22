@@ -20,7 +20,7 @@
 }
 
 .admin_popup {
-  margin: 70px auto;
+  margin: 170px auto;
   text-align: center;
   padding: 20px;
   background: #2c3e50;
@@ -33,6 +33,18 @@
 .admin_popup h2 {
   margin-top: 0;
   color: #ffffff;
+  font-weight: bold;
+}
+
+.admin_popup p {
+  /* margin-top: 0; */
+  font-size: 15px !important;
+  float: left;
+  margin-left: 22px !important;
+  margin-top: 10px !important;
+  margin-bottom: 2px !important;
+  color: #39abf7;
+  font-weight: bold;
 }
 
 .admin_popup .admin_close {
@@ -54,9 +66,122 @@
   max-height: 30%;
   overflow: auto;
 }
+
+/* Harshal */
+
+.updateCompany_admin_input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.updateCompany_admin_input {
+  width: 90%;
+  margin: 40px auto 20px auto;
+  background-color: #2c3e50;
+  display: block;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  height: 50px;
+  cursor: pointer;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 11pt;
+}
+.updateCompany_admin_input:hover {
+  border-color: #39abf7;
+}
+
+.updateCompany_admin_button {
+  margin: auto;
+  background-color: #39abf7;
+  display: block;
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  height: 35px;
+  width: 100px;
+  padding: 3px 8px;
+  cursor: pointer;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 10pt;
+}
+
+.updateCompany_admin_button:hover {
+  border-color: #ffffff;
+  border: 2px solid #ffffff;
+  background-color: #339adf;
+}
+
+/* TOoltip */
+
+#updateCompany_tooltip_div {
+  left: 130px;
+  margin-top: 10px;
+  position: absolute;
+}
+
+#updateCompany_tooltip_div .fa-info-circle {
+  color: #39abf7;
+  cursor: pointer;
+}
+
+#updateCompany_tooltip_div #updateCompany_tooltip_text {
+  visibility: hidden;
+  margin: 18px 20px auto 0px;
+  width: 550px;
+  background-color: #ffffff;
+  color: #2c3e50;
+  text-align: left;
+  border-radius: 10px;
+  border-top-left-radius: 0px !important;
+
+  padding: 25px 0px 25px 35px;
+  font-size: 14px;
+  position: absolute;
+  z-index: 1;
+}
+#updateCompany_tooltip_div:hover #updateCompany_tooltip_text {
+  visibility: visible;
+}
+
+.updateCompany_tooltip_text_list {
+  list-style: decimal;
+}
+.updateCompany_table_image {
+  width: 450px;
+}
+
 /* ---------------------------------------------------------------- */
 @media only screen and (max-width: 426px) {
   .admin_popup {
     width: 90%;
+  }
+  .updateCompany_admin_input {
+    width: 95%;
+    margin: 10px auto 20px auto;
+    height: 40px;
+    padding: 12px 0px 0px 0px !important;
+  }
+
+  .admin_popup h2 {
+    font-size: 20px;
+  }
+
+  .admin_popup p {
+    margin-left: 16px !important;
+  }
+
+  #updateCompany_tooltip_div #updateCompany_tooltip_text {
+    visibility: hidden;
+    width: 300px;
+    background-color: #ffffff;
+    color: #2c3e50;
+    border-radius: 10px !important;
+    right: -170px;
+    top: 3px;
+    font-size: 12px;
+    position: absolute;
+    z-index: 1;
+  }
+  .updateCompany_table_image {
+    width: 250px;
   }
 }
