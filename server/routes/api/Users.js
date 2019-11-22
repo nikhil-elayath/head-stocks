@@ -68,6 +68,7 @@ router.post("/login", async (req, res, next) => {
     var payload = {
       _id: username._id,
       email: username.email,
+      name: username.name,
       wallet: username.wallet,
       isAdmin: username.isAdmin
     };

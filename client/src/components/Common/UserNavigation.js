@@ -17,7 +17,7 @@ export default class UserProfile extends Component {
       <div>
         <div id="userNavigationContainer">
           <div id="userNavigation">
-            <h1>Hi Nikhil !</h1>
+            <h1>Hi {decode.name} !</h1>
             <img src={wallet} id="wallet" />{" "}
             <span id="walletPrice">
               $
