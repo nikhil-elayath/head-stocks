@@ -16,6 +16,7 @@ import {
 } from "../actions/Stocks";
 import Script from "react-load-script";
 import "../styles/StocksLanding.css";
+import "../styles/Admin.css";
 import companylogo from "./Common/stockslogo.PNG";
 import editlogo from "./Common/edit.png";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -248,19 +249,19 @@ export class StocksLanding extends Component {
                         <div id="stocks_main_grid_details">
                           {/* -------------------------- */}
                           {/* <div class="box"> */}
-                          <a href="#popup1">
+                          <a href="#editpopup">
                             <img id="stocks_edit" alt="edit" src={editlogo} />
                           </a>
                           {/* </div> */}
-                          <div id="popup1" class="overlay">
-                            <div class="popup">
-                              <h2>Here i am</h2>
-                              <a class="close" href="#">
+                          <div id="editpopup" class="admin_overlay">
+                            <div class="admin_popup">
+                              <h2>Edit Stock</h2>
+                              <a class="admin_close" href="#">
                                 &times;
                               </a>
-                              <div class="content">
-                                Thank to pop me out of that button, but now i'm
-                                done so you can close this window.
+                              <div class="admin_content">
+                                <button>Upload</button>
+                                <button>Edit</button>
                               </div>
                             </div>
                           </div>
