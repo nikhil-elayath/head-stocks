@@ -36,7 +36,7 @@ router.post("/signup", async (req, res, next) => {
         phone: req.body.phone,
         password: req.body.password,
         isAdmin: req.body.isAdmin,
-        wallet: 1000000
+        wallet: 15000
       });
       // Encrypting the password and storing it in the databsae
       user.password = await bcrypt.hash(user.password, 10);
@@ -224,7 +224,7 @@ router.put("/sell", async (req, res, next) => {
         { "company.ticker_name": req.body.ticker_name },
         {
           $set: {
-            "company.$.buy": false,
+            "company.$.buy": true,
             "company.$.sell": true,
             "company.$.sell_price": req.body.sell_price,
             wallet: username.wallet + req.body.price,
@@ -243,18 +243,6 @@ router.put("/sell", async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-});
-
-router.get("/buyStocks", async (req, res) => {
-  const result = await User.find(
-    {},
-    { company: { $elemMatch: { buy: false } } }
-  );
-  res.status(200).json({
-    status: 200,
-    data: result,
-    message: "Retrieved all stocks purchased by user Successfully"
-  });
 });
 
 router.get("/allStocks", async (req, res) => {
@@ -289,6 +277,47 @@ router.get("/history/:email", async (req, res, next) => {
     }
   } catch (err) {
     next(err);
+  }
+});
+
+router.post("/wallet", async (req, res, next) => {
+  try {
+    // Checks if the user exists with the email specified
+    let username = await User.findOne({ email: req.body.email });
+    if (!username) {
+      return res.status(400).send({ message: "Invalid Credentials" });
+    } else {
+      let wallet = await User.find(
+        { email: req.body.email },
+        { wallet: 1, _id: 0 }
+      );
+      res.status(200).json({
+        status: 200,
+        data: username.wallet,
+        message: "Wallet Received  Successfully"
+      });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+router.post("/myStocks", async (req, res, next) => {
+  try {
+    // Checks if the user exists with the email specified
+    let username = await User.findOne({ email: req.body.email });
+    if (!username) {
+      return res.status(400).send({ message: "Invalid Credentials" });
+    } else {
+      const result = await User.find({ email: req.body.email }, { _id: 0 });
+      res.status(200).json({
+        status: 200,
+        data: result,
+        message: "Stocks Received  Successfully"
+      });
+    }
+  } catch (err) {
+    console.log(err);
   }
 });
 
