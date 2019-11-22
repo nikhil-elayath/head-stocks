@@ -14,19 +14,48 @@ export class UserHistory extends Component {
     this.props.userHistory(decode.email);
   }
   render() {
-    console.log(this.props.userhistory);
+    console.log(this.props.userhistory[0]);
     return (
       <div>
         <div id="userHistoryContainer">
           <UserNavigation />
           {/*side bar for user detail*/}
           <div id="userhistory">
-            <h1>History!</h1>
-            <table id="userhistory_table"></table>
-
-            <thead id="userhistory_tableHeader">
-              <tr>{this.props.userHistory.map()}</tr>
-            </thead>
+            {this.props.userhistory ? (
+              <table id="userhistory_table">
+                <thead id="userhistory_tableHeader">
+                  <th>Stocks</th>
+                  <th>Price</th>
+                  <th>Buy/Sell</th>
+                  <th>Quantity</th>
+                  <th>Date</th>
+                </thead>
+                {this.props.userhistory.map(hist => (
+                  <>
+                    {hist.company.map(stocks => (
+                      <tr>
+                        <td>{stocks.ticker_name}</td>
+                        <td>{stocks.current_price}</td>
+                        {stocks.buy == true ? <td>Bought</td> : <td>Sold</td>}
+                        <td>0</td>
+                        <td>
+                          {new Date(stocks.buy_date).toLocaleDateString(
+                            "en-In",
+                            {
+                              month: "short",
+                              day: "2-digit",
+                              year: "numeric"
+                            }
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </>
+                ))}
+              </table>
+            ) : (
+              <div>No Stocks History</div>
+            )}
           </div>
         </div>
       </div>
