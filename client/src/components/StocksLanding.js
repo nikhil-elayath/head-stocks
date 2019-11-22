@@ -8,13 +8,12 @@ import Slider from "rc-slider";
 // import RadarSlider from "../charts/graph";
 
 import {
-  getSectorCompany,
   getCompany,
   getSectors,
   getIndustries,
   getGainersLosers,
   //[NIKHIL] SCREENER ACTIONS
-  getScreenerSearch,
+  getScreenerSearch
 } from "../actions/Stocks";
 import Script from "react-load-script";
 import "../styles/StocksLanding.css";
@@ -45,7 +44,7 @@ export class StocksLanding extends Component {
     pageStocks: [],
     loading: false,
     sector: "Basic Materials",
-    industry: "Select an Industry",
+    industry: "Building Materials",
     gainersClick: true,
 
     //[Nikhil] default slider value
@@ -58,7 +57,7 @@ export class StocksLanding extends Component {
     price_to_equity_ratio1: 89,
     price_to_equity_ratio2: 44,
     debt_to_equity_ratio1: 45,
-    debt_to_equity_ratio2: 34,
+    debt_to_equity_ratio2: 34
   };
 
   //for slider handle cange
@@ -113,7 +112,8 @@ export class StocksLanding extends Component {
 
     document.body.appendChild(script);
 
-    this.props.getSectorCompany(this.state.sector); //getting all the companies based on a sector selected
+    // this.props.getSectorCompany(this.state.sector); //getting all the companies based on a sector selected
+    this.props.getCompany("sector", this.state.sector);
     this.props.getSectors(); //getting all the sectors
     this.props.getIndustries(this.state.sector); //getting all the industries based on a sector selected
     this.props.getGainersLosers(this.state.sector); //getting all the gainers and losers based on a sector selected
@@ -127,18 +127,18 @@ export class StocksLanding extends Component {
 
   OnSelectSector = e => {
     this.setState({
-      sector: e.target.value, //setting state for the sector
+      sector: e.target.value //setting state for the sector
     });
-    this.props.getSectorCompany(e.target.value); //getting all the companies based on a sector selected
+    this.props.getCompany("sector", e.target.value);
     this.props.getIndustries(e.target.value); //getting all the industries based on a sector selected
     this.props.getGainersLosers(e.target.value); //getting all the gainers and losers based on a sector selected
   };
 
   OnSelectIndustry = e => {
     this.setState({
-      industry: e.target.value, //setting state for the industry
+      industry: e.target.value //setting state for the industry
     });
-    this.props.getCompany(e.target.value); //getting all the companies based on an industry selected
+    this.props.getCompany("industry", e.target.value); //getting all the companies based on an industry selected
   };
 
   displayCompanies = Stocks => {
@@ -157,7 +157,7 @@ export class StocksLanding extends Component {
   loadMoreItems = () => {
     setTimeout(() => {
       this.setState({
-        items: this.state.items + 10,
+        items: this.state.items + 10
       });
       this.displayCompanies(this.props.stocks);
     }, 1000);
@@ -180,7 +180,7 @@ export class StocksLanding extends Component {
               //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
               defaultValue={[
                 this.state.dividend_value1,
-                this.state.dividend_value2,
+                this.state.dividend_value2
               ]}
               //ON CHANGING CALLING THE SLIDERCHANGE
               onChange={this.onSliderChange}
@@ -202,7 +202,7 @@ export class StocksLanding extends Component {
               //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
               defaultValue={[
                 this.state.market_cap_value1,
-                this.state.market_cap_value2,
+                this.state.market_cap_value2
               ]}
               //ON CHANGING CALLING THE SLIDERCHANGE
               onChange={this.onSliderChange2}
@@ -245,7 +245,7 @@ export class StocksLanding extends Component {
               //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
               defaultValue={[
                 this.state.price_to_equity_ratio1,
-                this.state.price_to_equity_ratio2,
+                this.state.price_to_equity_ratio2
               ]}
               //ON CHANGING CALLING THE SLIDERCHANGE
               onChange={this.onSliderChange4}
@@ -268,7 +268,7 @@ export class StocksLanding extends Component {
               //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
               defaultValue={[
                 this.state.debt_to_equity_ratio1,
-                this.state.debt_to_equity_ratio2,
+                this.state.debt_to_equity_ratio2
               ]}
               //ON CHANGING CALLING THE SLIDERCHANGE
               onChange={this.onSliderChange5}
@@ -462,7 +462,7 @@ export class StocksLanding extends Component {
                   "Ticker",
                   "Chng (%)",
                   "Market Cap",
-                  "Share Price",
+                  "Share Price"
                 ]}
                 tableData={
                   this.state.gainersClick === true //displaying the gainers data in the table if state of gainersClick is true that is when gainers button is clicked else losers data is displayed
@@ -487,14 +487,13 @@ const mapStateToProps = state => ({
   sectors: state.stocksReducer.sectors,
   industries: state.stocksReducer.industries,
   gainersLosers: state.stocksReducer.gainersLosers,
-  isLoading: state.LoadingReducer.isLoading,
+  isLoading: state.LoadingReducer.isLoading
 });
 
 export default connect(mapStateToProps, {
-  getSectorCompany,
   getCompany,
   getSectors,
   getIndustries,
   getGainersLosers,
-  getScreenerSearch,
+  getScreenerSearch
 })(StocksLanding);
