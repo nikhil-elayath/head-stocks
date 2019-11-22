@@ -67,7 +67,7 @@ router.post("/login", async (req, res, next) => {
     // Specifying the payload which is to be used for creating a token
     var payload = {
       _id: username._id,
-      name: username.name,
+      email: username.email,
       isAdmin: username.isAdmin
     };
     // Generating the token using the above payload
@@ -200,7 +200,7 @@ router.put("/buy", async (req, res, next) => {
       );
       res.status(200).json({
         status: 200,
-        message: "Company Added Successfully"
+        message: "buy stock Successfully"
       });
     }
   } catch (err) {
@@ -259,6 +259,32 @@ router.get("/allStocks", async (req, res) => {
     data: result,
     message: "Retrieved history of user Successfully"
   });
+});
+
+router.get("/history/:email", async (req, res, next) => {
+  try {
+    let email = req.params.email;
+    console.log(email);
+    let result = await User.find(
+      { email: req.params.email },
+      { company: 1, _id: 0 }
+    );
+    if (result.length == 0) {
+      res.status(400).json({
+        status: 400,
+        data: result,
+        message: "No user found"
+      });
+    } else {
+      res.status(200).json({
+        status: 200,
+        data: result,
+        message: "Retrieved user Successfully"
+      });
+    }
+  } catch (err) {
+    next(err);
+  }
 });
 
 module.exports = router;
