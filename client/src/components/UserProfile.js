@@ -121,8 +121,9 @@ export class UserProfile extends Component {
                                 Total Price : $
                                 {Number(this.state.total).toFixed(2)}
                               </p>
-                              <button
+                              <a
                                 id="buySpecificStock"
+                                href="#"
                                 onClick={() => {
                                   {
                                     let user = {
@@ -137,7 +138,7 @@ export class UserProfile extends Component {
                                 }}
                               >
                                 Buy
-                              </button>
+                              </a>
                             </div>
                           </div>
                         </div>

@@ -183,6 +183,7 @@
 
 #buyingQuantity::placeholder {
   color: #fff;
+  font-weight: lighter;
 }
 
 #buySpecificStock {
