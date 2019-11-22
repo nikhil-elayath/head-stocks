@@ -56,6 +56,8 @@ export class StocksLanding extends Component {
     share_price2: 72,
     price_to_equity_ratio1: 89,
     price_to_equity_ratio2: 44,
+    debt_to_equity_ratio1: 45,
+    debt_to_equity_ratio2: 34,
   };
 
   //for slider handle cange
@@ -80,6 +82,10 @@ export class StocksLanding extends Component {
     this.setState({ price_to_equity_ratio1: e[0] });
     this.setState({ price_to_equity_ratio2: e[1] });
   };
+  onSliderChange5 = e => {
+    this.setState({ debt_to_equity_ratio1: e[0] });
+    this.setState({ debt_to_equity_ratio2: e[1] });
+  };
 
   onSearchClick = e => {
     console.log("Button Clciked");
@@ -91,7 +97,9 @@ export class StocksLanding extends Component {
       this.state.share_price1,
       this.state.share_price2,
       this.state.price_to_equity_ratio1,
-      this.state.price_to_equity_ratio2
+      this.state.price_to_equity_ratio2,
+      this.state.debt_to_equity_ratio1,
+      this.state.debt_to_equity_ratio2
     );
   };
 
@@ -243,6 +251,29 @@ export class StocksLanding extends Component {
           </div>
           <p>Value: {this.state.price_to_equity_ratio1}</p>
           <p>Value: {this.state.price_to_equity_ratio2}</p>
+        </div>
+
+        {/* FOR DEBT TO EQUITY RATIO  */}
+        <div>
+          <h1>DEBT TO EQUITY RATIO</h1>
+          <div id="stocks-landing-page-slider">
+            {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
+            <Range
+              // SETTING THE MINIMUM VALUE
+              min={0}
+              // SETTING THE MAXIMUM VALUE
+              max={1000}
+              //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
+              defaultValue={[
+                this.state.debt_to_equity_ratio1,
+                this.state.debt_to_equity_ratio2,
+              ]}
+              //ON CHANGING CALLING THE SLIDERCHANGE
+              onChange={this.onSliderChange5}
+            />
+          </div>
+          <p>Value: {this.state.debt_to_equity_ratio1}</p>
+          <p>Value: {this.state.debt_to_equity_ratio2}</p>
         </div>
         {/* SEARCH BUTTON */}
         <button type="submit" onClick={this.onSearchClick}>
