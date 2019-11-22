@@ -10,11 +10,11 @@ const dbName = "stocks";
 const stocksData = require("../../model/stocksModel");
 
 router.post("/screener", async (req, res, next) => {
-  // console.log("body", req.body);
+  console.log("body", req.body);
   const value1 = req.body.value1;
   const value2 = req.body.value2;
   // console.log("values", value1, value2);
-  console.log("screener search api called");
+  // console.log("screener search api called");
   const search_result = [];
   try {
     let result = await stocksData
@@ -24,7 +24,7 @@ router.post("/screener", async (req, res, next) => {
       })
       .limit(5);
     // .limit(5);
-    console.log("result", result);
+    // console.log("result", result);
     result.forEach(function(elem) {
       let compare = { dividend: {} };
 
@@ -45,13 +45,14 @@ router.post("/screener", async (req, res, next) => {
       // console.log("dividend", dividend);
 
       compare.dividend["dividend"] = dividend.toString();
-      console.log("printing compare", compare);
+      // console.log("printing compare", compare);
       if (last_date["Market Capitalisation"] == undefined) {
         Market_cap = "-";
       } else {
         Market_cap = last_date["Market Capitalisation"];
       }
       compare.dividend["marketcap"] = Market_cap.toString();
+      console.log(compare);
       search_result.push(compare);
     });
     console.log(search_result);

@@ -1,0 +1,62 @@
+* {
+  font-family: Karla;
+}
+
+.admin_overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.admin_overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.admin_popup {
+  margin: 70px auto;
+  text-align: center;
+  padding: 20px;
+  background: #2c3e50;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.admin_popup h2 {
+  margin-top: 0;
+  color: #ffffff;
+}
+
+.admin_popup .admin_close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.admin_popup .admin_close:hover {
+  color: #39abf7;
+}
+
+.admin_popup .admin_content {
+  max-height: 30%;
+  overflow: auto;
+}
+/* ---------------------------------------------------------------- */
+@media only screen and (max-width: 426px) {
+  .admin_popup {
+    width: 90%;
+  }
+}
