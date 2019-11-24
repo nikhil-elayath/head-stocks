@@ -3,7 +3,9 @@ import {
   GET_ALL_COMPANY,
   GET_ALL_SECTORS,
   GET_ALL_INDUSTRIES,
-  GAINERS_LOSERS
+  GAINERS_LOSERS,
+  LOADING_START,
+  LOADING_STOP
 } from "../Types";
 import moxios from "moxios";
 import configureMockStore from "redux-mock-store";
@@ -53,32 +55,36 @@ describe("Testing the Actions", () => {
 
   it("should create action with type GET_ALL_COMPANY and the payload should be same as the api response when the response is 200", () => {
     const responseOfApi = [{}, {}, {}];
-    let industry = "Building Materials";
-    moxios.stubRequest(url + "companies/" + industry, {
+    let filter = "sector";
+    let type = "Technology";
+    moxios.stubRequest(url + "allcompanies/" + filter + "/" + type, {
       status: 200,
       response: { data: responseOfApi }
     });
     const store = mockStore({});
     const expectedActions = [
+      { type: LOADING_START },
+      { type: LOADING_STOP },
       {
         type: GET_ALL_COMPANY,
         payload: responseOfApi
       }
     ];
-    return store.dispatch(action.getCompany(industry)).then(() => {
+    return store.dispatch(action.getCompany(filter, type)).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
   it("should create action with type GET_ALL_COMPANY and the payload should be same as the api response when the response is 400", () => {
     const responseOfApi = [{}, {}, {}];
-    let industry = "Building Material";
-    moxios.stubRequest(url + "companies/" + industry, {
+    let filter = "sector";
+    let type = "Technology";
+    moxios.stubRequest(url + "allcompanies/" + filter + "/" + type, {
       status: 400,
       response: { data: responseOfApi }
     });
     const store = mockStore({});
-    const expectedActions = [];
-    return store.dispatch(action.getCompany(industry)).then(() => {
+    const expectedActions = [{ type: LOADING_START }, { type: LOADING_START }];
+    return store.dispatch(action.getCompany(filter, type)).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });

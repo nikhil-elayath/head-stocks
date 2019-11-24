@@ -12,7 +12,7 @@ import {
   MONTECARLO_COMPANY2,
   ASSETS_COMPANY1,
   ASSETS_COMPANY2,
-  COMPANY_DETAIL_BY_ID,
+  COMPANY_DETAIL_BY_ID
 } from "../Types";
 import moxios from "moxios";
 import configureMockStore from "redux-mock-store";
@@ -34,14 +34,14 @@ describe("Testing Company Detail Action", () => {
     const responseOfApi = [];
     moxios.stubRequest("http://localhost:2001/api/companydetail/all", {
       status: 200,
-      response: { data: responseOfApi },
+      response: { data: responseOfApi }
     });
     const store = mockStore({});
     const expectedResponse = [
       {
         type: COMPANY_DETAIL,
-        payload: responseOfApi,
-      },
+        payload: responseOfApi
+      }
     ];
     return store.dispatch(action.getCompanyDetail()).then(() => {
       expect(store.getActions()).toEqual(expectedResponse);
@@ -56,15 +56,15 @@ describe("Testing Company Detail Action", () => {
       "http://localhost:2001/api/companydetail/financial/" + id,
       {
         status: 200,
-        response: { data: responseOfApi },
+        response: { data: responseOfApi }
       }
     );
     const store = mockStore({});
     const expectedResponse = [
       {
         type: COMPANY_DATES_BY_ID,
-        payload: responseOfApi,
-      },
+        payload: responseOfApi
+      }
     ];
     return store.dispatch(action.getCompanyDatesById(id)).then(() => {
       expect(store.getActions()).toEqual(expectedResponse);
@@ -77,14 +77,14 @@ describe("Testing Company Detail Action", () => {
     let sector = "Technology";
     moxios.stubRequest("http://localhost:2001/api/dropdown", {
       status: 200,
-      response: { data: responseOfApi },
+      response: { data: responseOfApi }
     });
     const store = mockStore({});
     const expectedResponse = [
       {
         type: GET_DROP_DOWN,
-        payload: responseOfApi,
-      },
+        payload: responseOfApi
+      }
     ];
     return store.dispatch(action.getDropDownData(sector)).then(() => {
       expect(store.getActions()).toEqual(expectedResponse);
@@ -96,14 +96,14 @@ describe("Testing Company Detail Action", () => {
     let sector = "Technology";
     moxios.stubRequest("http://localhost:2001/api/analysis/analysis", {
       status: 200,
-      response: { data: responseOfApi },
+      response: { data: responseOfApi }
     });
     const store = mockStore({});
     const expectedResponse = [
       {
         type: GET_SIMILAR_TABLE,
-        payload: responseOfApi,
-      },
+        payload: responseOfApi
+      }
     ];
     return store.dispatch(action.getSimilarTable(sector)).then(() => {
       expect(store.getActions()).toEqual(expectedResponse);
@@ -116,14 +116,14 @@ describe("Testing Company Detail Action", () => {
     let id = 1;
     moxios.stubRequest("http://localhost:5000/companyindices/" + id, {
       status: 200,
-      response: { data: responseOfApi },
+      response: { data: responseOfApi }
     });
     const store = mockStore({});
     const expectedResponse = [
       {
         type: OHLC_CHART,
-        payload: responseOfApi,
-      },
+        payload: responseOfApi
+      }
     ];
     return store.dispatch(action.getOhlcChart(id)).then(() => {
       expect(store.getActions()).toEqual(expectedResponse);
@@ -138,15 +138,15 @@ describe("Testing Company Detail Action", () => {
       "http://localhost:2001/api/companydetail/downloadohlc/" + ohlc,
       {
         status: 200,
-        response: { data: responseOfApi },
+        response: { data: responseOfApi }
       }
     );
     const store = mockStore({});
     const expectedResponse = [
       {
         // type: OHLC_CHART,
-        payload: responseOfApi,
-      },
+        payload: responseOfApi
+      }
     ];
     return store.dispatch(action.downloadOhlcDataCompany(id)).then(() => {
       expect(store.getActions()).toEqual(expectedResponse);
@@ -159,14 +159,14 @@ describe("Testing Company Detail Action", () => {
     let ticker = "AAPL";
     moxios.stubRequest("http://localhost:5000/gaugeCompany1/" + ticker, {
       status: 200,
-      response: { data: responseOfApi },
+      response: { data: responseOfApi }
     });
     const store = mockStore({});
     const expectedResponse = [
       {
         type: GET_GAUGE_COMPANY1,
-        payload: responseOfApi,
-      },
+        payload: responseOfApi
+      }
     ];
     return store.dispatch(action.getGaugeCompany1(ticker)).then(() => {
       expect(store.getActions()).toEqual(expectedResponse);
@@ -180,14 +180,14 @@ describe("Testing Company Detail Action", () => {
     let ticker = "AAPL";
     moxios.stubRequest("http://localhost:5000/gaugeCompany2/" + ticker, {
       status: 200,
-      response: { data: responseOfApi },
+      response: { data: responseOfApi }
     });
     const store = mockStore({});
     const expectedResponse = [
       {
         type: GET_GAUGE_COMPANY2,
-        payload: responseOfApi,
-      },
+        payload: responseOfApi
+      }
     ];
     return store.dispatch(action.getGaugeCompany2(ticker)).then(() => {
       expect(store.getActions()).toEqual(expectedResponse);
@@ -200,14 +200,14 @@ describe("Testing Company Detail Action", () => {
     let ticker = "AAPL";
     moxios.stubRequest("http://localhost:5000/monteCarloCompany1/" + ticker, {
       status: 200,
-      response: { data: responseOfApi },
+      response: { data: responseOfApi }
     });
     const store = mockStore({});
     const expectedResponse = [
       {
         type: MONTECARLO_COMPANY1,
-        payload: responseOfApi,
-      },
+        payload: responseOfApi
+      }
     ];
     return store.dispatch(action.getmonteCarloCompany1(ticker)).then(() => {
       expect(store.getActions()).toEqual(expectedResponse);
@@ -221,14 +221,14 @@ describe("Testing Company Detail Action", () => {
     let ticker = "AAPL";
     moxios.stubRequest("http://localhost:5000/monteCarloCompany2/" + ticker, {
       status: 200,
-      response: { data: responseOfApi },
+      response: { data: responseOfApi }
     });
     const store = mockStore({});
     const expectedResponse = [
       {
         type: MONTECARLO_COMPANY2,
-        payload: responseOfApi,
-      },
+        payload: responseOfApi
+      }
     ];
     return store.dispatch(action.getmonteCarloCompany2(ticker)).then(() => {
       expect(store.getActions()).toEqual(expectedResponse);
@@ -242,14 +242,14 @@ describe("Testing Company Detail Action", () => {
     let ticker = "AAPL";
     moxios.stubRequest("http://localhost:5000/assetsCompany1/" + ticker, {
       status: 200,
-      response: { data: responseOfApi },
+      response: { data: responseOfApi }
     });
     const store = mockStore({});
     const expectedResponse = [
       {
         type: ASSETS_COMPANY1,
-        payload: responseOfApi,
-      },
+        payload: responseOfApi
+      }
     ];
     return store.dispatch(action.getAssetsCompany1(ticker)).then(() => {
       expect(store.getActions()).toEqual(expectedResponse);
@@ -263,14 +263,14 @@ describe("Testing Company Detail Action", () => {
     let ticker = "AAPL";
     moxios.stubRequest("http://localhost:5000/assetsCompany2/" + ticker, {
       status: 200,
-      response: { data: responseOfApi },
+      response: { data: responseOfApi }
     });
     const store = mockStore({});
     const expectedResponse = [
       {
         type: ASSETS_COMPANY2,
-        payload: responseOfApi,
-      },
+        payload: responseOfApi
+      }
     ];
     return store.dispatch(action.getAssetsCompany2(ticker)).then(() => {
       expect(store.getActions()).toEqual(expectedResponse);
@@ -283,14 +283,14 @@ describe("Testing Company Detail Action", () => {
     let id = 1;
     moxios.stubRequest("http://localhost:2001/api/companydetail/" + id, {
       status: 200,
-      response: { data: responseOfApi },
+      response: { data: responseOfApi }
     });
     const store = mockStore({});
     const expectedResponse = [
       {
         type: COMPANY_DETAIL_BY_ID,
-        payload: responseOfApi,
-      },
+        payload: responseOfApi
+      }
     ];
     return store.dispatch(action.getCompanyDetailById(id)).then(() => {
       expect(store.getActions()).toEqual(expectedResponse);
