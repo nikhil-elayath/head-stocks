@@ -1,0 +1,227 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing UserbuyStocks Component should mount the component 1`] = `
+<div>
+  <div
+    id="buyStocksContainer"
+  >
+    <UserProfile />
+    <div
+      id="userStocksContainer"
+    >
+      <table
+        id="userBuyStocksTable"
+      >
+        <thead
+          id="userBuyStocksHeader"
+        >
+          <th>
+            Stocks
+          </th>
+          <th>
+            Bought Price
+          </th>
+          <th>
+            Quantity
+          </th>
+          <th>
+            Selling price
+          </th>
+          <th />
+          <th />
+        </thead>
+        <tr>
+          <td
+            id="tickerName0"
+          >
+            AAPL
+          </td>
+          <td
+            id="tickerPrice0"
+          >
+            201.55
+          </td>
+          <td
+            id="tickerQty0"
+          >
+            7
+          </td>
+          <td>
+             
+            200.96
+          </td>
+          <td>
+            <span
+              class="fa fa-caret-down"
+              style={
+                Object {
+                  "color": "red",
+                  "fontSize": "18px",
+                }
+              }
+            />
+             
+            -0.29
+             
+            %
+          </td>
+          <td>
+            <div
+              class="sellStocksBox"
+            >
+              <a
+                class="sell"
+                href="#sellStockspopup1"
+              >
+                Sell
+              </a>
+            </div>
+            <div
+              class="sellStocksoverlay"
+              id="sellStockspopup1"
+            >
+              <div
+                class="sellStockspopup"
+              >
+                <h2>
+                  AAPL
+                   
+                </h2>
+                <a
+                  class="sellStocksclose"
+                  href="#"
+                >
+                  ×
+                </a>
+                <div
+                  class="sellStockscontent"
+                >
+                  <p>
+                    Current Price : $
+                  </p>
+                  <p>
+                    Quantity :
+                     
+                    <input
+                      id="sellingQuantity"
+                      name="qty"
+                      onChange={[Function]}
+                      placeholder="0"
+                      type="text"
+                      value=""
+                    />
+                  </p>
+                  <p>
+                    Total Price : $
+                  </p>
+                  <a
+                    href="#"
+                    id="sellSpecificStock"
+                  >
+                    Buy
+                  </a>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td
+            id="tickerName1"
+          >
+            MSFT
+          </td>
+          <td
+            id="tickerPrice1"
+          >
+            135.68
+          </td>
+          <td
+            id="tickerQty1"
+          >
+            6
+          </td>
+          <td>
+             
+            134.23
+          </td>
+          <td>
+            <span
+              class="fa fa-caret-down"
+              style={
+                Object {
+                  "color": "red",
+                  "fontSize": "18px",
+                }
+              }
+            />
+             
+            -1.07
+             
+            %
+          </td>
+          <td>
+            <div
+              class="sellStocksBox"
+            >
+              <a
+                class="sell"
+                href="#sellStockspopup1"
+              >
+                Sell
+              </a>
+            </div>
+            <div
+              class="sellStocksoverlay"
+              id="sellStockspopup1"
+            >
+              <div
+                class="sellStockspopup"
+              >
+                <h2>
+                  MSFT
+                   
+                </h2>
+                <a
+                  class="sellStocksclose"
+                  href="#"
+                >
+                  ×
+                </a>
+                <div
+                  class="sellStockscontent"
+                >
+                  <p>
+                    Current Price : $
+                  </p>
+                  <p>
+                    Quantity :
+                     
+                    <input
+                      id="sellingQuantity"
+                      name="qty"
+                      onChange={[Function]}
+                      placeholder="0"
+                      type="text"
+                      value=""
+                    />
+                  </p>
+                  <p>
+                    Total Price : $
+                  </p>
+                  <a
+                    href="#"
+                    id="sellSpecificStock"
+                  >
+                    Buy
+                  </a>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+`;

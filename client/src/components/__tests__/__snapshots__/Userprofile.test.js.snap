@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing User Profile Component should mount the component 1`] = `
+<div>
+  <div
+    id="userProfileContainer"
+  >
+    <UserProfile />
+    <div
+      id="userSearch"
+    >
+      <h1>
+        Welcome to HeadStocks
+      </h1>
+      <input
+        id="userProfileSearch"
+        name="searchInput"
+        onChange={[Function]}
+        placeholder="Search for Stocks you want to buy (E.g . AAPL)"
+        type="text"
+        value=""
+      />
+      <button
+        id="userProfileSearchButton"
+        type="submit"
+      >
+        <i
+          class="fa fa-search"
+        />
+      </button>
+    </div>
+  </div>
+</div>
+`;

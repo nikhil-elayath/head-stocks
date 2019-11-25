@@ -7,11 +7,13 @@ import jwt_decode from "jwt-decode";
 
 export class UserBuyStocks extends Component {
   componentDidMount() {
-    var decode = jwt_decode(localStorage.getItem("token"));
-    let email = {
-      email: decode.email
-    };
-    this.props.getAllStocks(email);
+    if (localStorage.getItem("token")) {
+      var decode = jwt_decode(localStorage.getItem("token"));
+      let email = {
+        email: decode.email
+      };
+      this.props.getAllStocks(email);
+    }
   }
 
   state = {
@@ -38,12 +40,12 @@ export class UserBuyStocks extends Component {
               </thead>
               {this.props.users.map(hist => (
                 <>
-                  {hist.company.map(stocks => (
+                  {hist.company.map((stocks, index) => (
                     <tr>
-                      <td>{stocks.ticker_name}</td>
-                      <td>{stocks.current_price}</td>
+                      <td id={"tickerName" + index}>{stocks.ticker_name}</td>
+                      <td id={"tickerPrice" + index}>{stocks.current_price}</td>
 
-                      <td>{stocks.buying_quantity}</td>
+                      <td id={"tickerQty" + index}>{stocks.buying_quantity}</td>
                       <td>
                         {" "}
                         {""}
@@ -69,7 +71,13 @@ export class UserBuyStocks extends Component {
                             class="fa fa-caret-up"
                             style={{ color: "green", fontSize: "18px" }}
                           ></span>
-                        )}
+                        )}{" "}
+                        {Number(
+                          ((rand - stocks.current_price) /
+                            stocks.current_price) *
+                            100
+                        ).toFixed(2)}{" "}
+                        %
                       </td>
                       <td>
                         <div class="sellStocksBox">
