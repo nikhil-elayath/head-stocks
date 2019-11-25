@@ -2,6 +2,7 @@ import React, { Component } from "react";
 //[Nikhil] imports for range slider
 import "rc-slider/assets/index.css";
 import "rc-tooltip/assets/bootstrap.css";
+import "../styles/AdvanceFilter.css";
 import ReactDOM from "react-dom";
 import Tooltip from "rc-tooltip";
 import Slider from "rc-slider";
@@ -13,7 +14,7 @@ import {
   getIndustries,
   getGainersLosers,
   //[NIKHIL] SCREENER ACTIONS
-  getScreenerSearch
+  getScreenerSearch,
 } from "../actions/Stocks";
 import Script from "react-load-script";
 import "../styles/StocksLanding.css";
@@ -52,7 +53,7 @@ export class StocksLanding extends Component {
     gainersClick: true,
 
     //[Nikhil] default slider value
-    dividend_value1: 50,
+    dividend_value1: -50,
     dividend_value2: 80,
     market_cap_value1: 60,
     market_cap_value2: 70,
@@ -61,7 +62,9 @@ export class StocksLanding extends Component {
     price_to_equity_ratio1: 89,
     price_to_equity_ratio2: 44,
     debt_to_equity_ratio1: 45,
-    debt_to_equity_ratio2: 34
+    debt_to_equity_ratio2: 34,
+    filter: false,
+    normal: true,
   };
 
   //for slider handle cange
@@ -72,8 +75,6 @@ export class StocksLanding extends Component {
     this.setState({ dividend_value2: e[1] });
   };
   onSliderChange2 = e => {
-    // this.props.getScreenerSearch(e[0], e[1]);
-
     this.setState({ market_cap_value1: e[0] });
     this.setState({ market_cap_value2: e[1] });
   };
@@ -92,7 +93,10 @@ export class StocksLanding extends Component {
   };
 
   onSearchClick = e => {
-    console.log("Button Clciked");
+    this.state.filter = true;
+    console.log("after clicked", this.state.filter);
+
+    console.log("Button Clciked", this.state.industry);
     this.props.getScreenerSearch(
       this.state.dividend_value1,
       this.state.dividend_value2,
@@ -103,12 +107,16 @@ export class StocksLanding extends Component {
       this.state.price_to_equity_ratio1,
       this.state.price_to_equity_ratio2,
       this.state.debt_to_equity_ratio1,
-      this.state.debt_to_equity_ratio2
+      this.state.debt_to_equity_ratio2,
+      this.state.sector,
+      this.state.industry
     );
   };
 
   componentDidMount() {
     //for loading graph.js
+    console.log("filter", this.state.filter);
+    // this.props.getSectorCompany(this.state.sector); //getting all the companies based on a sector selected
     const script = document.createElement("script");
     script.src = "C:Users\nikhiDesktopgraphgraph.js";
     script.async = true;
@@ -135,7 +143,7 @@ export class StocksLanding extends Component {
 
   OnSelectSector = e => {
     this.setState({
-      sector: e.target.value //setting state for the sector
+      sector: e.target.value, //setting state for the sector
     });
     this.props.getCompany("sector", e.target.value);
     this.props.getIndustries(e.target.value); //getting all the industries based on a sector selected
@@ -144,7 +152,7 @@ export class StocksLanding extends Component {
 
   OnSelectIndustry = e => {
     this.setState({
-      industry: e.target.value //setting state for the industry
+      industry: e.target.value, //setting state for the industry
     });
     this.props.getCompany("industry", e.target.value); //getting all the companies based on an industry selected
   };
@@ -165,7 +173,7 @@ export class StocksLanding extends Component {
   loadMoreItems = () => {
     setTimeout(() => {
       this.setState({
-        items: this.state.items + 10
+        items: this.state.items + 10,
       });
       this.displayCompanies(this.props.stocks);
     }, 1000);
@@ -174,121 +182,8 @@ export class StocksLanding extends Component {
   render() {
     return (
       <div>
-        {/* real code starts here  */}
-        <div>
-          <h1>dividend </h1>
-          {/* FOR DIVIDEND  */}
-          <div id="stocks-landing-page-slider">
-            {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
-            <Range
-              // SETTING THE MINIMUM VALUE
-              min={0}
-              // SETTING THE MAXIMUM VALUE
-              max={1000}
-              //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
-              defaultValue={[
-                this.state.dividend_value1,
-                this.state.dividend_value2
-              ]}
-              //ON CHANGING CALLING THE SLIDERCHANGE
-              onChange={this.onSliderChange}
-            />
-          </div>
-          <p>Value: {this.state.dividend_value1}</p>
-          <p>Value: {this.state.dividend_value2}</p>
-        </div>
-        {/* FOR MARKET CAP  */}
-        <h1>market cap </h1>
-        <div>
-          <div id="stocks-landing-page-slider">
-            {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
-            <Range
-              // SETTING THE MINIMUM VALUE
-              min={0}
-              // SETTING THE MAXIMUM VALUE
-              max={1000}
-              //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
-              defaultValue={[
-                this.state.market_cap_value1,
-                this.state.market_cap_value2
-              ]}
-              //ON CHANGING CALLING THE SLIDERCHANGE
-              onChange={this.onSliderChange2}
-              name={"slider1"}
-            />
-          </div>
-          <p>Value: {this.state.market_cap_value1}</p>
-          <p>Value: {this.state.market_cap_value2}</p>
-        </div>
-        {/* FOR SHARE Price  */}
-        <div>
-          <h1>share price </h1>
-          <div id="stocks-landing-page-slider">
-            {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
-            <Range
-              // SETTING THE MINIMUM VALUE
-              min={0}
-              // SETTING THE MAXIMUM VALUE
-              max={1000}
-              //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
-              defaultValue={[this.state.share_price1, this.state.share_price2]}
-              //ON CHANGING CALLING THE SLIDERCHANGE
-              onChange={this.onSliderChange3}
-            />
-          </div>
-          <p>Value: {this.state.share_price1}</p>
-          <p>Value: {this.state.share_price2}</p>
-        </div>
-
-        {/* for PE RATIO */}
-        <div>
-          <h1>PRICE TO EQUITY</h1>
-          <div id="stocks-landing-page-slider">
-            {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
-            <Range
-              // SETTING THE MINIMUM VALUE
-              min={0}
-              // SETTING THE MAXIMUM VALUE
-              max={1000}
-              //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
-              defaultValue={[
-                this.state.price_to_equity_ratio1,
-                this.state.price_to_equity_ratio2
-              ]}
-              //ON CHANGING CALLING THE SLIDERCHANGE
-              onChange={this.onSliderChange4}
-            />
-          </div>
-          <p>Value: {this.state.price_to_equity_ratio1}</p>
-          <p>Value: {this.state.price_to_equity_ratio2}</p>
-        </div>
-
-        {/* FOR DEBT TO EQUITY RATIO  */}
-        <div>
-          <h1>DEBT TO EQUITY RATIO</h1>
-          <div id="stocks-landing-page-slider">
-            {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
-            <Range
-              // SETTING THE MINIMUM VALUE
-              min={0}
-              // SETTING THE MAXIMUM VALUE
-              max={1000}
-              //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
-              defaultValue={[
-                this.state.debt_to_equity_ratio1,
-                this.state.debt_to_equity_ratio2
-              ]}
-              //ON CHANGING CALLING THE SLIDERCHANGE
-              onChange={this.onSliderChange5}
-            />
-          </div>
-          <p>Value: {this.state.debt_to_equity_ratio1}</p>
-          <p>Value: {this.state.debt_to_equity_ratio2}</p>
-        </div>
         {/* SEARCH BUTTON */}
-        <button type="submit" onClick={this.onSearchClick}>
-          Search{" "}
-        </button>
+
         {/* ends */}
         {this.props.gainersLosers["0"] ? (
           <div id="stocks_main_container">
@@ -329,6 +224,161 @@ export class StocksLanding extends Component {
                   </>
                 ))}
               </select>
+              <label id="advance-label" for="toggle-1">
+                Advance Search
+              </label>
+              <input type="checkbox" id="toggle-1" />
+
+              <div id="stocks-advance-filter-grid-main-container">
+                <div id="advance-fliter-dividend">
+                  <div id="advance-filter-title">
+                    <p id="advance-filter-dividend-p">Dividend </p>
+                  </div>
+                  {/* FOR DIVIDEND  */}
+                  <div id="stocks-landing-page-slider">
+                    {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
+                    <Range
+                      // SETTING THE MINIMUM VALUE
+                      min={-50}
+                      // SETTING THE MAXIMUM VALUE
+                      max={1000}
+                      //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
+                      defaultValue={[
+                        this.state.dividend_value1,
+                        this.state.dividend_value2,
+                      ]}
+                      //ON CHANGING CALLING THE SLIDERCHANGE
+                      onChange={this.onSliderChange}
+                    />
+                  </div>
+                  <div id="advance-filter-debt-to-equity-ratio-value">
+                    <p id="advance-filter-value">-50</p>
+                    <p id="advance-filter-value2">1000</p>
+                  </div>
+                </div>
+                {/* FOR MARKET CAP  */}
+
+                <div id="advance-filter-market-cap">
+                  <div id="advance-filter-title">
+                    <p id="advance-filter-market-cap-p">market cap</p>
+                  </div>
+                  <div id="stocks-landing-page-slider">
+                    {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
+                    <Range
+                      // SETTING THE MINIMUM VALUE
+                      min={0}
+                      // SETTING THE MAXIMUM VALUE
+                      max={1000}
+                      //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
+                      defaultValue={[
+                        this.state.market_cap_value1,
+                        this.state.market_cap_value2,
+                      ]}
+                      //ON CHANGING CALLING THE SLIDERCHANGE
+                      onChange={this.onSliderChange2}
+                      name={"slider1"}
+                    />
+                  </div>
+                  <div id="advance-filter-debt-to-equity-ratio-value">
+                    <p id="advance-filter-value">0</p>
+                    <p id="advance-filter-value2">100</p>
+                  </div>
+                </div>
+                {/* FOR SHARE Price  */}
+                <div id="advance-filter-share-price">
+                  <div id="advance-filter-title">
+                    <p id="advance-filter-share-price-p">share price </p>
+                  </div>
+                  <div id="stocks-landing-page-slide">
+                    {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
+                    <Range
+                      // SETTING THE MINIMUM VALUE
+                      min={0}
+                      // SETTING THE MAXIMUM VALUE
+                      max={1000}
+                      //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
+                      defaultValue={[
+                        this.state.share_price1,
+                        this.state.share_price2,
+                      ]}
+                      //ON CHANGING CALLING THE SLIDERCHANGE
+                      onChange={this.onSliderChange3}
+                    />
+                  </div>
+                  <div id="advance-filter-debt-to-equity-ratio-value">
+                    <p id="advance-filter-value">0</p>
+                    <p id="advance-filter-value2">100</p>
+                  </div>
+                </div>
+
+                {/* for PE RATIO */}
+                <div id="advance-filter-price-to-equity">
+                  <div id="advance-filter-title">
+                    <p id="advance-filter-price-to-equity-p">
+                      PRICE TO EQUITY{" "}
+                    </p>
+                  </div>
+                  <div id="stocks-landing-page-slider">
+                    {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
+                    <Range
+                      // SETTING THE MINIMUM VALUE
+                      min={0}
+                      // SETTING THE MAXIMUM VALUE
+                      max={1000}
+                      //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
+                      defaultValue={[
+                        this.state.price_to_equity_ratio1,
+                        this.state.price_to_equity_ratio2,
+                      ]}
+                      //ON CHANGING CALLING THE SLIDERCHANGE
+                      onChange={this.onSliderChange4}
+                    />
+                  </div>
+                  <div id="advance-filter-debt-to-equity-ratio-value">
+                    <p id="advance-filter-value">0</p>
+                    <p id="advance-filter-value2">100</p>
+                  </div>
+                </div>
+
+                {/* FOR DEBT TO EQUITY RATIO  */}
+                <div id="advance-filter-debt-to-equity">
+                  <div id="advance-filter-title">
+                    <p id="advance-filter-debt-to-equity-p">
+                      DEBT TO EQUITY RATIO
+                    </p>
+                  </div>
+                  <div id="stocks-landing-page-slider">
+                    {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
+                    <Range
+                      // SETTING THE MINIMUM VALUE
+                      min={0}
+                      // SETTING THE MAXIMUM VALUE
+                      max={1000}
+                      //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
+                      defaultValue={[
+                        this.state.debt_to_equity_ratio1,
+                        this.state.debt_to_equity_ratio2,
+                      ]}
+                      //ON CHANGING CALLING THE SLIDERCHANGE
+                      onChange={this.onSliderChange5}
+                    />
+                  </div>
+                  <div id="advance-filter-debt-to-equity-ratio-value">
+                    <p id="advance-filter-value">0</p>
+                    <p id="advance-filter-value2">100</p>
+                  </div>
+                </div>
+                <button type="submit" onClick={this.onSearchClick}>
+                  Filter{" "}
+                </button>
+              </div>
+
+              {/* <div
+                id="btn"
+                // onclick="this.style.visibility='hidden';"
+              >
+                Advance Filter{" "}
+              </div>  */}
             </div>
 
             {/* <div class="slidecontainer"> */}
@@ -362,76 +412,165 @@ export class StocksLanding extends Component {
                   }
                 >
                   <div id="stocks_grid_container">
-                    {this.state.pageStocks.map((stocks, index) =>
-                      stocks ? (
-                        <div id="stocks_main_grid_details">
-                          {/* -------------------------- */}
-                          {/* <div class="box"> */}
-                          <a href={"#editpopup" + stocks.ticker_name}>
-                            <img id="stocks_edit" alt="edit" src={editlogo} />
-                          </a>
-                          {/* </div> */}
-                          <div
-                            id={"editpopup" + stocks.ticker_name}
-                            class="admin_overlay"
-                          >
-                            <div class="admin_popup">
-                              <h2>Update {stocks.ticker_name}</h2>
-                              <UpdateCompany id={stocks.ticker_id} />
+                    {this.state.filter == true ? (
+                      <>
+                        {this.props.screener_search.map(screener_search => (
+                          // <h3>{screener_search.dividend}</h3>
+                          <div id="stocks_main_grid_details">
+                            {/* -------------------------- */}
+                            {/* <div class="box"> */}
+                            <a href="#editpopup">
+                              <img id="stocks_edit" alt="edit" src={editlogo} />
+                            </a>
+                            {/* </div> */}
+                            <div id="editpopup" class="admin_overlay">
+                              <div class="admin_popup">
+                                <h2>Edit Stock</h2>
+                                <a class="admin_close" href="#">
+                                  &times;
+                                </a>
+                                <div class="admin_content">
+                                  <button>Upload</button>
+                                  <button>Edit</button>
+                                </div>
+                              </div>
+                            </div>
+                            {/* -------------------------- */}
+                            <div
+                              id="stocks_grid_details"
+                              onClick={() => {
+                                this.props.history.push(
+                                  "/companydetail/" + screener_search.ticker_id, //pushing to the company details page with ticker id of a stock when that particular stock card is clicked
+                                  { screener_search }
+                                );
+                              }}
+                            >
+                              <img
+                                id="stocks_img"
+                                alt="logo"
+                                src={
+                                  screener_search.ticker_logo == null
+                                    ? companylogo
+                                    : "data:image/jpeg;base64," +
+                                      screener_search.ticker_logo
+                                }
+                              />
+                              <div id="stocks_ticker">
+                                {screener_search["ticker_name"]}
+                              </div>
+                              {/* mapping the ticker name from the api*/}
+                              <div id="stocks_name">{}</div>
+                              <div id="stocks_flex_details_one">
+                                <div
+                                  id="stocks_closed_price"
+                                  className="stocks_details_title"
+                                >
+                                  Closed Price:
+                                </div>
+                                <div id="stocks_details">
+                                  {screener_search["Share Price"]}USD
+                                </div>
+                                {/* mapping the share price from the api */}
+                              </div>
+                              <div id="stocks_flex_details_two">
+                                <div
+                                  id="stocks_market_cap"
+                                  className="stocks_details_title"
+                                >
+                                  Market Cap:
+                                </div>
+                                <div id="stocks_details">
+                                  {screener_search["MarketCap"]}M
+                                </div>
+                                {/* mapping the market cap from the api */}
+                              </div>
                             </div>
                           </div>
-                          {/* -------------------------- */}
-                          <div
-                            id="stocks_grid_details"
-                            onClick={() => {
-                              this.props.history.push(
-                                "/companydetail/" + stocks.ticker_id, //pushing to the company details page with ticker id of a stock when that particular stock card is clicked
-                                { stocks }
-                              );
-                            }}
-                          >
-                            <img
-                              id="stocks_img"
-                              alt="logo"
-                              src={
-                                stocks.ticker_logo == null
-                                  ? companylogo
-                                  : "data:image/jpeg;base64," +
-                                    stocks.ticker_logo
-                              }
-                            />
-                            <div id="stocks_ticker">
-                              {stocks["ticker_name"]}
-                            </div>
-                            {/* mapping the ticker name from the api*/}
-                            <div id="stocks_name">{}</div>
-                            <div id="stocks_flex_details_one">
+
+                          // end of nikhils mapping
+                        ))}
+                      </>
+                    ) : (
+                      <>
+                        {this.state.pageStocks.map((stocks, index) =>
+                          stocks ? (
+                            <div id="stocks_main_grid_details">
+                              {/* -------------------------- */}
+                              {/* <div class="box"> */}
+                              <a href="#editpopup">
+                                <img
+                                  id="stocks_edit"
+                                  alt="edit"
+                                  src={editlogo}
+                                />
+                              </a>
+                              {/* </div> */}
+                              <div id="editpopup" class="admin_overlay">
+                                <div class="admin_popup">
+                                  <h2>Edit Stock</h2>
+                                  <a class="admin_close" href="#">
+                                    &times;
+                                  </a>
+                                  <div class="admin_content">
+                                    <button>Upload</button>
+                                    <button>Edit</button>
+                                  </div>
+                                </div>
+                              </div>
+                              {/* -------------------------- */}
                               <div
-                                id="stocks_closed_price"
-                                className="stocks_details_title"
+                                id="stocks_grid_details"
+                                onClick={() => {
+                                  this.props.history.push(
+                                    "/companydetail/" + stocks.ticker_id, //pushing to the company details page with ticker id of a stock when that particular stock card is clicked
+                                    { stocks }
+                                  );
+                                }}
                               >
-                                Closed Price:
+                                <img
+                                  id="stocks_img"
+                                  alt="logo"
+                                  src={
+                                    stocks.ticker_logo == null
+                                      ? companylogo
+                                      : "data:image/jpeg;base64," +
+                                        stocks.ticker_logo
+                                  }
+                                />
+                                <div id="stocks_ticker">
+                                  {stocks["ticker_name"]}
+                                </div>
+                                {/* mapping the ticker name from the api*/}
+                                <div id="stocks_name">{}</div>
+                                <div id="stocks_flex_details_one">
+                                  <div
+                                    id="stocks_closed_price"
+                                    className="stocks_details_title"
+                                  >
+                                    Closed Price:
+                                  </div>
+                                  <div id="stocks_details">
+                                    {stocks["Share Price"]}USD
+                                  </div>
+                                  {/* mapping the share price from the api */}
+                                </div>
+                                <div id="stocks_flex_details_two">
+                                  <div
+                                    id="stocks_market_cap"
+                                    className="stocks_details_title"
+                                  >
+                                    Market Cap:
+                                  </div>
+                                  <div id="stocks_details">
+                                    {stocks["MarketCap"]}M
+                                  </div>
+                                  {/* mapping the market cap from the api */}
+                                </div>
                               </div>
-                              <div id="stocks_details">
-                                {stocks["Share Price"]}USD
-                              </div>
-                              {/* mapping the share price from the api */}
                             </div>
-                            <div id="stocks_flex_details_two">
-                              <div
-                                id="stocks_market_cap"
-                                className="stocks_details_title"
-                              >
-                                Market Cap:
-                              </div>
-                              <div id="stocks_details">
-                                {stocks["MarketCap"]}M
-                              </div>
-                              {/* mapping the market cap from the api */}
-                            </div>
-                          </div>
-                        </div>
-                      ) : null
+                          ) : null
+                        )}
+                      </>
                     )}
                   </div>
                 </InfiniteScroll>
@@ -467,7 +606,7 @@ export class StocksLanding extends Component {
                   "Ticker",
                   "Chng (%)",
                   "Market Cap",
-                  "Share Price"
+                  "Share Price",
                 ]}
                 tableData={
                   this.state.gainersClick === true //displaying the gainers data in the table if state of gainersClick is true that is when gainers button is clicked else losers data is displayed
@@ -492,7 +631,8 @@ const mapStateToProps = state => ({
   sectors: state.stocksReducer.sectors,
   industries: state.stocksReducer.industries,
   gainersLosers: state.stocksReducer.gainersLosers,
-  isLoading: state.LoadingReducer.isLoading
+  isLoading: state.LoadingReducer.isLoading,
+  screener_search: state.stocksReducer.screener_search,
 });
 
 export default connect(mapStateToProps, {
@@ -500,5 +640,5 @@ export default connect(mapStateToProps, {
   getSectors,
   getIndustries,
   getGainersLosers,
-  getScreenerSearch
+  getScreenerSearch,
 })(StocksLanding);

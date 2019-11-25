@@ -131,17 +131,32 @@ export const downloadOhlcDataCompany = ohlc => {
 };
 
 // getting company dates by id
-export const getCompanyDatesById = id => dispatch => {
+export const getCompanyDatesById = (id, yearSelected) => dispatch => {
   // console.log("get companydetails by id from actions", id);
   try {
-    return axios
-      .get("http://localhost:2001/api/companydetail/financial/" + id)
-      .then(res => {
-        dispatch({
-          type: COMPANY_DATES_BY_ID,
-          payload: res.data.data
+    // console.log(yearSelected.yearInput);
+    if (yearSelected.yearInput !== "All") {
+      return axios
+        .post(
+          "http://localhost:2001/api/companydetail/financial/" + id,
+          yearSelected
+        )
+        .then(res => {
+          dispatch({
+            type: COMPANY_DATES_BY_ID,
+            payload: res.data.data
+          });
         });
-      });
+    } else {
+      return axios
+        .post("http://localhost:2001/api/companydetail/financial/" + id)
+        .then(res => {
+          dispatch({
+            type: COMPANY_DATES_BY_ID,
+            payload: res.data.data
+          });
+        });
+    }
   } catch (err) {
     console.log(err);
   }

@@ -11,20 +11,53 @@ import profitloss from "./Common/pl.png";
 import ratios from "./Common/ratios.png";
 
 import ReportsTable from "./Reports";
+
+let yearSelected = {};
 export class CompanyDetailFinancial extends Component {
-  state = {
-    balanceSheetOption: true,
-    cashflowOption: false,
-    profitLossOption: false,
-    ratiosOption: false,
-  };
+  constructor(props) {
+    super(props);
+    const year = new Date().getFullYear();
+    this.years = Array.from(new Array(20), (val, index) => year - index);
+    this.state = {
+      balanceSheetOption: true,
+      cashflowOption: false,
+      profitLossOption: false,
+      ratiosOption: false,
+
+      // selecting yearly data
+      yearInput: "All"
+    };
+  }
+
+  // state = {
+
+  // };
 
   componentDidMount() {
     // getting the id from the params
     const id = this.props.match.params.id;
+    yearSelected = { yearInput: "All" };
     // PASSING THE ID TO THE ACTION
-    this.props.getCompanyDatesById(id);
+    this.props.getCompanyDatesById(id, yearSelected);
   }
+
+  getByYear = e => {
+    this.setState({
+      yearInput: e.target.value
+    });
+
+    const id = this.props.match.params.id;
+
+    if (this.state.yearInput == "All") {
+      yearSelected = { yearInput: "All" };
+    } else {
+      yearSelected = {
+        yearInput: e.target.value
+      };
+    }
+    this.props.getCompanyDatesById(id, yearSelected);
+  };
+
   render() {
     let report = this.props
       ? this.props.dates
@@ -38,6 +71,25 @@ export class CompanyDetailFinancial extends Component {
       <div>
         {/* CALLING THE SECONDARY NAVBAR  */}
         <SecondaryNavbar selected="financial" />
+        <div className="financialYearsDropdown">
+          <select
+            type="text"
+            className="financialsYearsOption"
+            name="yearInput"
+            value={this.state.yearInput}
+            onChange={this.getByYear}
+          >
+            <option name="choice">All</option>
+
+            {this.years.map((year, index) => {
+              return (
+                <option key={`year${index}`} value={year}>
+                  {year}
+                </option>
+              );
+            })}
+          </select>
+        </div>
         <div className="financialsMainGrid">
           <sidebar className="financialsSidebar">
             <div
@@ -55,7 +107,7 @@ export class CompanyDetailFinancial extends Component {
                     balanceSheetOption: true,
                     cashflowOption: false,
                     profitLossOption: false,
-                    ratiosOption: false,
+                    ratiosOption: false
                   })
                 }
               >
@@ -79,7 +131,7 @@ export class CompanyDetailFinancial extends Component {
                     balanceSheetOption: false,
                     cashflowOption: true,
                     profitLossOption: false,
-                    ratiosOption: false,
+                    ratiosOption: false
                   })
                 }
               >
@@ -103,7 +155,7 @@ export class CompanyDetailFinancial extends Component {
                     balanceSheetOption: false,
                     cashflowOption: false,
                     profitLossOption: true,
-                    ratiosOption: false,
+                    ratiosOption: false
                   })
                 }
               >
@@ -127,7 +179,7 @@ export class CompanyDetailFinancial extends Component {
                     balanceSheetOption: false,
                     cashflowOption: false,
                     profitLossOption: false,
-                    ratiosOption: true,
+                    ratiosOption: true
                   })
                 }
               >
@@ -162,7 +214,7 @@ export class CompanyDetailFinancial extends Component {
                 "Total Liabilities",
                 "Preferred Equity",
                 "Total Noncurrent Liabilities",
-                "Equity Before Minorities",
+                "Equity Before Minorities"
               ]}
               reportdata={report}
             />
@@ -180,7 +232,7 @@ export class CompanyDetailFinancial extends Component {
                 "Cash From Operating Activities",
                 "Cash From Investing Activities",
                 "Cash From Financing Activities",
-                "Change in Working Capital",
+                "Change in Working Capital"
               ]}
               reportdata={report}
             />
@@ -195,7 +247,7 @@ export class CompanyDetailFinancial extends Component {
                 "EBIT",
                 "Net Profit",
                 "R&D",
-                "Income Taxes",
+                "Income Taxes"
               ]}
               reportdata={report}
             />
@@ -211,7 +263,7 @@ export class CompanyDetailFinancial extends Component {
                 "Current Ratio",
                 "EV / EBITDA",
                 "EV / Sales",
-                "Operating Income / EV",
+                "Operating Income / EV"
               ]}
               reportdata={report}
             />
@@ -223,8 +275,8 @@ export class CompanyDetailFinancial extends Component {
 }
 
 const mapStateToProps = state => ({
-  dates: state.CompanyDetailReducer.dates,
+  dates: state.CompanyDetailReducer.dates
 });
 export default connect(mapStateToProps, {
-  getCompanyDatesById,
+  getCompanyDatesById
 })(CompanyDetailFinancial);
