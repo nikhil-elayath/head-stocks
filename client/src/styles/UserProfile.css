@@ -149,7 +149,7 @@
 }
 .buyStockspopup .buyStockscontent {
   max-height: 30%;
-  overflow: auto;
+  /* overflow: auto; */
   color: #fff;
 }
 

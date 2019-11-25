@@ -19,6 +19,7 @@ export class UserBuyStocks extends Component {
   };
 
   render() {
+    var rand;
     console.log(this.props.users);
     return (
       <div>
@@ -31,6 +32,7 @@ export class UserBuyStocks extends Component {
                 <th>Bought Price</th>
                 <th>Quantity</th>
                 <th>Selling price</th>
+                <th></th>
                 {/* <th>Date</th> */}
                 <th></th>
               </thead>
@@ -43,21 +45,32 @@ export class UserBuyStocks extends Component {
 
                       <td>{stocks.buying_quantity}</td>
                       <td>
-                        {Number(
-                          Math.random() *
-                            (Number(stocks.current_price) +
-                              5 -
-                              (Number(stocks.current_price) - 5)) +
-                            (Number(stocks.current_price) - 5)
-                        ).toFixed(2)}
+                        {" "}
+                        {""}
+                        {
+                          (rand = Number(
+                            Math.random() *
+                              (Number(stocks.current_price) +
+                                5 -
+                                (Number(stocks.current_price) - 5)) +
+                              (Number(stocks.current_price) - 5)
+                          ).toFixed(2))
+                        }
+                        {console.log(rand)}
                       </td>
-                      {/* <td>
-                        {new Date(stocks.buy_date).toLocaleDateString("en-In", {
-                          month: "short",
-                          day: "2-digit",
-                          year: "numeric"
-                        })}
-                      </td> */}
+                      <td>
+                        {stocks.current_price > rand ? (
+                          <span
+                            class="fa fa-caret-down"
+                            style={{ color: "red", fontSize: "18px" }}
+                          ></span>
+                        ) : (
+                          <span
+                            class="fa fa-caret-up"
+                            style={{ color: "green", fontSize: "18px" }}
+                          ></span>
+                        )}
+                      </td>
                       <td>
                         <div class="sellStocksBox">
                           <a class="sell" href="#sellStockspopup1">
