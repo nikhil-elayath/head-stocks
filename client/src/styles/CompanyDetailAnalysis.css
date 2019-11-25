@@ -1,4 +1,12 @@
 /* FOR MOBILE  */
+
+#analysis_main_container {
+  background-color: #ffffff;
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  height: 10vh;
+}
+
 #compare_analysis {
   margin: 10px 0px 0px 0px;
   display: flex;
