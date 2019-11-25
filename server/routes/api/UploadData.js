@@ -43,7 +43,7 @@ router.post("/updateCompany/:id", upload.single("file"), async (req, res) => {
     var newObj = {};
     var countOfData = 0;
 
-    console.log("Start");
+    // console.log("Start");
     fs.createReadStream(file.path)
       .pipe(csv())
       .on("data", async function(data) {
@@ -101,7 +101,7 @@ router.post("/updateCompany/:id", upload.single("file"), async (req, res) => {
                   }
                 ]);
 
-                console.log(datefound);
+                // console.log(datefound);
                 if (datefound.length > 0) {
                   // if date present
                   date_present = true;
@@ -121,9 +121,10 @@ router.post("/updateCompany/:id", upload.single("file"), async (req, res) => {
                 newObj[`${mykey}`] = myvalue;
               }
               if (newObj.hasOwnProperty("date")) {
-                console.log("Created Object");
-                console.log(newObj);
-                console.log("CSV file successfully processed");
+                // console.log("Created Object");
+                // console.log(newObj);
+                // console.log("CSV file successfully processed");
+
                 // Updates the data in the database
                 stocksData.updateOne(
                   { ticker_id: +id },

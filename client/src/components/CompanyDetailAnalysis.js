@@ -49,145 +49,149 @@ export class CompanyDetailAnalysis extends Component {
       <div>
         {/* checking whether the data has been loaded into the reducer and if it is then getSimilarTabl which will have a parameter sector from the data loaded in the reducer  */}
         <CompanyDetailSecondaryNavbar selected="analysis" />
-        <div id="company_analaysis_table">
-          {this.props.similar_company["0"] ? (
-            <>
-              {console.log(this.props.similar_company["0"].similar_sector_data)}
-              <Table
-                tableHeaders={[
-                  "Ticker",
-                  "Dividends",
-                  "Market Cap",
-                  "Net Profit",
-                  "P/E ratio",
-                  "Share Price",
-                  "ROCE%"
-                ]}
-                tableData={this.props.similar_company["0"]}
-              />
-            </>
+        <div id="analysis_main_container">
+          <div id="company_analaysis_table">
+            {this.props.similar_company["0"] ? (
+              <>
+                {console.log(
+                  this.props.similar_company["0"].similar_sector_data
+                )}
+                <Table
+                  tableHeaders={[
+                    "Ticker",
+                    "Dividends",
+                    "Market Cap",
+                    "Net Profit",
+                    "P/E ratio",
+                    "Share Price",
+                    "ROCE%"
+                  ]}
+                  tableData={this.props.similar_company["0"]}
+                />
+              </>
+            ) : (
+              <p>Loading </p>
+            )}
+          </div>
+          {/* DROPDOWN FOR SIMILAR COMPANIES  */}
+
+          <div id="company-analysis-similar-cimpany-dropdown">
+            <div id="compare_analysis">
+              <p>Detailed Comparision with: </p>
+              <select
+                type="text"
+                className="stocks_dropdown"
+                name="sector"
+                onChange={this.OnSelectTicker}
+              >
+                {this.props.drop_down_data.map(companies => (
+                  <>
+                    <option name="choice">{companies.ticker_name}</option>
+                  </>
+                ))}
+              </select>
+            </div>
+          </div>
+          {!this.props.isLoading ? (
+            <div>
+              <div id="analysis-stock-chart">
+                {" "}
+                <p id="analysis_graph_title">Share Price Comparision</p>
+                <iframe
+                  id="assets1"
+                  src="https://plot.ly/~nikhile/436.embed"
+                  style={{
+                    width: "100%",
+                    height: "500px",
+                    outline: "none",
+                    border: "none"
+                  }}
+                />
+              </div>
+              <div id="analysis-financial-positional-grid-container">
+                <div id="analysis-financial-positional-1">
+                  <div id="stocks_assests">
+                    <iframe
+                      id="assets1"
+                      src="https://plot.ly/~nikhile/432.embed"
+                      style={{
+                        width: "650px",
+                        height: "500px",
+                        outline: "none",
+                        border: "none"
+                      }}
+                    />
+                  </div>
+                </div>
+                <div id="analysis-financial-positional-2">
+                  <iframe
+                    src="https://plot.ly/~nikhile/434.embed"
+                    style={{
+                      width: "650px",
+                      height: "500px",
+                      outline: "none",
+                      border: "none"
+                    }}
+                  />
+                </div>
+              </div>
+              <p id="analysis_graph_title">Recommendation</p>
+              <div id="analysis-recommendation-grid-container">
+                <div id="analysis-recommendation-1">
+                  <img
+                    id="analysis-gauge-1"
+                    src={
+                      this.props.gauge1
+                        ? "data:image/jpeg;base64," + this.props.gauge1
+                        : gauge
+                    }
+                  />
+                </div>
+                <div id="analysis-recommendation-2">
+                  <img
+                    id="analysis-gauge-2"
+                    src={
+                      this.props.gauge2
+                        ? "data:image/jpeg;base64," + this.props.gauge2
+                        : gauge
+                    }
+                  />
+                </div>
+              </div>
+              <div id="analysis-financial-positional-grid-container">
+                <div id="analysis-financial-positional-1">
+                  <div id="stocks_assests">
+                    <iframe
+                      id="assets1"
+                      src="https://plot.ly/~nikhile/428.embed"
+                      style={{
+                        width: "650px",
+                        height: "500px",
+                        outline: "none",
+                        border: "none"
+                      }}
+                    />
+                  </div>
+                </div>
+                <div id="analysis-financial-positional-2">
+                  <iframe
+                    src="https://plot.ly/~nikhile/430.embed"
+                    style={{
+                      width: "650px",
+                      height: "500px",
+                      outline: "none",
+                      border: "none"
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
           ) : (
-            <p>Loading </p>
+            <div style={{ margin: "200px 550px" }}>
+              <Loader type={Loader} color="#2c3e50" height="100" width="400" />
+            </div>
           )}
         </div>
-        {/* DROPDOWN FOR SIMILAR COMPANIES  */}
-
-        <div id="company-analysis-similar-cimpany-dropdown">
-          <div id="compare_analysis">
-            <p>Detailed Comparision with: </p>
-            <select
-              type="text"
-              className="stocks_dropdown"
-              name="sector"
-              onChange={this.OnSelectTicker}
-            >
-              {this.props.drop_down_data.map(companies => (
-                <>
-                  <option name="choice">{companies.ticker_name}</option>
-                </>
-              ))}
-            </select>
-          </div>
-        </div>
-        {!this.props.isLoading ? (
-          <div>
-            <div id="analysis-stock-chart">
-              {" "}
-              <p id="analysis_graph_title">Share Price Comparision</p>
-              <iframe
-                id="assets1"
-                src="https://plot.ly/~nikhile/436.embed"
-                style={{
-                  width: "100%",
-                  height: "500px",
-                  outline: "none",
-                  border: "none"
-                }}
-              />
-            </div>
-            <div id="analysis-financial-positional-grid-container">
-              <div id="analysis-financial-positional-1">
-                <div id="stocks_assests">
-                  <iframe
-                    id="assets1"
-                    src="https://plot.ly/~nikhile/432.embed"
-                    style={{
-                      width: "650px",
-                      height: "500px",
-                      outline: "none",
-                      border: "none"
-                    }}
-                  />
-                </div>
-              </div>
-              <div id="analysis-financial-positional-2">
-                <iframe
-                  src="https://plot.ly/~nikhile/434.embed"
-                  style={{
-                    width: "650px",
-                    height: "500px",
-                    outline: "none",
-                    border: "none"
-                  }}
-                />
-              </div>
-            </div>
-            <p id="analysis_graph_title">Recommendation</p>
-            <div id="analysis-recommendation-grid-container">
-              <div id="analysis-recommendation-1">
-                <img
-                  id="analysis-gauge-1"
-                  src={
-                    this.props.gauge1
-                      ? "data:image/jpeg;base64," + this.props.gauge1
-                      : gauge
-                  }
-                />
-              </div>
-              <div id="analysis-recommendation-2">
-                <img
-                  id="analysis-gauge-2"
-                  src={
-                    this.props.gauge2
-                      ? "data:image/jpeg;base64," + this.props.gauge2
-                      : gauge
-                  }
-                />
-              </div>
-            </div>
-            <div id="analysis-financial-positional-grid-container">
-              <div id="analysis-financial-positional-1">
-                <div id="stocks_assests">
-                  <iframe
-                    id="assets1"
-                    src="https://plot.ly/~nikhile/428.embed"
-                    style={{
-                      width: "650px",
-                      height: "500px",
-                      outline: "none",
-                      border: "none"
-                    }}
-                  />
-                </div>
-              </div>
-              <div id="analysis-financial-positional-2">
-                <iframe
-                  src="https://plot.ly/~nikhile/430.embed"
-                  style={{
-                    width: "650px",
-                    height: "500px",
-                    outline: "none",
-                    border: "none"
-                  }}
-                />
-              </div>
-            </div>
-          </div>
-        ) : (
-          <div style={{ margin: "200px 550px" }}>
-            <Loader type={Loader} color="#2c3e50" height="100" width="400" />
-          </div>
-        )}
       </div>
     );
   }

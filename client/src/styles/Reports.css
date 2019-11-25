@@ -53,6 +53,17 @@
     margin-bottom: 50px;
     position: relative;
   }
+  
+  .financialTableData2 td {
+    text-align: center;
+    font-size: 14px;
+    padding: 5px 15px;
+  } 
+  .financialTableData2 tr td:first-of-type {
+    font-size: 15px;
+    /* font-weight: bold; */
+    min-width: 300px;
+  }
 
   .financialTableData td {
     text-align: center;
