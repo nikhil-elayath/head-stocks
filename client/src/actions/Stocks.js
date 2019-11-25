@@ -1,5 +1,4 @@
 import {
-  GET_COMPANY_BY_SECTOR,
   GET_ALL_COMPANY,
   GET_ALL_SECTORS,
   GET_ALL_INDUSTRIES,
@@ -9,24 +8,6 @@ import {
 import { startLoading, stopLoading } from "./LoadingAction";
 import axios from "axios";
 const url = "http://localhost:2001/api/sector/";
-
-// GET companies by sector
-// export const getSectorCompany = sector => dispatch => {
-//   dispatch(startLoading());
-//   return axios
-//     .get(url + "company/" + sector)
-//     .then(res => {
-//       dispatch(stopLoading());
-//       dispatch({
-//         type: GET_COMPANY_BY_SECTOR,
-//         payload: res.data.data
-//       });
-//     })
-//     .catch(err => {
-//       dispatch(startLoading());
-//       console.log(err);
-//     });
-// };
 
 // GET companies by sector and industry
 export const getCompany = (filter, type) => dispatch => {
