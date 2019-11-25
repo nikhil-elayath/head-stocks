@@ -3,7 +3,10 @@ import {
   GET_ALL_COMPANY,
   GET_ALL_SECTORS,
   GET_ALL_INDUSTRIES,
-  GAINERS_LOSERS
+  GAINERS_LOSERS,
+  LOADING_START,
+  LOADING_STOP,
+  SCREENER_SEARCH
 } from "../Types";
 import moxios from "moxios";
 import configureMockStore from "redux-mock-store";
@@ -53,32 +56,36 @@ describe("Testing the Actions", () => {
 
   it("should create action with type GET_ALL_COMPANY and the payload should be same as the api response when the response is 200", () => {
     const responseOfApi = [{}, {}, {}];
-    let industry = "Building Materials";
-    moxios.stubRequest(url + "companies/" + industry, {
+    let filter = "sector";
+    let type = "Technology";
+    moxios.stubRequest(url + "allcompanies/" + filter + "/" + type, {
       status: 200,
       response: { data: responseOfApi }
     });
     const store = mockStore({});
     const expectedActions = [
+      { type: LOADING_START },
+      { type: LOADING_STOP },
       {
         type: GET_ALL_COMPANY,
         payload: responseOfApi
       }
     ];
-    return store.dispatch(action.getCompany(industry)).then(() => {
+    return store.dispatch(action.getCompany(filter, type)).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
   it("should create action with type GET_ALL_COMPANY and the payload should be same as the api response when the response is 400", () => {
     const responseOfApi = [{}, {}, {}];
-    let industry = "Building Material";
-    moxios.stubRequest(url + "companies/" + industry, {
+    let filter = "sector";
+    let type = "Technology";
+    moxios.stubRequest(url + "allcompanies/" + filter + "/" + type, {
       status: 400,
       response: { data: responseOfApi }
     });
     const store = mockStore({});
-    const expectedActions = [];
-    return store.dispatch(action.getCompany(industry)).then(() => {
+    const expectedActions = [{ type: LOADING_START }, { type: LOADING_START }];
+    return store.dispatch(action.getCompany(filter, type)).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
@@ -146,4 +153,73 @@ describe("Testing the Actions", () => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
+
+  it("should create action with type SCREENER_SEARCH and the payload should be same as the api response when the response is 200", () => {
+    const responseOfApi = [{}, {}, {}];
+    let dividend_value1 = 1,
+      dividend_value2 = 2,
+      market_cap_value1 = 1,
+      market_cap_value2 = 2,
+      share_price1 = 1,
+      share_price2 = 2,
+      price_to_equity_ratio1 = 1,
+      price_to_equity_ratio2 = 2,
+      debt_to_equity_ratio1 = 1,
+      debt_to_equity_ratio2 = 2;
+    moxios.stubRequest(
+      url + "screener/screener",
+      dividend_value1,
+      dividend_value2,
+      market_cap_value1,
+      market_cap_value2,
+      share_price1,
+      share_price2,
+      price_to_equity_ratio1,
+      price_to_equity_ratio2,
+      debt_to_equity_ratio1,
+      debt_to_equity_ratio2,
+      {
+        status: 200,
+        response: { data: responseOfApi }
+      }
+    );
+    const store = mockStore({});
+    const expectedActions = [
+      {
+        type: SCREENER_SEARCH,
+        payload: responseOfApi
+      }
+    ];
+    return store
+      .dispatch(
+        action.getScreenerSearch(
+          dividend_value1,
+          dividend_value2,
+          market_cap_value1,
+          market_cap_value2,
+          share_price1,
+          share_price2,
+          price_to_equity_ratio1,
+          price_to_equity_ratio2,
+          debt_to_equity_ratio1,
+          debt_to_equity_ratio2
+        )
+      )
+      .then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      });
+  });
+  // it("should create action with type SCREENER_SEARCH and the payload should be same as the api response when the response is 400", () => {
+  //   const responseOfApi = [{}, {}, {}];
+  //   let values = "Basic Material";
+  //   moxios.stubRequest(url + "screener/screener", values, {
+  //     status: 400,
+  //     response: { data: responseOfApi }
+  //   });
+  //   const store = mockStore({});
+  //   const expectedActions = [];
+  //   return store.dispatch(action.getScreenerSearch(values)).then(() => {
+  //     expect(store.getActions()).toEqual(expectedActions);
+  //   });
+  // });
 });

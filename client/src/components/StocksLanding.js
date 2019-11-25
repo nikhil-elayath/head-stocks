@@ -135,6 +135,10 @@ export class StocksLanding extends Component {
     nextProps.stocks.length > 0
       ? this.displayCompanies(nextProps.stocks)
       : console.log(0, " Stocks");
+    if (nextProps.industries.length > 0) {
+      this.setState({ industry: nextProps.industries[0] });
+      // this.props.getCompany("industry", nextProps.industries[0]);
+    }
   }
 
   OnSelectSector = e => {
@@ -210,7 +214,7 @@ export class StocksLanding extends Component {
                 value={this.state.industry} //changing the value of industry when selected
                 onChange={this.OnSelectIndustry} //on change perform this function
               >
-                <option name="choice">Select an Industry</option>
+                {/* <option name="choice">Select an Industry</option> */}
                 {this.props.industries.map((industries, index) => (
                   <>
                     <option name="choice" id={"industry" + index}>

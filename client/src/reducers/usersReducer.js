@@ -30,7 +30,7 @@ export default function(state = initialstate, action) {
     case VERIFY_OTP:
       return state;
     case USER_HISTORY:
-      return state;
+      return { ...state, userhistory: action.payload };
     case WALLET:
       return { ...state, users: action.payload };
     case ALL_STOCKS_BOUGHT:

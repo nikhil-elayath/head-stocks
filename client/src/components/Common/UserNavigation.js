@@ -12,12 +12,18 @@ export default class UserProfile extends Component {
   };
 
   render() {
-    var decode = jwt_decode(localStorage.getItem("token"));
+    if (localStorage.getItem("token")) {
+      var decode = jwt_decode(localStorage.getItem("token"));
+    }
     return (
       <div>
         <div id="userNavigationContainer">
           <div id="userNavigation">
-            <h1>Hi {decode.name} !</h1>
+            {localStorage.getItem("token") ? (
+              <h1>Hi {decode.name} !</h1>
+            ) : (
+              <h1>Hi User !</h1>
+            )}
             <img src={wallet} id="wallet" />{" "}
             <span id="walletPrice">
               $

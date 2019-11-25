@@ -2,6 +2,189 @@
 
 exports[`Testing Stocks Component should mount the component 1`] = `
 <div>
+  <div>
+    <h1>
+      dividend 
+    </h1>
+    <div
+      id="stocks-landing-page-slider"
+    >
+      <ComponentWrapper
+        defaultValue={
+          Array [
+            50,
+            80,
+          ]
+        }
+        handleStyle={
+          Array [
+            Object {},
+          ]
+        }
+        max={1000}
+        min={0}
+        onChange={[Function]}
+        tipFormatter={[Function]}
+        tipProps={Object {}}
+      />
+    </div>
+    <p>
+      Value: 
+      50
+    </p>
+    <p>
+      Value: 
+      80
+    </p>
+  </div>
+  <h1>
+    market cap 
+  </h1>
+  <div>
+    <div
+      id="stocks-landing-page-slider"
+    >
+      <ComponentWrapper
+        defaultValue={
+          Array [
+            60,
+            70,
+          ]
+        }
+        handleStyle={
+          Array [
+            Object {},
+          ]
+        }
+        max={1000}
+        min={0}
+        name="slider1"
+        onChange={[Function]}
+        tipFormatter={[Function]}
+        tipProps={Object {}}
+      />
+    </div>
+    <p>
+      Value: 
+      60
+    </p>
+    <p>
+      Value: 
+      70
+    </p>
+  </div>
+  <div>
+    <h1>
+      share price 
+    </h1>
+    <div
+      id="stocks-landing-page-slider"
+    >
+      <ComponentWrapper
+        defaultValue={
+          Array [
+            43,
+            72,
+          ]
+        }
+        handleStyle={
+          Array [
+            Object {},
+          ]
+        }
+        max={1000}
+        min={0}
+        onChange={[Function]}
+        tipFormatter={[Function]}
+        tipProps={Object {}}
+      />
+    </div>
+    <p>
+      Value: 
+      43
+    </p>
+    <p>
+      Value: 
+      72
+    </p>
+  </div>
+  <div>
+    <h1>
+      PRICE TO EQUITY
+    </h1>
+    <div
+      id="stocks-landing-page-slider"
+    >
+      <ComponentWrapper
+        defaultValue={
+          Array [
+            89,
+            44,
+          ]
+        }
+        handleStyle={
+          Array [
+            Object {},
+          ]
+        }
+        max={1000}
+        min={0}
+        onChange={[Function]}
+        tipFormatter={[Function]}
+        tipProps={Object {}}
+      />
+    </div>
+    <p>
+      Value: 
+      89
+    </p>
+    <p>
+      Value: 
+      44
+    </p>
+  </div>
+  <div>
+    <h1>
+      DEBT TO EQUITY RATIO
+    </h1>
+    <div
+      id="stocks-landing-page-slider"
+    >
+      <ComponentWrapper
+        defaultValue={
+          Array [
+            45,
+            34,
+          ]
+        }
+        handleStyle={
+          Array [
+            Object {},
+          ]
+        }
+        max={1000}
+        min={0}
+        onChange={[Function]}
+        tipFormatter={[Function]}
+        tipProps={Object {}}
+      />
+    </div>
+    <p>
+      Value: 
+      45
+    </p>
+    <p>
+      Value: 
+      34
+    </p>
+  </div>
+  <button
+    onClick={[Function]}
+    type="submit"
+  >
+    Search
+     
+  </button>
   <div
     id="stocks_main_container"
   >
@@ -37,11 +220,6 @@ exports[`Testing Stocks Component should mount the component 1`] = `
         type="text"
         value="Building Materials"
       >
-        <option
-          name="choice"
-        >
-          Select an Industry
-        </option>
         <option
           id="industry0"
           name="choice"

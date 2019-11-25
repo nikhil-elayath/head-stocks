@@ -25,7 +25,7 @@ exports[`Testing Company Detail Secondary navbar Component should mount the comp
           >
             <p />
             <p
-              id="indexClose"
+              id="CompanyDetailsIndexClose"
             >
               aapl
               <sub
@@ -37,7 +37,7 @@ exports[`Testing Company Detail Secondary navbar Component should mount the comp
             <p
               id="last_date"
             >
-              CLOSE (
+              CLOSED PRICE (
               Jan 01, 123456
               )
             </p>
@@ -57,10 +57,9 @@ exports[`Testing Company Detail Secondary navbar Component should mount the comp
           >
             <span
               id="company-detail-overview-click"
-              onClick={[Function]}
             >
               <li
-                className="options-selected-li"
+                className="options-li"
                 id="comapany-detail-overview-li"
               >
                 Overview
@@ -80,7 +79,6 @@ exports[`Testing Company Detail Secondary navbar Component should mount the comp
             >
               <span
                 id="company-financial-click"
-                onClick={[Function]}
               >
                 <li
                   className="options-li"
@@ -92,29 +90,12 @@ exports[`Testing Company Detail Secondary navbar Component should mount the comp
             </Link>
           </div>
           <div
-            id="company-detail-analysis"
-          >
-            <Link
-              className="company-link"
-              to={
-                Object {
-                  "pathname": "/analysis/undefined",
-                }
+            style={
+              Object {
+                "display": "none",
               }
-            >
-              <span
-                id="company-analysis-click"
-                onClick={[Function]}
-              >
-                <li
-                  className="options-li"
-                  id="company-detail-analysis-li"
-                >
-                  Analysis
-                </li>
-              </span>
-            </Link>
-          </div>
+            }
+          />
         </ul>
         <div
           id="secondary-nav-values"
@@ -169,27 +150,12 @@ exports[`Testing Company Detail Secondary navbar Component should mount the comp
           id="bla"
         >
           <div
-            id="secondary-navbar-bla"
-          >
-            <button
-              id="downloadButton"
-              onClick={[Function]}
-            >
-              <i
-                class="fa fa-download"
-              />
-               Download
-            </button>
-            <button
-              id="downloadButton"
-              onClick={[Function]}
-            >
-              <i
-                class="fa fa-download"
-              />
-               Downloadohlc
-            </button>
-          </div>
+            style={
+              Object {
+                "display": "none",
+              }
+            }
+          />
         </div>
       </div>
     </div>

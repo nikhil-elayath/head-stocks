@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing User  Secondary navbar Component should mount the component 1`] = `
+<div>
+  <div
+    id="userNavigationContainer"
+  >
+    <div
+      id="userNavigation"
+    >
+      <h1>
+        Hi User !
+      </h1>
+      <img
+        id="wallet"
+        src="wallet.png"
+      />
+       
+      <span
+        id="walletPrice"
+      >
+        $
+      </span>
+      <div
+        id="userNavigationButtonContainer"
+      >
+        <Link
+          to="/profile"
+        >
+          <button
+            id="buyStocks-active"
+            onClick={[Function]}
+          >
+            Buy Stocks
+          </button>
+        </Link>
+        <Link
+          to="/buyStocks"
+        >
+          <button
+            id="myStocks"
+            onClick={[Function]}
+          >
+            My Stocks
+          </button>
+        </Link>
+        <Link
+          to="/userhistory"
+        >
+          <button
+            id="historyStocks"
+            onClick={[Function]}
+          >
+            History
+          </button>
+        </Link>
+      </div>
+    </div>
+  </div>
+</div>
+`;

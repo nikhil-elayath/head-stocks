@@ -355,3 +355,117 @@ describe("Testing Users API", () => {
       });
   });
 });
+
+it("Should buy the stocksy if the email exists", done => {
+  let data = {
+    email: "admin@gmail.com",
+    ticker_name: "AA",
+    current_price: 132.5,
+    buying_quantity: 5,
+    price: 1000
+  };
+  let payload = JSON.stringify(data);
+  request(app)
+    .put("/api/users/buy")
+    .send(payload)
+    .set("Content-type", "application/json")
+    .then(response => {
+      expect(response.statusCode).toBe(200);
+      expect(response.body).toEqual(expect.any(Object));
+      expect(response.body.message).toBe("buy stock Successfully");
+      done();
+    });
+});
+
+it("Should sell the stocksy if the email exists", done => {
+  let data = {
+    email: "admin@gmail.com",
+    ticker_name: "AA",
+    sell_price: 132.5,
+    buying_quantity: 5,
+    price: 1000
+  };
+  let payload = JSON.stringify(data);
+  request(app)
+    .put("/api/users/sell")
+    .send(payload)
+    .set("Content-type", "application/json")
+    .then(response => {
+      expect(response.statusCode).toBe(200);
+      expect(response.body).toEqual(expect.any(Object));
+      expect(response.body.message).toBe("Company Added Successfully");
+      done();
+    });
+});
+
+it("Should return hstory of usr if the email exists", done => {
+  let email = "admin@gmail.com";
+  request(app)
+    .get("/api/users/history/" + email)
+    .then(response => {
+      expect(response.statusCode).toBe(200);
+      expect(response.body).toEqual(expect.any(Object));
+      expect(response.body.message).toBe("Retrieved user Successfully");
+      done();
+    });
+});
+
+it("Should return current wallet amount if the email exists", done => {
+  let data = { email: "admin@gmail.com" };
+  let payload = JSON.stringify(data);
+  request(app)
+    .post("/api/users/wallet")
+    .send(payload)
+    .set("Content-type", "application/json")
+    .then(response => {
+      expect(response.statusCode).toBe(200);
+      expect(response.body).toEqual(expect.any(Object));
+      expect(response.body.message).toBe("Wallet Received  Successfully");
+      done();
+    });
+});
+
+it("Should not  return wallet amount by user if the email not exists", done => {
+  let data = { email: "admi@gmail.com" };
+  let payload = JSON.stringify(data);
+  request(app)
+    .post("/api/users/wallet")
+    .send(payload)
+    .set("Content-type", "application/json")
+    .then(response => {
+      expect(response.statusCode).toBe(400);
+      expect(response.body).toEqual(expect.any(Object));
+      expect(response.body.message).toBe("Invalid Credentials");
+      done();
+    });
+});
+
+it("Should return all stocks Bought by user if the email exists", done => {
+  let data = { email: "admin@gmail.com" };
+  let payload = JSON.stringify(data);
+  request(app)
+    .post("/api/users/mystocks")
+    .send(payload)
+    .set("Content-type", "application/json")
+    .then(response => {
+      expect(response.statusCode).toBe(200);
+      expect(response.body).toEqual(expect.any(Object));
+      expect(response.body.message).toBe("Stocks Received  Successfully");
+      done();
+    });
+});
+
+it("Should not  return all stocks Bought by user if the email not exists", done => {
+  let data = { email: "admi@gmail.com" };
+  let payload = JSON.stringify(data);
+  request(app)
+    .post("/api/users/mystocks")
+    .send(payload)
+    .set("Content-type", "application/json")
+    .then(response => {
+      expect(response.statusCode).toBe(400);
+      expect(response.body).toEqual(expect.any(Object));
+      expect(response.body.message).toBe("Invalid Credentials");
+      done();
+    });
+});
