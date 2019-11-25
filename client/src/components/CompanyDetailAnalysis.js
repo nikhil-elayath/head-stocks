@@ -18,6 +18,7 @@ import gauge from "./Common/gauge.png";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 import Table from "./Common/TickerTable";
+import { Link } from "react-router-dom";
 
 export class CompanyDetailAnalysis extends Component {
   componentDidMount() {
@@ -49,7 +50,13 @@ export class CompanyDetailAnalysis extends Component {
       <div>
         {/* checking whether the data has been loaded into the reducer and if it is then getSimilarTabl which will have a parameter sector from the data loaded in the reducer  */}
         <CompanyDetailSecondaryNavbar selected="analysis" />
-        <div id="analysis_main_container">
+        <div
+          id={
+            localStorage.getItem("token")
+              ? "analysis_main_container"
+              : "analysis_main_container_blur"
+          }
+        >
           <div id="company_analaysis_table">
             {this.props.similar_company["0"] ? (
               <>
@@ -191,6 +198,12 @@ export class CompanyDetailAnalysis extends Component {
               <Loader type={Loader} color="#2c3e50" height="100" width="400" />
             </div>
           )}
+        </div>
+        <div id={localStorage.getItem("token") ? "bg-no-text" : "bg-text"}>
+          <p>Please login to enable this feature</p>
+          <Link to="/login">
+            <button id="button_for_blur">Login</button>
+          </Link>
         </div>
       </div>
     );

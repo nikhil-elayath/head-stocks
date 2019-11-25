@@ -368,7 +368,11 @@ export class StocksLanding extends Component {
                     <p id="advance-filter-value2">100</p>
                   </div>
                 </div>
-                <button type="submit" onClick={this.onSearchClick}>
+                <button
+                  id="advance-filter-button"
+                  type="submit"
+                  onClick={this.onSearchClick}
+                >
                   Filter{" "}
                 </button>
               </div>

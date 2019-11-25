@@ -20,7 +20,7 @@
 #homeleftsidecontainer {
   /* grid-area: news; */
   grid-column: 1/2;
-  height: 600px;
+  height: 540px;
   border-radius: 4px;
   margin: 10px 0px 0px 0px;
   overflow-x: hidden;
@@ -45,7 +45,7 @@
 
 #homemiddlecontainer {
   grid-column: 2/4;
-  height: 600px;
+  height: 540px;
   padding: 0px 20px 20px 20px;
   overflow-x: hidden;
   background-color: #fff;
@@ -55,7 +55,7 @@
 
 #homerightsidecontainer {
   grid-column: 4/-1;
-  height: 600px;
+  height: 540px;
   overflow-x: hidden;
   font-size: 16px;
   background-color: #fff;
