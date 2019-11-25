@@ -10,18 +10,16 @@ import jwt_decode from "jwt-decode";
 export class UserHistory extends Component {
   componentDidMount() {
     var decode = jwt_decode(localStorage.getItem("token"));
-
     this.props.userHistory(decode.email);
   }
   render() {
-    console.log(this.props.userhistory[0]);
     return (
       <div>
         <div id="userHistoryContainer">
           <UserNavigation />
           {/*side bar for user detail*/}
           <div id="userhistory">
-            {this.props.userhistory != 0 ? (
+            {this.props.userhistory ? (
               <table id="userhistory_table">
                 <thead id="userhistory_tableHeader">
                   <th>Stocks</th>

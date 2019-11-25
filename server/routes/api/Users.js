@@ -245,15 +245,6 @@ router.put("/sell", async (req, res, next) => {
   }
 });
 
-router.get("/allStocks", async (req, res) => {
-  const result = await User.find({}, { company: 1, _id: 0 });
-  res.status(200).json({
-    status: 200,
-    data: result,
-    message: "Retrieved history of user Successfully"
-  });
-});
-
 router.get("/history/:email", async (req, res, next) => {
   try {
     let email = req.params.email;
@@ -262,19 +253,11 @@ router.get("/history/:email", async (req, res, next) => {
       { email: req.params.email },
       { company: 1, _id: 0 }
     );
-    if (result.length == 0) {
-      res.status(400).json({
-        status: 400,
-        data: result,
-        message: "No user found"
-      });
-    } else {
-      res.status(200).json({
-        status: 200,
-        data: result,
-        message: "Retrieved user Successfully"
-      });
-    }
+    res.status(200).json({
+      status: 200,
+      data: result,
+      message: "Retrieved user Successfully"
+    });
   } catch (err) {
     next(err);
   }

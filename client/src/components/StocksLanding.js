@@ -8,7 +8,6 @@ import Slider from "rc-slider";
 // import RadarSlider from "../charts/graph";
 
 import {
-  getSectorCompany,
   getCompany,
   getSectors,
   getIndustries,
@@ -49,7 +48,7 @@ export class StocksLanding extends Component {
     pageStocks: [],
     loading: false,
     sector: "Basic Materials",
-    industry: "Select an Industry",
+    industry: "Building Materials",
     gainersClick: true,
 
     //[Nikhil] default slider value
@@ -117,7 +116,8 @@ export class StocksLanding extends Component {
 
     document.body.appendChild(script);
 
-    this.props.getSectorCompany(this.state.sector); //getting all the companies based on a sector selected
+    // this.props.getSectorCompany(this.state.sector); //getting all the companies based on a sector selected
+    this.props.getCompany("sector", this.state.sector);
     this.props.getSectors(); //getting all the sectors
     this.props.getIndustries(this.state.sector); //getting all the industries based on a sector selected
     this.props.getGainersLosers(this.state.sector); //getting all the gainers and losers based on a sector selected
@@ -127,13 +127,17 @@ export class StocksLanding extends Component {
     nextProps.stocks.length > 0
       ? this.displayCompanies(nextProps.stocks)
       : console.log(0, " Stocks");
+    if (nextProps.industries.length > 0) {
+      this.setState({ industry: nextProps.industries[0] });
+      // this.props.getCompany("industry", nextProps.industries[0]);
+    }
   }
 
   OnSelectSector = e => {
     this.setState({
       sector: e.target.value //setting state for the sector
     });
-    this.props.getSectorCompany(e.target.value); //getting all the companies based on a sector selected
+    this.props.getCompany("sector", e.target.value);
     this.props.getIndustries(e.target.value); //getting all the industries based on a sector selected
     this.props.getGainersLosers(e.target.value); //getting all the gainers and losers based on a sector selected
   };
@@ -142,7 +146,7 @@ export class StocksLanding extends Component {
     this.setState({
       industry: e.target.value //setting state for the industry
     });
-    this.props.getCompany(e.target.value); //getting all the companies based on an industry selected
+    this.props.getCompany("industry", e.target.value); //getting all the companies based on an industry selected
   };
 
   displayCompanies = Stocks => {
@@ -315,7 +319,7 @@ export class StocksLanding extends Component {
                 value={this.state.industry} //changing the value of industry when selected
                 onChange={this.OnSelectIndustry} //on change perform this function
               >
-                <option name="choice">Select an Industry</option>
+                {/* <option name="choice">Select an Industry</option> */}
                 {this.props.industries.map((industries, index) => (
                   <>
                     <option name="choice" id={"industry" + index}>
@@ -492,7 +496,6 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, {
-  getSectorCompany,
   getCompany,
   getSectors,
   getIndustries,

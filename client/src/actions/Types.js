@@ -14,7 +14,6 @@ export const WALLET = "WALLET";
 export const ALL_STOCKS_BOUGHT = "ALL_STOCKS_BOUGHT";
 
 //Aditya
-export const GET_COMPANY_BY_SECTOR = "GET_COMPANY_BY_SECTOR";
 export const GET_ALL_COMPANY = "GET_ALL_COMPANY";
 export const GET_ALL_SECTORS = "GET_ALL_SECTORS";
 export const GET_ALL_INDUSTRIES = "GET_ALL_INDUSTRIES";

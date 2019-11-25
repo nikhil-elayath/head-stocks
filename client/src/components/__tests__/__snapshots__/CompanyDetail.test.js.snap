@@ -2,21 +2,15 @@
 
 exports[`Testing Company Detail Component should mount the component 1`] = `
 <div>
-  <Connect(CompanyDetailSecondaryNavbar) />
+  <Connect(CompanyDetailSecondaryNavbar)
+    selected="overview"
+  />
   <div
     id="company-detail-grid-container"
   >
     <div
       id="company-detail-profile"
     >
-      <h3>
-        Market Cap :
-        <span
-          id="market_cap"
-        >
-          123456
-        </span>
-      </h3>
       <h3>
         Sector : 
         <span
@@ -25,6 +19,7 @@ exports[`Testing Company Detail Component should mount the component 1`] = `
           technology
         </span>
       </h3>
+       
       <h3>
         Industry : 
         <span
