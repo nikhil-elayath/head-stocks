@@ -53,7 +53,7 @@ export class StocksLanding extends Component {
     gainersClick: true,
 
     //[Nikhil] default slider value
-    dividend_value1: 50,
+    dividend_value1: -50,
     dividend_value2: 80,
     market_cap_value1: 60,
     market_cap_value2: 70,
@@ -226,14 +226,16 @@ export class StocksLanding extends Component {
               <input type="checkbox" id="toggle-1" />
 
               <div id="stocks-advance-filter-grid-main-container">
-                <div>
-                  <h1>dividend </h1>
+                <div id="advance-fliter-dividend">
+                  <div id="advance-filter-title">
+                    <p id="advance-filter-dividend-p">Dividend </p>
+                  </div>
                   {/* FOR DIVIDEND  */}
                   <div id="stocks-landing-page-slider">
                     {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
                     <Range
                       // SETTING THE MINIMUM VALUE
-                      min={0}
+                      min={-50}
                       // SETTING THE MAXIMUM VALUE
                       max={1000}
                       //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
@@ -245,12 +247,17 @@ export class StocksLanding extends Component {
                       onChange={this.onSliderChange}
                     />
                   </div>
-                  <p>Value: {this.state.dividend_value1}</p>
-                  <p>Value: {this.state.dividend_value2}</p>
+                  <div id="advance-filter-debt-to-equity-ratio-value">
+                    <p id="advance-filter-value">-50</p>
+                    <p id="advance-filter-value2">1000</p>
+                  </div>
                 </div>
                 {/* FOR MARKET CAP  */}
-                <h1>market cap </h1>
-                <div>
+
+                <div id="advance-filter-market-cap">
+                  <div id="advance-filter-title">
+                    <p id="advance-filter-market-cap-p">market cap</p>
+                  </div>
                   <div id="stocks-landing-page-slider">
                     {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
                     <Range
@@ -268,13 +275,17 @@ export class StocksLanding extends Component {
                       name={"slider1"}
                     />
                   </div>
-                  <p>Value: {this.state.market_cap_value1}</p>
-                  <p>Value: {this.state.market_cap_value2}</p>
+                  <div id="advance-filter-debt-to-equity-ratio-value">
+                    <p id="advance-filter-value">0</p>
+                    <p id="advance-filter-value2">100</p>
+                  </div>
                 </div>
                 {/* FOR SHARE Price  */}
-                <div>
-                  <h1>share price </h1>
-                  <div id="stocks-landing-page-slider">
+                <div id="advance-filter-share-price">
+                  <div id="advance-filter-title">
+                    <p id="advance-filter-share-price-p">share price </p>
+                  </div>
+                  <div id="stocks-landing-page-slide">
                     {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
                     <Range
                       // SETTING THE MINIMUM VALUE
@@ -290,13 +301,19 @@ export class StocksLanding extends Component {
                       onChange={this.onSliderChange3}
                     />
                   </div>
-                  <p>Value: {this.state.share_price1}</p>
-                  <p>Value: {this.state.share_price2}</p>
+                  <div id="advance-filter-debt-to-equity-ratio-value">
+                    <p id="advance-filter-value">0</p>
+                    <p id="advance-filter-value2">100</p>
+                  </div>
                 </div>
 
                 {/* for PE RATIO */}
-                <div>
-                  <h1>PRICE TO EQUITY</h1>
+                <div id="advance-filter-price-to-equity">
+                  <div id="advance-filter-title">
+                    <p id="advance-filter-price-to-equity-p">
+                      PRICE TO EQUITY{" "}
+                    </p>
+                  </div>
                   <div id="stocks-landing-page-slider">
                     {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
                     <Range
@@ -313,13 +330,19 @@ export class StocksLanding extends Component {
                       onChange={this.onSliderChange4}
                     />
                   </div>
-                  <p>Value: {this.state.price_to_equity_ratio1}</p>
-                  <p>Value: {this.state.price_to_equity_ratio2}</p>
+                  <div id="advance-filter-debt-to-equity-ratio-value">
+                    <p id="advance-filter-value">0</p>
+                    <p id="advance-filter-value2">100</p>
+                  </div>
                 </div>
 
                 {/* FOR DEBT TO EQUITY RATIO  */}
-                <div>
-                  <h1>DEBT TO EQUITY RATIO</h1>
+                <div id="advance-filter-debt-to-equity">
+                  <div id="advance-filter-title">
+                    <p id="advance-filter-debt-to-equity-p">
+                      DEBT TO EQUITY RATIO
+                    </p>
+                  </div>
                   <div id="stocks-landing-page-slider">
                     {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
                     <Range
@@ -336,8 +359,10 @@ export class StocksLanding extends Component {
                       onChange={this.onSliderChange5}
                     />
                   </div>
-                  <p>Value: {this.state.debt_to_equity_ratio1}</p>
-                  <p>Value: {this.state.debt_to_equity_ratio2}</p>
+                  <div id="advance-filter-debt-to-equity-ratio-value">
+                    <p id="advance-filter-value">0</p>
+                    <p id="advance-filter-value2">100</p>
+                  </div>
                 </div>
                 <button type="submit" onClick={this.onSearchClick}>
                   Filter{" "}
