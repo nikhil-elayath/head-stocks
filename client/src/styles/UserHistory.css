@@ -30,6 +30,7 @@
   height: auto;
   background-color: #fff;
   border-collapse: collapse;
+  box-shadow: 4px 4px 6px #707070;
   border-radius: 4px;
   margin: 30px auto;
 }
