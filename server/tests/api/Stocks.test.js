@@ -55,19 +55,6 @@ describe("Testing Stocks API", () => {
       });
   });
 
-  it("GET GAINERS AND LOSERS should return a status code of 200,the body should be an object,a message in the body,the data should be an object", done => {
-    let sector = "Basic Materials";
-    request(app)
-      .get("/api/sector/gainers-and-losers/" + sector)
-      .then(res => {
-        expect(res.status).toBe(200);
-        expect(res.body).toEqual(expect.any(Object));
-        expect(res.body.data).toEqual(expect.any(Object));
-        expect(res.body.message).toBe("Retrieved name of all indexes");
-        done();
-      });
-  });
-
   it("GET ALL INDUSTRIES should return a status code of 400 when sector is wrong,the body should be an object,a message in the body,the data should be an object", done => {
     let sector = "Basic";
     request(app)
@@ -77,6 +64,19 @@ describe("Testing Stocks API", () => {
         expect(res.body).toEqual(expect.any(Object));
         expect(res.body.data).toEqual(expect.any(Object));
         expect(res.body.message).toBe("No Industry Found");
+        done();
+      });
+  });
+
+  it("GET GAINERS AND LOSERS should return a status code of 200,the body should be an object,a message in the body,the data should be an object", done => {
+    let sector = "Basic Materials";
+    request(app)
+      .get("/api/sector/gainers-and-losers/" + sector)
+      .then(res => {
+        expect(res.status).toBe(200);
+        expect(res.body).toEqual(expect.any(Object));
+        expect(res.body.data).toEqual(expect.any(Object));
+        expect(res.body.message).toBe("Retrieved name of all indexes");
         done();
       });
   });
