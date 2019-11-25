@@ -6,7 +6,7 @@ describe("Testing Stocks API", () => {
     let filter = "sector";
     let type = "Technology";
     request(app)
-      .get("/api/sector/allcompanies/" + filter + "/" + type)
+      .post("/api/sector/allcompanies/" + filter + "/" + type)
       .then(res => {
         expect(res.status).toBe(200);
         expect(res.body).toEqual(expect.any(Object));
@@ -18,9 +18,9 @@ describe("Testing Stocks API", () => {
 
   it("GET ALL COMPANY should return a status code of 400 when the industry given is wrong,the body should be an object,a message in the body,the data should be an object", done => {
     let filter = "industry";
-    let type = "Building Materials";
+    let type = "Materials";
     request(app)
-      .get("/api/sector/allcompanies/" + filter + "/" + type)
+      .post("/api/sector/allcompanies/" + filter + "/" + type)
       .then(res => {
         expect(res.status).toBe(400);
         expect(res.body).toEqual(expect.any(Object));
@@ -81,8 +81,8 @@ describe("Testing Stocks API", () => {
       });
   });
 
-  it("GET GAINERS AND LOSERS should return a status code of 200 when sector is wrong,the body should be an object,a message in the body,the data should be an object", done => {
-    let sector = "Basic";
+  it("GET GAINERS AND LOSERS should return a status code of 400,the body should be an object,a message in the body,the data should be an object", done => {
+    let sector = "Basic Materi";
     request(app)
       .get("/api/sector/gainers-and-losers/" + sector)
       .then(res => {

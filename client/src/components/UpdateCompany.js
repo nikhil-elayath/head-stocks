@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "../styles/Admin.css";
 
-import { updateCompany } from "../actions/Navbar";
+import { updateCompany } from "../actions/UpdateCompany";
 import SampleTable from "./Common/SampleData.png";
 
 export class UpdateCompany extends Component {
@@ -29,7 +29,7 @@ export class UpdateCompany extends Component {
   render() {
     // console.log(this.props);
     return (
-      <div>
+      <div id="updateCompanyMainDiv">
         <a className="admin_close" href="#">
           &times;
         </a>
@@ -37,7 +37,7 @@ export class UpdateCompany extends Component {
           <p></p>
         ) : (
           <>
-            <p>Select a File</p>
+            <p id="updateCompanyMainDivText1">Select a File</p>
             <div id="updateCompany_tooltip_div">
               <i class="fa fa-info-circle" />
               <span id="updateCompany_tooltip_text">
