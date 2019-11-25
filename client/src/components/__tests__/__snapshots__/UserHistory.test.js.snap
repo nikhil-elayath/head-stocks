@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing User History Component should mount the component 1`] = `
+<div>
+  <div
+    id="userHistoryContainer"
+  >
+    <UserProfile />
+    <div
+      id="userhistory"
+    >
+      <table
+        id="userhistory_table"
+      >
+        <thead
+          id="userhistory_tableHeader"
+        >
+          <th>
+            Stocks
+          </th>
+          <th>
+            Price
+          </th>
+          <th>
+            Buy/Sell
+          </th>
+          <th>
+            Quantity
+          </th>
+          <th>
+            Date
+          </th>
+        </thead>
+        <tr>
+          <td
+            id="tickerName0"
+          >
+            AAPL
+          </td>
+          <td
+            id="tickerPrice0"
+          >
+            201.55
+          </td>
+          <td>
+            Bought
+          </td>
+          <td
+            id="tickerQty0"
+          >
+            7
+          </td>
+          <td
+            id="tickerDate0"
+          >
+            Nov 22, 2019
+          </td>
+        </tr>
+        <tr>
+          <td
+            id="tickerName1"
+          >
+            MSFT
+          </td>
+          <td
+            id="tickerPrice1"
+          >
+            135.68
+          </td>
+          <td>
+            Bought
+          </td>
+          <td
+            id="tickerQty1"
+          >
+            6
+          </td>
+          <td
+            id="tickerDate1"
+          >
+            Nov 22, 2019
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+`;

@@ -9,10 +9,13 @@ import jwt_decode from "jwt-decode";
 
 export class UserHistory extends Component {
   componentDidMount() {
-    var decode = jwt_decode(localStorage.getItem("token"));
-    this.props.userHistory(decode.email);
+    if (localStorage.getItem("token")) {
+      var decode = jwt_decode(localStorage.getItem("token"));
+      this.props.userHistory(decode.email);
+    }
   }
   render() {
+    console.log(this.props.userhistory);
     return (
       <div>
         <div id="userHistoryContainer">
@@ -30,13 +33,17 @@ export class UserHistory extends Component {
                 </thead>
                 {this.props.userhistory.map(hist => (
                   <>
-                    {hist.company.map(stocks => (
+                    {hist.company.map((stocks, index) => (
                       <tr>
-                        <td>{stocks.ticker_name}</td>
-                        <td>{stocks.current_price}</td>
+                        <td id={"tickerName" + index}>{stocks.ticker_name}</td>
+                        <td id={"tickerPrice" + index}>
+                          {stocks.current_price}
+                        </td>
                         {stocks.buy == true ? <td>Bought</td> : <td>Sold</td>}
-                        <td>{stocks.buying_quantity}</td>
-                        <td>
+                        <td id={"tickerQty" + index}>
+                          {stocks.buying_quantity}
+                        </td>
+                        <td id={"tickerDate" + index}>
                           {new Date(stocks.buy_date).toLocaleDateString(
                             "en-In",
                             {

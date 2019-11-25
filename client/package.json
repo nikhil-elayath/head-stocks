@@ -69,6 +69,7 @@
     "sass-loader": "7.2.0",
     "save": "^2.4.0",
     "semver": "6.3.0",
+    "stompjs": "^2.3.3",
     "style-loader": "1.0.0",
     "terser-webpack-plugin": "1.4.1",
     "ts-pnp": "1.1.4",

@@ -42,8 +42,10 @@ export class UserProfile extends Component {
   };
 
   render() {
-    console.log(this.props.users);
-    var decode = jwt_decode(localStorage.getItem("token"));
+    if (localStorage.getItem("token")) {
+      var decode = jwt_decode(localStorage.getItem("token"));
+    }
+    console.log(this.props.results);
     return (
       <div>
         <div id="userProfileContainer">
@@ -69,6 +71,7 @@ export class UserProfile extends Component {
                   this.props.results.map((stocks, index) => (
                     <div id="search_map">
                       <div
+                        id={"tickerName" + index}
                         style={{
                           fontSize: "18px",
                           paddingTop: "0px ",
@@ -76,10 +79,10 @@ export class UserProfile extends Component {
                           justifyContent: "center"
                         }}
                       >
-                        <b> {stocks.ticker_name}</b>
+                        <b>{stocks.ticker_name}</b>
                       </div>
                       <div>
-                        <p>
+                        <p id={"tickerPrice" + index}>
                           <b>${stocks.price}</b>
                         </p>
                         <p style={{ color: "#707070" }}>Current Price</p>

@@ -9,6 +9,7 @@ import UserBuyStocks from "./components/UserBuyStocks";
 // Piyush
 import home from "./components/Home";
 import UserHistory from "./components/UserHistory";
+import Kafka from "./components/Kafka";
 // Harshal
 import NavbarDefault from "./components/NavbarDefault";
 // import UpdateCompany from "./components/UpdateCompany";
@@ -28,6 +29,8 @@ function App() {
   return (
     <Router>
       <div>
+        {/*piyush */}
+        <Kafka />
         {/* Harshal */}
         <NavbarDefault />
         {/* <Route exact path="/updatecompany" component={UpdateCompany} /> */}

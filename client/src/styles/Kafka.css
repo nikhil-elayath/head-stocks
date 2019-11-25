@@ -1,0 +1,44 @@
+#kafkamainContainer {
+  width: 100%;
+  display: grid;
+  color: #fff;
+  padding: 10px 0px;
+  background-color: #33485d;
+  border: none;
+  grid-template-columns: repeat(6, 1fr);
+  font-family: Karla;
+  text-align: center;
+  overflow-x: scroll;
+}
+
+#change-ve {
+  color: #ff4d4d;
+}
+
+#changepositive {
+  color: #27ae60;
+}
+
+#kafka {
+  padding: 0px 10px;
+}
+
+#kafka_index_price {
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 430px) {
+  #kafkamainContainer {
+    width: 100%;
+    display: grid;
+    color: #fff;
+    padding: 10px 0px;
+    background-color: #33485d;
+    border: none;
+    grid-template-columns: repeat(6, 1fr);
+    font-family: Karla;
+    text-align: center;
+    font-size: 14px;
+  }
+}

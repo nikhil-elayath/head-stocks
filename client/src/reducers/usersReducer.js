@@ -14,7 +14,8 @@ import {
 const initialstate = {
   users: [],
   error: "",
-  userhistory: []
+  userhistory: [],
+  wallet: []
 };
 
 export default function(state = initialstate, action) {
@@ -32,7 +33,7 @@ export default function(state = initialstate, action) {
     case USER_HISTORY:
       return { ...state, userhistory: action.payload };
     case WALLET:
-      return { ...state, users: action.payload };
+      return { ...state, wallet: action.payload };
     case ALL_STOCKS_BOUGHT:
       return { ...state, users: action.payload };
     case BUY_STOCKS:
