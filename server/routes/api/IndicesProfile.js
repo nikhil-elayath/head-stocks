@@ -9,10 +9,11 @@ router.get("/singleindex/:id", async (req, res, next) => {
     let id = req.params.id;
     let result = await stocksData.find({ ticker_id: +id });
     let change = [];
+    var flag;
     result.forEach(function(elem) {
       let name = {};
       let result = Object.values(elem._doc.ticker_dates);
-      last_date_value = result.slice(-1)[0];
+      var last_date_value = result.slice(-1)[0];
       let ticker_name = elem._doc.ticker_name;
       let ticker_id = elem._doc.ticker_id;
       let closing = last_date_value.closing.toFixed(2);

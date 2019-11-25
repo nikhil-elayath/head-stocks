@@ -25,9 +25,9 @@ router.post("/allcompanies/:filter/:type", async (req, res, next) => {
       var ticker_id = elem._doc.ticker_id;
       var ticker_name = elem._doc.ticker_name;
       var ticker_logo = elem._doc.ticker_logo;
-      last_date = ticker_dates.slice(-1)[0];
-      last_date_shareprice = last_date["Share Price"];
-      Market_cap = last_date["Market Capitalisation"];
+      var last_date = ticker_dates.slice(-1)[0];
+      var last_date_shareprice = last_date["Share Price"];
+      var Market_cap = last_date["Market Capitalisation"];
       name["ticker_id"] = ticker_id;
       name["ticker_name"] = ticker_name;
       name["ticker_logo"] = ticker_logo;
@@ -76,30 +76,31 @@ router.get("/gainers-and-losers/:sector", async (req, res) => {
       { ticker_id: 1, ticker_name: 1, ticker_dates: 1 }
     );
     var gainers = [];
+    var flag;
     tickerDetails.forEach(function(elem) {
       let name = { tickerValues: {} };
 
       var ticker_dates = elem._doc.ticker_dates;
       var ticker_id = elem._doc.ticker_id;
-      last_date = ticker_dates.slice(-1)[0];
-      var second_last_date = ticker_dates.slice(-2)[0];
+      var last_date = ticker_dates.slice(-1)[0];
       var i = -1;
 
       while (last_date["Share Price"] == undefined) {
         last_date = ticker_dates.slice(i)[0];
         i--;
       }
-      last_date_shareprice = last_date["Share Price"];
-      Market_cap = last_date["Market Capitalisation"];
+      var last_date_shareprice = last_date["Share Price"];
+      var Market_cap = last_date["Market Capitalisation"];
 
-      second_last_date = ticker_dates.slice(-2)[0];
+      var second_last_date = ticker_dates.slice(-2)[0];
       var second_last_date_shareprice = second_last_date["Share Price"];
       var j = -2;
       while (last_date["Share Price"] == undefined) {
         last_date = ticker_dates.slice(j)[0];
         j--;
       }
-      change_shareprice = last_date_shareprice - second_last_date_shareprice;
+      var change_shareprice =
+        last_date_shareprice - second_last_date_shareprice;
       name.tickerValues["change_percent"] = (
         (change_shareprice / last_date_shareprice) *
         100
@@ -135,7 +136,8 @@ router.get("/gainers-and-losers/:sector", async (req, res) => {
     });
     var losers = sorted1;
     var reverse = [];
-    for (i = losers.length - 1; i > losers.length - 11; i--) {
+
+    for (var i = losers.length - 1; i > losers.length - 11; i--) {
       reverse.push(losers[i]);
     }
     let finalData = {};

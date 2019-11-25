@@ -21,7 +21,6 @@ router.get("/allnews", async (req, res, next) => {
 //geting news details with an id - Piyush kumar
 router.get("/singleNews/:id", async (req, res, next) => {
   try {
-    let id = req.params.id;
     // console.log(id);
     let result = await newsData.find({ new_id: req.params.id });
     if (result.length == 0) {
@@ -49,16 +48,16 @@ router.get("/index", async (req, res, next) => {
       { ticker_name: 1, ticker_dates: 1, ticker_id: 1, _id: 0 }
     );
     let change = [];
+    var flag;
     tickerDetails.forEach(function(elem) {
       let name = { tickerValues: {} };
       let result = Object.values(elem._doc.ticker_dates);
-      last_date_value = result.slice(-1)[0];
+      var last_date_value = result.slice(-1)[0];
       let ticker_name = elem._doc.ticker_name;
       let ticker_id = elem._doc.ticker_id;
       let closing = last_date_value.closing.toFixed(2);
       let opening = last_date_value.opening;
       let percentChange = ((closing - opening) * 100) / opening;
-      let obj = {};
       name.tickerValues["change_percent"] = percentChange.toFixed(2).toString();
       if (name.tickerValues["change_percent"].charAt(0) == "-") {
         flag = true;
