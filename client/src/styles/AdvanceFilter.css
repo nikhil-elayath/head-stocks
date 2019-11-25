@@ -56,6 +56,11 @@ input[type="checkbox"]:checked ~ #stocks-advance-filter-grid-main-container {
   background-color: #ffffff;
 }
 
+#advance-filter-button {
+  width: 80px;
+  height: 30px;
+}
+
 #advance-filter-debt-to-equity {
   grid-area: fifth;
   padding: 10px 60px 10px 60px;
