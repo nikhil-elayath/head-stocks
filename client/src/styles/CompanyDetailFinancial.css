@@ -26,7 +26,10 @@
   height: 500px;
   overflow-y: scroll;
   padding: 5px 15px 25px 15px;
-   text-align: center;
+  text-align: center;
+}
+.financialsYearsOption {
+  margin: 0px 0px 5px 0px;
 }
 
 @media only screen and (min-width: 426px) {
@@ -102,5 +105,20 @@
   .financialsSidebarOptionsP {
     font-size: 13px;
     font-weight: bold;
+  }
+
+  .financialYearsDropdown {
+    float: right;
+    width: 90px;
+    position: relative;
+  }
+  .financialsYearsOption {
+    background-color: #ffffff;
+    color: #39abf7;
+    border: 1.5px solid #39abf7;
+    height: 30px;
+    border-radius: 4px;
+    margin: 50px 30px 0px 0px;
+    position: absolute;
   }
 }
