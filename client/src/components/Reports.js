@@ -5,7 +5,13 @@ export default class Reports extends Component {
   render() {
     return (
       <div className="financialTableContainer">
-        <table className="financialTableData">
+        <table
+          className={
+            this.props.yearValue == "All"
+              ? "financialTableData"
+              : "financialTableData2"
+          }
+        >
           {this.props.headers.map(indicatorName => (
             <tr>
               {indicatorName === "date" ? (
