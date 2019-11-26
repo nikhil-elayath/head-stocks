@@ -53,10 +53,4 @@ describe("Testing home Component", () => {
   it("should check for headline description in news section", () => {
     expect(wrapper.find(".recent-news-title0")).toBeTruthy();
   });
-
-  it("should simulate  News Click", () => {
-    expect(wrapper.find(".recent-news-title0").text()).toBe(
-      "Master Blaster Sachin baby"
-    );
-  });
 });

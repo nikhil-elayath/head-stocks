@@ -48,7 +48,7 @@ exports[`Testing UserbuyStocks Component should mount the component 1`] = `
           </td>
           <td>
              
-            196.99
+            198.03
           </td>
           <td>
             <span
@@ -61,7 +61,7 @@ exports[`Testing UserbuyStocks Component should mount the component 1`] = `
               }
             />
              
-            -2.26
+            -1.75
              
             %
           </td>
@@ -98,7 +98,7 @@ exports[`Testing UserbuyStocks Component should mount the component 1`] = `
                 >
                   <p>
                     Current Price : $
-                    196.99
+                    198.03
                   </p>
                   <p>
                     Quantity :
