@@ -21,7 +21,7 @@
 
 .navbarLoginOptions span {
   float: right;
-  margin-right: 20px;
+  margin-right: 3%;
 }
 
 .navbarLoginOptions span .tabactive {
@@ -32,8 +32,8 @@
 }
 
 .navbarStockOptions span {
-  float: left;
-  margin-left: 34%;
+  float: right;
+  margin-right: 3%;
 }
 .navbarStockOptions span .tabactive {
   border-bottom: 2px solid #39abf7;
@@ -42,8 +42,20 @@
   border-bottom: 2px solid #39abf7;
 }
 
+.navbarVTOptions span {
+  float: right;
+  margin-right: 3%;
+}
+.navbarVTOptions span .tabactive {
+  border-bottom: 2px solid #39abf7;
+}
+.navbarVTOptions span :hover {
+  border-bottom: 2px solid #39abf7;
+}
+
 .navbarSearchBox {
   float: left;
+  margin-left: 17%;
   width: 38%;
   display: block;
   padding: 0px 2% 0px 5%;
@@ -54,7 +66,7 @@
 .navbarSearchBox input {
   border-radius: 5px;
   border: none;
-  width: 90%;
+  width: 70%;
   max-width: 555px;
   height: 25px;
   text-align: center;
@@ -66,7 +78,6 @@
   border: none;
   border-radius: 5px;
   background-color: #ffffff;
-  z-index: 1;
   height: 20px;
   width: 5%;
   position: relative;
@@ -204,13 +215,19 @@
 
   .navbarStockOptions span {
     display: none;
-    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .navbarVTOptions span {
+    display: none;
+    margin-right: 0px;
   }
   .navbarSearchBox {
     float: left;
     display: block;
     padding: 0px 0px;
     width: 100%;
+    margin-left: 0px;
   }
   .navbarSearchBox span {
     display: none;
