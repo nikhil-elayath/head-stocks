@@ -132,7 +132,6 @@ export const buyStocks = stocks => dispatch => {
         type: BUY_STOCKS,
         payload: res.data.data
       });
-      dispatch(getWallet());
     })
     .catch(err => {
       console.log(err);
@@ -148,7 +147,6 @@ export const getWallet = email => dispatch => {
         type: WALLET,
         payload: res.data.data
       });
-      console.log(res.data.data);
     })
     .catch(err => {
       console.log(err);
@@ -172,7 +170,7 @@ export const getAllStocks = email => dispatch => {
 
 export const sellStocks = email => dispatch => {
   return axios
-    .put(url + "/sell", email)
+    .put(url + "sell", email)
     .then(res => {
       dispatch({
         type: SELL_STOCKS,

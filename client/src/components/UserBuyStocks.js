@@ -22,10 +22,6 @@ export class UserBuyStocks extends Component {
     }
   }
 
-  state = {
-    qty: ""
-  };
-
   render() {
     if (localStorage.getItem("token")) {
       var decode = jwt_decode(localStorage.getItem("token"));
