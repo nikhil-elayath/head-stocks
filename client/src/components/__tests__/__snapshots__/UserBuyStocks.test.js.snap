@@ -48,20 +48,20 @@ exports[`Testing UserbuyStocks Component should mount the component 1`] = `
           </td>
           <td>
              
-            204.80
+            197.41
           </td>
           <td>
             <span
-              class="fa fa-caret-up"
+              class="fa fa-caret-down"
               style={
                 Object {
-                  "color": "green",
+                  "color": "red",
                   "fontSize": "18px",
                 }
               }
             />
              
-            1.61
+            -2.05
              
             %
           </td>
@@ -143,20 +143,20 @@ exports[`Testing UserbuyStocks Component should mount the component 1`] = `
           </td>
           <td>
              
-            134.71
+            138.66
           </td>
           <td>
             <span
-              class="fa fa-caret-down"
+              class="fa fa-caret-up"
               style={
                 Object {
-                  "color": "red",
+                  "color": "green",
                   "fontSize": "18px",
                 }
               }
             />
              
-            -0.71
+            2.20
              
             %
           </td>

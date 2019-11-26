@@ -1,8 +1,7 @@
 import {
   GET_INDICES_BYID,
   OHLC_CHART_INDEX,
-  OHLC_INDICES_DATA,
-  DOWNLOAD
+  OHLC_INDICES_DATA
 } from "../actions/Types";
 
 const initialstate = {
@@ -19,8 +18,6 @@ export default function(state = initialstate, action) {
       return { ...state, ohlcChart: action.payload };
     case OHLC_INDICES_DATA:
       return { ...state, ohlcdata: action.payload };
-    case DOWNLOAD:
-      return { ...state };
     default:
       return state;
   }
