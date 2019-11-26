@@ -2,189 +2,6 @@
 
 exports[`Testing Stocks Component should mount the component 1`] = `
 <div>
-  <div>
-    <h1>
-      dividend 
-    </h1>
-    <div
-      id="stocks-landing-page-slider"
-    >
-      <ComponentWrapper
-        defaultValue={
-          Array [
-            50,
-            80,
-          ]
-        }
-        handleStyle={
-          Array [
-            Object {},
-          ]
-        }
-        max={1000}
-        min={0}
-        onChange={[Function]}
-        tipFormatter={[Function]}
-        tipProps={Object {}}
-      />
-    </div>
-    <p>
-      Value: 
-      50
-    </p>
-    <p>
-      Value: 
-      80
-    </p>
-  </div>
-  <h1>
-    market cap 
-  </h1>
-  <div>
-    <div
-      id="stocks-landing-page-slider"
-    >
-      <ComponentWrapper
-        defaultValue={
-          Array [
-            60,
-            70,
-          ]
-        }
-        handleStyle={
-          Array [
-            Object {},
-          ]
-        }
-        max={1000}
-        min={0}
-        name="slider1"
-        onChange={[Function]}
-        tipFormatter={[Function]}
-        tipProps={Object {}}
-      />
-    </div>
-    <p>
-      Value: 
-      60
-    </p>
-    <p>
-      Value: 
-      70
-    </p>
-  </div>
-  <div>
-    <h1>
-      share price 
-    </h1>
-    <div
-      id="stocks-landing-page-slider"
-    >
-      <ComponentWrapper
-        defaultValue={
-          Array [
-            43,
-            72,
-          ]
-        }
-        handleStyle={
-          Array [
-            Object {},
-          ]
-        }
-        max={1000}
-        min={0}
-        onChange={[Function]}
-        tipFormatter={[Function]}
-        tipProps={Object {}}
-      />
-    </div>
-    <p>
-      Value: 
-      43
-    </p>
-    <p>
-      Value: 
-      72
-    </p>
-  </div>
-  <div>
-    <h1>
-      PRICE TO EQUITY
-    </h1>
-    <div
-      id="stocks-landing-page-slider"
-    >
-      <ComponentWrapper
-        defaultValue={
-          Array [
-            89,
-            44,
-          ]
-        }
-        handleStyle={
-          Array [
-            Object {},
-          ]
-        }
-        max={1000}
-        min={0}
-        onChange={[Function]}
-        tipFormatter={[Function]}
-        tipProps={Object {}}
-      />
-    </div>
-    <p>
-      Value: 
-      89
-    </p>
-    <p>
-      Value: 
-      44
-    </p>
-  </div>
-  <div>
-    <h1>
-      DEBT TO EQUITY RATIO
-    </h1>
-    <div
-      id="stocks-landing-page-slider"
-    >
-      <ComponentWrapper
-        defaultValue={
-          Array [
-            45,
-            34,
-          ]
-        }
-        handleStyle={
-          Array [
-            Object {},
-          ]
-        }
-        max={1000}
-        min={0}
-        onChange={[Function]}
-        tipFormatter={[Function]}
-        tipProps={Object {}}
-      />
-    </div>
-    <p>
-      Value: 
-      45
-    </p>
-    <p>
-      Value: 
-      34
-    </p>
-  </div>
-  <button
-    onClick={[Function]}
-    type="submit"
-  >
-    Search
-     
-  </button>
   <div
     id="stocks_main_container"
   >
@@ -221,6 +38,11 @@ exports[`Testing Stocks Component should mount the component 1`] = `
         value="Building Materials"
       >
         <option
+          name="choice"
+        >
+          Select an Industry
+        </option>
+        <option
           id="industry0"
           name="choice"
         >
@@ -233,6 +55,275 @@ exports[`Testing Stocks Component should mount the component 1`] = `
           online Media
         </option>
       </select>
+      <label
+        for="toggle-1"
+        id="advance-label"
+      >
+        Advance Search
+      </label>
+      <input
+        id="toggle-1"
+        type="checkbox"
+      />
+      <div
+        id="stocks-advance-filter-grid-main-container"
+      >
+        <div
+          id="advance-fliter-dividend"
+        >
+          <div
+            id="advance-filter-title"
+          >
+            <p
+              id="advance-filter-dividend-p"
+            >
+              Dividend 
+            </p>
+          </div>
+          <div
+            id="stocks-landing-page-slider"
+          >
+            <ComponentWrapper
+              defaultValue={
+                Array [
+                  -50,
+                  80,
+                ]
+              }
+              handleStyle={
+                Array [
+                  Object {},
+                ]
+              }
+              max={1000}
+              min={-50}
+              onChange={[Function]}
+              tipFormatter={[Function]}
+              tipProps={Object {}}
+            />
+          </div>
+          <div
+            id="advance-filter-debt-to-equity-ratio-value"
+          >
+            <p
+              id="advance-filter-value"
+            >
+              -50
+            </p>
+            <p
+              id="advance-filter-value2"
+            >
+              1000
+            </p>
+          </div>
+        </div>
+        <div
+          id="advance-filter-market-cap"
+        >
+          <div
+            id="advance-filter-title"
+          >
+            <p
+              id="advance-filter-market-cap-p"
+            >
+              market cap
+            </p>
+          </div>
+          <div
+            id="stocks-landing-page-slider"
+          >
+            <ComponentWrapper
+              defaultValue={
+                Array [
+                  60,
+                  70,
+                ]
+              }
+              handleStyle={
+                Array [
+                  Object {},
+                ]
+              }
+              max={1000}
+              min={0}
+              name="slider1"
+              onChange={[Function]}
+              tipFormatter={[Function]}
+              tipProps={Object {}}
+            />
+          </div>
+          <div
+            id="advance-filter-debt-to-equity-ratio-value"
+          >
+            <p
+              id="advance-filter-value"
+            >
+              0
+            </p>
+            <p
+              id="advance-filter-value2"
+            >
+              100
+            </p>
+          </div>
+        </div>
+        <div
+          id="advance-filter-share-price"
+        >
+          <div
+            id="advance-filter-title"
+          >
+            <p
+              id="advance-filter-share-price-p"
+            >
+              share price 
+            </p>
+          </div>
+          <div
+            id="stocks-landing-page-slide"
+          >
+            <ComponentWrapper
+              defaultValue={
+                Array [
+                  43,
+                  72,
+                ]
+              }
+              handleStyle={
+                Array [
+                  Object {},
+                ]
+              }
+              max={1000}
+              min={0}
+              onChange={[Function]}
+              tipFormatter={[Function]}
+              tipProps={Object {}}
+            />
+          </div>
+          <div
+            id="advance-filter-debt-to-equity-ratio-value"
+          >
+            <p
+              id="advance-filter-value"
+            >
+              0
+            </p>
+            <p
+              id="advance-filter-value2"
+            >
+              100
+            </p>
+          </div>
+        </div>
+        <div
+          id="advance-filter-price-to-equity"
+        >
+          <div
+            id="advance-filter-title"
+          >
+            <p
+              id="advance-filter-price-to-equity-p"
+            >
+              PRICE TO EQUITY
+               
+            </p>
+          </div>
+          <div
+            id="stocks-landing-page-slider"
+          >
+            <ComponentWrapper
+              defaultValue={
+                Array [
+                  89,
+                  44,
+                ]
+              }
+              handleStyle={
+                Array [
+                  Object {},
+                ]
+              }
+              max={1000}
+              min={0}
+              onChange={[Function]}
+              tipFormatter={[Function]}
+              tipProps={Object {}}
+            />
+          </div>
+          <div
+            id="advance-filter-debt-to-equity-ratio-value"
+          >
+            <p
+              id="advance-filter-value"
+            >
+              0
+            </p>
+            <p
+              id="advance-filter-value2"
+            >
+              100
+            </p>
+          </div>
+        </div>
+        <div
+          id="advance-filter-debt-to-equity"
+        >
+          <div
+            id="advance-filter-title"
+          >
+            <p
+              id="advance-filter-debt-to-equity-p"
+            >
+              DEBT TO EQUITY RATIO
+            </p>
+          </div>
+          <div
+            id="stocks-landing-page-slider"
+          >
+            <ComponentWrapper
+              defaultValue={
+                Array [
+                  45,
+                  34,
+                ]
+              }
+              handleStyle={
+                Array [
+                  Object {},
+                ]
+              }
+              max={1000}
+              min={0}
+              onChange={[Function]}
+              tipFormatter={[Function]}
+              tipProps={Object {}}
+            />
+          </div>
+          <div
+            id="advance-filter-debt-to-equity-ratio-value"
+          >
+            <p
+              id="advance-filter-value"
+            >
+              0
+            </p>
+            <p
+              id="advance-filter-value2"
+            >
+              100
+            </p>
+          </div>
+        </div>
+        <button
+          id="advance-filter-button"
+          onClick={[Function]}
+          type="submit"
+        >
+          Filter
+           
+        </button>
+      </div>
     </div>
     <div
       id="stocks_main_grid_container"
