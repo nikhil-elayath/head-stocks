@@ -20,7 +20,8 @@ export class NavbarDefault extends Component {
     // to highlight the current page
     home: false,
     stocks: false,
-    login: false
+    login: false,
+    vtoption: false
   };
 
   removeToken = () => {
@@ -87,6 +88,7 @@ export class NavbarDefault extends Component {
                 this.setState({
                   home: true,
                   stocks: false,
+                  vtoption: false,
                   login: false
                 })
               }
@@ -96,7 +98,7 @@ export class NavbarDefault extends Component {
           </div>
         </Link>
 
-        <div className="navbarLoginOptions">
+        <div className="navbarLoginOptions" onClick={this.myhamburgfunction}>
           {/* checks if the user is logged In User or not */}
           {!localStorage.getItem("token") ? (
             <span>
@@ -106,6 +108,7 @@ export class NavbarDefault extends Component {
                   this.setState({
                     home: false,
                     stocks: false,
+                    vtoption: false,
                     login: true
                   })
                 }
@@ -127,13 +130,14 @@ export class NavbarDefault extends Component {
         </div>
 
         <div className="navbarStockOptions">
-          <span>
+          <span onClick={this.myhamburgfunction}>
             <Link
               to="/Stocks"
               onClick={() =>
                 this.setState({
                   home: false,
                   stocks: true,
+                  vtoption: false,
                   login: false
                 })
               }
@@ -143,6 +147,29 @@ export class NavbarDefault extends Component {
               id="navbarStocksText"
             >
               Stocks
+            </Link>
+          </span>
+        </div>
+        <div className="navbarVTOptions">
+          <span onClick={this.myhamburgfunction}>
+            <Link
+              to={localStorage.getItem("token") ? "/profile" : "/login"}
+              onClick={() =>
+                this.setState({
+                  home: false,
+                  stocks: false,
+                  vtoption: true,
+                  login: false
+                })
+              }
+              className={
+                this.state.vtoption
+                  ? "tabactive linkdecornone"
+                  : "linkdecornone"
+              }
+              id="navbarVTText"
+            >
+              Virtual Trading
             </Link>
           </span>
         </div>

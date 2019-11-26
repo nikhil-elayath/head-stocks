@@ -26,6 +26,8 @@ import Table from "../components/Common/TickerTable";
 
 // Harshal
 import UpdateCompany from "./UpdateCompany";
+import jwt_decode from "jwt-decode";
+
 var slider;
 
 //[Nikhil] rc-slider
@@ -231,7 +233,10 @@ export class StocksLanding extends Component {
   //   },
 
   render() {
-    return (
+    if (localStorage.getItem("token")) {
+      var decode = jwt_decode(localStorage.getItem("token"));
+    }
+     return (
       <div>
         <Radar
           options={{
