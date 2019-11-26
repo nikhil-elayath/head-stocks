@@ -217,6 +217,7 @@ export class CompanyDetailFinancial extends Component {
                 "Equity Before Minorities"
               ]}
               reportdata={report}
+              yearValue={this.state.yearInput}
             />
             {/* </div> */}
             <h1 className="financialsTitle" id="table2">
@@ -235,6 +236,7 @@ export class CompanyDetailFinancial extends Component {
                 "Change in Working Capital"
               ]}
               reportdata={report}
+              yearValue={this.state.yearInput}
             />
 
             <h1 className="financialsTitle" id="table3">
@@ -250,6 +252,7 @@ export class CompanyDetailFinancial extends Component {
                 "Income Taxes"
               ]}
               reportdata={report}
+              yearValue={this.state.yearInput}
             />
 
             <h1 className="financialsTitle" id="table4">
@@ -266,6 +269,7 @@ export class CompanyDetailFinancial extends Component {
                 "Operating Income / EV"
               ]}
               reportdata={report}
+              yearValue={this.state.yearInput}
             />
           </div>
         </div>

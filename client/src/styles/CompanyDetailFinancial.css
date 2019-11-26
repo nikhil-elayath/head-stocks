@@ -32,6 +32,22 @@
   margin: 0px 0px 5px 0px;
 }
 
+.financialYearsDropdown {
+  float: right;
+  width: 70px;
+  position: relative;
+}
+.financialsYearsOption {
+  background-color: #ffffff;
+  color: #39abf7;
+  border: 1.5px solid #39abf7;
+  height: 30px;
+  width: 100%;
+  border-radius: 4px;
+  margin: 5px 3px 0px 0px;
+  position: relative;
+}
+
 @media only screen and (min-width: 426px) {
   .financialsMainGrid {
     margin-top: 10px;
@@ -46,7 +62,6 @@
     display: block;
     height: 580px;
     grid-area: side;
-    /* background: #2c80d4; */
     border-right: 1px solid #2c3e50;
   }
   .financialsAllTablesDiv {
@@ -109,16 +124,13 @@
 
   .financialYearsDropdown {
     float: right;
-    width: 90px;
+    margin-right: 11px;
+    width: 80px;
     position: relative;
+    font-weight: bold;
   }
   .financialsYearsOption {
-    background-color: #ffffff;
-    color: #39abf7;
-    border: 1.5px solid #39abf7;
-    height: 30px;
-    border-radius: 4px;
-    margin: 50px 30px 0px 0px;
+    margin: 58px 30px 0px 0px;
     position: absolute;
   }
 }
