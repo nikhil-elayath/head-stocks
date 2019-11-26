@@ -102,7 +102,6 @@ exports[`Testing Company Detail Secondary navbar Component should mount the comp
             >
               <span
                 id="company-analysis-click"
-                onClick={[Function]}
               >
                 <li
                   className="options-li"

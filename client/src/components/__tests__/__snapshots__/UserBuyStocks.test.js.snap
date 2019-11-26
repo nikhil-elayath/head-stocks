@@ -48,28 +48,20 @@ exports[`Testing UserbuyStocks Component should mount the component 1`] = `
           </td>
           <td>
              
-<<<<<<< HEAD
-            205.69
-=======
-            198.18
->>>>>>> ca757f0a31176adc6909ab6fde4b3f08a9465a4e
+            203.78
           </td>
           <td>
             <span
-              class="fa fa-caret-down"
+              class="fa fa-caret-up"
               style={
                 Object {
-                  "color": "red",
+                  "color": "green",
                   "fontSize": "18px",
                 }
               }
             />
              
-<<<<<<< HEAD
-            2.05
-=======
-            -1.67
->>>>>>> ca757f0a31176adc6909ab6fde4b3f08a9465a4e
+            1.11
              
             %
           </td>
@@ -106,7 +98,7 @@ exports[`Testing UserbuyStocks Component should mount the component 1`] = `
                 >
                   <p>
                     Current Price : $
-                    205.69
+                    203.78
                   </p>
                   <p>
                     Quantity :
@@ -122,6 +114,7 @@ exports[`Testing UserbuyStocks Component should mount the component 1`] = `
                   </p>
                   <p>
                     Total Price : $
+                    0
                   </p>
                   <a
                     href="#"
@@ -153,28 +146,20 @@ exports[`Testing UserbuyStocks Component should mount the component 1`] = `
           </td>
           <td>
              
-<<<<<<< HEAD
-            131.27
-=======
-            139.20
->>>>>>> ca757f0a31176adc6909ab6fde4b3f08a9465a4e
+            133.92
           </td>
           <td>
             <span
-              class="fa fa-caret-up"
+              class="fa fa-caret-down"
               style={
                 Object {
-                  "color": "green",
+                  "color": "red",
                   "fontSize": "18px",
                 }
               }
             />
              
-<<<<<<< HEAD
-            -3.25
-=======
-            2.59
->>>>>>> ca757f0a31176adc6909ab6fde4b3f08a9465a4e
+            -1.30
              
             %
           </td>
@@ -211,7 +196,7 @@ exports[`Testing UserbuyStocks Component should mount the component 1`] = `
                 >
                   <p>
                     Current Price : $
-                    131.27
+                    133.92
                   </p>
                   <p>
                     Quantity :
@@ -227,6 +212,7 @@ exports[`Testing UserbuyStocks Component should mount the component 1`] = `
                   </p>
                   <p>
                     Total Price : $
+                    0
                   </p>
                   <a
                     href="#"

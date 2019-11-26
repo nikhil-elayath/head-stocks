@@ -8,14 +8,10 @@ export const updateCompany = (data, id) => dispatch => {
     return axios
       .post("http://localhost:2001/api/upload/updateCompany/" + id, data)
       .then(res => {
-        dispatch(
-          {
-            type: UPDATE_COMPANY,
-            payload: res.data.data
-          }
-          // ,console.log("action value"),
-          // console.log(data)
-        );
+        dispatch({
+          type: UPDATE_COMPANY,
+          payload: res.data.data
+        });
       });
   } catch (err) {
     console.log(err);
