@@ -1,5 +1,4 @@
 import { SEARCH_CONTENT } from "./Types";
-import { UPDATE_COMPANY } from "./Types";
 
 import axios from "axios";
 

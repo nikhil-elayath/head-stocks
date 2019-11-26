@@ -30,7 +30,7 @@ export class UpdateCompany extends Component {
     // console.log(this.props);
     return (
       <div id="updateCompanyMainDiv">
-        <a className="admin_close" href="#">
+        <a className="admin_close" href="#stocks_main_grid_container">
           &times;
         </a>
         {this.state.selectedFile != null ? (

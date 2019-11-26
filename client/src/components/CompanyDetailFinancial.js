@@ -48,7 +48,7 @@ export class CompanyDetailFinancial extends Component {
 
     const id = this.props.match.params.id;
 
-    if (this.state.yearInput == "All") {
+    if (this.state.yearInput === "All") {
       yearSelected = { yearInput: "All" };
     } else {
       yearSelected = {
