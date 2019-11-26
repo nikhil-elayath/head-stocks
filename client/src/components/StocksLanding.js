@@ -264,10 +264,6 @@ export class StocksLanding extends Component {
               legend: {
                 position: "left"
               }
-              // ticks: {
-              //   suggestedMin: 50,
-              //   suggestedMax: 100,
-              // },
             }}
             data={this.state.marksData}
           />
@@ -600,7 +596,6 @@ export class StocksLanding extends Component {
                         {this.state.pageStocks.map((stocks, index) =>
                           stocks ? (
                             <div id="stocks_main_grid_details">
-                              {/* -------------------------- */}
                               <a href={"#editpopup" + stocks.ticker_name}>
                                 <img
                                   id="stocks_edit"
