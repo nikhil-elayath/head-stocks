@@ -64,13 +64,13 @@ router.get("/:id", async (req, res, next) => {
       res.status(400).json({
         status: 400,
         data: company_details,
-        message: "No companies found"
+        message: "No companies found",
       });
     } else {
       res.status(200).json({
         status: 200,
         data: company_details,
-        message: "company by id recieved"
+        message: "company by id recieved",
       });
     }
   } catch {}
@@ -84,7 +84,7 @@ router.post("/financial/:id", async (req, res, next) => {
     let id = req.params.id;
     // an empty array datesCF that will help to filter the results recieved from the database
     let datesCF = [];
-    
+
     //user selects year
     var endYear, startYear;
     if (req.body.yearInput) {
@@ -119,9 +119,9 @@ router.post("/financial/:id", async (req, res, next) => {
             // sets a range of dates for what the data is needed
             "ticker_dates.date": {
               $lte: new Date(+endYear + "-12-31"),
-              $gte: new Date(+startYear + "-03-25")
-            }
-          }
+              $gte: new Date(+startYear + "-03-25"),
+            },
+          },
         },
         {
           //$project limits the amount of data sent to the application
@@ -146,8 +146,8 @@ router.post("/financial/:id", async (req, res, next) => {
                     { $lte: [{ $dayOfMonth: "$ticker_dates.date" }, 31] },
                     // $gt(greater than) Query Selector
                     // to set the minimum date which is 25th
-                    { $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25] }
-                  ]
+                    { $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25] },
+                  ],
                 },
                 // sets the quarter name as first
                 // the quarter is an object
@@ -161,8 +161,8 @@ router.post("/financial/:id", async (req, res, next) => {
                       $and: [
                         { $eq: [{ $month: "$ticker_dates.date" }, 6] },
                         { $lte: [{ $dayOfMonth: "$ticker_dates.date" }, 30] },
-                        { $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25] }
-                      ]
+                        { $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25] },
+                      ],
                     },
                     "second",
                     {
@@ -172,12 +172,12 @@ router.post("/financial/:id", async (req, res, next) => {
                           $and: [
                             { $eq: [{ $month: "$ticker_dates.date" }, 9] },
                             {
-                              $lte: [{ $dayOfMonth: "$ticker_dates.date" }, 30]
+                              $lte: [{ $dayOfMonth: "$ticker_dates.date" }, 30],
                             },
                             {
-                              $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25]
-                            }
-                          ]
+                              $gt: [{ $dayOfMonth: "$ticker_dates.date" }, 25],
+                            },
+                          ],
                         },
                         "third",
                         {
@@ -189,32 +189,32 @@ router.post("/financial/:id", async (req, res, next) => {
                                 {
                                   $lte: [
                                     { $dayOfMonth: "$ticker_dates.date" },
-                                    31
-                                  ]
+                                    31,
+                                  ],
                                 },
                                 {
                                   $gt: [
-                                    { $dayOfMonth: "$ticker_dates.date" },
-                                    25
-                                  ]
-                                }
-                              ]
+                                    { $dayOfMonth: "$sticker_dates.date" },
+                                    25,
+                                  ],
+                                },
+                              ],
                             },
                             "fourth",
                             // If date does not belong t the specified quarters
                             // add those dates to the 'fifth' quarter
                             // which will be removed in the further part of query
                             // all dates in fifth quarter are not needed.
-                            "fifth"
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          }
+                            "fifth",
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         },
         // ALl the dates belonging to the fifth quarter are removed.
         // $ne (not equal) helps to get data from all quarters except the 'fifth' quarter
@@ -230,12 +230,12 @@ router.post("/financial/:id", async (req, res, next) => {
               // Year of the quarter is extracted and stored
               year: { $year: "$ticker_dates.date" },
               // Month of the quarter is extracted and stored
-              month: { $month: "$ticker_dates.date" }
+              month: { $month: "$ticker_dates.date" },
             },
             // all the data of quarters is stores in the key named date_values
             // $push is used to store the dates in this key
-            date_values: { $push: "$ticker_dates" }
-          }
+            date_values: { $push: "$ticker_dates" },
+          },
         },
         {
           // Sorting the data in descending order
@@ -245,10 +245,10 @@ router.post("/financial/:id", async (req, res, next) => {
             // _id key has the values stored of year and month
             //example:  _id{year:2009, month: 4}
             "_id.year": -1,
-            "_id.month": -1
+            "_id.month": -1,
             // 'ticker_dates.date':-1,
-          }
-        }
+          },
+        },
       ],
       // function to sort the result in the desired form
       // send the response Or result to the front-end
@@ -261,7 +261,7 @@ router.post("/financial/:id", async (req, res, next) => {
           return res.status(400).json({
             status: 400,
             data: result,
-            message: "No Dates Found"
+            message: "No Dates Found",
           });
         } else {
           // block executes when results is recieved from the query
@@ -289,7 +289,7 @@ router.post("/financial/:id", async (req, res, next) => {
           res.status(200).json({
             status: 200,
             data: datesCF,
-            message: "Retrieved dates Successfully"
+            message: "Retrieved dates Successfully",
           });
         }
       }
@@ -404,13 +404,13 @@ router.post("/analysis", async (req, res, next) => {
       res.status(400).json({
         status: 400,
         data: compare,
-        message: "No news Found"
+        message: "No news Found",
       });
     } else {
       res.status(200).json({
         status: 200,
         data: [similar_sector_data],
-        message: "Retrieved all news Successfully"
+        message: "Retrieved all news Successfully",
       });
     }
   } catch (err) {
@@ -434,13 +434,13 @@ router.post("/dropdown", async (req, res, next) => {
       res.status(400).json({
         status: 400,
         data: result,
-        message: "No companies found"
+        message: "No companies found",
       });
     } else {
       res.status(200).json({
         status: 200,
         data: result,
-        message: "Similar companies for dropdown retrieved"
+        message: "Similar companies for dropdown retrieved",
       });
     }
   } catch {}
@@ -495,7 +495,7 @@ router.get("/indicatorsdata/:ticker_name", async (req, res, next) => {
     );
     if (!result)
       return res.status(404).json({
-        message: "No record found"
+        message: "No record found",
       });
     else {
       var jsonObject = JSON.stringify(result);
@@ -517,7 +517,7 @@ router.get("/ohlc/:ticker_name", async (req, res, next) => {
     );
     if (!result)
       return res.status(404).json({
-        message: "No record found"
+        message: "No record found",
       });
     else {
       var jsonObject = JSON.stringify(result);

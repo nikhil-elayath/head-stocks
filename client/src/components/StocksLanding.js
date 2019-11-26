@@ -13,7 +13,7 @@ import {
   getIndustries,
   getGainersLosers,
   //[NIKHIL] SCREENER ACTIONS
-  getScreenerSearch
+  getScreenerSearch,
 } from "../actions/Stocks";
 import "../styles/StocksLanding.css";
 import "../styles/Admin.css";
@@ -51,16 +51,18 @@ export class StocksLanding extends Component {
     gainersClick: true,
 
     //[Nikhil] default slider value
-    dividend_value1: -50,
-    dividend_value2: 80,
+    ebit1: -50,
+    ebit2: 80,
     market_cap_value1: 60,
     market_cap_value2: 70,
     share_price1: 43,
     share_price2: 72,
-    price_to_equity_ratio1: 89,
-    price_to_equity_ratio2: 44,
-    debt_to_equity_ratio1: 45,
-    debt_to_equity_ratio2: 34,
+    total_assests1: 89,
+    total_assests2: 44,
+    revenue1: 45,
+    revenue2: 34,
+    net_profit1: 50,
+    net_profit2: 100,
     filter: false,
     normal: true,
     //[NIKHIL] radar graph
@@ -70,23 +72,23 @@ export class StocksLanding extends Component {
         "Dividend",
         "PE Ratio",
         "Debt to Equity Ratio",
-        "Share Price"
+        "Share Price",
       ],
       datasets: [
         {
           // label: "Student A",
-          backgroundColor: "rgb(57,171,247)",
+          backgroundColor: "rgba(57,139,247,0.3)",
           borderColor: "rgb(44,62,80)",
           fill: true,
-          radius: 6,
-          pointRadius: 6,
+          radius: 3,
+          pointRadius: 3,
           pointBorderWidth: 3,
-          pointBackgroundColor: "orange",
-          pointBorderColor: "rgba(200,0,0,0.6)",
+          pointBackgroundColor: "#39abf7",
+          pointBorderColor: "#2c3e50",
           pointHoverRadius: 10,
           //values coming from the database
-          data: [65, 75, 70, 80, 60, 80]
-        }
+          data: [65, 75, 70, 80, 60, 80],
+        },
         // {
         //   label: "Student B",
         //   backgroundColor: "rgb(57,171,247)",
@@ -101,16 +103,16 @@ export class StocksLanding extends Component {
         //   //values coming from the database
         //   data: [54, 65, 60, 70, 70, 75],
         // },
-      ]
-    }
+      ],
+    },
   };
 
   //for slider handle cange
   onSliderChange = e => {
     console.log(e);
     //changing the state with the  value selected
-    this.setState({ dividend_value1: e[0] });
-    this.setState({ dividend_value2: e[1] });
+    this.setState({ ebit1: e[0] });
+    this.setState({ ebit2: e[1] });
   };
   onSliderChange2 = e => {
     this.setState({ market_cap_value1: e[0] });
@@ -122,12 +124,16 @@ export class StocksLanding extends Component {
   };
 
   onSliderChange4 = e => {
-    this.setState({ price_to_equity_ratio1: e[0] });
-    this.setState({ price_to_equity_ratio2: e[1] });
+    this.setState({ total_assests1: e[0] });
+    this.setState({ total_assests2: e[1] });
   };
   onSliderChange5 = e => {
-    this.setState({ debt_to_equity_ratio1: e[0] });
-    this.setState({ debt_to_equity_ratio2: e[1] });
+    this.setState({ revenue1: e[0] });
+    this.setState({ revenue2: e[1] });
+  };
+  onSliderChange6 = e => {
+    this.setState({ net_profit1: e[0] });
+    this.setState({ net_profit2: e[1] });
   };
 
   onSearchClick = e => {
@@ -136,16 +142,19 @@ export class StocksLanding extends Component {
 
     console.log("Button Clciked", this.state.industry);
     this.props.getScreenerSearch(
-      this.state.dividend_value1,
-      this.state.dividend_value2,
+      this.state.ebit1,
+      this.state.ebit2,
       this.state.market_cap_value1,
       this.state.market_cap_value2,
       this.state.share_price1,
       this.state.share_price2,
-      this.state.price_to_equity_ratio1,
-      this.state.price_to_equity_ratio2,
-      this.state.debt_to_equity_ratio1,
-      this.state.debt_to_equity_ratio2,
+      this.state.total_assests1,
+      this.state.total_assests2,
+      this.state.revenue1,
+      this.state.revenue2,
+      this.state.net_profit1,
+      this.state.net_profit2,
+
       this.state.sector,
       this.state.industry
     );
@@ -181,7 +190,7 @@ export class StocksLanding extends Component {
 
   OnSelectSector = e => {
     this.setState({
-      sector: e.target.value //setting state for the sector
+      sector: e.target.value, //setting state for the sector
     });
     this.props.getCompany("sector", e.target.value);
     this.props.getIndustries(e.target.value); //getting all the industries based on a sector selected
@@ -190,7 +199,7 @@ export class StocksLanding extends Component {
 
   OnSelectIndustry = e => {
     this.setState({
-      industry: e.target.value //setting state for the industry
+      industry: e.target.value, //setting state for the industry
     });
     this.props.getCompany("industry", e.target.value); //getting all the companies based on an industry selected
   };
@@ -211,7 +220,7 @@ export class StocksLanding extends Component {
   loadMoreItems = () => {
     setTimeout(() => {
       this.setState({
-        items: this.state.items + 10
+        items: this.state.items + 10,
       });
       this.displayCompanies(this.props.stocks);
     }, 1000);
@@ -236,31 +245,33 @@ export class StocksLanding extends Component {
     if (localStorage.getItem("token")) {
       var decode = jwt_decode(localStorage.getItem("token"));
     }
-     return (
+    return (
       <div>
-        <Radar
-          options={{
-            scale: {
-              ticks: {
-                beginAtZero: true,
-                min: 0,
-                max: 100,
-                stepSize: 20
+        <div id="graph">
+          <Radar
+            options={{
+              scale: {
+                ticks: {
+                  beginAtZero: true,
+                  min: 0,
+                  max: 100,
+                  stepSize: 20,
+                },
+                pointLabels: {
+                  fontSize: 18,
+                },
               },
-              pointLabels: {
-                fontSize: 18
-              }
-            },
-            legend: {
-              position: "left"
-            }
-            // ticks: {
-            //   suggestedMin: 50,
-            //   suggestedMax: 100,
-            // },
-          }}
-          data={this.state.marksData}
-        />
+              legend: {
+                position: "left",
+              },
+              // ticks: {
+              //   suggestedMin: 50,
+              //   suggestedMax: 100,
+              // },
+            }}
+            data={this.state.marksData}
+          />
+        </div>
         {/* SEARCH BUTTON */}
 
         {/* ends */}
@@ -311,7 +322,7 @@ export class StocksLanding extends Component {
               <div id="stocks-advance-filter-grid-main-container">
                 <div id="advance-fliter-dividend">
                   <div id="advance-filter-title">
-                    <p id="advance-filter-dividend-p">Dividend </p>
+                    <p id="advance-filter-dividend-p">EBIT </p>
                   </div>
                   {/* FOR DIVIDEND  */}
                   <div id="stocks-landing-page-slider">
@@ -322,10 +333,7 @@ export class StocksLanding extends Component {
                       // SETTING THE MAXIMUM VALUE
                       max={1000}
                       //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
-                      defaultValue={[
-                        this.state.dividend_value1,
-                        this.state.dividend_value2
-                      ]}
+                      defaultValue={[this.state.ebit1, this.state.ebit1]}
                       //ON CHANGING CALLING THE SLIDERCHANGE
                       onChange={this.onSliderChange}
                     />
@@ -336,7 +344,6 @@ export class StocksLanding extends Component {
                   </div>
                 </div>
                 {/* FOR MARKET CAP  */}
-
                 <div id="advance-filter-market-cap">
                   <div id="advance-filter-title">
                     <p id="advance-filter-market-cap-p">market cap</p>
@@ -351,7 +358,7 @@ export class StocksLanding extends Component {
                       //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
                       defaultValue={[
                         this.state.market_cap_value1,
-                        this.state.market_cap_value2
+                        this.state.market_cap_value2,
                       ]}
                       //ON CHANGING CALLING THE SLIDERCHANGE
                       onChange={this.onSliderChange2}
@@ -378,7 +385,7 @@ export class StocksLanding extends Component {
                       //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
                       defaultValue={[
                         this.state.share_price1,
-                        this.state.share_price2
+                        this.state.share_price2,
                       ]}
                       //ON CHANGING CALLING THE SLIDERCHANGE
                       onChange={this.onSliderChange3}
@@ -389,13 +396,10 @@ export class StocksLanding extends Component {
                     <p id="advance-filter-value2">100</p>
                   </div>
                 </div>
-
                 {/* for PE RATIO */}
                 <div id="advance-filter-price-to-equity">
                   <div id="advance-filter-title">
-                    <p id="advance-filter-price-to-equity-p">
-                      PRICE TO EQUITY{" "}
-                    </p>
+                    <p id="advance-filter-price-to-equity-p">Total Assests</p>
                   </div>
                   <div id="stocks-landing-page-slider">
                     {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
@@ -406,8 +410,8 @@ export class StocksLanding extends Component {
                       max={1000}
                       //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
                       defaultValue={[
-                        this.state.price_to_equity_ratio1,
-                        this.state.price_to_equity_ratio2
+                        this.state.total_assests1,
+                        this.state.total_assests2,
                       ]}
                       //ON CHANGING CALLING THE SLIDERCHANGE
                       onChange={this.onSliderChange4}
@@ -418,13 +422,10 @@ export class StocksLanding extends Component {
                     <p id="advance-filter-value2">100</p>
                   </div>
                 </div>
-
-                {/* FOR DEBT TO EQUITY RATIO  */}
-                <div id="advance-filter-debt-to-equity">
+                {/* net profit  */}
+                <div id="advance-filter-net-profit">
                   <div id="advance-filter-title">
-                    <p id="advance-filter-debt-to-equity-p">
-                      DEBT TO EQUITY RATIO
-                    </p>
+                    <p id="advance-filter-debt-to-equity-p">Net Profit</p>
                   </div>
                   <div id="stocks-landing-page-slider">
                     {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
@@ -435,9 +436,32 @@ export class StocksLanding extends Component {
                       max={1000}
                       //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
                       defaultValue={[
-                        this.state.debt_to_equity_ratio1,
-                        this.state.debt_to_equity_ratio2
+                        this.state.net_profit1,
+                        this.state.net_profit2,
                       ]}
+                      //ON CHANGING CALLING THE SLIDERCHANGE
+                      onChange={this.onSliderChange6}
+                    />
+                  </div>
+                  <div id="advance-filter-debt-to-equity-ratio-value">
+                    <p id="advance-filter-value">0</p>
+                    <p id="advance-filter-value2">100</p>
+                  </div>
+                </div>
+                {/* Revenues*/}
+                <div id="advance-filter-revenues">
+                  <div id="advance-filter-title">
+                    <p id="advance-filter-debt-to-equity-p">Revenues</p>
+                  </div>
+                  <div id="stocks-landing-page-slider">
+                    {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
+                    <Range
+                      // SETTING THE MINIMUM VALUE
+                      min={0}
+                      // SETTING THE MAXIMUM VALUE
+                      max={1000}
+                      //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
+                      defaultValue={[this.state.revenue1, this.state.revenue2]}
                       //ON CHANGING CALLING THE SLIDERCHANGE
                       onChange={this.onSliderChange5}
                     />
@@ -447,14 +471,18 @@ export class StocksLanding extends Component {
                     <p id="advance-filter-value2">100</p>
                   </div>
                 </div>
-                <button
-                  id="advance-filter-button"
-                  type="submit"
-                  onClick={this.onSearchClick}
-                >
-                  Filter{" "}
-                </button>
+
+                {/* for net profit */}
+                {/*  */}
               </div>
+              {/* main grid container  */}
+              <button
+                id="advance-filter-button"
+                type="submit"
+                onClick={this.onSearchClick}
+              >
+                Filter{" "}
+              </button>
 
               {/* <div
                 id="btn"
@@ -665,7 +693,7 @@ export class StocksLanding extends Component {
                   "Ticker",
                   "Chng (%)",
                   "Market Cap",
-                  "Share Price"
+                  "Share Price",
                 ]}
                 tableData={
                   this.state.gainersClick === true //displaying the gainers data in the table if state of gainersClick is true that is when gainers button is clicked else losers data is displayed
@@ -691,7 +719,7 @@ const mapStateToProps = state => ({
   industries: state.stocksReducer.industries,
   gainersLosers: state.stocksReducer.gainersLosers,
   isLoading: state.LoadingReducer.isLoading,
-  screener_search: state.stocksReducer.screener_search
+  screener_search: state.stocksReducer.screener_search,
 });
 
 export default connect(mapStateToProps, {
@@ -699,5 +727,5 @@ export default connect(mapStateToProps, {
   getSectors,
   getIndustries,
   getGainersLosers,
-  getScreenerSearch
+  getScreenerSearch,
 })(StocksLanding);
