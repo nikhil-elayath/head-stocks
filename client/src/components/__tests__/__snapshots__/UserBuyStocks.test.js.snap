@@ -52,10 +52,10 @@ exports[`Testing UserbuyStocks Component should mount the component 1`] = `
           </td>
           <td>
             <span
-              class="fa fa-caret-up"
+              class="fa fa-caret-down"
               style={
                 Object {
-                  "color": "green",
+                  "color": "red",
                   "fontSize": "18px",
                 }
               }
