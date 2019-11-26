@@ -1,5 +1,4 @@
 /* FOR DESKTOP  */
-
 input[type="checkbox"] {
   position: absolute;
   top: -9999px;
@@ -22,6 +21,7 @@ input[type="checkbox"] {
   margin: 30px 40px 0px 0px;
   padding: 25px;
   border-radius: 8px;
+  box-shadow: 1px 3px 3px 1px #cacaca;
 }
 
 input[type="checkbox"]:checked ~ #filter_main_container {
@@ -77,7 +77,7 @@ input[type="checkbox"]:checked ~ #filter_main_container {
 #advance-filter-button:hover {
   background-color: #2c3e50;
   padding: 7px 65px 7px 65px;
-  transition: all ease-out 0.5s;
+  transition: all ease-out 0.4s;
 }
 
 #advance-filter-debt-to-equity {
@@ -92,40 +92,44 @@ input[type="checkbox"]:checked ~ #filter_main_container {
 }
 
 #advance-filter-p-dividend {
-  margin: 10px 10px 10px 10px;
   font-size: 16px !important;
+  margin: 5px 0px 15px 0px !important;
 }
 #advance-filter-dividend-p {
   font-size: 16px !important;
+  margin: 5px 0px 15px 0px !important;
 }
 #advance-filter-market-cap-p {
   font-size: 16px !important;
-
-  margin: 10px 10px 10px 10px;
+  margin: 5px 0px 15px 0px !important;
 }
 
 #advance-filter-debt-to-equity-p {
   font-size: 16px !important;
+  margin: 5px 0px 15px 0px !important;
 }
 #advance-filter-share-price-p {
-  margin: 10px 10px 10px 10px;
   font-size: 16px !important;
+  margin: 5px 0px 15px 0px !important;
 }
 
 #advance-filter-value {
-  font-size: 20px !important;
-  margin: 0px !important;
+  font-size: 14px !important;
+  margin: 5px 0px !important;
+  font-weight: 400 !important;
 }
 #advance-filter-value2 {
-  font-size: 20px !important;
+  font-size: 14px !important;
   margin: 0px !important;
+  font-weight: 400 !important;
 }
 #advance-filter-price-to-equity-p {
-  margin: 10px 10px 10px 10px;
   font-size: 16px !important;
+  margin: 5px 0px 15px 0px !important;
 }
 #advance-filter-price-to-equity-p {
-  margin: 10px 10px 10px 10px;
+  font-size: 16px !important;
+  margin: 5px 0px 15px 0px !important;
 }
 
 #advance-filter-debt-to-equity-ratio-value {
@@ -144,3 +148,38 @@ input[type="checkbox"]:checked ~ #filter_main_container {
 
 /* #graph {
 } */
+
+@media only screen and (max-width: 426px) {
+  #stocks-advance-filter-grid-main-container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "first" "second" "third"
+      "fourth" "fifth" "sixth";
+    grid-gap: 10px;
+  }
+  #advance-label {
+    display: block;
+  }
+  #filter_main_container {
+    margin: 10px 15px 10px 10px;
+    padding: 10px 11px 10px 10px;
+  }
+  #advance-fliter-dividend {
+    padding: 10px 15px 10px 15px;
+  }
+  #advance-filter-market-cap {
+    padding: 10px 15px 10px 15px;
+  }
+  #advance-filter-share-price {
+    padding: 10px 15px 10px 15px;
+  }
+  #advance-filter-price-to-equity {
+    padding: 10px 15px 10px 15px;
+  }
+  #advance-filter-revenues {
+    padding: 10px 15px 10px 15px;
+  }
+  #advance-filter-net-profit {
+    padding: 10px 15px 10px 15px;
+  }
+}
