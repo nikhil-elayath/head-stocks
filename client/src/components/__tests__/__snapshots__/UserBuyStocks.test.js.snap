@@ -48,7 +48,7 @@ exports[`Testing UserbuyStocks Component should mount the component 1`] = `
           </td>
           <td>
              
-            204.80
+            205.69
           </td>
           <td>
             <span
@@ -61,7 +61,7 @@ exports[`Testing UserbuyStocks Component should mount the component 1`] = `
               }
             />
              
-            1.61
+            2.05
              
             %
           </td>
@@ -98,6 +98,7 @@ exports[`Testing UserbuyStocks Component should mount the component 1`] = `
                 >
                   <p>
                     Current Price : $
+                    205.69
                   </p>
                   <p>
                     Quantity :
@@ -117,8 +118,9 @@ exports[`Testing UserbuyStocks Component should mount the component 1`] = `
                   <a
                     href="#"
                     id="sellSpecificStock"
+                    onClick={[Function]}
                   >
-                    Buy
+                    Sell
                   </a>
                 </div>
               </div>
@@ -143,7 +145,7 @@ exports[`Testing UserbuyStocks Component should mount the component 1`] = `
           </td>
           <td>
              
-            134.71
+            131.27
           </td>
           <td>
             <span
@@ -156,7 +158,7 @@ exports[`Testing UserbuyStocks Component should mount the component 1`] = `
               }
             />
              
-            -0.71
+            -3.25
              
             %
           </td>
@@ -193,6 +195,7 @@ exports[`Testing UserbuyStocks Component should mount the component 1`] = `
                 >
                   <p>
                     Current Price : $
+                    131.27
                   </p>
                   <p>
                     Quantity :
@@ -212,8 +215,9 @@ exports[`Testing UserbuyStocks Component should mount the component 1`] = `
                   <a
                     href="#"
                     id="sellSpecificStock"
+                    onClick={[Function]}
                   >
-                    Buy
+                    Sell
                   </a>
                 </div>
               </div>
