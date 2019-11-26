@@ -95,7 +95,7 @@ router.put("/reset_password", async (req, res, next) => {
       return res.status(400).send({ message: "Invalid Credentials" });
     } else {
       req.body.password = await bcrypt.hash(req.body.password, 10);
-      let current_user = await User.findOneAndUpdate(
+      await User.findOneAndUpdate(
         { email: req.body.email },
         {
           $set: {
@@ -134,7 +134,7 @@ router.post("/send_otp", async (req, res, next) => {
       });
 
       // Sending the mail to the the user with the given email
-      let info = await smtpTransport.sendMail({
+      await smtpTransport.sendMail({
         from: "bhavanagupta250@gmail.com",
         to: req.body.email,
         subject: "OTP Verification",
@@ -183,7 +183,7 @@ router.put("/buy", async (req, res, next) => {
     if (!username) {
       return res.status(400).send({ message: "Invalid Credentials" });
     } else {
-      let current_user = await User.findOneAndUpdate(
+      await User.findOneAndUpdate(
         { email: req.body.email },
         {
           $push: {
@@ -244,7 +244,7 @@ router.put("/sell", async (req, res, next) => {
     next(err);
   }
 });
-
+//piyush kumar
 router.get("/history/:email", async (req, res, next) => {
   try {
     let email = req.params.email;
@@ -270,10 +270,7 @@ router.post("/wallet", async (req, res, next) => {
     if (!username) {
       return res.status(400).send({ message: "Invalid Credentials" });
     } else {
-      let wallet = await User.find(
-        { email: req.body.email },
-        { wallet: 1, _id: 0 }
-      );
+      await User.find({ email: req.body.email }, { wallet: 1, _id: 0 });
       res.status(200).json({
         status: 200,
         data: username.wallet,

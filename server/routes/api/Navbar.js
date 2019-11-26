@@ -25,13 +25,13 @@ router.post("/search", async (req, res) => {
     var ticker_name = elem._doc.ticker_name;
     var ticker_id = elem._doc.ticker_id;
     var industry = elem._doc.industry;
-    last_date = ticker_dates.slice(-1)[0];
+    var last_date = ticker_dates.slice(-1)[0];
     var i = -1;
     while (last_date["Share Price"] == undefined) {
       last_date = ticker_dates.slice(i)[0];
       i--;
     }
-    last_date_shareprice = last_date["Share Price"];
+    var last_date_shareprice = last_date["Share Price"];
     change.push(name);
     name["ticker_name"] = ticker_name;
     name["ticker_id"] = ticker_id;

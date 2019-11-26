@@ -1,3 +1,4 @@
+/*piyush*/
 const pgp = require("pg-promise")();
 const db = pgp("postgres://postgres:root@localhost:5432/Stocks");
 // var MongoClient = require("mongodb").MongoClient;

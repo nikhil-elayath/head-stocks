@@ -3,7 +3,7 @@ import {
   GET_ALL_SECTORS,
   GET_ALL_INDUSTRIES,
   GAINERS_LOSERS,
-  SCREENER_SEARCH,
+  SCREENER_SEARCH
 } from "./Types";
 import { startLoading, stopLoading } from "./LoadingAction";
 import axios from "axios";
@@ -20,7 +20,7 @@ export const getCompany = (filter, type) => dispatch => {
       dispatch(stopLoading());
       dispatch({
         type: GET_ALL_COMPANY,
-        payload: res.data.data,
+        payload: res.data.data
       });
       console.log(res.data.data);
     })
@@ -37,7 +37,7 @@ export const getSectors = () => dispatch => {
     .then(res => {
       dispatch({
         type: GET_ALL_SECTORS,
-        payload: res.data.data,
+        payload: res.data.data
       });
     })
     .catch(err => {
@@ -53,7 +53,7 @@ export const getIndustries = sector => dispatch => {
     .then(res => {
       dispatch({
         type: GET_ALL_INDUSTRIES,
-        payload: res.data.data,
+        payload: res.data.data
       });
     })
     .catch(err => {
@@ -67,7 +67,7 @@ export const getGainersLosers = sector => dispatch => {
     .then(res => {
       dispatch({
         type: GAINERS_LOSERS,
-        payload: res.data.data,
+        payload: res.data.data
       });
     })
     .catch(err => {
@@ -101,7 +101,7 @@ export const getScreenerSearch = (
     debt_to_equity_ratio1: debt_to_equity_ratio1,
     debt_to_equity_ratio2: debt_to_equity_ratio2,
     sector: sector,
-    industry: industry,
+    industry: industry
   };
   console.log("from screener search actions", values);
   return axios
@@ -109,7 +109,7 @@ export const getScreenerSearch = (
     .then(res => {
       dispatch({
         type: SCREENER_SEARCH,
-        payload: res.data.data,
+        payload: res.data.data
       });
     })
     .catch(err => {

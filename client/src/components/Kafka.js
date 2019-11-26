@@ -1,3 +1,5 @@
+/*piyush*/
+
 import React, { Component } from "react";
 import "../styles/Kafka.css";
 var stompClient = null;
@@ -11,6 +13,7 @@ export default class Kafka extends Component {
   };
 
   componentDidMount() {
+    //here we did the connection with consumer with the help of stockjs
     SockJS = new SockJS("http://192.168.0.30:7007/ws");
 
     stompClient = Stomp.over(SockJS);
@@ -31,7 +34,7 @@ export default class Kafka extends Component {
 
   onError = error => {
     console.log("error");
-
+    // if there is any error while connecting then with the help  of this function we will get the know th error
     this.setState({
       error:
         "Could not connect you to the Chat Room Server. Please refresh this page and try again!"
@@ -54,10 +57,10 @@ export default class Kafka extends Component {
       <div id="kafkamainContainer">
         {this.state.data.map(i => (
           <div id="kafka">
-            <div>{i.tickerName}</div>
+            <div id="kafka_indices">{i.tickerName}</div>
 
             <div id="kafka_index_price">
-              {Number(i.closing).toFixed(2)}
+              {Number(i.closing).toFixed(2)}{" "}
               <span
                 id={
                   String(i.changePercentage).charAt(0) == "-"

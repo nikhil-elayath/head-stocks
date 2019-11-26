@@ -90,12 +90,29 @@ exports[`Testing Company Detail Secondary navbar Component should mount the comp
             </Link>
           </div>
           <div
-            style={
-              Object {
-                "display": "none",
+            id="company-detail-analysis"
+          >
+            <Link
+              className="company-link"
+              to={
+                Object {
+                  "pathname": "/analysis/undefined",
+                }
               }
-            }
-          />
+            >
+              <span
+                id="company-analysis-click"
+                onClick={[Function]}
+              >
+                <li
+                  className="options-li"
+                  id="company-detail-analysis-li"
+                >
+                  Analysis
+                </li>
+              </span>
+            </Link>
+          </div>
         </ul>
         <div
           id="secondary-nav-values"

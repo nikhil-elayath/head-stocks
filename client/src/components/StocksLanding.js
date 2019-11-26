@@ -3,8 +3,6 @@ import React, { Component } from "react";
 import "rc-slider/assets/index.css";
 import "rc-tooltip/assets/bootstrap.css";
 import "../styles/AdvanceFilter.css";
-import ReactDOM from "react-dom";
-import Tooltip from "rc-tooltip";
 import Slider from "rc-slider";
 import { Radar } from "react-chartjs-2";
 // import RadarSlider from "../charts/graph";
@@ -17,7 +15,6 @@ import {
   //[NIKHIL] SCREENER ACTIONS
   getScreenerSearch,
 } from "../actions/Stocks";
-import Script from "react-load-script";
 import "../styles/StocksLanding.css";
 import "../styles/Admin.css";
 import companylogo from "./Common/stockslogo.PNG";
@@ -29,8 +26,6 @@ import Table from "../components/Common/TickerTable";
 
 // Harshal
 import UpdateCompany from "./UpdateCompany";
-
-import { stat } from "fs";
 var slider;
 
 //[Nikhil] rc-slider
