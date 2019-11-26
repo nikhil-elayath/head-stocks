@@ -1,18 +1,15 @@
 import React from "react";
-// import { Home } from '../Home'
-import { shallow, mount } from "enzyme";
+import { shallow } from "enzyme";
 import { CompanyDetailFinancial } from "../CompanyDetailFinancial";
 
 const getCompanyDatesById = jest.fn();
+const getByYear = jest.fn();
 
 const wrapper = shallow(
   <CompanyDetailFinancial
     getCompanyDatesById={getCompanyDatesById}
+    getByYear={getByYear}
     match={{ params: { id: 1 } }}
-
-    // balancesheet={balancesheet}
-    // match={{ params: { id: 1 } }}
-    // company={company}
   />
 );
 
@@ -61,5 +58,16 @@ describe("Testing Company Detail Financial Component", () => {
     expect(wrapper.state().cashflowOption).toBe(false);
     expect(wrapper.state().profitLossOption).toBe(false);
     expect(wrapper.state().ratiosOption).toBe(true);
+  });
+
+  it("should check for presense of onSearch function", () => {
+    let getByYear = jest.spyOn(wrapper.instance(), "getByYear");
+    expect(getByYear).toBeTruthy();
+  });
+
+  it("checks for on getByYear to be called", () => {
+    const e = { preventDefault: () => {} };
+    jest.spyOn(e, "preventDefault");
+    wrapper.find("#financialsYearsOptionID").simulate("click", e);
   });
 });

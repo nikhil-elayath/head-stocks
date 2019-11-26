@@ -9,6 +9,7 @@
   font-family: Karla;
   text-align: center;
   overflow-x: scroll;
+  height: auto;
 }
 
 #change-ve {

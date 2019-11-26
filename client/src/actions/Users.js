@@ -8,7 +8,8 @@ import {
   USER_HISTORY,
   BUY_STOCKS,
   WALLET,
-  ALL_STOCKS_BOUGHT
+  ALL_STOCKS_BOUGHT,
+  SELL_STOCKS
 } from "./Types";
 import axios from "axios";
 const url = "http://localhost:2001/api/users/";
@@ -131,7 +132,6 @@ export const buyStocks = stocks => dispatch => {
         type: BUY_STOCKS,
         payload: res.data.data
       });
-      dispatch(getWallet());
     })
     .catch(err => {
       console.log(err);
@@ -147,7 +147,6 @@ export const getWallet = email => dispatch => {
         type: WALLET,
         payload: res.data.data
       });
-      console.log(res.data.data);
     })
     .catch(err => {
       console.log(err);
@@ -156,7 +155,6 @@ export const getWallet = email => dispatch => {
 
 //Get All Stocks Bought by a user
 export const getAllStocks = email => dispatch => {
-  console.log(email);
   return axios
     .post(url + "myStocks", email)
     .then(res => {
@@ -164,7 +162,20 @@ export const getAllStocks = email => dispatch => {
         type: ALL_STOCKS_BOUGHT,
         payload: res.data.data
       });
-      console.log(res.data.data);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+export const sellStocks = email => dispatch => {
+  return axios
+    .put(url + "sell", email)
+    .then(res => {
+      dispatch({
+        type: SELL_STOCKS,
+        payload: res.data.data
+      });
     })
     .catch(err => {
       console.log(err);

@@ -54,11 +54,11 @@
 }
 
 .navbarSearchBox {
-  float: left;
-  margin-left: 17%;
-  width: 38%;
+  float: right;
+  margin-left: 0px;
+  /* width: 38%; */
   display: block;
-  padding: 0px 2% 0px 5%;
+  padding: 0px 10px;
 }
 .navbarSearchSpan {
   padding: 14px 16px 10px 16px !important;
@@ -66,10 +66,10 @@
 .navbarSearchBox input {
   border-radius: 5px;
   border: none;
-  width: 70%;
-  max-width: 555px;
-  height: 25px;
-  text-align: center;
+  height: 27px;
+  font-family: Karla;
+  text-align: left;
+  font-size: 14px;
 }
 .navbarSearchBox input::placeholder {
   font-size: 13px;

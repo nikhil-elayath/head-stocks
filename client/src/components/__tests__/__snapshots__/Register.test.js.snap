@@ -29,6 +29,9 @@ exports[`Testing Register Component should mount the component 1`] = `
           <li>
             Can download Indices Reports
           </li>
+          <li>
+            Virtual Trading
+          </li>
         </ul>
       </p>
     </div>

@@ -78,11 +78,10 @@ describe("Testing IndicesProfile Component", () => {
   });
 
   it("should have a date in each row ", () => {
-    expect(
-      wrapper
-        .find("#ohlcdate0")
-        .props()
-        .children()
-    ).toBe(data[0][0].date);
+    expect(wrapper.find("#ohlcdate0").props().children).toBe(data[0][0].date);
+  });
+
+  it("should have a container with name downloadButton", () => {
+    wrapper.find("#downloadButton").simulate("click");
   });
 });

@@ -46,7 +46,6 @@ export class UserProfile extends Component {
     if (localStorage.getItem("token")) {
       var decode = jwt_decode(localStorage.getItem("token"));
     }
-    console.log(this.props.results);
     return (
       <div>
         <div
@@ -87,7 +86,7 @@ export class UserProfile extends Component {
                             justifyContent: "center"
                           }}
                         >
-                          <b>{stocks.ticker_name}</b>
+                          {stocks.ticker_name}
                         </div>
                         <div>
                           <p id={"tickerPrice" + index}>
@@ -138,7 +137,7 @@ export class UserProfile extends Component {
                                   onClick={() => {
                                     {
                                       let user = {
-                                        email: decode.email,
+                                        email: "admin@gmail.com",
                                         ticker_name: stocks.ticker_name,
                                         current_price: stocks.price,
                                         qty: this.state.qty,

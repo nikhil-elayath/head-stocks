@@ -17,15 +17,28 @@ const wrapper = shallow(
     tableData={tableData}
   />
 );
-{
-  console.log();
-}
-describe("Testing Register Component", () => {
+describe("Testing Ticker Table Component", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
   it("should mount the component", () => {
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should have a container with name table__containerr", () => {
+    expect(wrapper.find("#table__containerr")).toBeTruthy();
+  });
+
+  it("should have a table with name ticker__table", () => {
+    expect(wrapper.find("#ticker__table")).toBeTruthy();
+  });
+
+  it("should have a thead with name ticker__tableHeader", () => {
+    expect(wrapper.find("#ticker__tableHeader")).toBeTruthy();
+  });
+
+  it("should have a Link", () => {
+    expect(wrapper.find("Link")).toBeTruthy();
   });
 
   it("should have a table headers in each row ", () => {
@@ -34,9 +47,14 @@ describe("Testing Register Component", () => {
     );
   });
 
-  it("should have a table headers in each row ", () => {
-    expect(wrapper.find("#tickerValues0").props().children).toBe(
-      tableData.tickerValues["chng"]
+  it("should have a table values in each row ", () => {
+    expect(wrapper.find("#tickerValues0").props().children).toBe("+2.13");
+  });
+
+  it("should have a ticker name in each row ", () => {
+    var isIndex = false;
+    expect(wrapper.find("#tcikerNameReuse0").props().children).toBe(
+      tableData[0].ticker_name
     );
   });
 });

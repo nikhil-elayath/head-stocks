@@ -41,6 +41,23 @@ describe("Testing Indices Action", () => {
     });
   });
 
+  it("should return indices by id and return status code of 200 with a message", () => {
+    const responseOfApi = [];
+    let id = 3699;
+    moxios.stubRequest(
+      "http://localhost:2001/api/indicesprofile/singleindex/" + id,
+      {
+        status: 400,
+        response: { data: responseOfApi }
+      }
+    );
+    const store = mockStore({});
+    const expectedResponse = [];
+    return store.dispatch(action.getIndicesById(id)).then(() => {
+      expect(store.getActions()).toEqual(expectedResponse);
+    });
+  });
+
   it("should return ohlc dat  by id and duration and return status code of 200 with a message", () => {
     const responseOfApi = [];
     let id = 2307;
@@ -54,12 +71,7 @@ describe("Testing Indices Action", () => {
       }
     );
     const store = mockStore({});
-    const expectedResponse = [
-      //   {
-      //     type: OHLC_INDICES_DATA,
-      //     payload: responseOfApi
-      //   }
-    ];
+    const expectedResponse = [];
     return store.dispatch(action.getOhlcIndicesById(id, time)).then(() => {
       expect(store.getActions()).toEqual(expectedResponse);
     });
@@ -75,8 +87,10 @@ describe("Testing Indices Action", () => {
     const store = mockStore({});
     const expectedResponse = [
       {
-        type: OHLC_CHART_INDEX,
-        payload: responseOfApi
+        payload: {
+          data: {}
+        },
+        type: "OHLC_CHART_INDEX"
       }
     ];
     return store.dispatch(action.getOhlcChartIndex(id)).then(() => {

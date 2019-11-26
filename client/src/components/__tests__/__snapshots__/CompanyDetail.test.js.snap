@@ -12,8 +12,10 @@ exports[`Testing Company Detail Component should mount the component 1`] = `
       id="company-detail-profile"
     >
       <h3>
-        Sector : 
+        Sector :
+         
         <span
+          className="sector0"
           id="sector"
         >
           technology
@@ -21,16 +23,20 @@ exports[`Testing Company Detail Component should mount the component 1`] = `
       </h3>
        
       <h3>
-        Industry : 
+        Industry :
+         
         <span
+          className="industry0"
           id="industry"
         >
           Computer
         </span>
       </h3>
       <h3>
-        Employees : 
+        Employees :
+         
         <span
+          className="employee0"
           id="employee"
         >
           132
@@ -38,6 +44,7 @@ exports[`Testing Company Detail Component should mount the component 1`] = `
       </h3>
       <h3>
         <span
+          className="profile0"
           id="profile"
         >
           profile
@@ -54,6 +61,7 @@ exports[`Testing Company Detail Component should mount the component 1`] = `
     </div>
   </div>
   <div
+    id="ohlcCompanyGraph"
     style={
       Object {
         "margin": "auto",
