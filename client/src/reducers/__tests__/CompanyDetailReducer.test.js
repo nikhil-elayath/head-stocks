@@ -11,7 +11,9 @@ import {
   ASSETS_COMPANY1,
   ASSETS_COMPANY2,
   MONTECARLO_COMPANY1,
-  MONTECARLO_COMPANY2
+  MONTECARLO_COMPANY2,
+  VOLATILITY,
+  SHARE_PRICE_COMPARISON
 } from "../../actions/Types";
 
 describe("Testing Company Details Reducer", () => {
@@ -325,6 +327,54 @@ describe("Testing Company Details Reducer", () => {
       monteCarlo1: [],
       monteCarlo2: [],
       priceComparison: [],
+      voltality: [],
+      assets1: [],
+      assets2: []
+    });
+  });
+
+  it("should return a state object with user array equal to the payload in the action when the action type is COMOANY_DETAIL (when the returned state is initial state)", () => {
+    const action = {
+      type: VOLATILITY,
+      payload: [{}, {}, {}]
+    };
+    const returnedState = companyDetailReducer(undefined, action);
+    expect(returnedState).toEqual({
+      company: [],
+      balance_sheet: [],
+      ohlcChart: [],
+      similar_company: [],
+      dates: [],
+      drop_down_data: [],
+      gauge1: [],
+      gauge2: [],
+      monteCarlo1: [],
+      monteCarlo2: [],
+      priceComparison: [],
+      voltality: action.payload,
+      assets1: [],
+      assets2: []
+    });
+  });
+
+  it("should return a state object with user array equal to the payload in the action when the action type is COMOANY_DETAIL (when the returned state is initial state)", () => {
+    const action = {
+      type: SHARE_PRICE_COMPARISON,
+      payload: [{}, {}, {}]
+    };
+    const returnedState = companyDetailReducer(undefined, action);
+    expect(returnedState).toEqual({
+      company: [],
+      balance_sheet: [],
+      ohlcChart: [],
+      similar_company: [],
+      dates: [],
+      drop_down_data: [],
+      gauge1: [],
+      gauge2: [],
+      monteCarlo1: [],
+      monteCarlo2: [],
+      priceComparison: action.payload,
       voltality: [],
       assets1: [],
       assets2: []
