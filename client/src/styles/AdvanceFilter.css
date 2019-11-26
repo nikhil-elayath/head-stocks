@@ -55,6 +55,11 @@ input[type="checkbox"]:checked ~ #stocks-advance-filter-grid-main-container {
   padding: 10px 60px 10px 60px;
   background-color: #ffffff;
 }
+#advance-filter-net-profit {
+  grid-area: sixth;
+  padding: 10px 60px 10px 60px;
+  background-color: #ffffff;
+}
 
 #advance-filter-button {
   width: 80px;
@@ -121,4 +126,7 @@ input[type="checkbox"]:checked ~ #stocks-advance-filter-grid-main-container {
 } */
 #advance-label {
   margin: 10px;
+}
+
+#graph {
 }

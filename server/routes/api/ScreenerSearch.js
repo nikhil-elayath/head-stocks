@@ -24,64 +24,17 @@ router.post("/screener", async (req, res, next) => {
   const search_result = [];
   try {
     let result = await stocksData.find({
-      "ticker_dates.date": { $gte: new Date("sd") },
-      "ticker_dates.Revenues": { $gte: +revenue1, $lte: +revenue2 },
-      "ticker_dates.Toal Assests": {
-        $gte: +total_assests1,
-        $lte: total_assests2
+      "ticker_dates.date": {
+        $gte: new Date("2008-12-30T00:00:00.000+00:00")
+      },
+      "ticker_dates.Share Price": {
+        $lte: +share_price1,
+        $gte: +share_price2
       },
       "ticker_dates.Market Capitalisation": {
-        $gt: +market_cap_value1,
-        $lte: +market_cap_value2
-      },
-      "ticker_dates.EV / EBITDA": {
-        $gt: +ebit1,
-        $lte: +ebit2
-      },
-      "ticker_dates.Net Profit": {
-        $gt: +profit1,
-        $lte: +market_cap_value2
+        $lte: +market_cap_value1,
+        $gte: +market_cap_value2
       }
-
-      // {
-      //   $match: {
-      //     $and: [{ sector: "Technology" }, { industry: "Computer Hardware" }],
-      //   },
-      // },
-      // { $unwind: "$ticker_dates" },
-      // {
-      //   $match: {
-      //     "ticker_dates.Market Capitalisation": {
-      //       $gt: 10,
-      //       $lt: 100,
-      //     },
-      //     // "ticker_dates.Share Price": {
-      //     //   $gt: +share_price1,
-      //     //   $lt: +share_price2,
-      //     // },
-      //     // "ticker_dates.Share Price": {
-      //     //   $gt: +share_price1,
-      //     //   $lt: +share_price2,
-      //     // },
-      //   },
-      // },
-      // {
-      //   $project: {
-      //     ticker_dates: 1,
-      //     ticker_id: 1,
-      //     ticker_name: 1,
-      //     _id: 0,
-      //   },
-      // },
-      // {
-      //   $group: {
-      //     _id: { ticker_name: "$ticker_name", ticker_id: "$ticker_id" },
-      //     ticker_data: { $push: "$ticker_dates" },
-      //   },
-      // },
-      // {
-      //   $unwind: "$ticker_data",
-      // },
     });
     // result.forEach(function(elem) {
     //   let compare = {};
@@ -130,7 +83,7 @@ router.post("/screener", async (req, res, next) => {
 
     //   search_result.push(compare);
     // });
-    console.log("printing search result", search_result);
+    // console.log("printing search result", result);
     if (result.length == 0) {
       res.status(400).json({
         status: 400,
