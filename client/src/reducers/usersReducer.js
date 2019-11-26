@@ -8,7 +8,8 @@ import {
   USER_HISTORY,
   BUY_STOCKS,
   WALLET,
-  ALL_STOCKS_BOUGHT
+  ALL_STOCKS_BOUGHT,
+  SELL_STOCKS
 } from "../actions/Types";
 
 const initialstate = {
@@ -35,6 +36,8 @@ export default function(state = initialstate, action) {
     case WALLET:
       return { ...state, wallet: action.payload };
     case ALL_STOCKS_BOUGHT:
+      return { ...state, users: action.payload };
+    case SELL_STOCKS:
       return { ...state, users: action.payload };
     case BUY_STOCKS:
       return { ...state, users: action.payload };

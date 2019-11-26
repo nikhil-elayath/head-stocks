@@ -35,7 +35,7 @@ router.post("/screener", async (req, res, next) => {
   try {
     let result = await stocksData.find({
       "ticker_dates.date": {
-        $gte: new Date("2008-12-29"),
+        $gte: new Date("2008-12-29")
         // $lte: new Date(endDate),
       },
       sector: sector,
@@ -43,28 +43,28 @@ router.post("/screener", async (req, res, next) => {
 
       "ticker_dates.Share Price": {
         $lte: share_price2,
-        $gte: share_price1,
+        $gte: share_price1
       },
       "ticker_dates.Market Capitalisation": {
         $lte: market_cap_value2,
-        $gte: market_cap_value1,
+        $gte: market_cap_value1
       },
       "ticker_dates.EV / EBITDA": {
         $lte: ebit2,
-        $gte: ebit1,
+        $gte: ebit1
       },
       "ticker_dates.Total Assets": {
         $lte: +total_assests2,
-        $gte: +total_assests1,
+        $gte: +total_assests1
       },
       "ticker_dates.Revenues": {
         $lte: +revenue2,
-        $gte: +revenue1,
+        $gte: +revenue1
       },
       "ticker_dates.Net Profit": {
         $lte: +net_profit2,
-        $gte: +net_profit1,
-      },
+        $gte: +net_profit1
+      }
     });
     console.log("result", result);
     // result.forEach(function(elem) {
@@ -119,13 +119,13 @@ router.post("/screener", async (req, res, next) => {
       res.status(400).json({
         status: 400,
         data: result,
-        message: "No result",
+        message: "No result"
       });
     } else {
       res.status(200).json({
         status: 200,
         data: result,
-        message: "Retrieved screener result successfully",
+        message: "Retrieved screener result successfully"
       });
     }
   } catch {

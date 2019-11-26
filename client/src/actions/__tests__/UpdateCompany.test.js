@@ -56,4 +56,20 @@ describe("Testing Users Action", () => {
       expect(store.getActions()).toEqual(expectedResponse);
     });
   });
+
+  it("should get search results ang return status code of 400 with a message", () => {
+    const responseOfApi = [];
+    let id = 8795;
+    let dataFile = new FormData();
+
+    moxios.stubRequest(url + id, {
+      status: 400,
+      response: { data: responseOfApi }
+    });
+    const store = mockStore({});
+    const expectedResponse = [];
+    return store.dispatch(action.updateCompany(dataFile, id)).then(() => {
+      expect(store.getActions()).toEqual(expectedResponse);
+    });
+  });
 });

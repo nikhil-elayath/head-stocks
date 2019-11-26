@@ -229,7 +229,7 @@ router.put("/sell", async (req, res, next) => {
             "company.$.sell_price": req.body.sell_price,
             wallet: username.wallet + req.body.price,
             "company.$.sell_date": new Date().toISOString(),
-            "company.$.seeling_quantity": req.body.quantity
+            "company.$.selling_quantity": req.body.quantity
           }
         },
         { upsert: true }

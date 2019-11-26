@@ -29,23 +29,34 @@ export class CompanyDetail extends Component {
         {this.props.company ? (
           <div id="company-detail-grid-container">
             <div id="company-detail-profile">
-              {this.props.company.map(company => (
+              {this.props.company.map((company, index) => (
                 <>
                   {/* <h3>
                     Market Cap :
                     <span id="market_cap">{company.last_market_cap}</span>
                   </h3> */}
                   <h3>
-                    Sector : <span id="sector">{company.sector}</span>
+                    Sector :{" "}
+                    <span id="sector" className={"sector" + index}>
+                      {company.sector}
+                    </span>
                   </h3>{" "}
                   <h3>
-                    Industry : <span id="industry">{company.industry}</span>
+                    Industry :{" "}
+                    <span id="industry" className={"industry" + index}>
+                      {company.industry}
+                    </span>
                   </h3>
                   <h3>
-                    Employees : <span id="employee">{company.employees}</span>
+                    Employees :{" "}
+                    <span id="employee" className={"employee" + index}>
+                      {company.employees}
+                    </span>
                   </h3>
                   <h3>
-                    <span id="profile">{company.profile}</span>
+                    <span id="profile" className={"profile" + index}>
+                      {company.profile}
+                    </span>
                   </h3>
                 </>
               ))}
@@ -67,6 +78,7 @@ export class CompanyDetail extends Component {
         ) : (
           // PLOTTIGN THE GRAPH
           <div
+            id="ohlcCompanyGraph"
             style={{
               // border: "1px solid #cacaca",
               width: "97%",

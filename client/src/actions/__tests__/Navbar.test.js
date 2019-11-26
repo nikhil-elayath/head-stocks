@@ -36,4 +36,20 @@ describe("Testing Users Action", () => {
       expect(store.getActions()).toEqual(expectedResponse);
     });
   });
+
+  it("should get search results ang return status code of 400 with a message", () => {
+    const responseOfApi = [];
+    let searchString = {
+      searchInput: "BHAVANA"
+    };
+    moxios.stubRequest(url + "search", {
+      status: 400,
+      response: { data: responseOfApi }
+    });
+    const store = mockStore({});
+    const expectedResponse = [];
+    return store.dispatch(action.searchContent(searchString)).then(() => {
+      expect(store.getActions()).toEqual(expectedResponse);
+    });
+  });
 });

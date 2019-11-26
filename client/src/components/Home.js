@@ -34,6 +34,7 @@ export class Home extends Component {
                       <div id="news-list">
                         <p
                           id="recent-news-title"
+                          className={"recent-news-title" + index}
                           onClick={() => this.props.newsById(news.new_id)}
                         >
                           {news.headline}
