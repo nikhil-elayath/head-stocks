@@ -75,6 +75,7 @@ export class CompanyDetailFinancial extends Component {
           <select
             type="text"
             className="financialsYearsOption"
+            id="financialsYearsOptionID"
             name="yearInput"
             value={this.state.yearInput}
             onChange={this.getByYear}

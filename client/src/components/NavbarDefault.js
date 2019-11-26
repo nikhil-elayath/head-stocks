@@ -224,7 +224,7 @@ export class NavbarDefault extends Component {
                 <div>
                   <h4>Search Results</h4>
 
-                  {this.props.results.map(result => (
+                  {this.props.results.map((result, index) => (
                     <Link
                       className="company-link"
                       id="linknavbar1"
@@ -240,10 +240,16 @@ export class NavbarDefault extends Component {
                       }
                     >
                       <div className="navbarSearchResultsDiv">
-                        <p className="navbarSearchResultsPTag1">
+                        <p
+                          className="navbarSearchResultsPTag1"
+                          id={"tickerName" + index}
+                        >
                           <b>{result.ticker_name}</b>
                         </p>
-                        <p className="navbarSearchResultsPTag2">
+                        <p
+                          className="navbarSearchResultsPTag2"
+                          id={"industry" + index}
+                        >
                           {result.industry}
                         </p>
                       </div>

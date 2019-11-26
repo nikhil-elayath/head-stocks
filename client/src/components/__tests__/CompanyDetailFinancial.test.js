@@ -64,4 +64,10 @@ describe("Testing Company Detail Financial Component", () => {
     let getByYear = jest.spyOn(wrapper.instance(), "getByYear");
     expect(getByYear).toBeTruthy();
   });
+
+  it("checks for on getByYear to be called", () => {
+    const e = { preventDefault: () => {} };
+    jest.spyOn(e, "preventDefault");
+    wrapper.find("#financialsYearsOptionID").simulate("click", e);
+  });
 });

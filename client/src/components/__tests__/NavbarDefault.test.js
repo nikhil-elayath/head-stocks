@@ -2,21 +2,24 @@ import React from "react";
 import { NavbarDefault } from "../NavbarDefault";
 import { shallow, mount } from "enzyme";
 
-
 const navbar = jest.fn();
 const searchContent = jest.fn();
 const OnChange = jest.fn();
 const onSearch = jest.fn();
 
-const props = {
-  results: [
-    { ticker_id: 1, ticker_name: "AAPL", industry: "Computer Hardware" }
-  ]
-};
+const nav = [
+  {
+    results: [
+      { ticker_id: 1, ticker_name: "AAPL", industry: "Computer Hardware" },
+      { ticker_id: 2, ticker_name: "AAP", industry: "Computer Hardware" }
+    ]
+  }
+];
+
 const wrapper = shallow(
   <NavbarDefault
     navbar={navbar}
-    props={props}
+    nav={nav}
     searchContent={searchContent}
     OnChange={OnChange}
     onSearch={onSearch}
@@ -118,5 +121,11 @@ describe("Testing Navbar Component", () => {
         .at(0)
         .props().placeholder
     ).toBe("Search for ticker");
+  });
+
+  it("should have a search results in each row ", () => {
+    expect(wrapper.find("#tickerName0").props().children).toBe(
+      nav[0].result[0].ticker_name
+    );
   });
 });
