@@ -2,18 +2,24 @@ import React from "react";
 import { NavbarDefault } from "../NavbarDefault";
 import { shallow, mount } from "enzyme";
 
-// import renderer from 'react-test-renderer';
-// import { Link } from 'react-router-dom';
-// import { StaticRouter } from 'react-router'
 
 const navbar = jest.fn();
 const searchContent = jest.fn();
+const OnChange = jest.fn();
+const onSearch = jest.fn();
 
-
+const props = {
+  results: [
+    { ticker_id: 1, ticker_name: "AAPL", industry: "Computer Hardware" }
+  ]
+};
 const wrapper = shallow(
   <NavbarDefault
     navbar={navbar}
+    props={props}
     searchContent={searchContent}
+    OnChange={OnChange}
+    onSearch={onSearch}
   />
 );
 
@@ -50,20 +56,37 @@ describe("Testing Navbar Component", () => {
     expect(wrapper.state().home).toBe(false);
     expect(wrapper.state().stocks).toBe(false);
     expect(wrapper.state().login).toBe(true);
+    expect(wrapper.state().vtoption).toBe(false);
   });
   it("should simulate button click on Stocks button tab ", () => {
     wrapper.find("#navbarStocksText").simulate("click");
     expect(wrapper.state().home).toBe(false);
     expect(wrapper.state().stocks).toBe(true);
     expect(wrapper.state().login).toBe(false);
+    expect(wrapper.state().vtoption).toBe(false);
   });
   it("should simulate button click on Home button tab ", () => {
     wrapper.find("#navbarLogoText1").simulate("click");
     expect(wrapper.state().home).toBe(true);
     expect(wrapper.state().stocks).toBe(false);
     expect(wrapper.state().login).toBe(false);
+    expect(wrapper.state().vtoption).toBe(false);
   });
-  
+  it("should simulate button click on Virtual Trading button tab ", () => {
+    wrapper.find("#navbarVTText").simulate("click");
+    expect(wrapper.state().home).toBe(false);
+    expect(wrapper.state().stocks).toBe(false);
+    expect(wrapper.state().login).toBe(false);
+    expect(wrapper.state().vtoption).toBe(true);
+  });
+  // it("should simulate button click on Cancel Button button tab ", () => {
+  //   const e = { preventDefault: () => {} };
+  //   jest.spyOn(e, "preventDefault");
+  //   expect(wrapper.state().searchInputChanged).toEqual(false);
+  //   wrapper.find("#navbarSearchCancelClick").simulate("click");
+  //   expect(wrapper.state().searchInputChanged).toEqual(true);
+  // });
+
   it("checks for on Search function to be called", () => {
     const e = { preventDefault: () => {} };
     jest.spyOn(e, "preventDefault");
@@ -96,27 +119,4 @@ describe("Testing Navbar Component", () => {
         .props().placeholder
     ).toBe("Search for ticker");
   });
-
-
-  // it("should simulate button click on Cancel button click ", () => {
-  //   wrapper.find("#navbarSearchCancelClick").simulate("click");
-  //   expect(wrapper.state().searchInputChanged).toBe(true);
-  // });
-
-
-  // Does Not Affect the Coverage
-  // id="linknavbar1"
-  // test('Link matches snapshot', () => {
-  //   const component = renderer.create(
-  //     <StaticRouter location="#linknavbar1" navbar={navbar}>
-  //       <Link to="/companydetail/9" />
-  //     </StaticRouter>
-  //   );
-  //   let tree = component.toJSON();
-  //   expect(tree).toMatchSnapshot();
-  // })
-
-
 });
-
-

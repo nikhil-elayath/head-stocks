@@ -27,6 +27,7 @@ exports[`Testing Navbar Component should mount the component 1`] = `
   </Link>
   <div
     className="navbarLoginOptions"
+    onClick={[Function]}
   >
     <span>
       <Link
@@ -42,7 +43,9 @@ exports[`Testing Navbar Component should mount the component 1`] = `
   <div
     className="navbarStockOptions"
   >
-    <span>
+    <span
+      onClick={[Function]}
+    >
       <Link
         className="linkdecornone"
         id="navbarStocksText"
@@ -50,6 +53,22 @@ exports[`Testing Navbar Component should mount the component 1`] = `
         to="/Stocks"
       >
         Stocks
+      </Link>
+    </span>
+  </div>
+  <div
+    className="navbarVTOptions"
+  >
+    <span
+      onClick={[Function]}
+    >
+      <Link
+        className="linkdecornone"
+        id="navbarVTText"
+        onClick={[Function]}
+        to="/profile"
+      >
+        Virtual Trading
       </Link>
     </span>
   </div>

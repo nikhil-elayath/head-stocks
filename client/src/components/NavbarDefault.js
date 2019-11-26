@@ -153,7 +153,7 @@ export class NavbarDefault extends Component {
         <div className="navbarVTOptions">
           <span onClick={this.myhamburgfunction}>
             <Link
-              to={localStorage.getItem("token") ? "/profile" : "/login"}
+              to="/profile"
               onClick={() =>
                 this.setState({
                   home: false,
@@ -227,6 +227,7 @@ export class NavbarDefault extends Component {
                   {this.props.results.map(result => (
                     <Link
                       className="company-link"
+                      id="linknavbar1"
                       // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
                       to={{
                         pathname: "/companydetail/" + result.ticker_id
