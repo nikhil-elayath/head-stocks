@@ -18,7 +18,12 @@ describe("Testing Users Reducer", () => {
       type: CREATE_USER
     };
     const returnedState = usersReducer(undefined, action);
-    expect(returnedState).toEqual({ users: [], error: "", userhistory: [] });
+    expect(returnedState).toEqual({
+      users: [],
+      error: "",
+      userhistory: [],
+      wallet: []
+    });
   });
 
   it("should return a state object with user array equal to the payload in the action when the action type is LOGIN (when the returned state is initial state)", () => {
@@ -26,7 +31,12 @@ describe("Testing Users Reducer", () => {
       type: LOGIN
     };
     const returnedState = usersReducer(undefined, action);
-    expect(returnedState).toEqual({ users: [], error: "", userhistory: [] });
+    expect(returnedState).toEqual({
+      users: [],
+      error: "",
+      userhistory: [],
+      wallet: []
+    });
   });
 
   it("should return a state object with user array equal to the payload in the action when the action type is SOME_TYPE (when the returned state is initial state)", () => {
@@ -34,7 +44,12 @@ describe("Testing Users Reducer", () => {
       type: "SOME_TYPE"
     };
     const returnedState = usersReducer(undefined, action);
-    expect(returnedState).toEqual({ users: [], error: "", userhistory: [] });
+    expect(returnedState).toEqual({
+      users: [],
+      error: "",
+      userhistory: [],
+      wallet: []
+    });
   });
 
   it("should return a state object with user array equal to the payload in the action when the action type is RESET_PASSWORD (when the returned state is initial state)", () => {
@@ -42,7 +57,12 @@ describe("Testing Users Reducer", () => {
       type: RESET_PASSWORD
     };
     const returnedState = usersReducer(undefined, action);
-    expect(returnedState).toEqual({ users: [], error: "", userhistory: [] });
+    expect(returnedState).toEqual({
+      users: [],
+      error: "",
+      userhistory: [],
+      wallet: []
+    });
   });
 
   it("should return a state object with user array equal to the payload in the action when the action type is SEND_OTP (when the returned state is initial state)", () => {
@@ -50,7 +70,12 @@ describe("Testing Users Reducer", () => {
       type: SEND_OTP
     };
     const returnedState = usersReducer(undefined, action);
-    expect(returnedState).toEqual({ users: [], error: "", userhistory: [] });
+    expect(returnedState).toEqual({
+      users: [],
+      error: "",
+      userhistory: [],
+      wallet: []
+    });
   });
 
   it("should return a state object with user array equal to the payload in the action when the action type is VERIFY_OTP (when the returned state is initial state)", () => {
@@ -58,7 +83,12 @@ describe("Testing Users Reducer", () => {
       type: VERIFY_OTP
     };
     const returnedState = usersReducer(undefined, action);
-    expect(returnedState).toEqual({ users: [], error: "", userhistory: [] });
+    expect(returnedState).toEqual({
+      users: [],
+      error: "",
+      userhistory: [],
+      wallet: []
+    });
   });
 
   it("should return a state object with user array equal to the payload in the action when the action type is USER_HISTORY (when the returned state is initial state)", () => {
@@ -68,7 +98,9 @@ describe("Testing Users Reducer", () => {
     const returnedState = usersReducer(undefined, action);
     expect(returnedState).toEqual({
       userhistory: undefined,
-      users: []
+      users: [],
+      error: "",
+      wallet: []
     });
   });
 
@@ -78,9 +110,10 @@ describe("Testing Users Reducer", () => {
     };
     const returnedState = usersReducer(undefined, action);
     expect(returnedState).toEqual({
-      users: [],
+      users: undefined,
       error: "",
-      userhistory: undefined
+      userhistory: [],
+      wallet: []
     });
   });
 
@@ -92,7 +125,8 @@ describe("Testing Users Reducer", () => {
     expect(returnedState).toEqual({
       users: [],
       error: "",
-      userhistory: undefined
+      userhistory: [],
+      wallet: undefined
     });
   });
 
@@ -102,9 +136,10 @@ describe("Testing Users Reducer", () => {
     };
     const returnedState = usersReducer(undefined, action);
     expect(returnedState).toEqual({
-      users: [],
+      users: undefined,
       error: "",
-      userhistory: undefined
+      userhistory: [],
+      wallet: []
     });
   });
 
@@ -116,7 +151,8 @@ describe("Testing Users Reducer", () => {
     expect(returnedState).toEqual({
       error: undefined,
       userhistory: [],
-      users: []
+      users: [],
+      wallet: []
     });
   });
 });
