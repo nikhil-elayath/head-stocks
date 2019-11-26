@@ -13,7 +13,7 @@ import {
   getIndustries,
   getGainersLosers,
   //[NIKHIL] SCREENER ACTIONS
-  getScreenerSearch,
+  getScreenerSearch
 } from "../actions/Stocks";
 import "../styles/StocksLanding.css";
 import "../styles/Admin.css";
@@ -72,7 +72,7 @@ export class StocksLanding extends Component {
         "Dividend",
         "PE Ratio",
         "Debt to Equity Ratio",
-        "Share Price",
+        "Share Price"
       ],
       datasets: [
         {
@@ -87,8 +87,8 @@ export class StocksLanding extends Component {
           pointBorderColor: "#2c3e50",
           pointHoverRadius: 10,
           //values coming from the database
-          data: [65, 75, 70, 80, 60, 80],
-        },
+          data: [65, 75, 70, 80, 60, 80]
+        }
         // {
         //   label: "Student B",
         //   backgroundColor: "rgb(57,171,247)",
@@ -103,8 +103,8 @@ export class StocksLanding extends Component {
         //   //values coming from the database
         //   data: [54, 65, 60, 70, 70, 75],
         // },
-      ],
-    },
+      ]
+    }
   };
 
   //for slider handle cange
@@ -190,7 +190,7 @@ export class StocksLanding extends Component {
 
   OnSelectSector = e => {
     this.setState({
-      sector: e.target.value, //setting state for the sector
+      sector: e.target.value //setting state for the sector
     });
     this.props.getCompany("sector", e.target.value);
     this.props.getIndustries(e.target.value); //getting all the industries based on a sector selected
@@ -199,7 +199,7 @@ export class StocksLanding extends Component {
 
   OnSelectIndustry = e => {
     this.setState({
-      industry: e.target.value, //setting state for the industry
+      industry: e.target.value //setting state for the industry
     });
     this.props.getCompany("industry", e.target.value); //getting all the companies based on an industry selected
   };
@@ -220,7 +220,7 @@ export class StocksLanding extends Component {
   loadMoreItems = () => {
     setTimeout(() => {
       this.setState({
-        items: this.state.items + 10,
+        items: this.state.items + 10
       });
       this.displayCompanies(this.props.stocks);
     }, 1000);
@@ -255,15 +255,15 @@ export class StocksLanding extends Component {
                   beginAtZero: true,
                   min: 0,
                   max: 100,
-                  stepSize: 20,
+                  stepSize: 20
                 },
                 pointLabels: {
-                  fontSize: 18,
-                },
+                  fontSize: 18
+                }
               },
               legend: {
-                position: "left",
-              },
+                position: "left"
+              }
               // ticks: {
               //   suggestedMin: 50,
               //   suggestedMax: 100,
@@ -315,174 +315,182 @@ export class StocksLanding extends Component {
                 ))}
               </select>
               <label id="advance-label" for="toggle-1">
-                Advance Search
+                <i class="fa fa-filter" id="filter_icon"></i>
+                More Filters
               </label>
               <input type="checkbox" id="toggle-1" />
-
-              <div id="stocks-advance-filter-grid-main-container">
-                <div id="advance-fliter-dividend">
-                  <div id="advance-filter-title">
-                    <p id="advance-filter-dividend-p">EBIT </p>
-                  </div>
-                  {/* FOR DIVIDEND  */}
-                  <div id="stocks-landing-page-slider">
-                    {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
-                    <Range
-                      // SETTING THE MINIMUM VALUE
-                      min={-50}
-                      // SETTING THE MAXIMUM VALUE
-                      max={1000}
-                      //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
-                      defaultValue={[this.state.ebit1, this.state.ebit1]}
-                      //ON CHANGING CALLING THE SLIDERCHANGE
-                      onChange={this.onSliderChange}
-                    />
-                  </div>
-                  <div id="advance-filter-debt-to-equity-ratio-value">
-                    <p id="advance-filter-value">-50</p>
-                    <p id="advance-filter-value2">1000</p>
-                  </div>
-                </div>
-                {/* FOR MARKET CAP  */}
-                <div id="advance-filter-market-cap">
-                  <div id="advance-filter-title">
-                    <p id="advance-filter-market-cap-p">market cap</p>
-                  </div>
-                  <div id="stocks-landing-page-slider">
-                    {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
-                    <Range
-                      // SETTING THE MINIMUM VALUE
-                      min={0}
-                      // SETTING THE MAXIMUM VALUE
-                      max={1000}
-                      //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
-                      defaultValue={[
-                        this.state.market_cap_value1,
-                        this.state.market_cap_value2,
-                      ]}
-                      //ON CHANGING CALLING THE SLIDERCHANGE
-                      onChange={this.onSliderChange2}
-                      name={"slider1"}
-                    />
-                  </div>
-                  <div id="advance-filter-debt-to-equity-ratio-value">
-                    <p id="advance-filter-value">0</p>
-                    <p id="advance-filter-value2">100</p>
-                  </div>
-                </div>
-                {/* FOR SHARE Price  */}
-                <div id="advance-filter-share-price">
-                  <div id="advance-filter-title">
-                    <p id="advance-filter-share-price-p">share price </p>
-                  </div>
-                  <div id="stocks-landing-page-slide">
-                    {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
-                    <Range
-                      // SETTING THE MINIMUM VALUE
-                      min={0}
-                      // SETTING THE MAXIMUM VALUE
-                      max={1000}
-                      //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
-                      defaultValue={[
-                        this.state.share_price1,
-                        this.state.share_price2,
-                      ]}
-                      //ON CHANGING CALLING THE SLIDERCHANGE
-                      onChange={this.onSliderChange3}
-                    />
-                  </div>
-                  <div id="advance-filter-debt-to-equity-ratio-value">
-                    <p id="advance-filter-value">0</p>
-                    <p id="advance-filter-value2">100</p>
-                  </div>
-                </div>
-                {/* for PE RATIO */}
-                <div id="advance-filter-price-to-equity">
-                  <div id="advance-filter-title">
-                    <p id="advance-filter-price-to-equity-p">Total Assests</p>
-                  </div>
-                  <div id="stocks-landing-page-slider">
-                    {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
-                    <Range
-                      // SETTING THE MINIMUM VALUE
-                      min={0}
-                      // SETTING THE MAXIMUM VALUE
-                      max={1000}
-                      //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
-                      defaultValue={[
-                        this.state.total_assests1,
-                        this.state.total_assests2,
-                      ]}
-                      //ON CHANGING CALLING THE SLIDERCHANGE
-                      onChange={this.onSliderChange4}
-                    />
-                  </div>
-                  <div id="advance-filter-debt-to-equity-ratio-value">
-                    <p id="advance-filter-value">0</p>
-                    <p id="advance-filter-value2">100</p>
-                  </div>
-                </div>
-                {/* net profit  */}
-                <div id="advance-filter-net-profit">
-                  <div id="advance-filter-title">
-                    <p id="advance-filter-debt-to-equity-p">Net Profit</p>
-                  </div>
-                  <div id="stocks-landing-page-slider">
-                    {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
-                    <Range
-                      // SETTING THE MINIMUM VALUE
-                      min={0}
-                      // SETTING THE MAXIMUM VALUE
-                      max={1000}
-                      //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
-                      defaultValue={[
-                        this.state.net_profit1,
-                        this.state.net_profit2,
-                      ]}
-                      //ON CHANGING CALLING THE SLIDERCHANGE
-                      onChange={this.onSliderChange6}
-                    />
-                  </div>
-                  <div id="advance-filter-debt-to-equity-ratio-value">
-                    <p id="advance-filter-value">0</p>
-                    <p id="advance-filter-value2">100</p>
-                  </div>
-                </div>
-                {/* Revenues*/}
-                <div id="advance-filter-revenues">
-                  <div id="advance-filter-title">
-                    <p id="advance-filter-debt-to-equity-p">Revenues</p>
-                  </div>
-                  <div id="stocks-landing-page-slider">
-                    {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
-                    <Range
-                      // SETTING THE MINIMUM VALUE
-                      min={0}
-                      // SETTING THE MAXIMUM VALUE
-                      max={1000}
-                      //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
-                      defaultValue={[this.state.revenue1, this.state.revenue2]}
-                      //ON CHANGING CALLING THE SLIDERCHANGE
-                      onChange={this.onSliderChange5}
-                    />
-                  </div>
-                  <div id="advance-filter-debt-to-equity-ratio-value">
-                    <p id="advance-filter-value">0</p>
-                    <p id="advance-filter-value2">100</p>
-                  </div>
-                </div>
-
-                {/* for net profit */}
-                {/*  */}
-              </div>
-              {/* main grid container  */}
-              <button
-                id="advance-filter-button"
-                type="submit"
-                onClick={this.onSearchClick}
+              <div
+                id="filter_main_container"
+                className="w3-container w3-center w3-animate-opacity"
               >
-                Filter{" "}
-              </button>
+                <div id="stocks-advance-filter-grid-main-container">
+                  <div id="advance-fliter-dividend">
+                    <div id="advance-filter-title">
+                      <p id="advance-filter-dividend-p">EBIT </p>
+                    </div>
+                    {/* FOR DIVIDEND  */}
+                    <div id="stocks-landing-page-slider">
+                      {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
+                      <Range
+                        // SETTING THE MINIMUM VALUE
+                        min={-50}
+                        // SETTING THE MAXIMUM VALUE
+                        max={1000}
+                        //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
+                        defaultValue={[this.state.ebit1, this.state.ebit1]}
+                        //ON CHANGING CALLING THE SLIDERCHANGE
+                        onChange={this.onSliderChange}
+                      />
+                    </div>
+                    <div id="advance-filter-debt-to-equity-ratio-value">
+                      <p id="advance-filter-value">-50</p>
+                      <p id="advance-filter-value2">1000</p>
+                    </div>
+                  </div>
+                  {/* FOR MARKET CAP  */}
+                  <div id="advance-filter-market-cap">
+                    <div id="advance-filter-title">
+                      <p id="advance-filter-market-cap-p">market cap</p>
+                    </div>
+                    <div id="stocks-landing-page-slider">
+                      {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
+                      <Range
+                        // SETTING THE MINIMUM VALUE
+                        min={0}
+                        // SETTING THE MAXIMUM VALUE
+                        max={1000}
+                        //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
+                        defaultValue={[
+                          this.state.market_cap_value1,
+                          this.state.market_cap_value2
+                        ]}
+                        //ON CHANGING CALLING THE SLIDERCHANGE
+                        onChange={this.onSliderChange2}
+                        name={"slider1"}
+                      />
+                    </div>
+                    <div id="advance-filter-debt-to-equity-ratio-value">
+                      <p id="advance-filter-value">0</p>
+                      <p id="advance-filter-value2">100</p>
+                    </div>
+                  </div>
+                  {/* FOR SHARE Price  */}
+                  <div id="advance-filter-share-price">
+                    <div id="advance-filter-title">
+                      <p id="advance-filter-share-price-p">share price </p>
+                    </div>
+                    <div id="stocks-landing-page-slide">
+                      {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
+                      <Range
+                        // SETTING THE MINIMUM VALUE
+                        min={0}
+                        // SETTING THE MAXIMUM VALUE
+                        max={1000}
+                        //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
+                        defaultValue={[
+                          this.state.share_price1,
+                          this.state.share_price2
+                        ]}
+                        //ON CHANGING CALLING THE SLIDERCHANGE
+                        onChange={this.onSliderChange3}
+                      />
+                    </div>
+                    <div id="advance-filter-debt-to-equity-ratio-value">
+                      <p id="advance-filter-value">0</p>
+                      <p id="advance-filter-value2">100</p>
+                    </div>
+                  </div>
+                  {/* for PE RATIO */}
+                  <div id="advance-filter-price-to-equity">
+                    <div id="advance-filter-title">
+                      <p id="advance-filter-price-to-equity-p">Total Assests</p>
+                    </div>
+                    <div id="stocks-landing-page-slider">
+                      {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
+                      <Range
+                        // SETTING THE MINIMUM VALUE
+                        min={0}
+                        // SETTING THE MAXIMUM VALUE
+                        max={1000}
+                        //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
+                        defaultValue={[
+                          this.state.total_assests1,
+                          this.state.total_assests2
+                        ]}
+                        //ON CHANGING CALLING THE SLIDERCHANGE
+                        onChange={this.onSliderChange4}
+                      />
+                    </div>
+                    <div id="advance-filter-debt-to-equity-ratio-value">
+                      <p id="advance-filter-value">0</p>
+                      <p id="advance-filter-value2">100</p>
+                    </div>
+                  </div>
+                  {/* net profit  */}
+                  <div id="advance-filter-net-profit">
+                    <div id="advance-filter-title">
+                      <p id="advance-filter-debt-to-equity-p">Net Profit</p>
+                    </div>
+                    <div id="stocks-landing-page-slider">
+                      {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
+                      <Range
+                        // SETTING THE MINIMUM VALUE
+                        min={0}
+                        // SETTING THE MAXIMUM VALUE
+                        max={1000}
+                        //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
+                        defaultValue={[
+                          this.state.net_profit1,
+                          this.state.net_profit2
+                        ]}
+                        //ON CHANGING CALLING THE SLIDERCHANGE
+                        onChange={this.onSliderChange6}
+                      />
+                    </div>
+                    <div id="advance-filter-debt-to-equity-ratio-value">
+                      <p id="advance-filter-value">0</p>
+                      <p id="advance-filter-value2">100</p>
+                    </div>
+                  </div>
+                  {/* Revenues*/}
+                  <div id="advance-filter-revenues">
+                    <div id="advance-filter-title">
+                      <p id="advance-filter-debt-to-equity-p">Revenues</p>
+                    </div>
+                    <div id="stocks-landing-page-slider">
+                      {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
+                      <Range
+                        // SETTING THE MINIMUM VALUE
+                        min={0}
+                        // SETTING THE MAXIMUM VALUE
+                        max={1000}
+                        //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
+                        defaultValue={[
+                          this.state.revenue1,
+                          this.state.revenue2
+                        ]}
+                        //ON CHANGING CALLING THE SLIDERCHANGE
+                        onChange={this.onSliderChange5}
+                      />
+                    </div>
+                    <div id="advance-filter-debt-to-equity-ratio-value">
+                      <p id="advance-filter-value">0</p>
+                      <p id="advance-filter-value2">100</p>
+                    </div>
+                  </div>
+
+                  {/* for net profit */}
+                  {/*  */}
+                </div>
+                {/* main grid container  */}
+                <button
+                  id="advance-filter-button"
+                  type="submit"
+                  onClick={this.onSearchClick}
+                >
+                  Filter
+                </button>
+              </div>
 
               {/* <div
                 id="btn"
@@ -693,7 +701,7 @@ export class StocksLanding extends Component {
                   "Ticker",
                   "Chng (%)",
                   "Market Cap",
-                  "Share Price",
+                  "Share Price"
                 ]}
                 tableData={
                   this.state.gainersClick === true //displaying the gainers data in the table if state of gainersClick is true that is when gainers button is clicked else losers data is displayed
@@ -719,7 +727,7 @@ const mapStateToProps = state => ({
   industries: state.stocksReducer.industries,
   gainersLosers: state.stocksReducer.gainersLosers,
   isLoading: state.LoadingReducer.isLoading,
-  screener_search: state.stocksReducer.screener_search,
+  screener_search: state.stocksReducer.screener_search
 });
 
 export default connect(mapStateToProps, {
@@ -727,5 +735,5 @@ export default connect(mapStateToProps, {
   getSectors,
   getIndustries,
   getGainersLosers,
-  getScreenerSearch,
+  getScreenerSearch
 })(StocksLanding);
