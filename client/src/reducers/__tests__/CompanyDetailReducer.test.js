@@ -11,7 +11,9 @@ import {
   ASSETS_COMPANY1,
   ASSETS_COMPANY2,
   MONTECARLO_COMPANY1,
-  MONTECARLO_COMPANY2
+  MONTECARLO_COMPANY2,
+  VOLATILITY,
+  SHARE_PRICE_COMPARISON
 } from "../../actions/Types";
 
 describe("Testing Company Details Reducer", () => {
@@ -24,7 +26,7 @@ describe("Testing Company Details Reducer", () => {
     expect(returnedState).toEqual({
       company: action.payload,
       balance_sheet: [],
-      ohlc_chart: [],
+      ohlcChart: [],
       similar_company: [],
       dates: [],
       drop_down_data: [],
@@ -33,7 +35,9 @@ describe("Testing Company Details Reducer", () => {
       monteCarlo1: [],
       monteCarlo2: [],
       assets1: [],
-      assets2: []
+      assets2: [],
+      priceComparison: [],
+      voltality: []
     });
   });
 
@@ -49,7 +53,7 @@ describe("Testing Company Details Reducer", () => {
     expect(returnedState).toEqual({
       company: [],
       balance_sheet: [],
-      ohlc_chart: [],
+      ohlcChart: [],
       similar_company: [],
       dates: [],
       drop_down_data: [],
@@ -58,7 +62,9 @@ describe("Testing Company Details Reducer", () => {
       monteCarlo1: [],
       monteCarlo2: [],
       assets1: [],
-      assets2: []
+      assets2: [],
+      priceComparison: [],
+      voltality: []
     });
   });
 
@@ -71,7 +77,7 @@ describe("Testing Company Details Reducer", () => {
     expect(returnedState).toEqual({
       company: [],
       balance_sheet: [],
-      ohlc_chart: [],
+      ohlcChart: [],
       similar_company: [],
       dates: [],
       drop_down_data: [],
@@ -80,7 +86,9 @@ describe("Testing Company Details Reducer", () => {
       monteCarlo1: [],
       monteCarlo2: [],
       assets1: [],
-      assets2: []
+      assets2: [],
+      priceComparison: [],
+      voltality: []
     });
   });
 
@@ -93,7 +101,7 @@ describe("Testing Company Details Reducer", () => {
     expect(returnedState).toEqual({
       company: [],
       balance_sheet: [],
-      ohlc_chart: [],
+      ohlcChart: [],
       similar_company: [],
       dates: [],
       drop_down_data: [],
@@ -102,7 +110,9 @@ describe("Testing Company Details Reducer", () => {
       monteCarlo1: [],
       monteCarlo2: [],
       assets1: [],
-      assets2: []
+      assets2: [],
+      priceComparison: [],
+      voltality: []
     });
   });
 
@@ -115,7 +125,7 @@ describe("Testing Company Details Reducer", () => {
     expect(returnedState).toEqual({
       company: [],
       balance_sheet: [],
-      ohlc_chart: [],
+      ohlcChart: [],
       similar_company: [],
       dates: [],
       drop_down_data: [],
@@ -124,7 +134,9 @@ describe("Testing Company Details Reducer", () => {
       monteCarlo1: [],
       monteCarlo2: [],
       assets1: action.payload,
-      assets2: []
+      assets2: [],
+      priceComparison: [],
+      voltality: []
     });
   });
 
@@ -137,7 +149,7 @@ describe("Testing Company Details Reducer", () => {
     expect(returnedState).toEqual({
       company: [],
       balance_sheet: [],
-      ohlc_chart: [],
+      ohlcChart: [],
       similar_company: [],
       dates: [],
       drop_down_data: [],
@@ -146,7 +158,9 @@ describe("Testing Company Details Reducer", () => {
       monteCarlo1: [],
       monteCarlo2: [],
       assets2: action.payload,
-      assets1: []
+      assets1: [],
+      priceComparison: [],
+      voltality: []
     });
   });
 
@@ -159,7 +173,7 @@ describe("Testing Company Details Reducer", () => {
     expect(returnedState).toEqual({
       company: [],
       balance_sheet: [],
-      ohlc_chart: [],
+      ohlcChart: [],
       similar_company: action.payload,
       dates: [],
       drop_down_data: [],
@@ -168,7 +182,9 @@ describe("Testing Company Details Reducer", () => {
       monteCarlo1: [],
       monteCarlo2: [],
       assets1: [],
-      assets2: []
+      assets2: [],
+      priceComparison: [],
+      voltality: []
     });
   });
 
@@ -181,7 +197,7 @@ describe("Testing Company Details Reducer", () => {
     expect(returnedState).toEqual({
       company: [],
       balance_sheet: [],
-      ohlc_chart: [],
+      ohlcChart: [],
       similar_company: action.payload,
       dates: [],
       drop_down_data: [],
@@ -190,7 +206,9 @@ describe("Testing Company Details Reducer", () => {
       monteCarlo1: [],
       monteCarlo2: [],
       assets1: [],
-      assets2: []
+      assets2: [],
+      priceComparison: [],
+      voltality: []
     });
   });
 
@@ -203,7 +221,7 @@ describe("Testing Company Details Reducer", () => {
     expect(returnedState).toEqual({
       company: [],
       balance_sheet: [],
-      ohlc_chart: [],
+      ohlcChart: [],
       similar_company: [],
       dates: [],
       drop_down_data: [],
@@ -212,7 +230,9 @@ describe("Testing Company Details Reducer", () => {
       monteCarlo1: action.payload,
       monteCarlo2: [],
       assets1: [],
-      assets2: []
+      assets2: [],
+      priceComparison: [],
+      voltality: []
     });
   });
 
@@ -225,7 +245,7 @@ describe("Testing Company Details Reducer", () => {
     expect(returnedState).toEqual({
       company: [],
       balance_sheet: [],
-      ohlc_chart: [],
+      ohlcChart: [],
       similar_company: [],
       dates: [],
       drop_down_data: [],
@@ -234,7 +254,9 @@ describe("Testing Company Details Reducer", () => {
       monteCarlo1: [],
       monteCarlo2: action.payload,
       assets1: [],
-      assets2: []
+      assets2: [],
+      priceComparison: [],
+      voltality: []
     });
   });
 
@@ -248,7 +270,7 @@ describe("Testing Company Details Reducer", () => {
     expect(returnedState).toEqual({
       company: [],
       balance_sheet: [],
-      ohlc_chart: [],
+      ohlcChart: [],
       similar_company: [],
       dates: action.payload,
       drop_down_data: [],
@@ -257,7 +279,9 @@ describe("Testing Company Details Reducer", () => {
       monteCarlo1: [],
       monteCarlo2: [],
       assets1: [],
-      assets2: []
+      assets2: [],
+      priceComparison: [],
+      voltality: []
     });
   });
 
@@ -270,7 +294,7 @@ describe("Testing Company Details Reducer", () => {
     expect(returnedState).toEqual({
       company: [],
       balance_sheet: action.payload,
-      ohlc_chart: [],
+      ohlcChart: [],
       similar_company: [],
       dates: [],
       drop_down_data: [],
@@ -279,7 +303,9 @@ describe("Testing Company Details Reducer", () => {
       monteCarlo1: [],
       monteCarlo2: [],
       assets1: [],
-      assets2: []
+      assets2: [],
+      priceComparison: [],
+      voltality: []
     });
   });
 
@@ -292,7 +318,7 @@ describe("Testing Company Details Reducer", () => {
     expect(returnedState).toEqual({
       company: [],
       balance_sheet: [],
-      ohlc_chart: [],
+      ohlcChart: [],
       similar_company: [],
       dates: [],
       drop_down_data: action.payload,
@@ -300,6 +326,56 @@ describe("Testing Company Details Reducer", () => {
       gauge2: [],
       monteCarlo1: [],
       monteCarlo2: [],
+      priceComparison: [],
+      voltality: [],
+      assets1: [],
+      assets2: []
+    });
+  });
+
+  it("should return a state object with user array equal to the payload in the action when the action type is COMOANY_DETAIL (when the returned state is initial state)", () => {
+    const action = {
+      type: VOLATILITY,
+      payload: [{}, {}, {}]
+    };
+    const returnedState = companyDetailReducer(undefined, action);
+    expect(returnedState).toEqual({
+      company: [],
+      balance_sheet: [],
+      ohlcChart: [],
+      similar_company: [],
+      dates: [],
+      drop_down_data: [],
+      gauge1: [],
+      gauge2: [],
+      monteCarlo1: [],
+      monteCarlo2: [],
+      priceComparison: [],
+      voltality: action.payload,
+      assets1: [],
+      assets2: []
+    });
+  });
+
+  it("should return a state object with user array equal to the payload in the action when the action type is COMOANY_DETAIL (when the returned state is initial state)", () => {
+    const action = {
+      type: SHARE_PRICE_COMPARISON,
+      payload: [{}, {}, {}]
+    };
+    const returnedState = companyDetailReducer(undefined, action);
+    expect(returnedState).toEqual({
+      company: [],
+      balance_sheet: [],
+      ohlcChart: [],
+      similar_company: [],
+      dates: [],
+      drop_down_data: [],
+      gauge1: [],
+      gauge2: [],
+      monteCarlo1: [],
+      monteCarlo2: [],
+      priceComparison: action.payload,
+      voltality: [],
       assets1: [],
       assets2: []
     });

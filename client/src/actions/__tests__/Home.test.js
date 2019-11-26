@@ -57,6 +57,19 @@ describe("Testing Home Action", () => {
       expect(store.getActions()).toEqual(expectedResponse);
     });
   });
+  it("should return a single news by id and return status code of 200 with a message", () => {
+    const responseOfApi = [];
+    let new_id = 100;
+    moxios.stubRequest("http://localhost:2001/api/home/singleNews/" + new_id, {
+      status: 400,
+      response: { data: responseOfApi }
+    });
+    const store = mockStore({});
+    const expectedResponse = [];
+    return store.dispatch(action.newsById(new_id)).then(() => {
+      expect(store.getActions()).toEqual(expectedResponse);
+    });
+  });
 
   it("should return a al the index and return status code of 200 with a message", () => {
     const responseOfApi = [];
