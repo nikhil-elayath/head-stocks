@@ -36,6 +36,7 @@
   float: right;
   width: 70px;
   position: relative;
+  margin: 2px 5px 2px 0px;
 }
 .financialsYearsOption {
   background-color: #ffffff;
@@ -123,6 +124,8 @@
   }
 
   .financialYearsDropdown {
+    margin: 0px 0px 0px 0px;
+
     float: right;
     margin-right: 11px;
     width: 80px;
