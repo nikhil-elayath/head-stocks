@@ -48,20 +48,20 @@ exports[`Testing UserbuyStocks Component should mount the component 1`] = `
           </td>
           <td>
              
-            203.78
+            196.99
           </td>
           <td>
             <span
-              class="fa fa-caret-up"
+              class="fa fa-caret-down"
               style={
                 Object {
-                  "color": "green",
+                  "color": "red",
                   "fontSize": "18px",
                 }
               }
             />
              
-            1.11
+            -2.26
              
             %
           </td>
@@ -98,105 +98,7 @@ exports[`Testing UserbuyStocks Component should mount the component 1`] = `
                 >
                   <p>
                     Current Price : $
-                    203.78
-                  </p>
-                  <p>
-                    Quantity :
-                     
-                    <input
-                      id="sellingQuantity"
-                      name="qty"
-                      onChange={[Function]}
-                      placeholder="0"
-                      type="text"
-                      value=""
-                    />
-                  </p>
-                  <p>
-                    Total Price : $
-                    0
-                  </p>
-                  <a
-                    href="#"
-                    id="sellSpecificStock"
-                    onClick={[Function]}
-                  >
-                    Sell
-                  </a>
-                </div>
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td
-            id="tickerName1"
-          >
-            MSFT
-          </td>
-          <td
-            id="tickerPrice1"
-          >
-            135.68
-          </td>
-          <td
-            id="tickerQty1"
-          >
-            6
-          </td>
-          <td>
-             
-            133.92
-          </td>
-          <td>
-            <span
-              class="fa fa-caret-down"
-              style={
-                Object {
-                  "color": "red",
-                  "fontSize": "18px",
-                }
-              }
-            />
-             
-            -1.30
-             
-            %
-          </td>
-          <td>
-            <div
-              class="sellStocksBox"
-            >
-              <a
-                class="sell"
-                href="#sellStockspopup1"
-              >
-                Sell
-              </a>
-            </div>
-            <div
-              class="sellStocksoverlay"
-              id="sellStockspopup1"
-            >
-              <div
-                class="sellStockspopup"
-              >
-                <h2>
-                  MSFT
-                   
-                </h2>
-                <a
-                  class="sellStocksclose"
-                  href="#"
-                >
-                  ×
-                </a>
-                <div
-                  class="sellStockscontent"
-                >
-                  <p>
-                    Current Price : $
-                    133.92
+                    196.99
                   </p>
                   <p>
                     Quantity :

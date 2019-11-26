@@ -3,6 +3,8 @@ import { shallow, mount } from "enzyme";
 import { UserBuyStocks } from "../UserBuyStocks";
 
 const userBuyStocks = jest.fn();
+const sellStocks = jest.fn();
+const getAllStocks = jest.fn();
 let total = 0;
 const users = [
   {
@@ -14,21 +16,18 @@ const users = [
         current_price: 201.55,
         sell: false,
         ticker_name: "AAPL"
-      },
-      {
-        buy: true,
-        buy_date: "2019-11-22T10:22:26.502Z",
-        buying_quantity: "6",
-        current_price: 135.68,
-        sell: false,
-        ticker_name: "MSFT"
       }
     ]
   }
 ];
 
 const wrapper = shallow(
-  <UserBuyStocks userBuyStocks={userBuyStocks} users={users} />
+  <UserBuyStocks
+    userBuyStocks={userBuyStocks}
+    users={users}
+    sellStocks={sellStocks}
+    getAllStocks={getAllStocks}
+  />
 );
 
 describe("Testing UserbuyStocks Component", () => {
@@ -37,6 +36,7 @@ describe("Testing UserbuyStocks Component", () => {
   });
 
   it("should have a tickername in each row ", () => {
+    console.log(localStorage.getItem("token"));
     expect(wrapper.find("#tickerName0").props().children).toBe(
       users[0].company[0].ticker_name
     );
@@ -57,22 +57,25 @@ describe("Testing UserbuyStocks Component", () => {
   it("shoudl check for input value", () => {
     const e = {
       target: {
-        value: 2
+        name: "total",
+        value: 0
       }
     };
-    expect(wrapper.state().total).toBe(undefined);
+    expect(wrapper.state().total).toBe(e.target.value);
   });
 
-  it("expect to change state", () => {
-    const total = 1;
-    const price = 231.55;
-    const e = {
-      target: {
-        value: 2
-      }
-    };
-    expect(
-      wrapper.instance().setState(total.toBe(e.target.value * Number(price)))
-    );
+  it("should simulate on Chnage on input change ", () => {
+    wrapper
+      .find("#sellingQuantity")
+      .simulate("change", { target: { value: 0 } });
+    expect(wrapper.state().total).toBe(0);
+  });
+
+  it("should simulate onClick on sell stock button ", () => {
+    wrapper.find("#sellSpecificStock").simulate("click");
+  });
+
+  it("should get toekn from localstorage ", () => {
+    expect(localStorage.getItem("token")).toBe(null);
   });
 });

@@ -2,7 +2,7 @@
 @import url("https://code.jquery.com/jquery-1.11.3.min.js");
 @import url("https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js");
 * {
-  font-family: Karla;
+  font-family: Karla !important;
 }
 
 /* #parent:focus + #btn {

@@ -57,9 +57,17 @@ export default class Kafka extends Component {
       <div id="kafkamainContainer">
         {this.state.data.map(i => (
           <div id="kafka">
-            <div id="kafka_indices">{i.tickerName}</div>
+            <div
+              id="kafka_indices"
+              className="w3-container w3-center w3-animate-top"
+            >
+              {i.tickerName}
+            </div>
 
-            <div id="kafka_index_price">
+            <div
+              id="kafka_index_price"
+              className="w3-container w3-center w3-animate-top"
+            >
               {Number(i.closing).toFixed(2)}{" "}
               <span
                 id={
@@ -73,11 +81,13 @@ export default class Kafka extends Component {
               {String(i.changePercentage).charAt(0) == "-" ? (
                 <span
                   class="fa fa-caret-down"
+                  className="w3-container w3-center w3-animate-bottom"
                   style={{ color: "#ff4d4d", margin: "5px" }}
                 ></span>
               ) : (
                 <span
                   class="fa fa-caret-up"
+                  className="w3-container w3-center w3-animate-top"
                   style={{ color: "#27ae60", margin: "5px" }}
                 ></span>
               )}

@@ -27,9 +27,6 @@ export class UserBuyStocks extends Component {
       var decode = jwt_decode(localStorage.getItem("token"));
     }
     var rand;
-    if (localStorage.getItem("token")) {
-      var decode = jwt_decode(localStorage.getItem("token"));
-    }
     return (
       <div>
         <div id="buyStocksContainer">
@@ -122,9 +119,8 @@ export class UserBuyStocks extends Component {
                                 href="#"
                                 onClick={() => {
                                   {
-                                    setTimeout(rand, 10000);
                                     let user = {
-                                      email: decode.email,
+                                      email: "admin@gmail.com",
                                       ticker_name: stocks.ticker_name,
                                       sell_price: rand,
                                       qty: this.state.qty,
