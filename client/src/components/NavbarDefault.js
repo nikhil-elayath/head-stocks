@@ -239,7 +239,10 @@ export class NavbarDefault extends Component {
                         })
                       }
                     >
-                      <div className="navbarSearchResultsDiv">
+                      <div
+                        className="navbarSearchResultsDiv"
+                        onClick={this.myhamburgfunction}
+                      >
                         <p
                           className="navbarSearchResultsPTag1"
                           id={"tickerName" + index}
