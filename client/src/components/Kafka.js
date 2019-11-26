@@ -57,7 +57,7 @@ export default class Kafka extends Component {
             <div>{i.tickerName}</div>
 
             <div id="kafka_index_price">
-              {Number(i.closing).toFixed(2)}
+              {Number(i.closing).toFixed(2)}{" "}
               <span
                 id={
                   String(i.changePercentage).charAt(0) == "-"

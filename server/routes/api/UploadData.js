@@ -64,7 +64,7 @@ router.post("/updateCompany/:id", upload.single("file"), async (req, res) => {
 
               if (data[0] === "date") {
                 // to check if data is present for the given date
-                dateFormated = new Date(data[i]);
+                var dateFormated = new Date(data[i]);
                 // console.log(dateFormated);
 
                 // query to search data for date in database
