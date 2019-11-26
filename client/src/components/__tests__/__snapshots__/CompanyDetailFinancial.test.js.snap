@@ -274,6 +274,7 @@ exports[`Testing Company Detail Financial Component should mount the component 1
           ]
         }
         reportdata={Array []}
+        yearValue="All"
       />
       <h1
         className="financialsTitle"
@@ -296,6 +297,7 @@ exports[`Testing Company Detail Financial Component should mount the component 1
           ]
         }
         reportdata={Array []}
+        yearValue="All"
       />
       <h1
         className="financialsTitle"
@@ -315,6 +317,7 @@ exports[`Testing Company Detail Financial Component should mount the component 1
           ]
         }
         reportdata={Array []}
+        yearValue="All"
       />
       <h1
         className="financialsTitle"
@@ -335,6 +338,7 @@ exports[`Testing Company Detail Financial Component should mount the component 1
           ]
         }
         reportdata={Array []}
+        yearValue="All"
       />
     </div>
   </div>

@@ -26,6 +26,8 @@ import Table from "../components/Common/TickerTable";
 
 // Harshal
 import UpdateCompany from "./UpdateCompany";
+import jwt_decode from "jwt-decode";
+
 var slider;
 
 //[Nikhil] rc-slider
@@ -59,6 +61,8 @@ export class StocksLanding extends Component {
     total_assests2: 44,
     revenue1: 45,
     revenue2: 34,
+    net_profit1: 50,
+    net_profit2: 100,
     filter: false,
     normal: true,
     //[NIKHIL] radar graph
@@ -127,6 +131,10 @@ export class StocksLanding extends Component {
     this.setState({ revenue1: e[0] });
     this.setState({ revenue2: e[1] });
   };
+  onSliderChange6 = e => {
+    this.setState({ net_profit1: e[0] });
+    this.setState({ net_profit2: e[1] });
+  };
 
   onSearchClick = e => {
     this.state.filter = true;
@@ -144,6 +152,9 @@ export class StocksLanding extends Component {
       this.state.total_assests2,
       this.state.revenue1,
       this.state.revenue2,
+      this.state.net_profit1,
+      this.state.net_profit2,
+
       this.state.sector,
       this.state.industry
     );
@@ -231,6 +242,9 @@ export class StocksLanding extends Component {
   //   },
 
   render() {
+    if (localStorage.getItem("token")) {
+      var decode = jwt_decode(localStorage.getItem("token"));
+    }
     return (
       <div>
         <div id="graph">
@@ -330,7 +344,6 @@ export class StocksLanding extends Component {
                   </div>
                 </div>
                 {/* FOR MARKET CAP  */}
-
                 <div id="advance-filter-market-cap">
                   <div id="advance-filter-title">
                     <p id="advance-filter-market-cap-p">market cap</p>
@@ -383,7 +396,6 @@ export class StocksLanding extends Component {
                     <p id="advance-filter-value2">100</p>
                   </div>
                 </div>
-
                 {/* for PE RATIO */}
                 <div id="advance-filter-price-to-equity">
                   <div id="advance-filter-title">
@@ -410,9 +422,34 @@ export class StocksLanding extends Component {
                     <p id="advance-filter-value2">100</p>
                   </div>
                 </div>
-
-                {/* FOR DEBT TO EQUITY RATIO  */}
-                <div id="advance-filter-debt-to-equity">
+                {/* net profit  */}
+                <div id="advance-filter-net-profit">
+                  <div id="advance-filter-title">
+                    <p id="advance-filter-debt-to-equity-p">Net Profit</p>
+                  </div>
+                  <div id="stocks-landing-page-slider">
+                    {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
+                    <Range
+                      // SETTING THE MINIMUM VALUE
+                      min={0}
+                      // SETTING THE MAXIMUM VALUE
+                      max={1000}
+                      //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
+                      defaultValue={[
+                        this.state.net_profit1,
+                        this.state.net_profit2,
+                      ]}
+                      //ON CHANGING CALLING THE SLIDERCHANGE
+                      onChange={this.onSliderChange6}
+                    />
+                  </div>
+                  <div id="advance-filter-debt-to-equity-ratio-value">
+                    <p id="advance-filter-value">0</p>
+                    <p id="advance-filter-value2">100</p>
+                  </div>
+                </div>
+                {/* Revenues*/}
+                <div id="advance-filter-revenues">
                   <div id="advance-filter-title">
                     <p id="advance-filter-debt-to-equity-p">Revenues</p>
                   </div>
@@ -434,14 +471,18 @@ export class StocksLanding extends Component {
                     <p id="advance-filter-value2">100</p>
                   </div>
                 </div>
-                <button
-                  id="advance-filter-button"
-                  type="submit"
-                  onClick={this.onSearchClick}
-                >
-                  Filter{" "}
-                </button>
+
+                {/* for net profit */}
+                {/*  */}
               </div>
+              {/* main grid container  */}
+              <button
+                id="advance-filter-button"
+                type="submit"
+                onClick={this.onSearchClick}
+              >
+                Filter{" "}
+              </button>
 
               {/* <div
                 id="btn"

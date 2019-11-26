@@ -86,6 +86,8 @@ export const getScreenerSearch = (
   total_assests2,
   revenue1,
   revenue2,
+  net_profit1,
+  net_profit2,
   sector,
   industry
 ) => dispatch => {
@@ -100,6 +102,8 @@ export const getScreenerSearch = (
     total_assests2: total_assests2,
     revenue1: revenue1,
     revenue2: revenue2,
+    net_profit1: net_profit1,
+    net_profit2: net_profit2,
     sector: sector,
     industry: industry,
   };

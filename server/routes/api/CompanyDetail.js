@@ -198,7 +198,7 @@ router.post("/financial/:id", async (req, res, next) => {
                                     25,
                                   ],
                                 },
-                              ],s
+                              ],
                             },
                             "fourth",
                             // If date does not belong t the specified quarters
