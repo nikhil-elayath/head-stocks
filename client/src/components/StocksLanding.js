@@ -236,7 +236,7 @@ export class StocksLanding extends Component {
     if (localStorage.getItem("token")) {
       var decode = jwt_decode(localStorage.getItem("token"));
     }
-     return (
+    return (
       <div>
         <Radar
           options={{
@@ -447,14 +447,42 @@ export class StocksLanding extends Component {
                     <p id="advance-filter-value2">100</p>
                   </div>
                 </div>
-                <button
-                  id="advance-filter-button"
-                  type="submit"
-                  onClick={this.onSearchClick}
-                >
-                  Filter{" "}
-                </button>
+
+                {/* for net profit  */}
+                <div id="advance-filter-market-cap">
+                  <div id="advance-filter-title">
+                    <p id="advance-filter-market-cap-p">Net Profit</p>
+                  </div>
+                  <div id="stocks-landing-page-slider">
+                    {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
+                    <Range
+                      // SETTING THE MINIMUM VALUE
+                      min={0}
+                      // SETTING THE MAXIMUM VALUE
+                      max={1000}
+                      //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
+                      defaultValue={[
+                        this.state.market_cap_value1,
+                        this.state.market_cap_value2
+                      ]}
+                      //ON CHANGING CALLING THE SLIDERCHANGE
+                      onChange={this.onSliderChange2}
+                      name={"slider1"}
+                    />
+                  </div>
+                  <div id="advance-filter-debt-to-equity-ratio-value">
+                    <p id="advance-filter-value">0</p>
+                    <p id="advance-filter-value2">100</p>
+                  </div>
+                </div>
               </div>
+              <button
+                id="advance-filter-button"
+                type="submit"
+                onClick={this.onSearchClick}
+              >
+                Filter{" "}
+              </button>
 
               {/* <div
                 id="btn"

@@ -153,7 +153,7 @@ export class NavbarDefault extends Component {
         <div className="navbarVTOptions">
           <span onClick={this.myhamburgfunction}>
             <Link
-              to={localStorage.getItem("token") ? "/profile" : "/login"}
+              to={"/profile"}
               onClick={() =>
                 this.setState({
                   home: false,

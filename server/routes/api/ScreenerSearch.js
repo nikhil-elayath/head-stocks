@@ -23,49 +23,66 @@ router.post("/screener", async (req, res, next) => {
 
   const search_result = [];
   try {
-    let result = await stocksData.aggregate([
-      {
-        $match: {
-          $and: [{ sector: "Technology" }, { industry: "Computer Hardware" }],
-        },
+    let result = await stocksData.find({
+      "ticker_dates.date": { $gte: new Date("sd") },
+      "ticker_dates.Revenues": { $gte: +revenue1, $lte: +revenue2 },
+      "ticker_dates.Toal Assests": {
+        $gte: +total_assests1,
+        $lte: total_assests2
       },
+      "ticker_dates.Market Capitalisation": {
+        $gt: +market_cap_value1,
+        $lte: +market_cap_value2
+      },
+      "ticker_dates.EV / EBITDA": {
+        $gt: +ebit1,
+        $lte: +ebit2
+      },
+      "ticker_dates.Net Profit": {
+        $gt: +profit1,
+        $lte: +market_cap_value2
+      }
 
-      { $unwind: "$ticker_dates" },
-
-      {
-        $match: {
-          "ticker_dates.Market Capitalisation": {
-            $gt: 10,
-            $lt: 100,
-          },
-          // "ticker_dates.Share Price": {
-          //   $gt: +share_price1,
-          //   $lt: +share_price2,
-          // },
-          // "ticker_dates.Share Price": {
-          //   $gt: +share_price1,
-          //   $lt: +share_price2,
-          // },
-        },
-      },
-      {
-        $project: {
-          ticker_dates: 1,
-          ticker_id: 1,
-          ticker_name: 1,
-          _id: 0,
-        },
-      },
-      {
-        $group: {
-          _id: { ticker_name: "$ticker_name", ticker_id: "$ticker_id" },
-          ticker_data: { $push: "$ticker_dates" },
-        },
-      },
-      {
-        $unwind: "$ticker_data",
-      },
-    ]);
+      // {
+      //   $match: {
+      //     $and: [{ sector: "Technology" }, { industry: "Computer Hardware" }],
+      //   },
+      // },
+      // { $unwind: "$ticker_dates" },
+      // {
+      //   $match: {
+      //     "ticker_dates.Market Capitalisation": {
+      //       $gt: 10,
+      //       $lt: 100,
+      //     },
+      //     // "ticker_dates.Share Price": {
+      //     //   $gt: +share_price1,
+      //     //   $lt: +share_price2,
+      //     // },
+      //     // "ticker_dates.Share Price": {
+      //     //   $gt: +share_price1,
+      //     //   $lt: +share_price2,
+      //     // },
+      //   },
+      // },
+      // {
+      //   $project: {
+      //     ticker_dates: 1,
+      //     ticker_id: 1,
+      //     ticker_name: 1,
+      //     _id: 0,
+      //   },
+      // },
+      // {
+      //   $group: {
+      //     _id: { ticker_name: "$ticker_name", ticker_id: "$ticker_id" },
+      //     ticker_data: { $push: "$ticker_dates" },
+      //   },
+      // },
+      // {
+      //   $unwind: "$ticker_data",
+      // },
+    });
     // result.forEach(function(elem) {
     //   let compare = {};
     //   console.log("within for each");
@@ -118,13 +135,13 @@ router.post("/screener", async (req, res, next) => {
       res.status(400).json({
         status: 400,
         data: result,
-        message: "No result",
+        message: "No result"
       });
     } else {
       res.status(200).json({
         status: 200,
         data: result,
-        message: "Retrieved screener result successfully",
+        message: "Retrieved screener result successfully"
       });
     }
   } catch {
