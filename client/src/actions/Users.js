@@ -11,7 +11,6 @@ import {
   ALL_STOCKS_BOUGHT
 } from "./Types";
 import axios from "axios";
-import jwt_decode from "jwt-decode";
 const url = "http://localhost:2001/api/users/";
 
 // Create a new user - Bhavana
