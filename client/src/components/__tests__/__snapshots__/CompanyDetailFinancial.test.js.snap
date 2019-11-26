@@ -10,6 +10,7 @@ exports[`Testing Company Detail Financial Component should mount the component 1
   >
     <select
       className="financialsYearsOption"
+      id="financialsYearsOptionID"
       name="yearInput"
       onChange={[Function]}
       type="text"

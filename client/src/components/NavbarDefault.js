@@ -153,7 +153,7 @@ export class NavbarDefault extends Component {
         <div className="navbarVTOptions">
           <span onClick={this.myhamburgfunction}>
             <Link
-              to={"/profile"}
+              to="/profile"
               onClick={() =>
                 this.setState({
                   home: false,
@@ -224,9 +224,10 @@ export class NavbarDefault extends Component {
                 <div>
                   <h4>Search Results</h4>
 
-                  {this.props.results.map(result => (
+                  {this.props.results.map((result, index) => (
                     <Link
                       className="company-link"
+                      id="linknavbar1"
                       // PASSING TO COMPANY DETAIL PAGE WITH THE ID WHICH IS MAPPED FROM THE REDUCER
                       to={{
                         pathname: "/companydetail/" + result.ticker_id
@@ -238,11 +239,20 @@ export class NavbarDefault extends Component {
                         })
                       }
                     >
-                      <div className="navbarSearchResultsDiv">
-                        <p className="navbarSearchResultsPTag1">
+                      <div
+                        className="navbarSearchResultsDiv"
+                        onClick={this.myhamburgfunction}
+                      >
+                        <p
+                          className="navbarSearchResultsPTag1"
+                          id={"tickerName" + index}
+                        >
                           <b>{result.ticker_name}</b>
                         </p>
-                        <p className="navbarSearchResultsPTag2">
+                        <p
+                          className="navbarSearchResultsPTag2"
+                          id={"industry" + index}
+                        >
                           {result.industry}
                         </p>
                       </div>

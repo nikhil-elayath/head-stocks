@@ -320,176 +320,181 @@ export class StocksLanding extends Component {
               </label>
               <input type="checkbox" id="toggle-1" />
               <div
-                id="filter_main_container"
+                id="div_filter_main_container"
                 className="w3-container w3-center w3-animate-opacity"
               >
-                <div id="stocks-advance-filter-grid-main-container">
-                  <div id="advance-fliter-dividend">
-                    <div id="advance-filter-title">
-                      <p id="advance-filter-dividend-p">EBIT </p>
+                <label href="id" className="fa fa-close" id="close_filter" />
+                <div id="filter_main_container">
+                  <div id="stocks-advance-filter-grid-main-container">
+                    <div id="advance-fliter-dividend">
+                      <div id="advance-filter-title">
+                        <p id="advance-filter-dividend-p">EBIT </p>
+                      </div>
+                      {/* FOR DIVIDEND  */}
+                      <div id="stocks-landing-page-slider">
+                        {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
+                        <Range
+                          // SETTING THE MINIMUM VALUE
+                          min={-50}
+                          // SETTING THE MAXIMUM VALUE
+                          max={1000}
+                          //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
+                          defaultValue={[this.state.ebit1, this.state.ebit1]}
+                          //ON CHANGING CALLING THE SLIDERCHANGE
+                          onChange={this.onSliderChange}
+                        />
+                      </div>
+                      <div id="advance-filter-debt-to-equity-ratio-value">
+                        <p id="advance-filter-value">-50</p>
+                        <p id="advance-filter-value2">1000</p>
+                      </div>
                     </div>
-                    {/* FOR DIVIDEND  */}
-                    <div id="stocks-landing-page-slider">
-                      {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
-                      <Range
-                        // SETTING THE MINIMUM VALUE
-                        min={-50}
-                        // SETTING THE MAXIMUM VALUE
-                        max={1000}
-                        //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
-                        defaultValue={[this.state.ebit1, this.state.ebit1]}
-                        //ON CHANGING CALLING THE SLIDERCHANGE
-                        onChange={this.onSliderChange}
-                      />
+                    {/* FOR MARKET CAP  */}
+                    <div id="advance-filter-market-cap">
+                      <div id="advance-filter-title">
+                        <p id="advance-filter-market-cap-p">market cap</p>
+                      </div>
+                      <div id="stocks-landing-page-slider">
+                        {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
+                        <Range
+                          // SETTING THE MINIMUM VALUE
+                          min={0}
+                          // SETTING THE MAXIMUM VALUE
+                          max={1000}
+                          //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
+                          defaultValue={[
+                            this.state.market_cap_value1,
+                            this.state.market_cap_value2
+                          ]}
+                          //ON CHANGING CALLING THE SLIDERCHANGE
+                          onChange={this.onSliderChange2}
+                          name={"slider1"}
+                        />
+                      </div>
+                      <div id="advance-filter-debt-to-equity-ratio-value">
+                        <p id="advance-filter-value">0</p>
+                        <p id="advance-filter-value2">100</p>
+                      </div>
                     </div>
-                    <div id="advance-filter-debt-to-equity-ratio-value">
-                      <p id="advance-filter-value">-50</p>
-                      <p id="advance-filter-value2">1000</p>
+                    {/* FOR SHARE Price  */}
+                    <div id="advance-filter-share-price">
+                      <div id="advance-filter-title">
+                        <p id="advance-filter-share-price-p">share price </p>
+                      </div>
+                      <div id="stocks-landing-page-slide">
+                        {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
+                        <Range
+                          // SETTING THE MINIMUM VALUE
+                          min={0}
+                          // SETTING THE MAXIMUM VALUE
+                          max={1000}
+                          //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
+                          defaultValue={[
+                            this.state.share_price1,
+                            this.state.share_price2
+                          ]}
+                          //ON CHANGING CALLING THE SLIDERCHANGE
+                          onChange={this.onSliderChange3}
+                        />
+                      </div>
+                      <div id="advance-filter-debt-to-equity-ratio-value">
+                        <p id="advance-filter-value">0</p>
+                        <p id="advance-filter-value2">100</p>
+                      </div>
                     </div>
-                  </div>
-                  {/* FOR MARKET CAP  */}
-                  <div id="advance-filter-market-cap">
-                    <div id="advance-filter-title">
-                      <p id="advance-filter-market-cap-p">market cap</p>
+                    {/* for PE RATIO */}
+                    <div id="advance-filter-price-to-equity">
+                      <div id="advance-filter-title">
+                        <p id="advance-filter-price-to-equity-p">
+                          Total Assests
+                        </p>
+                      </div>
+                      <div id="stocks-landing-page-slider">
+                        {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
+                        <Range
+                          // SETTING THE MINIMUM VALUE
+                          min={0}
+                          // SETTING THE MAXIMUM VALUE
+                          max={1000}
+                          //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
+                          defaultValue={[
+                            this.state.total_assests1,
+                            this.state.total_assests2
+                          ]}
+                          //ON CHANGING CALLING THE SLIDERCHANGE
+                          onChange={this.onSliderChange4}
+                        />
+                      </div>
+                      <div id="advance-filter-debt-to-equity-ratio-value">
+                        <p id="advance-filter-value">0</p>
+                        <p id="advance-filter-value2">100</p>
+                      </div>
                     </div>
-                    <div id="stocks-landing-page-slider">
-                      {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
-                      <Range
-                        // SETTING THE MINIMUM VALUE
-                        min={0}
-                        // SETTING THE MAXIMUM VALUE
-                        max={1000}
-                        //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
-                        defaultValue={[
-                          this.state.market_cap_value1,
-                          this.state.market_cap_value2
-                        ]}
-                        //ON CHANGING CALLING THE SLIDERCHANGE
-                        onChange={this.onSliderChange2}
-                        name={"slider1"}
-                      />
+                    {/* net profit  */}
+                    <div id="advance-filter-net-profit">
+                      <div id="advance-filter-title">
+                        <p id="advance-filter-debt-to-equity-p">Net Profit</p>
+                      </div>
+                      <div id="stocks-landing-page-slider">
+                        {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
+                        <Range
+                          // SETTING THE MINIMUM VALUE
+                          min={0}
+                          // SETTING THE MAXIMUM VALUE
+                          max={1000}
+                          //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
+                          defaultValue={[
+                            this.state.net_profit1,
+                            this.state.net_profit2
+                          ]}
+                          //ON CHANGING CALLING THE SLIDERCHANGE
+                          onChange={this.onSliderChange6}
+                        />
+                      </div>
+                      <div id="advance-filter-debt-to-equity-ratio-value">
+                        <p id="advance-filter-value">0</p>
+                        <p id="advance-filter-value2">100</p>
+                      </div>
                     </div>
-                    <div id="advance-filter-debt-to-equity-ratio-value">
-                      <p id="advance-filter-value">0</p>
-                      <p id="advance-filter-value2">100</p>
+                    {/* Revenues*/}
+                    <div id="advance-filter-revenues">
+                      <div id="advance-filter-title">
+                        <p id="advance-filter-debt-to-equity-p">Revenues</p>
+                      </div>
+                      <div id="stocks-landing-page-slider">
+                        {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
+                        <Range
+                          // SETTING THE MINIMUM VALUE
+                          min={0}
+                          // SETTING THE MAXIMUM VALUE
+                          max={1000}
+                          //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
+                          defaultValue={[
+                            this.state.revenue1,
+                            this.state.revenue2
+                          ]}
+                          //ON CHANGING CALLING THE SLIDERCHANGE
+                          onChange={this.onSliderChange5}
+                        />
+                      </div>
+                      <div id="advance-filter-debt-to-equity-ratio-value">
+                        <p id="advance-filter-value">0</p>
+                        <p id="advance-filter-value2">100</p>
+                      </div>
                     </div>
-                  </div>
-                  {/* FOR SHARE Price  */}
-                  <div id="advance-filter-share-price">
-                    <div id="advance-filter-title">
-                      <p id="advance-filter-share-price-p">share price </p>
-                    </div>
-                    <div id="stocks-landing-page-slide">
-                      {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
-                      <Range
-                        // SETTING THE MINIMUM VALUE
-                        min={0}
-                        // SETTING THE MAXIMUM VALUE
-                        max={1000}
-                        //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
-                        defaultValue={[
-                          this.state.share_price1,
-                          this.state.share_price2
-                        ]}
-                        //ON CHANGING CALLING THE SLIDERCHANGE
-                        onChange={this.onSliderChange3}
-                      />
-                    </div>
-                    <div id="advance-filter-debt-to-equity-ratio-value">
-                      <p id="advance-filter-value">0</p>
-                      <p id="advance-filter-value2">100</p>
-                    </div>
-                  </div>
-                  {/* for PE RATIO */}
-                  <div id="advance-filter-price-to-equity">
-                    <div id="advance-filter-title">
-                      <p id="advance-filter-price-to-equity-p">Total Assests</p>
-                    </div>
-                    <div id="stocks-landing-page-slider">
-                      {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
-                      <Range
-                        // SETTING THE MINIMUM VALUE
-                        min={0}
-                        // SETTING THE MAXIMUM VALUE
-                        max={1000}
-                        //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
-                        defaultValue={[
-                          this.state.total_assests1,
-                          this.state.total_assests2
-                        ]}
-                        //ON CHANGING CALLING THE SLIDERCHANGE
-                        onChange={this.onSliderChange4}
-                      />
-                    </div>
-                    <div id="advance-filter-debt-to-equity-ratio-value">
-                      <p id="advance-filter-value">0</p>
-                      <p id="advance-filter-value2">100</p>
-                    </div>
-                  </div>
-                  {/* net profit  */}
-                  <div id="advance-filter-net-profit">
-                    <div id="advance-filter-title">
-                      <p id="advance-filter-debt-to-equity-p">Net Profit</p>
-                    </div>
-                    <div id="stocks-landing-page-slider">
-                      {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
-                      <Range
-                        // SETTING THE MINIMUM VALUE
-                        min={0}
-                        // SETTING THE MAXIMUM VALUE
-                        max={1000}
-                        //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
-                        defaultValue={[
-                          this.state.net_profit1,
-                          this.state.net_profit2
-                        ]}
-                        //ON CHANGING CALLING THE SLIDERCHANGE
-                        onChange={this.onSliderChange6}
-                      />
-                    </div>
-                    <div id="advance-filter-debt-to-equity-ratio-value">
-                      <p id="advance-filter-value">0</p>
-                      <p id="advance-filter-value2">100</p>
-                    </div>
-                  </div>
-                  {/* Revenues*/}
-                  <div id="advance-filter-revenues">
-                    <div id="advance-filter-title">
-                      <p id="advance-filter-debt-to-equity-p">Revenues</p>
-                    </div>
-                    <div id="stocks-landing-page-slider">
-                      {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
-                      <Range
-                        // SETTING THE MINIMUM VALUE
-                        min={0}
-                        // SETTING THE MAXIMUM VALUE
-                        max={1000}
-                        //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
-                        defaultValue={[
-                          this.state.revenue1,
-                          this.state.revenue2
-                        ]}
-                        //ON CHANGING CALLING THE SLIDERCHANGE
-                        onChange={this.onSliderChange5}
-                      />
-                    </div>
-                    <div id="advance-filter-debt-to-equity-ratio-value">
-                      <p id="advance-filter-value">0</p>
-                      <p id="advance-filter-value2">100</p>
-                    </div>
-                  </div>
 
-                  {/* for net profit */}
-                  {/*  */}
+                    {/* for net profit */}
+                    {/*  */}
+                  </div>
+                  {/* main grid container  */}
+                  <button
+                    id="advance-filter-button"
+                    type="submit"
+                    onClick={this.onSearchClick}
+                  >
+                    Filter
+                  </button>
                 </div>
-                {/* main grid container  */}
-                <button
-                  id="advance-filter-button"
-                  type="submit"
-                  onClick={this.onSearchClick}
-                >
-                  Filter
-                </button>
               </div>
 
               {/* <div
