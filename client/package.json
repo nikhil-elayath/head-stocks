@@ -16,6 +16,10 @@
     "camelcase": "^5.2.0",
     "case-sensitive-paths-webpack-plugin": "2.2.0",
     "chart.js": "^2.9.3",
+<<<<<<< HEAD
+=======
+    "chartjs": "^0.3.24",
+>>>>>>> 1b9c538c11fa0a8a3ca07170bffddd61c80f15e4
     "css-loader": "2.1.1",
     "dotenv": "6.2.0",
     "dotenv-expand": "5.1.0",

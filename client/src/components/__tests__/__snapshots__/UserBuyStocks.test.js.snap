@@ -48,7 +48,11 @@ exports[`Testing UserbuyStocks Component should mount the component 1`] = `
           </td>
           <td>
              
+<<<<<<< HEAD
             197.41
+=======
+            198.18
+>>>>>>> 1b9c538c11fa0a8a3ca07170bffddd61c80f15e4
           </td>
           <td>
             <span
@@ -61,7 +65,11 @@ exports[`Testing UserbuyStocks Component should mount the component 1`] = `
               }
             />
              
+<<<<<<< HEAD
             -2.05
+=======
+            -1.67
+>>>>>>> 1b9c538c11fa0a8a3ca07170bffddd61c80f15e4
              
             %
           </td>
@@ -143,7 +151,11 @@ exports[`Testing UserbuyStocks Component should mount the component 1`] = `
           </td>
           <td>
              
+<<<<<<< HEAD
             138.66
+=======
+            139.20
+>>>>>>> 1b9c538c11fa0a8a3ca07170bffddd61c80f15e4
           </td>
           <td>
             <span
@@ -156,7 +168,11 @@ exports[`Testing UserbuyStocks Component should mount the component 1`] = `
               }
             />
              
+<<<<<<< HEAD
             2.20
+=======
+            2.59
+>>>>>>> 1b9c538c11fa0a8a3ca07170bffddd61c80f15e4
              
             %
           </td>
