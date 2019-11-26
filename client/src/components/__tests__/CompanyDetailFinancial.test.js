@@ -70,4 +70,27 @@ describe("Testing Company Detail Financial Component", () => {
     jest.spyOn(e, "preventDefault");
     wrapper.find("#financialsYearsOptionID").simulate("click", e);
   });
+  it("should check for All years Data", () => {
+    const e = {
+      target: {
+        name: "yearInput",
+        value: "All"
+      }
+    };
+    expect(wrapper.state().search_term).toBe(undefined);
+    wrapper.instance().getByYear(e);
+    expect(getCompanyDatesById).toBeCalledTimes(2);
+  });
+
+  it("should check for a single year data", () => {
+    const e = {
+      target: {
+        name: "yearInput",
+        value: "2019"
+      }
+    };
+    expect(wrapper.state().search_term).toBe(undefined);
+    wrapper.instance().getByYear(e);
+    expect(getCompanyDatesById).toBeCalledTimes(3);
+  });
 });
