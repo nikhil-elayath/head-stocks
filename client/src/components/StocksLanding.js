@@ -15,7 +15,7 @@ import {
   getIndustries,
   getGainersLosers,
   //[NIKHIL] SCREENER ACTIONS
-  getScreenerSearch,
+  getScreenerSearch
 } from "../actions/Stocks";
 import "../styles/StocksLanding.css";
 import "../styles/Admin.css";
@@ -75,7 +75,7 @@ export class StocksLanding extends Component {
         "Dividend",
         "PE Ratio",
         "Debt to Equity Ratio",
-        "Share Price",
+        "Share Price"
       ],
       datasets: [
         {
@@ -94,8 +94,8 @@ export class StocksLanding extends Component {
           data: [
             // this.props.screener_search ? "data" : "no data",
             // this.props.screener_search.market_cap,
-          ],
-        },
+          ]
+        }
         // {
         //   label: "Student B",
         //   backgroundColor: "rgb(57,171,247)",
@@ -110,8 +110,8 @@ export class StocksLanding extends Component {
         //   //values coming from the database
         //   data: [54, 65, 60, 70, 70, 75],
         // },
-      ],
-    },
+      ]
+    }
   };
 
   //for slider handle cange
@@ -197,7 +197,7 @@ export class StocksLanding extends Component {
 
   OnSelectSector = e => {
     this.setState({
-      sector: e.target.value, //setting state for the sector
+      sector: e.target.value //setting state for the sector
     });
     this.props.getCompany("sector", e.target.value);
     this.props.getIndustries(e.target.value); //getting all the industries based on a sector selected
@@ -206,7 +206,7 @@ export class StocksLanding extends Component {
 
   OnSelectIndustry = e => {
     this.setState({
-      industry: e.target.value, //setting state for the industry
+      industry: e.target.value //setting state for the industry
     });
     this.props.getCompany("industry", e.target.value); //getting all the companies based on an industry selected
   };
@@ -227,7 +227,7 @@ export class StocksLanding extends Component {
   loadMoreItems = () => {
     setTimeout(() => {
       this.setState({
-        items: this.state.items + 10,
+        items: this.state.items + 10
       });
       this.displayCompanies(this.props.stocks);
     }, 1000);
@@ -371,7 +371,7 @@ export class StocksLanding extends Component {
                           //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
                           defaultValue={[
                             this.state.market_cap_value1,
-                            this.state.market_cap_value2,
+                            this.state.market_cap_value2
                           ]}
                           //ON CHANGING CALLING THE SLIDERCHANGE
                           onChange={this.onSliderChange2}
@@ -398,7 +398,7 @@ export class StocksLanding extends Component {
                           //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
                           defaultValue={[
                             this.state.share_price1,
-                            this.state.share_price2,
+                            this.state.share_price2
                           ]}
                           //ON CHANGING CALLING THE SLIDERCHANGE
                           onChange={this.onSliderChange3}
@@ -426,7 +426,7 @@ export class StocksLanding extends Component {
                           //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
                           defaultValue={[
                             this.state.total_assests1,
-                            this.state.total_assests2,
+                            this.state.total_assests2
                           ]}
                           //ON CHANGING CALLING THE SLIDERCHANGE
                           onChange={this.onSliderChange4}
@@ -452,7 +452,7 @@ export class StocksLanding extends Component {
                           //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
                           defaultValue={[
                             this.state.net_profit1,
-                            this.state.net_profit2,
+                            this.state.net_profit2
                           ]}
                           //ON CHANGING CALLING THE SLIDERCHANGE
                           onChange={this.onSliderChange6}
@@ -478,7 +478,7 @@ export class StocksLanding extends Component {
                           //SETTING THE DEFAULT VALUE WHICH IS DEFINED IN THE STATE OF THE COMPONENT
                           defaultValue={[
                             this.state.revenue1,
-                            this.state.revenue2,
+                            this.state.revenue2
                           ]}
                           //ON CHANGING CALLING THE SLIDERCHANGE
                           onChange={this.onSliderChange5}
@@ -598,7 +598,7 @@ export class StocksLanding extends Component {
                                     : 0,
                                   screener_search.ebit != NaN
                                     ? Math.floor(Number(screener_search.ebit))
-                                    : 0,
+                                    : 0
                                 ]}
                               />
                               <div id="stocks_ticker">
@@ -747,7 +747,7 @@ export class StocksLanding extends Component {
                   "Ticker",
                   "Chng (%)",
                   "Market Cap",
-                  "Share Price",
+                  "Share Price"
                 ]}
                 tableData={
                   this.state.gainersClick === true //displaying the gainers data in the table if state of gainersClick is true that is when gainers button is clicked else losers data is displayed
@@ -773,7 +773,7 @@ const mapStateToProps = state => ({
   industries: state.stocksReducer.industries,
   gainersLosers: state.stocksReducer.gainersLosers,
   isLoading: state.LoadingReducer.isLoading,
-  screener_search: state.stocksReducer.screener_search,
+  screener_search: state.stocksReducer.screener_search
 });
 
 export default connect(mapStateToProps, {
@@ -781,5 +781,5 @@ export default connect(mapStateToProps, {
   getSectors,
   getIndustries,
   getGainersLosers,
-  getScreenerSearch,
+  getScreenerSearch
 })(StocksLanding);
