@@ -45,13 +45,14 @@ export class NavbarDefault extends Component {
   // handles the input change performed in the search input box
   OnChange = event => {
     // search results display
-    {
-      this.state.searchInputChanged
-        ? console.log(this.state.searchInputChanged)
-        : this.setState({
-            searchInputChanged: true
-          });
-    }
+    // {
+    //   this.state.searchInputChanged
+    //     ? console.log(this.state.searchInputChanged)
+    //     :
+    this.setState({
+      searchInputChanged: true
+    });
+    // }
     this.setState({ [event.target.name]: event.target.value });
     // debounce(() => {
 
@@ -70,9 +71,6 @@ export class NavbarDefault extends Component {
     };
 
     this.props.searchContent(searchString);
-    // this.setState({
-    //   searchInput: ""
-    // });
   };
 
   render() {
