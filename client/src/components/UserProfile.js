@@ -46,7 +46,6 @@ export class UserProfile extends Component {
     if (localStorage.getItem("token")) {
       var decode = jwt_decode(localStorage.getItem("token"));
     }
-    console.log(this.props.results);
     return (
       <div>
         <div

@@ -2,10 +2,16 @@ import React, { Component } from "react";
 import UserNavigation from "./Common/UserNavigation";
 import "../styles/UserBuyStocks.css";
 import { connect } from "react-redux";
-import { getAllStocks } from "../actions/Users";
+import { getAllStocks, sellStocks } from "../actions/Users";
 import jwt_decode from "jwt-decode";
+import Delay from "react-delay";
 
 export class UserBuyStocks extends Component {
+  state = {
+    qty: "",
+    total: 0
+  };
+
   componentDidMount() {
     if (localStorage.getItem("token")) {
       var decode = jwt_decode(localStorage.getItem("token"));
@@ -21,8 +27,13 @@ export class UserBuyStocks extends Component {
   };
 
   render() {
+    if (localStorage.getItem("token")) {
+      var decode = jwt_decode(localStorage.getItem("token"));
+    }
     var rand;
-    console.log(this.props.users);
+    if (localStorage.getItem("token")) {
+      var decode = jwt_decode(localStorage.getItem("token"));
+    }
     return (
       <div>
         <div id="buyStocksContainer">
@@ -58,7 +69,6 @@ export class UserBuyStocks extends Component {
                               (Number(stocks.current_price) - 5)
                           ).toFixed(2))
                         }
-                        {console.log(rand)}
                       </td>
                       <td>
                         {stocks.current_price > rand ? (
@@ -93,7 +103,7 @@ export class UserBuyStocks extends Component {
                               &times;
                             </a>
                             <div class="sellStockscontent">
-                              <p>Current Price : $</p>
+                              <p>Current Price : ${rand}</p>
                               <p>
                                 Quantity :{" "}
                                 <input
@@ -105,16 +115,30 @@ export class UserBuyStocks extends Component {
                                   onChange={e =>
                                     this.setState({
                                       [e.target.name]: e.target.value,
-                                      total: (e.target.value *= Number(
-                                        stocks.current_price
-                                      ))
+                                      total: (e.target.value *= Number(213.55))
                                     })
                                   }
                                 />
                               </p>
-                              <p>Total Price : $</p>
-                              <a id="sellSpecificStock" href="#">
-                                Buy
+                              <p>Total Price : ${this.state.total}</p>
+                              <a
+                                id="sellSpecificStock"
+                                href="#"
+                                onClick={() => {
+                                  {
+                                    setTimeout(rand, 10000);
+                                    let user = {
+                                      email: decode.email,
+                                      ticker_name: stocks.ticker_name,
+                                      sell_price: rand,
+                                      qty: this.state.qty,
+                                      price: this.state.total
+                                    };
+                                    this.props.sellStocks(user);
+                                  }
+                                }}
+                              >
+                                Sell
                               </a>
                             </div>
                           </div>
@@ -140,5 +164,6 @@ const mapStateToProps = state => ({
   isLoading: state.LoadingReducer.isLoading
 });
 export default connect(mapStateToProps, {
-  getAllStocks
+  getAllStocks,
+  sellStocks
 })(UserBuyStocks);
