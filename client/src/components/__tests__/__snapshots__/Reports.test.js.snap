@@ -5,7 +5,7 @@ exports[`Testing Navbar Component should mount the component 1`] = `
   className="financialTableContainer"
 >
   <table
-    className="financialTableData"
+    className="financialTableData2"
   >
     <tr>
       <td

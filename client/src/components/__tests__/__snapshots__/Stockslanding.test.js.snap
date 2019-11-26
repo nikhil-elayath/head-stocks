@@ -2,6 +2,58 @@
 
 exports[`Testing Stocks Component should mount the component 1`] = `
 <div>
+  <Radar
+    data={
+      Object {
+        "datasets": Array [
+          Object {
+            "backgroundColor": "rgb(57,171,247)",
+            "borderColor": "rgb(44,62,80)",
+            "data": Array [
+              65,
+              75,
+              70,
+              80,
+              60,
+              80,
+            ],
+            "fill": true,
+            "pointBackgroundColor": "orange",
+            "pointBorderColor": "rgba(200,0,0,0.6)",
+            "pointBorderWidth": 3,
+            "pointHoverRadius": 10,
+            "pointRadius": 6,
+            "radius": 6,
+          },
+        ],
+        "labels": Array [
+          "Market Cap",
+          "Dividend",
+          "PE Ratio",
+          "Debt to Equity Ratio",
+          "Share Price",
+        ],
+      }
+    }
+    options={
+      Object {
+        "legend": Object {
+          "position": "left",
+        },
+        "scale": Object {
+          "pointLabels": Object {
+            "fontSize": 18,
+          },
+          "ticks": Object {
+            "beginAtZero": true,
+            "max": 100,
+            "min": 0,
+            "stepSize": 20,
+          },
+        },
+      }
+    }
+  />
   <div
     id="stocks_main_container"
   >
