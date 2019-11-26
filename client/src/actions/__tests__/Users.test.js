@@ -6,7 +6,8 @@ import {
   SEND_OTP,
   VERIFY_OTP,
   ERROR_TYPE,
-  USER_HISTORY
+  USER_HISTORY,
+  BUY_STOCKS
 } from "../Types";
 import moxios from "moxios";
 import configureMockStore from "redux-mock-store";
@@ -267,6 +268,150 @@ describe("Testing Users Action", () => {
     const store = mockStore({});
     const expectedResponse = [];
     return store.dispatch(action.userHistory(email)).then(() => {
+      expect(store.getActions()).toEqual(expectedResponse);
+    });
+  });
+
+  it("should buy the stocks of the user by email and return status code of 200 with a message", () => {
+    const responseOfApi = [];
+    let email = {
+      email: "admin@gmail.com",
+      ticker_name: "AAPL",
+      qty: 2,
+      current_price: 231.55,
+      price: 470
+    };
+    moxios.stubRequest("http://localhost:2001/api/users/buy", email, {
+      status: 200,
+      response: { data: responseOfApi }
+    });
+    const store = mockStore({});
+    const expectedResponse = [];
+    return store.dispatch(action.buyStocks(email)).then(() => {
+      expect(store.getActions()).toEqual(expectedResponse);
+    });
+  });
+
+  it("should buy the stocks of the user by email and return status code of 400 with a message", () => {
+    const responseOfApi = [];
+    let email = {
+      email: "adm@gmail.com",
+      ticker_name: "AAPL",
+      qty: 2,
+      current_price: 231.55,
+      price: 470
+    };
+    moxios.stubRequest("http://localhost:2001/api/users/buy", email, {
+      status: 400,
+      response: { data: responseOfApi }
+    });
+    const store = mockStore({});
+    const expectedResponse = [];
+    return store.dispatch(action.buyStocks(email)).then(() => {
+      expect(store.getActions()).toEqual(expectedResponse);
+    });
+  });
+
+  it("should return wallet amount of the user by email and return status code of 200 with a message", () => {
+    const responseOfApi = [];
+    let email = {
+      email: "admin@gmail.com"
+    };
+    moxios.stubRequest("http://localhost:2001/api/users/wallet", email, {
+      status: 200,
+      response: { data: responseOfApi }
+    });
+    const store = mockStore({});
+    const expectedResponse = [];
+    return store.dispatch(action.getWallet(email)).then(() => {
+      expect(store.getActions()).toEqual(expectedResponse);
+    });
+  });
+
+  it("should return wallet amount of the user by email and return status code of 400 with a message", () => {
+    const responseOfApi = [];
+    let email = {
+      email: "adm@gmail.com"
+    };
+    moxios.stubRequest("http://localhost:2001/api/users/wallet", email, {
+      status: 400,
+      response: { data: responseOfApi }
+    });
+    const store = mockStore({});
+    const expectedResponse = [];
+    return store.dispatch(action.getWallet(email)).then(() => {
+      expect(store.getActions()).toEqual(expectedResponse);
+    });
+  });
+
+  it("should get all stocks brought by user of the user by email and return status code of 200 with a message", () => {
+    const responseOfApi = [];
+    let email = {
+      email: "admin@gmail.com"
+    };
+    moxios.stubRequest("http://localhost:2001/api/users/myStocks", email, {
+      status: 200,
+      response: { data: responseOfApi }
+    });
+    const store = mockStore({});
+    const expectedResponse = [];
+    return store.dispatch(action.getAllStocks(email)).then(() => {
+      expect(store.getActions()).toEqual(expectedResponse);
+    });
+  });
+
+  it("should get all stocks brought by user of the user by email and return status code of 400 with a message", () => {
+    const responseOfApi = [];
+    let email = {
+      email: "adm@gmail.com"
+    };
+    moxios.stubRequest("http://localhost:2001/api/users/myStocks", email, {
+      status: 400,
+      response: { data: responseOfApi }
+    });
+    const store = mockStore({});
+    const expectedResponse = [];
+    return store.dispatch(action.getAllStocks(email)).then(() => {
+      expect(store.getActions()).toEqual(expectedResponse);
+    });
+  });
+
+  it("should sell the stocks of the user by email and return status code of 200 with a message", () => {
+    const responseOfApi = [];
+    let email = {
+      email: "admin@gmail.com",
+      ticker_name: "AAPL",
+      qty: 2,
+      selling_price: 231.55,
+      price: 470
+    };
+    moxios.stubRequest("http://localhost:2001/api/users/sell", email, {
+      status: 200,
+      response: { data: responseOfApi }
+    });
+    const store = mockStore({});
+    const expectedResponse = [];
+    return store.dispatch(action.sellStocks(email)).then(() => {
+      expect(store.getActions()).toEqual(expectedResponse);
+    });
+  });
+
+  it("should sell the stocks of the user by email and return status code of 400 with a message", () => {
+    const responseOfApi = [];
+    let email = {
+      email: "adm@gmail.com",
+      ticker_name: "AAPL",
+      qty: 2,
+      current_price: 231.55,
+      price: 470
+    };
+    moxios.stubRequest("http://localhost:2001/api/users/sell", email, {
+      status: 400,
+      response: { data: responseOfApi }
+    });
+    const store = mockStore({});
+    const expectedResponse = [];
+    return store.dispatch(action.sellStocks(email)).then(() => {
       expect(store.getActions()).toEqual(expectedResponse);
     });
   });

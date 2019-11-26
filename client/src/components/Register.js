@@ -169,6 +169,7 @@ export class Register extends Component {
                 <li>Detailed comparison between Companies</li>
                 <li>Can download Financial Reports</li>
                 <li>Can download Indices Reports</li>
+                <li>Virtual Trading</li>
               </ul>
             </p>
           </div>

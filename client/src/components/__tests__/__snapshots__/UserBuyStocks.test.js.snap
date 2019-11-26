@@ -48,11 +48,7 @@ exports[`Testing UserbuyStocks Component should mount the component 1`] = `
           </td>
           <td>
              
-<<<<<<< HEAD
-            197.41
-=======
-            198.18
->>>>>>> 1b9c538c11fa0a8a3ca07170bffddd61c80f15e4
+            204.06
           </td>
           <td>
             <span
@@ -65,11 +61,7 @@ exports[`Testing UserbuyStocks Component should mount the component 1`] = `
               }
             />
              
-<<<<<<< HEAD
-            -2.05
-=======
-            -1.67
->>>>>>> 1b9c538c11fa0a8a3ca07170bffddd61c80f15e4
+            1.25
              
             %
           </td>
@@ -106,6 +98,7 @@ exports[`Testing UserbuyStocks Component should mount the component 1`] = `
                 >
                   <p>
                     Current Price : $
+                    204.06
                   </p>
                   <p>
                     Quantity :
@@ -121,115 +114,14 @@ exports[`Testing UserbuyStocks Component should mount the component 1`] = `
                   </p>
                   <p>
                     Total Price : $
+                    0
                   </p>
                   <a
                     href="#"
                     id="sellSpecificStock"
+                    onClick={[Function]}
                   >
-                    Buy
-                  </a>
-                </div>
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td
-            id="tickerName1"
-          >
-            MSFT
-          </td>
-          <td
-            id="tickerPrice1"
-          >
-            135.68
-          </td>
-          <td
-            id="tickerQty1"
-          >
-            6
-          </td>
-          <td>
-             
-<<<<<<< HEAD
-            138.66
-=======
-            139.20
->>>>>>> 1b9c538c11fa0a8a3ca07170bffddd61c80f15e4
-          </td>
-          <td>
-            <span
-              class="fa fa-caret-up"
-              style={
-                Object {
-                  "color": "green",
-                  "fontSize": "18px",
-                }
-              }
-            />
-             
-<<<<<<< HEAD
-            2.20
-=======
-            2.59
->>>>>>> 1b9c538c11fa0a8a3ca07170bffddd61c80f15e4
-             
-            %
-          </td>
-          <td>
-            <div
-              class="sellStocksBox"
-            >
-              <a
-                class="sell"
-                href="#sellStockspopup1"
-              >
-                Sell
-              </a>
-            </div>
-            <div
-              class="sellStocksoverlay"
-              id="sellStockspopup1"
-            >
-              <div
-                class="sellStockspopup"
-              >
-                <h2>
-                  MSFT
-                   
-                </h2>
-                <a
-                  class="sellStocksclose"
-                  href="#"
-                >
-                  ×
-                </a>
-                <div
-                  class="sellStockscontent"
-                >
-                  <p>
-                    Current Price : $
-                  </p>
-                  <p>
-                    Quantity :
-                     
-                    <input
-                      id="sellingQuantity"
-                      name="qty"
-                      onChange={[Function]}
-                      placeholder="0"
-                      type="text"
-                      value=""
-                    />
-                  </p>
-                  <p>
-                    Total Price : $
-                  </p>
-                  <a
-                    href="#"
-                    id="sellSpecificStock"
-                  >
-                    Buy
+                    Sell
                   </a>
                 </div>
               </div>

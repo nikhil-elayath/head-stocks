@@ -20,6 +20,7 @@ exports[`Testing User  Secondary navbar Component should mount the component 1`]
         id="walletPrice"
       >
         $
+        NaN
       </span>
       <div
         id="userNavigationButtonContainer"

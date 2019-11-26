@@ -12,11 +12,8 @@ const company = [
     sector: "technology",
     industry: "Computer",
     employees: "132",
-    profile: "profile",
-  },
-
-  // employees: "123456",
-  // profile: "profile",
+    profile: "profile"
+  }
 ];
 
 const wrapper = shallow(
@@ -30,25 +27,35 @@ const wrapper = shallow(
 );
 
 describe("Testing Company Detail Component", () => {
-  //   afterEach(() => {
-  //     jest.clearAllMocks()
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
 
   it("should mount the component", () => {
     expect(wrapper).toMatchSnapshot();
   });
-  it("should display the market cap", () => {
-    expect(wrapper.find("#market_cap").text()).toBe("123456");
+
+  it("should have a container with name company detal grid container", () => {
+    expect(wrapper.find("#company-detail-grid-container")).toBeTruthy();
+  });
+
+  it("should have a container with name loginRightContainer", () => {
+    expect(wrapper.find("Loader")).toBeTruthy();
+  });
+
+  it("should have a container with name company graph container", () => {
+    expect(wrapper.find("#ohlcCompanyGraph")).toBeTruthy();
   });
   it("should display the Sector", () => {
-    expect(wrapper.find("#sector").text()).toBe("technology");
+    expect(wrapper.find(".sector0").props().children).toBe("technology");
   });
   it("should display the industry", () => {
-    expect(wrapper.find("#industry").text()).toBe("Computer");
+    expect(wrapper.find(".industry0").props().children).toBe("Computer");
   });
   it("should display the employee", () => {
-    expect(wrapper.find("#employee").text()).toBe("132");
+    expect(wrapper.find(".employee0").props().children).toBe("132");
   });
   it("should display the profile", () => {
-    expect(wrapper.find("#profile").text()).toBe("profile");
+    expect(wrapper.find(".profile0").props().children).toBe("profile");
   });
 });

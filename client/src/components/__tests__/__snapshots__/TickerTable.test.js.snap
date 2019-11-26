@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Testing Register Component should mount the component 1`] = `
+exports[`Testing Ticker Table Component should mount the component 1`] = `
 <div
   className="table__container"
 >
@@ -47,7 +47,7 @@ exports[`Testing Register Component should mount the component 1`] = `
         }
       >
         <td
-          id="tcikerNameReuse"
+          id="tcikerNameReuse0"
         >
           AAPL
         </td>
@@ -67,7 +67,7 @@ exports[`Testing Register Component should mount the component 1`] = `
         }
       >
         <td
-          id="tcikerNameReuse"
+          id="tcikerNameReuse1"
         />
       </Link>
       <td

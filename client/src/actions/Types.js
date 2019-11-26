@@ -12,6 +12,7 @@ export const OHLC_INDICES_DATA = "OHLC_INDICES_DATA";
 export const BUY_STOCKS = "BUY_STOCKS";
 export const WALLET = "WALLET";
 export const ALL_STOCKS_BOUGHT = "ALL_STOCKS_BOUGHT";
+export const SELL_STOCKS = "SELL_STOCKS";
 
 //Aditya
 export const GET_ALL_COMPANY = "GET_ALL_COMPANY";

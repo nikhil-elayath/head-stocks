@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
-import UserNavigation from "../Common/UserNavigation";
+import { UserNavigation } from "../Common/UserNavigation";
 
 const userNavigation = jest.fn();
 

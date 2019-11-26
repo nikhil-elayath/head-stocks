@@ -32,6 +32,7 @@ router.post("/screener", async (req, res, next) => {
   const search_result = [];
   var startDate = "2008-12-29T00:00:00.000+00:00";
   var endDate = "2019-07-01T00:00:00.000+00:00";
+  screener_data = [];
   try {
     let result = await stocksData.find({
       "ticker_dates.date": {
@@ -66,65 +67,111 @@ router.post("/screener", async (req, res, next) => {
         $gte: +net_profit1,
       },
     });
-    console.log("result", result);
-    // result.forEach(function(elem) {
-    //   let compare = {};
-    //   console.log("within for each");
-    //   for (let i of result) {
-    //     // console.log("i", i.ticker_dates);
-    //     console.log("iiis", i.ticker_dates["Market Capitalisation"]);
-    //     // traversing in the dates within each quarter
-    //     for (dates of i.ticker_dates) {
-    //       // checks for a particular key to be present on a single date
-    //       // Some Common Keys can be used here Eg:Total Assets, Net Profit,etc
-    //       if (dates.hasOwnProperty("Market Capitalisation")) {
-    //         // console.log(dates);
-    //         // if 'Key' found then that date data is pushed into
-    //         // the empty array(datesCF) declared on top
-    //         console.log("market cap found"); // console.log(y)
-    //       }
-    //     }
-    //   }
+    result.forEach(function(elem) {
+      let compare = {};
+      ticker_dates = elem._doc.ticker_dates;
+      console.log("dates", ticker_dates);
 
-    //   ticker_dates = elem._doc.ticker_dates;
-    //   console.log("ticker_dates", ticker_dates);
+      last_date = ticker_dates.slice(-1)[0];
+      var i = -1;
 
-    //   last_date = ticker_dates.slice(-1)[0];
-    //   // console.log(last_date);
+      // getting ticker name
+      let ticker_name = elem._doc.ticker_name;
+      console.log("ticker_name", ticker_name);
+      compare["ticker_name"] = ticker_name;
+      if (last_date["Market Capitalisation"] == undefined) {
+        Market_cap = "0";
+      } else {
+        Market_cap = last_date["Market Capitalisation"];
+      }
+      compare["marketcap"] = Market_cap.toString();
 
-    //   var i = -1;
-    //   //fetching dividends
-    //   while (last_date["Dividends"] == undefined) {
-    //     last_date = ticker_dates.slice(i)[0];
+      while (last_date["Net Profit"] == undefined) {
+        last_date = ticker_dates.slice(i)[0];
+        i--;
+      }
+      // console.log(last_date["Net Profit"] / last_date["Dividends"]);
+      if (last_date["Net Profit"] == undefined) {
+        net_profit = "0";
+      } else {
+        net_profit = last_date["Net Profit"];
+      }
 
-    //     i--;
-    //     // console.log("lastdate", last_date);
-    //   }
-    //   var dividend = last_date["Dividends"];
-    //   // console.log("dividend", dividend);
+      compare["net_profit"] = net_profit.toString();
 
-    //   compare["dividend"] = dividend.toString();
-    //   // console.log("printing compare", compare);
-    //   if (last_date["Market Capitalisation"] == undefined) {
-    //     Market_cap = "-";
-    //   } else {
-    //     Market_cap = last_date["Market Capitalisation"];
-    //   }
-    //   compare["marketcap"] = Market_cap.toString();
+      // for market cap
+      if (last_date["Share Price"] == undefined) {
+        Share_Price = "0";
+      } else {
+        Share_Price = last_date["Share Price"];
+      }
+      compare["share_price"] = Share_Price.toString();
 
-    //   search_result.push(compare);
-    // });
-    // console.log("printing search result", result);
+      while (last_date["Revenues"] == undefined) {
+        last_date = ticker_dates.slice(i)[0];
+        i--;
+      }
+      revenue = last_date["Revenues"];
+      compare["revenue"] = revenue.toString();
+
+      while (last_date["Total Assets"] == undefined) {
+        last_date = ticker_dates.slice(i)[0];
+        i--;
+      }
+      total_assets = last_date["Total Assets"];
+      compare["total_assets"] = total_assets.toString();
+
+      while (last_date["EV / EBITDA"] == undefined) {
+        last_date = ticker_dates.slice(i)[0];
+        i--;
+      }
+      ebit = last_date["EV / EBITDA"];
+      compare["ebit"] = ebit.toString();
+      // console.log("compare", compare);
+
+      screener_data.push(compare);
+    });
+
+    // for dividends
+    // while (last_date["Dividends"] == undefined) {
+    //   last_date = ticker_dates.slice(i)[0];
+    //   i--;
+    // }
+    // dividend = last_date["Dividends"];
+    // compare.tickerValues["dividend"] = dividend.toString();
+
+    // // for market cap
+    // if (last_date["Market Capitalisation"] == undefined) {
+    //   Market_cap = "-";
+    // } else {
+    //   Market_cap = last_date["Market Capitalisation"];
+    // }
+    // compare.tickerValues["marketcap"] = Market_cap.toString();
+
+    // // for net profit
+    // while (last_date["Net Profit"] == undefined) {
+    //   last_date = ticker_dates.slice(i)[0];
+    //   i--;
+    // }
+    // // console.log(last_date["Net Profit"] / last_date["Dividends"]);
+    // if (last_date["Net Profit"] == undefined) {
+    //   net_profit = "-";
+    // } else {
+    //   net_profit = last_date["Net Profit"];
+    // }
+
+    // console.log("result", result);
+
     if (result.length == 0) {
       res.status(400).json({
         status: 400,
-        data: result,
+        data: screener_data,
         message: "No result",
       });
     } else {
       res.status(200).json({
         status: 200,
-        data: result,
+        data: screener_data,
         message: "Retrieved screener result successfully",
       });
     }

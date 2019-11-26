@@ -36,10 +36,6 @@ exports[`Testing home Component should mount the component 1`] = `
         "headline": "Master Blaster Sachin baby",
         "new_id": 1,
       },
-      Object {
-        "headline": "BCCI President elections coming up",
-        "new_id": 2,
-      },
     ]
   }
   newsById={
