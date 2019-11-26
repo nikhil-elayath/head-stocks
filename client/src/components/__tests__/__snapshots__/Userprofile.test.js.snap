@@ -3,32 +3,52 @@
 exports[`Testing User Profile Component should mount the component 1`] = `
 <div>
   <div
-    id="userProfileContainer"
+    id="analysis_main_container_blur"
   >
-    <UserProfile />
     <div
-      id="userSearch"
+      id="userProfileContainer"
     >
-      <h1>
-        Welcome to HeadStocks
-      </h1>
-      <input
-        id="userProfileSearch"
-        name="searchInput"
-        onChange={[Function]}
-        placeholder="Search for Stocks you want to buy (E.g . AAPL)"
-        type="text"
-        value=""
-      />
-      <button
-        id="userProfileSearchButton"
-        type="submit"
+      <Connect(UserNavigation) />
+      <div
+        id="userSearch"
       >
-        <i
-          class="fa fa-search"
+        <h1>
+          Welcome to HeadStocks
+        </h1>
+        <input
+          id="userProfileSearch"
+          name="searchInput"
+          onChange={[Function]}
+          placeholder="Search for Stocks you want to buy (E.g . AAPL)"
+          type="text"
+          value=""
         />
-      </button>
+        <button
+          id="userProfileSearchButton"
+          type="submit"
+        >
+          <i
+            class="fa fa-search"
+          />
+        </button>
+      </div>
     </div>
+  </div>
+  <div
+    id="bg-text"
+  >
+    <p>
+      Please login to enable this feature
+    </p>
+    <Link
+      to="/login"
+    >
+      <button
+        id="button_for_blur"
+      >
+        Login
+      </button>
+    </Link>
   </div>
 </div>
 `;

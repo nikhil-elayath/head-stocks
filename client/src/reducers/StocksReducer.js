@@ -3,7 +3,7 @@ import {
   GAINERS_LOSERS,
   GET_ALL_SECTORS,
   GET_ALL_INDUSTRIES,
-  SCREENER_SEARCH,
+  SCREENER_SEARCH
 } from "../actions/Types";
 
 const initialstate = {
@@ -11,7 +11,7 @@ const initialstate = {
   gainersLosers: [],
   sectors: [],
   industries: [],
-  screener_search: [],
+  screener_search: []
 };
 
 export default function(state = initialstate, action) {
