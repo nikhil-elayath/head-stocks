@@ -26,53 +26,46 @@ router.post("/screener", async (req, res, next) => {
     let result = await stocksData.aggregate([
       {
         $match: {
-          $and: [{ sector: req.body.sector }, { industry: req.body.industry }],
+          $and: [{ sector: "Technology" }, { industry: "Computer Hardware" }],
         },
       },
 
       { $unwind: "$ticker_dates" },
+
+      {
+        $match: {
+          "ticker_dates.Market Capitalisation": {
+            $gt: 10,
+            $lt: 100,
+          },
+          // "ticker_dates.Share Price": {
+          //   $gt: +share_price1,
+          //   $lt: +share_price2,
+          // },
+          // "ticker_dates.Share Price": {
+          //   $gt: +share_price1,
+          //   $lt: +share_price2,
+          // },
+        },
+      },
       {
         $project: {
           ticker_dates: 1,
           ticker_id: 1,
           ticker_name: 1,
+          _id: 0,
         },
       },
-
       {
-        $sort: {
-          // _id key has the values stored of year and month
-          //example:  _id{year:2009, month: 4}
-          // "_id.year": -1,
-          // "_id.month": -1,
-          // "_id.day": -1,
-
-          "ticker_dates.date": -1,
+        $group: {
+          _id: { ticker_name: "$ticker_name", ticker_id: "$ticker_id" },
+          ticker_data: { $push: "$ticker_dates" },
         },
       },
-      // {
-      //   $group: {
-      //     name: { $addToSet: "$ticker_name" },
-      //     date_values: { $push: "$ticker_dates" },
-      //   },
-      // },
-
-      // { $arrayElemAt: ["$ticker_dates", 0] },
       {
-        $match: {
-          "ticker_dates.Market Capitalisation": {
-            $gt: +market_cap_value1,
-            $lt: +market_cap_value2,
-          },
-          "ticker_dates.Share Price": {
-            $gt: +share_price1,
-            $lt: +share_price2,
-          },
-        },
+        $unwind: "$ticker_data",
       },
     ]);
-
-    console.log("printing result", result);
     // result.forEach(function(elem) {
     //   let compare = {};
     //   console.log("within for each");
@@ -130,7 +123,7 @@ router.post("/screener", async (req, res, next) => {
     } else {
       res.status(200).json({
         status: 200,
-        data: search_result,
+        data: result,
         message: "Retrieved screener result successfully",
       });
     }
