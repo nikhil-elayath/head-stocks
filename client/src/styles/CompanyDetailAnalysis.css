@@ -7,6 +7,7 @@
 #analysis_main_container_blur {
   filter: blur(15px);
   -webkit-filter: blur(15px);
+  pointer-events: none;
 }
 
 #bg-text {
