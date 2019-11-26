@@ -5,7 +5,8 @@ import {
   RESET_PASSWORD,
   SEND_OTP,
   VERIFY_OTP,
-  ERROR_TYPE
+  ERROR_TYPE,
+  USER_HISTORY
 } from "../Types";
 import moxios from "moxios";
 import configureMockStore from "redux-mock-store";
@@ -233,6 +234,39 @@ describe("Testing Users Action", () => {
       }
     ];
     return store.dispatch(action.verifyOtp(user)).then(() => {
+      expect(store.getActions()).toEqual(expectedResponse);
+    });
+  });
+  // use history action test [piyush]
+  it("should return a buy and sell history of the user by email and return status code of 200 with a message", () => {
+    const responseOfApi = [];
+    let email = "admin@gamil.com";
+    moxios.stubRequest("http://localhost:2001/api/users/history/" + email, {
+      status: 200,
+      response: { data: responseOfApi }
+    });
+    const store = mockStore({});
+    const expectedResponse = [
+      {
+        type: USER_HISTORY,
+        payload: responseOfApi
+      }
+    ];
+    return store.dispatch(action.userHistory(email)).then(() => {
+      expect(store.getActions()).toEqual(expectedResponse);
+    });
+  });
+
+  it("should return a buy and sell history of the user by email and return status code of 200 with a message", () => {
+    const responseOfApi = [];
+    let email = "ain@gamil.com";
+    moxios.stubRequest("http://localhost:2001/api/users/history/" + email, {
+      status: 400,
+      response: { data: responseOfApi }
+    });
+    const store = mockStore({});
+    const expectedResponse = [];
+    return store.dispatch(action.userHistory(email)).then(() => {
       expect(store.getActions()).toEqual(expectedResponse);
     });
   });
