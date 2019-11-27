@@ -190,22 +190,22 @@ export class CompanyDetailSecondaryNavbar extends Component {
                           {/* second grid of secondaru navbar */}
                           <button
                             id="downloadButton"
-                            // onClick={async () => {
-                            //   fetch(
-                            //     "http://localhost:2001/api/companydetail/indicatorsdata/" +
-                            //       coms.ticker_name
-                            //   ).then(response => {
-                            //     response.blob().then(blob => {
-                            //       let url = window.URL.createObjectURL(blob);
-                            //       let a = document.createElement("a");
-                            //       a.href = url;
-                            //       a.download = coms.ticker_name + ".csv";
-                            //       a.click();
-                            //     });
-                            //     //window.location.href = response.url;
-                            //   });
-                            //   // this.props.downloadOHLC("AAPL");
-                            // }}
+                            onClick={async () => {
+                              fetch(
+                                "http://localhost:2001/api/companydetail/indicatorsdata/" +
+                                  coms.ticker_name
+                              ).then(response => {
+                                response.blob().then(blob => {
+                                  let url = window.URL.createObjectURL(blob);
+                                  let a = document.createElement("a");
+                                  a.href = url;
+                                  a.download = coms.ticker_name + ".csv";
+                                  a.click();
+                                });
+                                //window.location.href = response.url;
+                              });
+                              // this.props.downloadOHLC("AAPL");
+                            }}
                           >
                             <i class="fa fa-download" /> Download
                           </button>

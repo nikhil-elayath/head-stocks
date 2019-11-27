@@ -170,10 +170,6 @@ describe("Testing Register Component", () => {
     expect(e.preventDefault).toBeCalled();
   });
 
-  it("checks for Sign Up button click ", () => {
-    wrapper.find("#registerFormButton").simulate("click");
-  });
-
   it("testing for name input field", () => {
     const event = {
       target: {

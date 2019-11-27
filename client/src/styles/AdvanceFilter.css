@@ -157,6 +157,14 @@ input[type="checkbox"]:checked ~ #div_filter_main_container {
   color: #39abf7;
 }
 
+#more_filters_title {
+  color: #2c3e50;
+}
+
+#more_filters_title:hover {
+  color: #39abf7;
+}
+
 @media only screen and (max-width: 426px) {
   #stocks-advance-filter-grid-main-container {
     grid-template-columns: 1fr;

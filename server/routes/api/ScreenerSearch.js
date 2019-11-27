@@ -8,6 +8,7 @@ const url = "mongodb://localhost:27017";
 
 const dbName = "stocks";
 const stocksData = require("../../model/stocksModel");
+screener_data = [];
 
 router.post("/screener", async (req, res, next) => {
   console.log("body", req.body);
@@ -32,7 +33,6 @@ router.post("/screener", async (req, res, next) => {
   const search_result = [];
   var startDate = "2008-12-29T00:00:00.000+00:00";
   var endDate = "2019-07-01T00:00:00.000+00:00";
-  screener_data = [];
   try {
     let result = await stocksData.find({
       "ticker_dates.date": {
@@ -66,20 +66,16 @@ router.post("/screener", async (req, res, next) => {
         $lte: +net_profit2,
         $gte: +net_profit1,
       },
-      // ticker_id: 1,
     });
-    console.log("result", result);
     result.forEach(function(elem) {
       let compare = {};
       ticker_dates = elem._doc.ticker_dates;
-      console.log("dates", ticker_dates);
 
       last_date = ticker_dates.slice(-1)[0];
       var i = -1;
 
       // getting ticker name
       let ticker_name = elem._doc.ticker_name;
-      console.log("ticker_name", ticker_name);
       compare["ticker_name"] = ticker_name;
       if (last_date["Market Capitalisation"] == undefined) {
         Market_cap = "0";
@@ -92,7 +88,6 @@ router.post("/screener", async (req, res, next) => {
         last_date = ticker_dates.slice(i)[0];
         i--;
       }
-      // console.log(last_date["Net Profit"] / last_date["Dividends"]);
       if (last_date["Net Profit"] == undefined) {
         net_profit = "0";
       } else {
@@ -134,40 +129,10 @@ router.post("/screener", async (req, res, next) => {
       compare["id"] = elem._doc.ticker_id;
 
       screener_data.push(compare);
-      console.log("scsd", screener_data);
+      // console.log("scsd", screener_data);
     });
 
-    // for dividends
-    // while (last_date["Dividends"] == undefined) {
-    //   last_date = ticker_dates.slice(i)[0];
-    //   i--;
-    // }
-    // dividend = last_date["Dividends"];
-    // compare.tickerValues["dividend"] = dividend.toString();
-
-    // // for market cap
-    // if (last_date["Market Capitalisation"] == undefined) {
-    //   Market_cap = "-";
-    // } else {
-    //   Market_cap = last_date["Market Capitalisation"];
-    // }
-    // compare.tickerValues["marketcap"] = Market_cap.toString();
-
-    // // for net profit
-    // while (last_date["Net Profit"] == undefined) {
-    //   last_date = ticker_dates.slice(i)[0];
-    //   i--;
-    // }
-    // // console.log(last_date["Net Profit"] / last_date["Dividends"]);
-    // if (last_date["Net Profit"] == undefined) {
-    //   net_profit = "-";
-    // } else {
-    //   net_profit = last_date["Net Profit"];
-    // }
-
-    // console.log("result", result);
-
-    if (result.length == 0) {
+    if (screener_data.length == 0) {
       res.status(400).json({
         status: 400,
         data: screener_data,

@@ -1,5 +1,4 @@
 // var colors = require("colors");
-/*piyush*/
 const pgp = require("pg-promise")();
 const db = pgp("postgres://postgres:root@localhost:5432/headstocks");
 var MongoClient = require("mongodb").MongoClient;

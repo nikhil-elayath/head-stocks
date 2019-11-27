@@ -56,7 +56,7 @@ export class UserProfile extends Component {
           }
         >
           <div id="userProfileContainer">
-            <UserNavigation wallet={this.props.users} />
+            <UserNavigation wallet={this.props.users} selected="profile" />
 
             <div id="userSearch">
               <h1>Welcome to HeadStocks</h1>
@@ -137,7 +137,7 @@ export class UserProfile extends Component {
                                   onClick={() => {
                                     {
                                       let user = {
-                                        email: "admin@gmail.com",
+                                        email: decode.email,
                                         ticker_name: stocks.ticker_name,
                                         current_price: stocks.price,
                                         qty: this.state.qty,

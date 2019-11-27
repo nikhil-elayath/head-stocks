@@ -52,7 +52,6 @@ export default class Kafka extends Component {
   };
 
   render() {
-    console.log(this.state.data);
     return (
       <div id="kafkamainContainer">
         {this.state.data.map(i => (
@@ -80,14 +79,12 @@ export default class Kafka extends Component {
               </span>
               {String(i.changePercentage).charAt(0) == "-" ? (
                 <span
-                  class="fa fa-caret-down"
-                  className="w3-container w3-center w3-animate-bottom"
+                  className="fa fa-caret-down"
                   style={{ color: "#ff4d4d", margin: "5px" }}
                 ></span>
               ) : (
                 <span
-                  class="fa fa-caret-up"
-                  className="w3-container w3-center w3-animate-top"
+                  className="fa fa-caret-up"
                   style={{ color: "#27ae60", margin: "5px" }}
                 ></span>
               )}

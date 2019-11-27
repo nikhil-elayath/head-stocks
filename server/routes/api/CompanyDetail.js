@@ -491,7 +491,7 @@ router.get("/indicatorsdata/:ticker_name", async (req, res, next) => {
   try {
     let ticker_name = req.params.ticker_name;
     const result = await db.any(
-      `select * from simfin where ticker='${ticker_name}'  limit 50`
+      `select * from simfin where ticker='${ticker_name}'  `
     );
     if (!result)
       return res.status(404).json({

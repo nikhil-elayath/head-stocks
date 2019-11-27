@@ -5,7 +5,9 @@ exports[`Testing User History Component should mount the component 1`] = `
   <div
     id="userHistoryContainer"
   >
-    <Connect(UserNavigation) />
+    <Connect(UserNavigation)
+      selected="history"
+    />
     <div
       id="userhistory"
     >

@@ -29,8 +29,7 @@ exports[`Testing User  Secondary navbar Component should mount the component 1`]
           to="/profile"
         >
           <button
-            id="buyStocks-active"
-            onClick={[Function]}
+            id="buyStocks"
           >
             Buy Stocks
           </button>
@@ -40,7 +39,6 @@ exports[`Testing User  Secondary navbar Component should mount the component 1`]
         >
           <button
             id="myStocks"
-            onClick={[Function]}
           >
             My Stocks
           </button>
@@ -50,7 +48,6 @@ exports[`Testing User  Secondary navbar Component should mount the component 1`]
         >
           <button
             id="historyStocks"
-            onClick={[Function]}
           >
             History
           </button>

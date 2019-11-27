@@ -5,7 +5,6 @@ import {
   DOWNLOAD
 } from "./Types";
 import axios from "axios";
-import { startLoading, stopLoading } from "./LoadingAction";
 const url = "http://localhost:2001/api/indicesprofile/";
 
 // GET all companies- Bhavana
