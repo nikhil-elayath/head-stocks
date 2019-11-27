@@ -69,7 +69,6 @@ export const resetPassword = user => dispatch => {
 
 // Send OTP to verify email - Bhavana
 export const sendOtp = user => dispatch => {
-  console.log(user);
   return axios
     .post(url + "send_otp", user)
     .then(res => {
@@ -77,14 +76,9 @@ export const sendOtp = user => dispatch => {
         type: SEND_OTP,
         payload: res.data.data
       });
-      console.log(res.data.data);
     })
     .catch(err => {
-      dispatch({
-        type: ERROR_TYPE,
-        payload: err.response.data.message
-      });
-      console.log(err.response.data.message);
+      console.log(err);
     });
 };
 
