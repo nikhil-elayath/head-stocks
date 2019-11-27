@@ -80,6 +80,7 @@ export class IndicesProfile extends Component {
                       <i class="fa fa-download" /> Download
                     </button> */}
                       <button
+                        //for download [piyush]
                         id="downloadButton"
                         type="button"
                         onClick={async () => {

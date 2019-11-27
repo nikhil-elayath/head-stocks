@@ -30,6 +30,7 @@ export class UserHistory extends Component {
                   <th>Quantity</th>
                   <th>Date</th>
                 </thead>
+                {/*here we are getting the user tickername and his selling buying informaation*/}
                 {this.props.userhistory.map(hist => (
                   <>
                     {hist.company.map((stocks, index) => (
