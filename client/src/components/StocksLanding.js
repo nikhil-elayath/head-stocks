@@ -567,16 +567,22 @@ export class StocksLanding extends Component {
                     </p>
                   }
                 >
-                  <div id="stocks_grid_container">
+                  <div
+                    id={
+                      this.state.filter == true
+                        ? "stocks_grid_container_filter_screener"
+                        : "stocks_grid_container"
+                    }
+                  >
                     {this.state.filter == true ? (
                       <>
                         {this.props.screener_search.length != 0 ? (
                           <>
                             {this.props.screener_search.map(screener_search => (
                               // <h3>{screener_search.dividend}</h3>
-                              <div id="stocks_main_grid_details_screener">
+                              <div>
                                 <div
-                                  id="stocks_grid_details"
+                                  id="stocks_grid_details_filter_screener"
                                   onClick={() => {
                                     this.props.history.push(
                                       "/companydetail/" +
