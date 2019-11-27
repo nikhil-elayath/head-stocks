@@ -1,53 +1,8 @@
 const request = require("supertest");
 const app = require("../../index");
-// let testFilePath = null;
-import file from "../Data/sample_import.csv";
+const fs = require("mz/fs");
 
-// describe("Testing Upload Data API", () => {
-//   it("(Data Uploads) should return a status of 200", done => {
-//     //   id = 9;
-//     //   // const filePath = `${__dirname}/Data/sample_import.csv`;
-//     //   let data = { file };
-//     //   let payload = JSON.stringify(data);
-//     //   request(app)
-//     //     .post("/api/upload/updateCompany/" + id)
-//     //     .send(payload)
-//     //     .set("Content-type", "application/json")
-//     //     .then(response => {
-//     //       expect(response.status).toBe(200);
-//     //       expect(response.body).toEqual(expect.any(Object));
-//     //       expect(response.body.message).toBe("Updated Data Successfully");
-//     //       done();
-//     //     });
-//   });
-// });
-
-// describe('uploads a new Data file', () => {
-
-//   // Upload first test file to CDN
-//   it('should upload the test file to CDN', () =>
-//     // Test if the test file is exist
-//     fs.exists(filePath)
-//       .then((exists) => {
-//         if (!exists) throw new Error('file does not exist');
-//         return request(app)
-//           .post("/api/upload/updateCompany/" + id)
-//            .attach('file', filePath)
-//           .then((res) => {
-//             const { success, message, filePath } = res.body;
-//             expect(success).toBeTruthy();
-//             expect(message).toBe('Updated Data Successfully');
-//             expect(typeof filePath).toBeTruthy();
-//             // store file data for following tests
-//             testFilePath = filePath;
-
-//           })
-//           .catch(err => console.log(err));
-//       })
-
-// })
-
-let id = 9;
+let id = 1;
 let testFilePath = null;
 describe('POST /api/upload/updateCompany/" + id - upload a new data file', () => {
   const filePath = `${__dirname}/Data/sample_import.csv`;
@@ -73,4 +28,17 @@ describe('POST /api/upload/updateCompany/" + id - upload a new data file', () =>
           .catch(err => console.log(err))
       );
     }));
+});
+
+describe("DELETE /api/upload/updateCompany/ - delete an existing file", () => {
+  it("should delete existing file successfully", () => {
+    return request(app)
+      .delete(`/api/upload/updateCompany/${testFilePath}`)
+      .then(res => {
+        const { success, message } = res.body;
+        expect(success).toBeTruthy();
+        expect(message).toBe("Delete successfully");
+      })
+      .catch(err => console.log(err));
+  });
 });

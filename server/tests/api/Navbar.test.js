@@ -54,4 +54,29 @@ describe("Testing Navbar API", () => {
         done();
       });
   });
+
+  it("( Results Found) should return a status of 200  when give the search results", done => {
+    let data = {
+      name: {
+        ticker_name: "AAPL",
+        ticker_id: 9,
+        industry: "Computer Hardware",
+        price: 25
+      },
+      searchInput: "MSFT"
+    };
+    let payload = JSON.stringify(data);
+    request(app)
+      .post("/api/navbar/search")
+      .send(payload)
+      .set("Content-type", "application/json")
+      .then(response => {
+        expect(response.status).toBe(200);
+        expect(response.body).toEqual(expect.any(Object));
+        expect(response.body.message).toBe(
+          "Retrieved Search Result successfully"
+        );
+        done();
+      });
+  });
 });
