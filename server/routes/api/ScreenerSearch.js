@@ -66,7 +66,9 @@ router.post("/screener", async (req, res, next) => {
         $lte: +net_profit2,
         $gte: +net_profit1,
       },
+      // ticker_id: 1,
     });
+    console.log("result", result);
     result.forEach(function(elem) {
       let compare = {};
       ticker_dates = elem._doc.ticker_dates;
@@ -126,10 +128,13 @@ router.post("/screener", async (req, res, next) => {
         i--;
       }
       ebit = last_date["EV / EBITDA"];
+
       compare["ebit"] = ebit.toString();
       // console.log("compare", compare);
+      compare["id"] = elem._doc.ticker_id;
 
       screener_data.push(compare);
+      console.log("scsd", screener_data);
     });
 
     // for dividends
