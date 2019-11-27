@@ -52,7 +52,6 @@ export default class Kafka extends Component {
   };
 
   render() {
-    console.log(this.state.data);
     return (
       <div id="kafkamainContainer">
         {this.state.data.map(i => (

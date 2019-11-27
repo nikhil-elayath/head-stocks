@@ -21,7 +21,7 @@ export class UserHistory extends Component {
           <UserNavigation selected="history" />
           {/*side bar for user detail*/}
           <div id="userhistory">
-            {this.props.userhistory ? (
+            {this.props.userhistory == true ? (
               <table id="userhistory_table">
                 <thead id="userhistory_tableHeader">
                   <th>Stocks</th>
