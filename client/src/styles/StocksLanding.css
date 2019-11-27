@@ -2,7 +2,7 @@
 @import url("https://code.jquery.com/jquery-1.11.3.min.js");
 @import url("https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js");
 * {
-  font-family: Karla !important;
+  font-family: Karla;
 }
 
 /* #parent:focus + #btn {
@@ -31,6 +31,13 @@
   grid-gap: 15px;
 }
 
+#stocks_grid_container_filter_screener {
+  margin: 2px 5px 0px 5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 15px;
+}
+
 #stocks_main_grid_details {
   border: 1px solid #cacaca;
   border-radius: 4px;
@@ -46,11 +53,32 @@
   text-align: center;
   cursor: pointer;
 }
+.stocks-landing-page-more-filter-after {
+  color: #27ae60;
+}
+.stocks-landing-page-more-filter-before {
+  color: rebeccapurple;
+}
 
 #stocks_main_grid_details:hover {
   box-shadow: 0px 3px 3px 3px #f5f5f5;
   /* transform: scale(1.02); */
   /* transition: transform 0.3s; */
+  transition: all 0.3s ease-out;
+}
+
+#stocks_grid_details_filter_screener {
+  background-color: #ffffff;
+  border: 1px solid #cacaca;
+  border-radius: 4px;
+  padding: 10px 0px 10px 0px;
+  text-align: center;
+  cursor: pointer;
+}
+
+#stocks_grid_details_filter_screener:hover {
+  box-shadow: 0px 3px 3px 3px #f5f5f5;
+  transform: scale(1.02);
   transition: all 0.3s ease-out;
 }
 

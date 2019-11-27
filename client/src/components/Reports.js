@@ -7,7 +7,7 @@ export default class Reports extends Component {
       <div className="financialTableContainer">
         <table
           className={
-            this.props.yearValue == "All"
+            this.props.yearValue === "All"
               ? "financialTableData"
               : "financialTableData2"
           }

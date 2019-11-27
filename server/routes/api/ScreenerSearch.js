@@ -66,18 +66,20 @@ router.post("/screener", async (req, res, next) => {
         $lte: +net_profit2,
         $gte: +net_profit1,
       },
+      // ticker_id: 1,
     });
+    // console.log("result", result);
     result.forEach(function(elem) {
       let compare = {};
       ticker_dates = elem._doc.ticker_dates;
-      console.log("dates", ticker_dates);
+      // console.log("dates", ticker_dates);
 
       last_date = ticker_dates.slice(-1)[0];
       var i = -1;
 
       // getting ticker name
       let ticker_name = elem._doc.ticker_name;
-      console.log("ticker_name", ticker_name);
+      // console.log("ticker_name", ticker_name);
       compare["ticker_name"] = ticker_name;
       if (last_date["Market Capitalisation"] == undefined) {
         Market_cap = "0";
@@ -126,10 +128,13 @@ router.post("/screener", async (req, res, next) => {
         i--;
       }
       ebit = last_date["EV / EBITDA"];
+
       compare["ebit"] = ebit.toString();
       // console.log("compare", compare);
+      compare["id"] = elem._doc.ticker_id;
 
       screener_data.push(compare);
+      // console.log("scsd", screener_data);
     });
 
     // for dividends
