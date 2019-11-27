@@ -216,6 +216,7 @@ router.put("/sell", async (req, res, next) => {
     if (!username) {
       return res.status(400).send({ message: "Invalid Credentials" });
     } else {
+      console.log(req.body);
       let user = await User.update(
         { "company.ticker_name": req.body.ticker_name },
         {
@@ -225,7 +226,7 @@ router.put("/sell", async (req, res, next) => {
             "company.$.sell_price": req.body.sell_price,
             wallet: username.wallet + req.body.price,
             "company.$.sell_date": new Date().toISOString(),
-            "company.$.selling_quantity": req.body.quantity
+            "company.$.selling_quantity": req.body.selling_quantity
           }
         },
         { upsert: true }
@@ -285,7 +286,8 @@ router.post("/myStocks", async (req, res, next) => {
     if (!username) {
       return res.status(400).send({ message: "Invalid Credentials" });
     } else {
-      const result = await User.find({ email: req.body.email }, { _id: 0 });
+      const result = await User.find({ email: req.body.email });
+      console.log(result);
       res.status(200).json({
         status: 200,
         data: result,

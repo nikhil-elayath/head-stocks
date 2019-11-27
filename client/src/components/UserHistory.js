@@ -38,10 +38,16 @@ export class UserHistory extends Component {
                         <td id={"tickerPrice" + index}>
                           {stocks.current_price}
                         </td>
-                        {stocks.buy == true ? <td>Bought</td> : <td>Sold</td>}
-                        <td id={"tickerQty" + index}>
-                          {stocks.buying_quantity}
-                        </td>
+                        {stocks.sell == true ? <td>Sold</td> : <td>Bought</td>}
+                        {stocks.sell == true ? (
+                          <td id={"tickerQty" + index}>
+                            {stocks.selling_quantity}
+                          </td>
+                        ) : (
+                          <td id={"tickerQty" + index}>
+                            {stocks.buying_quantity}
+                          </td>
+                        )}
                         <td id={"tickerDate" + index}>
                           {new Date(stocks.buy_date).toLocaleDateString(
                             "en-In",

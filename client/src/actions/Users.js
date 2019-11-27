@@ -163,6 +163,7 @@ export const getAllStocks = email => dispatch => {
 };
 
 export const sellStocks = email => dispatch => {
+  console.log(email);
   return axios
     .put(url + "sell", email)
     .then(res => {
