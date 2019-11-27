@@ -5,6 +5,8 @@ import "rc-tooltip/assets/bootstrap.css";
 import "../styles/AdvanceFilter.css";
 import Slider from "rc-slider";
 import { Radar } from "react-chartjs-2";
+import { RadarGraph } from "./Common/RadarGraph";
+
 // import RadarSlider from "../charts/graph";
 
 import {
@@ -52,20 +54,21 @@ export class StocksLanding extends Component {
 
     //[Nikhil] default slider value
     ebit1: -50,
-    ebit2: 80,
-    market_cap_value1: 60,
-    market_cap_value2: 70,
-    share_price1: 43,
-    share_price2: 72,
-    total_assests1: 89,
-    total_assests2: 44,
-    revenue1: 45,
-    revenue2: 34,
-    net_profit1: 50,
-    net_profit2: 100,
+    ebit2: 1000,
+    market_cap_value1: 0,
+    market_cap_value2: 1000,
+    share_price1: 0,
+    share_price2: 1000,
+    total_assests1: 0,
+    total_assests2: 1000,
+    revenue1: 0,
+    revenue2: 1000,
+    net_profit1: 0,
+    net_profit2: 1000,
     filter: false,
     normal: true,
     //[NIKHIL] radar graph
+
     marksData: {
       labels: [
         "Market Cap",
@@ -87,7 +90,11 @@ export class StocksLanding extends Component {
           pointBorderColor: "#2c3e50",
           pointHoverRadius: 10,
           //values coming from the database
-          data: [65, 75, 70, 80, 60, 80]
+
+          data: [
+            // this.props.screener_search ? "data" : "no data",
+            // this.props.screener_search.market_cap,
+          ]
         }
         // {
         //   label: "Student B",
@@ -248,25 +255,29 @@ export class StocksLanding extends Component {
     return (
       <div>
         <div id="graph">
-          <Radar
+          {/* <Radar
             options={{
               scale: {
                 ticks: {
                   beginAtZero: true,
                   min: 0,
                   max: 100,
-                  stepSize: 20
+                  stepSize: 20,
                 },
                 pointLabels: {
-                  fontSize: 18
-                }
+                  fontSize: 18,
+                },
               },
               legend: {
-                position: "left"
-              }
+                position: "left",
+              },
+              // ticks: {
+              //   suggestedMin: 50,
+              //   suggestedMax: 100,
+              // },
             }}
             data={this.state.marksData}
-          />
+          /> */}
         </div>
         {/* SEARCH BUTTON */}
 
@@ -537,6 +548,8 @@ export class StocksLanding extends Component {
                         {this.props.screener_search.map(screener_search => (
                           // <h3>{screener_search.dividend}</h3>
                           <div id="stocks_main_grid_details">
+                            {console.log(screener_search.marketcap)}
+
                             <div
                               id="stocks_grid_details"
                               onClick={() => {
@@ -546,7 +559,7 @@ export class StocksLanding extends Component {
                                 );
                               }}
                             >
-                              <img
+                              {/* <img
                                 id="stocks_img"
                                 alt="logo"
                                 src={
@@ -555,36 +568,68 @@ export class StocksLanding extends Component {
                                     : "data:image/jpeg;base64," +
                                       screener_search.ticker_logo
                                 }
+                              /> */}
+                              <RadarGraph
+                                data={[
+                                  screener_search.marketcap != NaN
+                                    ? Math.floor(
+                                        Number(screener_search.marketcap)
+                                      )
+                                    : 0,
+                                  screener_search.net_profit != NaN
+                                    ? Math.floor(
+                                        Number(screener_search.net_profit)
+                                      )
+                                    : 0,
+                                  screener_search.share_price != NaN
+                                    ? Math.floor(
+                                        Number(screener_search.share_price)
+                                      )
+                                    : 0,
+                                  screener_search.revenue != NaN
+                                    ? Math.floor(
+                                        Number(screener_search.revenue)
+                                      )
+                                    : 0,
+                                  screener_search.total_assets != NaN
+                                    ? Math.floor(
+                                        Number(screener_search.total_assets)
+                                      )
+                                    : 0,
+                                  screener_search.ebit != NaN
+                                    ? Math.floor(Number(screener_search.ebit))
+                                    : 0
+                                ]}
                               />
                               <div id="stocks_ticker">
                                 {screener_search["ticker_name"]}
                               </div>
                               {/* mapping the ticker name from the api*/}
-                              <div id="stocks_name">{}</div>
-                              <div id="stocks_flex_details_one">
-                                <div
+                              {/* <div id="stocks_name">{}</div> */}
+                              {/* <div id="stocks_flex_details_one"> */}
+                              {/* <div
                                   id="stocks_closed_price"
                                   className="stocks_details_title"
                                 >
                                   Closed Price:
-                                </div>
-                                <div id="stocks_details">
+                                </div> */}
+                              {/* <div id="stocks_details">
                                   {screener_search["Share Price"]}USD
-                                </div>
-                                {/* mapping the share price from the api */}
-                              </div>
-                              <div id="stocks_flex_details_two">
+                                </div> */}
+                              {/* mapping the share price from the api */}
+                              {/* </div> */}
+                              {/* <div id="stocks_flex_details_two">
                                 <div
                                   id="stocks_market_cap"
                                   className="stocks_details_title"
                                 >
                                   Market Cap:
-                                </div>
-                                <div id="stocks_details">
+                                </div> */}
+                              {/* <div id="stocks_details">
                                   {screener_search["MarketCap"]}M
-                                </div>
-                                {/* mapping the market cap from the api */}
-                              </div>
+                                </div> */}
+                              {/* mapping the market cap from the api */}
+                              {/* </div> */}
                             </div>
                           </div>
 
