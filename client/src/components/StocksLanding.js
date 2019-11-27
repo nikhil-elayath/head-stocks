@@ -355,7 +355,7 @@ export class StocksLanding extends Component {
                 id="div_filter_main_container"
                 className="w3-container w3-center w3-animate-opacity"
               >
-                <label href="id" className="fa fa-close" id="close_filter" />
+                {/* <label href="id" className="fa fa-close" id="close_filter" /> */}
                 <div id="filter_main_container">
                   <div id="stocks-advance-filter-grid-main-container">
                     <div id="advance-fliter-dividend">
@@ -376,6 +376,7 @@ export class StocksLanding extends Component {
                           onChange={this.onSliderChange}
                         />
                       </div>
+
                       <div id="advance-filter-debt-to-equity-ratio-value">
                         <p id="advance-filter-value">-50</p>
                         <p id="advance-filter-value2">1000</p>
@@ -528,18 +529,7 @@ export class StocksLanding extends Component {
                   </button>
                 </div>
               </div>
-
-              {/* <div
-                id="btn"
-                // onclick="this.style.visibility='hidden';"
-              >
-                Advance Filter{" "}
-              </div>  */}
             </div>
-
-            {/* <div class="slidecontainer"> */}
-
-            {/* </div> */}
 
             <div id="stocks_main_grid_container">
               {this.props.isLoading ? (
@@ -590,16 +580,6 @@ export class StocksLanding extends Component {
                                     );
                                   }}
                                 >
-                                  {/* <img
-                                id="stocks_img"
-                                alt="logo"
-                                src={
-                                  screener_search.ticker_logo == null
-                                    ? companylogo
-                                    : "data:image/jpeg;base64," +
-                                      screener_search.ticker_logo
-                                }
-                              /> */}
                                   <RadarGraph
                                     data={[
                                       screener_search.marketcap != NaN
