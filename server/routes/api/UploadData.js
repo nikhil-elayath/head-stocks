@@ -28,13 +28,9 @@ var upload = multer({ storage: storage });
 
 router.post("/updateCompany/:id", upload.single("file"), async (req, res) => {
   // stores the Id of the Company that is recieved from params
-  let id = req.params.id;
-  // console.log(id);
-
   let idResult = await stocksData.find({ ticker_id: +id });
-  // console.log(idResult.length);
 
-  if (idResult.length !== 0) {
+  if (idResult.length != 0) {
     var file = req.file;
     if (file.originalname.split(".")[1] !== "csv") {
       return callback(new Error("Only csv files allowed!"));
