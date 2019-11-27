@@ -53,6 +53,12 @@
   text-align: center;
   cursor: pointer;
 }
+.stocks-landing-page-more-filter-after {
+  color: #27ae60;
+}
+.stocks-landing-page-more-filter-before {
+  color: rebeccapurple;
+}
 
 #stocks_main_grid_details:hover {
   box-shadow: 0px 3px 3px 3px #f5f5f5;
