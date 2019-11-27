@@ -30,6 +30,13 @@ import Table from "../components/Common/TickerTable";
 import UpdateCompany from "./UpdateCompany";
 import jwt_decode from "jwt-decode";
 
+var decode;
+
+//[Nikhil] rc-slider
+//package documentation link
+//https://www.npmjs.com/package/rc-slider
+
+//source code http://react-component.github.io/slider/examples/handle.html
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
 
@@ -231,7 +238,8 @@ export class StocksLanding extends Component {
 
   render() {
     if (localStorage.getItem("token")) {
-      var decode = jwt_decode(localStorage.getItem("token"));
+      decode = jwt_decode(localStorage.getItem("token"));
+      // console.log(decode.isAdmin);
     }
     return (
       <div>
@@ -612,23 +620,27 @@ export class StocksLanding extends Component {
                         {this.state.pageStocks.map((stocks, index) =>
                           stocks ? (
                             <div id="stocks_main_grid_details">
-                              <a href={"#editpopup" + stocks.ticker_name}>
-                                <img
-                                  id="stocks_edit"
-                                  alt="edit"
-                                  src={editlogo}
-                                />
-                              </a>
-                              <div
-                                id={"editpopup" + stocks.ticker_name}
-                                class="admin_overlay"
-                              >
-                                <div class="admin_popup">
-                                  <h2>Update {stocks.ticker_name}</h2>
-                                  <UpdateCompany id={stocks.ticker_id} />
+                              {localStorage.getItem("token") ? <>
+                              {decode.isAdmin?
+                                <>
+                                <a href={"#editpopup" + stocks.ticker_name}>
+                                  <img
+                                    id="stocks_edit"
+                                    alt="edit"
+                                    src={editlogo}
+                                  />
+                                </a>
+                                <div
+                                  id={"editpopup" + stocks.ticker_name}
+                                  class="admin_overlay"
+                                >
+                                  <div class="admin_popup">
+                                    <h2>Update {stocks.ticker_name}</h2>
+                                    <UpdateCompany id={stocks.ticker_id} />
+                                  </div>
                                 </div>
-                              </div>
-                              {/* -------------------------- */}
+                              </>:
+                            <></>}</> : <></>}
                               <div
                                 id="stocks_grid_details"
                                 className={"stock_details" + index}
