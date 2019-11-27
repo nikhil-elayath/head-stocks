@@ -4,7 +4,6 @@ import "rc-slider/assets/index.css";
 import "rc-tooltip/assets/bootstrap.css";
 import "../styles/AdvanceFilter.css";
 import Slider from "rc-slider";
-import { Radar } from "react-chartjs-2";
 import { RadarGraph } from "./Common/RadarGraph";
 import { Link } from "react-router-dom";
 
@@ -31,13 +30,6 @@ import Table from "../components/Common/TickerTable";
 import UpdateCompany from "./UpdateCompany";
 import jwt_decode from "jwt-decode";
 
-var slider;
-
-//[Nikhil] rc-slider
-//package documentation link
-//https://www.npmjs.com/package/rc-slider
-
-//source code http://react-component.github.io/slider/examples/handle.html
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
 
@@ -93,25 +85,8 @@ export class StocksLanding extends Component {
           pointHoverRadius: 10,
           //values coming from the database
 
-          data: [
-            // this.props.screener_search ? "data" : "no data",
-            // this.props.screener_search.market_cap,
-          ],
+          data: [],
         },
-        // {
-        //   label: "Student B",
-        //   backgroundColor: "rgb(57,171,247)",
-        //   borderColor: "rgba(0,0,200,0.6)",
-        //   fill: true,
-        //   radius: 6,
-        //   pointRadius: 6,
-        //   pointBorderWidth: 3,
-        //   pointBackgroundColor: "cornflowerblue",
-        //   pointBorderColor: "rgba(0,0,200,0.6)",
-        //   pointHoverRadius: 10,
-        //   //values coming from the database
-        //   data: [54, 65, 60, 70, 70, 75],
-        // },
       ],
     },
   };
@@ -260,31 +235,7 @@ export class StocksLanding extends Component {
     }
     return (
       <div>
-        <div id="graph">
-          {/* <Radar
-            options={{
-              scale: {
-                ticks: {
-                  beginAtZero: true,
-                  min: 0,
-                  max: 100,
-                  stepSize: 20,
-                },
-                pointLabels: {
-                  fontSize: 18,
-                },
-              },
-              legend: {
-                position: "left",
-              },
-              // ticks: {
-              //   suggestedMin: 50,
-              //   suggestedMax: 100,
-              // },
-            }}
-            data={this.state.marksData}
-          /> */}
-        </div>
+        <div id="graph"></div>
         {/* SEARCH BUTTON */}
 
         {/* ends */}
@@ -335,7 +286,7 @@ export class StocksLanding extends Component {
                     onClick={this.morefilter}
                   >
                     <i class="fa fa-filter" id="filter_icon"></i>
-                    More Filters
+                    <span id="more_filters_title">More Filters</span>
                   </label>
                   <input type="checkbox" id="toggle-1" />{" "}
                 </>
@@ -344,7 +295,7 @@ export class StocksLanding extends Component {
                   <label id="advance-label" for="toggle-1">
                     <i class="fa fa-filter" id="filter_icon"></i>
                     <Link to="/login" style={{ textDecoration: "none" }}>
-                      More Filters
+                      <span id="more_filters_title">More Filters</span>
                     </Link>
                   </label>
                   <input type="checkbox" id="toggle-1" />{" "}
@@ -356,6 +307,7 @@ export class StocksLanding extends Component {
                 className="w3-container w3-center w3-animate-opacity"
               >
                 {/* <label href="id" className="fa fa-close" id="close_filter" /> */}
+                <label href="id" id="close_filter" />
                 <div id="filter_main_container">
                   <div id="stocks-advance-filter-grid-main-container">
                     <div id="advance-fliter-dividend">
@@ -385,7 +337,7 @@ export class StocksLanding extends Component {
                     {/* FOR MARKET CAP  */}
                     <div id="advance-filter-market-cap">
                       <div id="advance-filter-title">
-                        <p id="advance-filter-market-cap-p">market cap</p>
+                        <p id="advance-filter-market-cap-p">Market Cap</p>
                       </div>
                       <div id="stocks-landing-page-slider">
                         {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
@@ -412,7 +364,7 @@ export class StocksLanding extends Component {
                     {/* FOR SHARE Price  */}
                     <div id="advance-filter-share-price">
                       <div id="advance-filter-title">
-                        <p id="advance-filter-share-price-p">share price </p>
+                        <p id="advance-filter-share-price-p">Share Price </p>
                       </div>
                       <div id="stocks-landing-page-slide">
                         {/* CLLING THE COMPONENT WITH THE RS SLIDER PACKAGE  */}
@@ -530,7 +482,6 @@ export class StocksLanding extends Component {
                 </div>
               </div>
             </div>
-
             <div id="stocks_main_grid_container">
               {this.props.isLoading ? (
                 <div id="stocks_loader">
@@ -661,7 +612,6 @@ export class StocksLanding extends Component {
                         {this.state.pageStocks.map((stocks, index) =>
                           stocks ? (
                             <div id="stocks_main_grid_details">
-                              {/* -------------------------- */}
                               <a href={"#editpopup" + stocks.ticker_name}>
                                 <img
                                   id="stocks_edit"
@@ -681,6 +631,7 @@ export class StocksLanding extends Component {
                               {/* -------------------------- */}
                               <div
                                 id="stocks_grid_details"
+                                className={"stock_details" + index}
                                 onClick={() => {
                                   this.props.history.push(
                                     "/companydetail/" + stocks.ticker_id, //pushing to the company details page with ticker id of a stock when that particular stock card is clicked
@@ -698,16 +649,16 @@ export class StocksLanding extends Component {
                                         stocks.ticker_logo
                                   }
                                 />
-                                <div id="stocks_ticker">
+                                <div
+                                  id="stocks_ticker"
+                                  className={"stocks_ticker" + index}
+                                >
                                   {stocks["ticker_name"]}
                                 </div>
                                 {/* mapping the ticker name from the api*/}
                                 <div id="stocks_name">{}</div>
                                 <div id="stocks_flex_details_one">
-                                  <div
-                                    id="stocks_closed_price"
-                                    className="stocks_details_title"
-                                  >
+                                  <div id={"stocks_closed_price" + index}>
                                     Closed Price:
                                   </div>
                                   <div id="stocks_details">
@@ -717,7 +668,7 @@ export class StocksLanding extends Component {
                                 </div>
                                 <div id="stocks_flex_details_two">
                                   <div
-                                    id="stocks_market_cap"
+                                    id={"stocks_market_cap" + index}
                                     className="stocks_details_title"
                                   >
                                     Market Cap:

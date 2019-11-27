@@ -8,6 +8,8 @@ import {
 } from "../../actions/Stocks";
 import { shallow } from "enzyme";
 
+const screener_search = [];
+
 const stocks = [
     {
       ticker_id: 169,
@@ -55,6 +57,7 @@ const wrapper = shallow(
     industries={industries}
     getCompany={getCompany}
     getSectors={getSectors}
+    screener_search={screener_search}
     getIndustries={getIndustries}
     getGainersLosers={getGainersLosers}
   />
@@ -90,23 +93,27 @@ describe("Testing Stocks Component", () => {
     wrapper.find("#button_stocks_losers").simulate("click");
     expect(wrapper.state().gainersClick).toBe(false);
   });
-  it("should simulate change on selector dropdown ", () => {
-    wrapper.find("#stocks_dropdown_sectors").simulate("change");
+
+  it("should simulate change on selector dropdown", () => {
+    wrapper
+      .find("#stocks_dropdown_sectors")
+      .simulate("change", { target: { value: "Basic Materials" } });
+    expect(wrapper.state().sector).toBe("Basic Materials");
   });
+
   it("should simulate click on stocks card ", () => {
-    wrapper.find("#stocks_grid_details0").simulate("click");
-  });
-  it("Company logo should be shown in each stocks card", () => {
-    expect(wrapper.find("#stocks_img").text()).toBe("image");
+    wrapper.find(".stock_details0").simulate("click");
   });
   it("Ticker Name should be shown in each stocks card", () => {
-    expect(wrapper.find("#stocks_ticker").props().children).toBe("ANTM");
+    expect(wrapper.find(".stocks_ticker0").props().children).toBe("ANTM");
   });
   it("Closed price should be shown in each stocks card", () => {
-    expect(wrapper.find("#stocks_closed_price").text()).toBe("51.35");
+    expect(wrapper.find("#stocks_closed_price0").props().children).toBe(
+      "51.35"
+    );
   });
   it("Market cap should be shown in each stocks card", () => {
-    expect(wrapper.find("stocks_market_cap").text()).toBe("21223.9902");
+    expect(wrapper.find("#stocks_market_cap0").text()).toBe("21223.9902");
   });
   it("should check for presense of OnSelectSector function", () => {
     let OnSelectSector = jest.spyOn(wrapper.instance(), "OnSelectSector");
@@ -134,10 +141,6 @@ describe("Testing Stocks Component", () => {
   });
 
   it("Ticker Name should be shown in each stocks card", () => {
-    expect(wrapper.find("#sector0").props.children).toBe(sectors[0]);
-  });
-
-  it("should have ticker_name click on stocks card ", () => {
-    expect(wrapper.find("#stocks_ticker").props().children).toBe(sectors[0]);
+    expect(wrapper.find("#sector0").props().children).toBe(sectors[0]);
   });
 });

@@ -27,8 +27,4 @@ describe("Testing ResetPassword Component", () => {
     wrapper.find("#resetPasswordButton").simulate("click", e);
     expect(e.preventDefault).toBeCalled();
   });
-
-  it("checks for Sign Up button click ", () => {
-    wrapper.find("#resetPasswordButton").simulate("click");
-  });
 });
