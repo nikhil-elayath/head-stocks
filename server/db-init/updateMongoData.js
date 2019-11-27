@@ -1,4 +1,3 @@
-/*piyush*/
 var colors = require("colors");
 const pgp = require("pg-promise")();
 const db = pgp("postgres://postgres:root@192.168.0.28:5432/headstocks");

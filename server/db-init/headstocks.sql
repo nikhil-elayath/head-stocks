@@ -1,4 +1,3 @@
-/*piyush */
 drop database if exists headstocks;
 create database headstocks;
 

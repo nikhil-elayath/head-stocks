@@ -1,18 +1,21 @@
 import * as action from "../CompanyDetail";
 import {
   COMPANY_DETAIL,
+  COMPANY_DETAIL_BY_ID,
   COMPANY_DATES_BY_ID,
-  GET_DROP_DOWN,
-  GET_SIMILAR_TABLE,
-  GET_ALL_INDICES,
   OHLC_CHART,
+  GET_SIMILAR_TABLE,
+  GET_DROP_DOWN,
   GET_GAUGE_COMPANY1,
+  VOLATILITY,
   GET_GAUGE_COMPANY2,
   MONTECARLO_COMPANY1,
   MONTECARLO_COMPANY2,
   ASSETS_COMPANY1,
   ASSETS_COMPANY2,
-  COMPANY_DETAIL_BY_ID
+  SHARE_PRICE_COMPARISON,
+  LOADING_START,
+  LOADING_STOP
 } from "../Types";
 import moxios from "moxios";
 import configureMockStore from "redux-mock-store";
@@ -31,7 +34,7 @@ describe("Testing Company Detail Action", () => {
 
   //nikhil
   it("should return all companies and return status code of 200 with a message", () => {
-    const responseOfApi = [];
+    const responseOfApi = [{}, {}, {}];
     moxios.stubRequest("http://localhost:2001/api/companydetail/all", {
       status: 200,
       response: { data: responseOfApi }
@@ -50,7 +53,7 @@ describe("Testing Company Detail Action", () => {
 
   //harshal
   it("should return all data of dates and return status code of 200 with a message", () => {
-    const responseOfApi = [];
+    const responseOfApi = [{}, {}, {}];
     let id = 9;
     moxios.stubRequest(
       "http://localhost:2001/api/companydetail/financial/" + id,
@@ -73,7 +76,7 @@ describe("Testing Company Detail Action", () => {
 
   //nikhil
   it("(drop down)should return all data of dates and return status code of 200 with a message", () => {
-    const responseOfApi = [];
+    const responseOfApi = [{}, {}, {}];
     let sector = "Technology";
     moxios.stubRequest("http://localhost:2001/api/dropdown", {
       status: 200,
@@ -92,7 +95,7 @@ describe("Testing Company Detail Action", () => {
   });
 
   it("(similar table)should return all data of dates and return status code of 200 with a message", () => {
-    const responseOfApi = [];
+    const responseOfApi = [{}, {}, {}];
     let sector = "Technology";
     moxios.stubRequest("http://localhost:2001/api/analysis/analysis", {
       status: 200,
@@ -112,7 +115,7 @@ describe("Testing Company Detail Action", () => {
 
   //ohlc
   it("(ohlc chart)should return all data of dates and return status code of 200 with a message", () => {
-    const responseOfApi = [];
+    const responseOfApi = [{}, {}, {}];
     let id = 1;
     moxios.stubRequest("http://localhost:5000/companyindices/" + id, {
       status: 200,
@@ -120,6 +123,8 @@ describe("Testing Company Detail Action", () => {
     });
     const store = mockStore({});
     const expectedResponse = [
+      { type: LOADING_START },
+      { type: LOADING_STOP },
       {
         type: OHLC_CHART,
         payload: responseOfApi
@@ -132,7 +137,7 @@ describe("Testing Company Detail Action", () => {
 
   // download data
   it("(ohlc chart)should return all data of dates and return status code of 200 with a message", () => {
-    const responseOfApi = [];
+    const responseOfApi = [{}, {}, {}];
     let ohlc = 1;
     moxios.stubRequest(
       "http://localhost:2001/api/companydetail/downloadohlc/" + ohlc,
@@ -148,14 +153,14 @@ describe("Testing Company Detail Action", () => {
         payload: responseOfApi
       }
     ];
-    return store.dispatch(action.downloadOhlcDataCompany(id)).then(() => {
+    return store.dispatch(action.downloadOhlcDataCompany(ohlc)).then(() => {
       expect(store.getActions()).toEqual(expectedResponse);
     });
   });
 
   // Gauge for Company1
   it("(GET_GAUGE_COMPANY1)should return all data of dates and return status code of 200 with a message", () => {
-    const responseOfApi = [];
+    const responseOfApi = [{}, {}, {}];
     let ticker = "AAPL";
     moxios.stubRequest("http://localhost:5000/gaugeCompany1/" + ticker, {
       status: 200,
@@ -163,6 +168,8 @@ describe("Testing Company Detail Action", () => {
     });
     const store = mockStore({});
     const expectedResponse = [
+      { type: LOADING_START },
+      { type: LOADING_STOP },
       {
         type: GET_GAUGE_COMPANY1,
         payload: responseOfApi
@@ -176,7 +183,7 @@ describe("Testing Company Detail Action", () => {
   // Gauge for Company2
 
   it("(GET_GAUGE_COMPANY2)should return all data of dates and return status code of 200 with a message", () => {
-    const responseOfApi = [];
+    const responseOfApi = [{}, {}, {}];
     let ticker = "AAPL";
     moxios.stubRequest("http://localhost:5000/gaugeCompany2/" + ticker, {
       status: 200,
@@ -184,6 +191,8 @@ describe("Testing Company Detail Action", () => {
     });
     const store = mockStore({});
     const expectedResponse = [
+      { type: LOADING_START },
+      { type: LOADING_STOP },
       {
         type: GET_GAUGE_COMPANY2,
         payload: responseOfApi
@@ -196,7 +205,7 @@ describe("Testing Company Detail Action", () => {
 
   // getmonteCarloCompany1
   it("(drop down)should return all data of dates and return status code of 200 with a message", () => {
-    const responseOfApi = [];
+    const responseOfApi = [{}, {}, {}];
     let ticker = "AAPL";
     moxios.stubRequest("http://localhost:5000/monteCarloCompany1/" + ticker, {
       status: 200,
@@ -204,6 +213,8 @@ describe("Testing Company Detail Action", () => {
     });
     const store = mockStore({});
     const expectedResponse = [
+      { type: LOADING_START },
+      { type: LOADING_STOP },
       {
         type: MONTECARLO_COMPANY1,
         payload: responseOfApi
@@ -217,7 +228,7 @@ describe("Testing Company Detail Action", () => {
   //monte carlo 2
 
   it("(drop down)should return all data of dates and return status code of 200 with a message", () => {
-    const responseOfApi = [];
+    const responseOfApi = [{}, {}, {}];
     let ticker = "AAPL";
     moxios.stubRequest("http://localhost:5000/monteCarloCompany2/" + ticker, {
       status: 200,
@@ -225,6 +236,8 @@ describe("Testing Company Detail Action", () => {
     });
     const store = mockStore({});
     const expectedResponse = [
+      { type: LOADING_START },
+      { type: LOADING_STOP },
       {
         type: MONTECARLO_COMPANY2,
         payload: responseOfApi
@@ -238,7 +251,7 @@ describe("Testing Company Detail Action", () => {
   //getAssetsCompany1
 
   it("(drop down)should return all data of dates and return status code of 200 with a message", () => {
-    const responseOfApi = [];
+    const responseOfApi = [{}, {}, {}];
     let ticker = "AAPL";
     moxios.stubRequest("http://localhost:5000/assetsCompany1/" + ticker, {
       status: 200,
@@ -246,6 +259,8 @@ describe("Testing Company Detail Action", () => {
     });
     const store = mockStore({});
     const expectedResponse = [
+      { type: LOADING_START },
+      { type: LOADING_STOP },
       {
         type: ASSETS_COMPANY1,
         payload: responseOfApi
@@ -259,7 +274,7 @@ describe("Testing Company Detail Action", () => {
   //assests 2
 
   it("(drop down)should return all data of dates and return status code of 200 with a message", () => {
-    const responseOfApi = [];
+    const responseOfApi = [{}, {}, {}];
     let ticker = "AAPL";
     moxios.stubRequest("http://localhost:5000/assetsCompany2/" + ticker, {
       status: 200,
@@ -267,6 +282,8 @@ describe("Testing Company Detail Action", () => {
     });
     const store = mockStore({});
     const expectedResponse = [
+      { type: LOADING_START },
+      { type: LOADING_STOP },
       {
         type: ASSETS_COMPANY2,
         payload: responseOfApi
@@ -279,7 +296,7 @@ describe("Testing Company Detail Action", () => {
   //getCompanyDetailById
 
   it("(drop down)should return all data of dates and return status code of 200 with a message", () => {
-    const responseOfApi = [];
+    const responseOfApi = [{}, {}, {}];
     let id = 1;
     moxios.stubRequest("http://localhost:2001/api/companydetail/" + id, {
       status: 200,
