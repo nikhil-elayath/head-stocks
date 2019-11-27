@@ -120,7 +120,18 @@ export class NavbarDefault extends Component {
             </span>
           ) : (
             <span onClick={this.removeToken}>
-              <Link to="/" style={{ textDecoration: "none" }}>
+              <Link
+                to="/"
+                style={{ textDecoration: "none" }}
+                onClick={() =>
+                  this.setState({
+                    home: true,
+                    stocks: false,
+                    vtoption: false,
+                    login: false
+                  })
+                }
+              >
                 Logout
               </Link>
             </span>

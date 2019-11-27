@@ -20,14 +20,11 @@ export class Register extends Component {
     show_otp_field: false
   };
 
-  sendOTP = e => {
-    e.preventDefault();
-    if (this.validateForm()) {
-      let user = {
-        email: this.state.email
-      };
-      this.props.sendOtp(user);
-    }
+  sendOTP = () => {
+    let user = {
+      email: this.state.email
+    };
+    this.props.sendOtp(user);
     this.setState({
       show_otp_field: true
     });
@@ -145,10 +142,10 @@ export class Register extends Component {
       errors["confirmPassword"] = "*Password Don't Match";
     }
 
-    if (!this.state.otp) {
-      formIsValid = false;
-      errors["otp"] = "*Please Enter OTP.";
-    }
+    // if (!this.state.otp) {
+    //   formIsValid = false;
+    //   errors["otp"] = "*Please Enter OTP.";
+    // }
 
     this.setState({
       errors: errors
@@ -281,9 +278,9 @@ export class Register extends Component {
                       <p style={{ display: "none" }}>Hello</p>
                     )}
 
-                    <p id="resetPasswordErrorMessage">
+                    {/* <p id="resetPasswordErrorMessage">
                       {this.state.errors.otp}
-                    </p>
+                    </p> */}
 
                     <button onClick={this.verifyOTP} id="resetPasswordButton">
                       Register

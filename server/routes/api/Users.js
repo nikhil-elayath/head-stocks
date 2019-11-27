@@ -121,35 +121,31 @@ router.post("/send_otp", async (req, res, next) => {
     otp = Math.floor(Math.random() * 5999 + 2999);
     // Checking if the mail exists
     let username = await User.findOne({ email: req.body.email });
-    if (!username) {
-      return res.status(400).send({ message: "Invalid Credentials" });
-    } else {
-      // Specifying the smtp service
-      var smtpTransport = nodemailer.createTransport({
-        service: "Gmail",
-        auth: {
-          user: "bhavanagupta250@gmail.com ",
-          pass: "guptabhavana250"
-        }
-      });
+    // Specifying the smtp service
+    var smtpTransport = nodemailer.createTransport({
+      service: "Gmail",
+      auth: {
+        user: "bhavanagupta250@gmail.com ",
+        pass: "guptabhavana250"
+      }
+    });
 
-      // Sending the mail to the the user with the given email
-      await smtpTransport.sendMail({
-        from: "bhavanagupta250@gmail.com",
-        to: req.body.email,
-        subject: "OTP Verification",
-        html:
-          "<hr/><b>This is a system generated mail. Please do not reply to this email ID.<b/><hr/> <br/> <b>" +
-          req.body.name +
-          " , <b/> <br/><br/> Your One Time Password (OTP) for Account Verification  is : " +
-          otp +
-          "<br/>Please note, this OTP is valid only for mentioned transaction and cannot be used for any other transaction.Please do not share this One Time Password with anyone" // html body
-      });
-      res.status(200).json({
-        status: 200,
-        message: "Email send successfully"
-      });
-    }
+    // Sending the mail to the the user with the given email
+    await smtpTransport.sendMail({
+      from: "bhavanagupta250@gmail.com",
+      to: req.body.email,
+      subject: "OTP Verification",
+      html:
+        "<hr/><b>This is a system generated mail. Please do not reply to this email ID.<b/><hr/> <br/> <b>" +
+        req.body.name +
+        " , <b/> <br/><br/> Your One Time Password (OTP) for Account Verification  is : " +
+        otp +
+        "<br/>Please note, this OTP is valid only for mentioned transaction and cannot be used for any other transaction.Please do not share this One Time Password with anyone" // html body
+    });
+    res.status(200).json({
+      status: 200,
+      message: "Email send successfully"
+    });
   } catch (err) {
     next(err);
   }

@@ -17,7 +17,7 @@ export class CompanyDetailFinancial extends Component {
   constructor(props) {
     super(props);
     const year = new Date().getFullYear();
-    this.years = Array.from(new Array(20), (val, index) => year - index);
+    this.years = Array.from(new Array(12), (val, index) => year - index);
     this.state = {
       balanceSheetOption: true,
       cashflowOption: false,

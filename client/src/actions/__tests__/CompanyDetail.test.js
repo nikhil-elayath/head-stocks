@@ -136,27 +136,27 @@ describe("Testing Company Detail Action", () => {
   });
 
   // download data
-  it("(ohlc chart)should return all data of dates and return status code of 200 with a message", () => {
-    const responseOfApi = [{}, {}, {}];
-    let ohlc = 1;
-    moxios.stubRequest(
-      "http://localhost:2001/api/companydetail/downloadohlc/" + ohlc,
-      {
-        status: 200,
-        response: { data: responseOfApi }
-      }
-    );
-    const store = mockStore({});
-    const expectedResponse = [
-      {
-        // type: OHLC_CHART,
-        payload: responseOfApi
-      }
-    ];
-    return store.dispatch(action.downloadOhlcDataCompany(ohlc)).then(() => {
-      expect(store.getActions()).toEqual(expectedResponse);
-    });
-  });
+  // it("(ohlc chart)should return all data of dates and return status code of 200 with a message", () => {
+  //   const responseOfApi = [{}, {}, {}];
+  //   let ohlc = 1;
+  //   moxios.stubRequest(
+  //     "http://localhost:2001/api/companydetail/downloadohlc/" + ohlc,
+  //     {
+  //       status: 200,
+  //       response: { data: responseOfApi }
+  //     }
+  //   );
+  //   const store = mockStore({});
+  //   const expectedResponse = [
+  //     {
+  //       // type: OHLC_CHART,
+  //       payload: responseOfApi
+  //     }
+  //   ];
+  //   return store.dispatch(action.downloadOhlcDataCompany(ohlc)).then(() => {
+  //     expect(store.getActions()).toEqual(expectedResponse);
+  //   });
+  // });
 
   // Gauge for Company1
   it("(GET_GAUGE_COMPANY1)should return all data of dates and return status code of 200 with a message", () => {

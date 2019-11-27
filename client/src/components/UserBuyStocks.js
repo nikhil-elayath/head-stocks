@@ -31,7 +31,7 @@ export class UserBuyStocks extends Component {
         <div id="buyStocksContainer">
           <UserNavigation selected="buy" />
           <div id="userStocksContainer">
-            {this.props.users ? (
+            {this.props.users.length != 0 ? (
               <table id="userBuyStocksTable">
                 <thead id="userBuyStocksHeader">
                   <th>Stocks</th>
