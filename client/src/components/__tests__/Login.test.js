@@ -38,10 +38,6 @@ describe("Testing Login Component", () => {
     expect(e.preventDefault).toBeCalled();
   });
 
-  it("checks for Sign Up button click ", () => {
-    wrapper.find("#loginFormButton").simulate("click");
-  });
-
   it("should check for presense of onLogin function", () => {
     let onLogin = jest.spyOn(wrapper.instance(), "onLogin");
     expect(onLogin).toBeTruthy();

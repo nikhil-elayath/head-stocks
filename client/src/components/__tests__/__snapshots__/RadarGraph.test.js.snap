@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing radar graph Component should mount the component 1`] = `
+<div>
+  <Polar
+    data={
+      Object {
+        "datasets": Array [
+          Object {
+            "backgroundColor": Array [
+              "#FF6384",
+              "#4BC0C0",
+              "#FFCE56",
+              "#E7E9ED",
+              "#36A2EB",
+              "#2c3e50",
+            ],
+            "data": undefined,
+            "fill": true,
+          },
+        ],
+        "labels": Array [
+          "Market Cap",
+          "Net Profit",
+          "Share Price",
+          "Revenue",
+          "Total Assets",
+          "EBIT",
+        ],
+      }
+    }
+    options={
+      Object {
+        "labels": false,
+        "legend": false,
+        "responsive": true,
+      }
+    }
+  />
+</div>
+`;
