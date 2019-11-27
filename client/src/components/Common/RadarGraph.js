@@ -20,7 +20,7 @@ export class RadarGraph extends Component {
             "#FF6384",
             "#4BC0C0",
             "#FFCE56",
-            "#E7E9ED",
+            "#ff4500",
             "#36A2EB",
             "#2c3e50",
           ],
