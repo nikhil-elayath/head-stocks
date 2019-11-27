@@ -335,7 +335,7 @@ export class StocksLanding extends Component {
                     onClick={this.morefilter}
                   >
                     <i class="fa fa-filter" id="filter_icon"></i>
-                    More Filters
+                    <span id="more_filters_title">More Filters</span>
                   </label>
                   <input type="checkbox" id="toggle-1" />{" "}
                 </>
@@ -344,7 +344,7 @@ export class StocksLanding extends Component {
                   <label id="advance-label" for="toggle-1">
                     <i class="fa fa-filter" id="filter_icon"></i>
                     <Link to="/login" style={{ textDecoration: "none" }}>
-                      More Filters
+                      <span id="more_filters_title">More Filters</span>
                     </Link>
                   </label>
                   <input type="checkbox" id="toggle-1" />{" "}
