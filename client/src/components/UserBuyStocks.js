@@ -4,7 +4,6 @@ import "../styles/UserBuyStocks.css";
 import { connect } from "react-redux";
 import { getAllStocks, sellStocks } from "../actions/Users";
 import jwt_decode from "jwt-decode";
-import Delay from "react-delay";
 
 export class UserBuyStocks extends Component {
   state = {
@@ -30,7 +29,7 @@ export class UserBuyStocks extends Component {
     return (
       <div>
         <div id="buyStocksContainer">
-          <UserNavigation />
+          <UserNavigation selected="buy" />
           <div id="userStocksContainer">
             <table id="userBuyStocksTable">
               <thead id="userBuyStocksHeader">
@@ -120,7 +119,7 @@ export class UserBuyStocks extends Component {
                                 onClick={() => {
                                   {
                                     let user = {
-                                      email: "admin@gmail.com",
+                                      email: decode.email,
                                       ticker_name: stocks.ticker_name,
                                       sell_price: rand,
                                       qty: this.state.qty,

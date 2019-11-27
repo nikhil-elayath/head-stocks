@@ -7,12 +7,6 @@ import { getWallet } from "../../actions/Users";
 import jwt_decode from "jwt-decode";
 
 export class UserNavigation extends Component {
-  state = {
-    buyStocks: true,
-    myStocks: false,
-    historyStocks: false
-  };
-
   componentDidMount() {
     if (localStorage.getItem("token")) {
       let email = {
@@ -37,21 +31,15 @@ export class UserNavigation extends Component {
             )}
             <img src={wallet} id="wallet" />{" "}
             <span id="walletPrice">
-              $
-              {String(this.props.wallet).length != 0
-                ? Number(this.props.wallet).toFixed(2)
-                : Number(this.props.wallet).toFixed(2)}
+              ${Number(this.props.wallet).toFixed(2)}
             </span>
             <div id="userNavigationButtonContainer">
               <Link to="/profile">
                 <button
-                  id={this.state.buyStocks ? "buyStocks-active" : "buyStocks"}
-                  onClick={() =>
-                    this.setState({
-                      buyStocks: true,
-                      myStocks: false,
-                      historyStocks: false
-                    })
+                  id={
+                    this.props.selected === "profile"
+                      ? "buyStocks-active"
+                      : "buyStocks"
                   }
                 >
                   Buy Stocks
@@ -59,13 +47,10 @@ export class UserNavigation extends Component {
               </Link>
               <Link to="/buyStocks">
                 <button
-                  id={this.state.myStocks ? "myStocks-active" : "myStocks"}
-                  onClick={() =>
-                    this.setState({
-                      buyStocks: false,
-                      myStocks: true,
-                      historyStocks: false
-                    })
+                  id={
+                    this.props.selected === "buy"
+                      ? "myStocks-active"
+                      : "myStocks"
                   }
                 >
                   My Stocks
@@ -74,16 +59,9 @@ export class UserNavigation extends Component {
               <Link to="/userhistory">
                 <button
                   id={
-                    this.state.historyStocks
+                    this.props.selected === "history"
                       ? "historyStocks-active"
                       : "historyStocks"
-                  }
-                  onClick={() =>
-                    this.setState({
-                      buyStocks: false,
-                      myStocks: false,
-                      historyStocks: true
-                    })
                   }
                 >
                   History

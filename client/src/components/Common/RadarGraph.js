@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Radar, Polar } from "react-chartjs-2";
+import { Polar } from "react-chartjs-2";
 import { connect } from "react-redux";
 
 export class RadarGraph extends Component {
@@ -11,7 +11,7 @@ export class RadarGraph extends Component {
         "Share Price",
         "Revenue",
         "Total Assets",
-        "EBIT",
+        "EBIT"
       ],
       datasets: [
         {
@@ -22,13 +22,13 @@ export class RadarGraph extends Component {
             "#FFCE56",
             "#E7E9ED",
             "#36A2EB",
-            "#2c3e50",
+            "#2c3e50"
           ],
 
-          data: this.props.data,
-        },
-      ],
-    },
+          data: this.props.data
+        }
+      ]
+    }
   };
   render() {
     return (
@@ -37,7 +37,7 @@ export class RadarGraph extends Component {
           options={{
             legend: false,
             labels: false,
-            responsive: true,
+            responsive: true
           }}
           data={this.state.marksData}
         />
