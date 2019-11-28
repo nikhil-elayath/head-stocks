@@ -63,6 +63,7 @@ export class IndicesProfile extends Component {
                   {localStorage.getItem("token") ? (
                     <div>
                       <button
+                        //for download [piyush]
                         id="downloadButton"
                         type="button"
                         onClick={async () => {
@@ -155,7 +156,7 @@ export class IndicesProfile extends Component {
                   // }}
                   >
                     <iframe
-                      src={this.props.ohlcChart}
+                      src="https://plot.ly/~nikhilnikhil/230.embed"
                       style={{
                         width: "100%",
                         height: "500px",

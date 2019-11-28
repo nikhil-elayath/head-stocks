@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - KafkaConsumerApplication",
+            "request": "launch",
+            "mainClass": "kafka_consumer.KafkaConsumerApplication",
+            "projectName": "kafka_consumer"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - KafkaProducerApplication",
+            "request": "launch",
+            "mainClass": "kafka_producer.KafkaProducerApplication",
+            "projectName": "kafka_producer"
+        }
+    ]
+}

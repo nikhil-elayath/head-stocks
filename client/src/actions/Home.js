@@ -35,7 +35,7 @@ export const newsById = news_id => dispatch => {
     });
 };
 
-// Get all Indices
+// Get all Indices -piyush
 export const getIndices = () => dispatch => {
   dispatch(startLoading());
   return axios
