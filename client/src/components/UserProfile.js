@@ -171,7 +171,7 @@ export class UserProfile extends Component {
                           </div>
                         </div>
                       </div>
-                    ))
+                      ))
                   ) : (
                     <p style={{ padding: "10px 10px" }}>No Company Found</p>
                   )}
@@ -179,7 +179,6 @@ export class UserProfile extends Component {
               )}
             </div>
           </div>
-        </div>
         <div id={localStorage.getItem("token") ? "bg-no-text" : "bg-text"}>
           <p>Please login to enable this feature</p>
           <Link to="/login">
@@ -187,6 +186,7 @@ export class UserProfile extends Component {
           </Link>
         </div>
       </div>
+        
     );
   }
 }
