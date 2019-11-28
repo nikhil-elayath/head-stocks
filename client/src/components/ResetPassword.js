@@ -19,6 +19,7 @@ export class ResetPassword extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  // Send OTP
   sendOTP = e => {
     e.preventDefault();
     if (this.validateForm()) {
@@ -32,6 +33,7 @@ export class ResetPassword extends Component {
     });
   };
 
+  // Reset Password
   onReset = () => {
     let user = {
       email: this.state.email,
@@ -40,6 +42,7 @@ export class ResetPassword extends Component {
     this.props.resetPassword(user);
   };
 
+  // Verify OTP function
   verifyOTP = e => {
     e.preventDefault();
     let user = {
@@ -56,6 +59,7 @@ export class ResetPassword extends Component {
     }
   };
 
+  // Function for validating form input fields
   validateForm() {
     let errors = {};
     let formIsValid = true;
@@ -88,7 +92,9 @@ export class ResetPassword extends Component {
   render() {
     return (
       <div>
+        {/* Reset password main conatiner */}
         <div id="resetPasswordMainContainer">
+          {/* reset password form */}
           <form id="resetPasswordForm">
             <div>
               <button id="resetButton">Reset Password</button>
@@ -128,6 +134,7 @@ export class ResetPassword extends Component {
               {this.state.errors.confirmPassword}
             </p>
 
+            {/* Checking the state of otp filed , if the filed is true then show otp fileds */}
             {this.state.show_otp_field === true ? (
               <>
                 <input
@@ -164,7 +171,6 @@ const mapStateToProps = state => ({
   error: state.usersReducer.error
 });
 
-export default connect(
-  mapStateToProps,
-  { resetPassword, sendOtp, verifyOtp }
-)(ResetPassword);
+export default connect(mapStateToProps, { resetPassword, sendOtp, verifyOtp })(
+  ResetPassword
+);

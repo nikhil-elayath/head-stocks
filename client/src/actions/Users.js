@@ -161,7 +161,7 @@ export const getAllStocks = email => dispatch => {
       console.log(err);
     });
 };
-
+// Sell Stocks
 export const sellStocks = email => dispatch => {
   return axios
     .put(url + "sell", email)

@@ -43,12 +43,9 @@ export default class Kafka extends Component {
 
   onMessageReceived = msg => {
     var body = JSON.parse(msg.body);
-    // console.log(msg.body);
     this.setState({
       data: body
     });
-
-    // console.log("Payload is", msg);
   };
 
   render() {

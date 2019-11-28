@@ -20,6 +20,7 @@ export class Register extends Component {
     show_otp_field: false
   };
 
+  // SendOTP
   sendOTP = () => {
     let user = {
       email: this.state.email
@@ -71,6 +72,7 @@ export class Register extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  // Validating the input form
   validateForm() {
     console.log("Hello");
     let errors = {};
@@ -142,11 +144,6 @@ export class Register extends Component {
       errors["confirmPassword"] = "*Password Don't Match";
     }
 
-    // if (!this.state.otp) {
-    //   formIsValid = false;
-    //   errors["otp"] = "*Please Enter OTP.";
-    // }
-
     this.setState({
       errors: errors
     });
@@ -156,11 +153,14 @@ export class Register extends Component {
   render() {
     return (
       <div>
+        {/* Main Container */}
         <div id="registerMainContainer">
+          {/* Let Conatiner */}
           <div id="registerLeftContainer">
             <h1 id="welcome" className="w3-container w3-center w3-animate-left">
               Benefits of SignUp
             </h1>
+            {/*Benefits  */}
             <p className="w3-container w3-center w3-animate-left">
               <ul id="registerBenefits">
                 <li>Detailed comparison between Companies</li>
@@ -170,8 +170,10 @@ export class Register extends Component {
               </ul>
             </p>
           </div>
+          {/* Right Container */}
           <div id="registerRightContainer">
             <div>
+              {/* Link to login */}
               <Link to="/login">
                 <button
                   id={this.state.login ? "loginButton-active" : "loginButton"}
@@ -194,7 +196,9 @@ export class Register extends Component {
               </button>
             </div>
 
+            {/* FOrm Start */}
             <form id="registerForm">
+              {/* NAme Input */}
               <p>
                 <input
                   id="registerInput"
@@ -272,15 +276,12 @@ export class Register extends Component {
                       onChange={this.onChange}
                     />
 
+                    {/* Checking the error */}
                     {this.props.error ? (
                       <p>{this.props.error}</p>
                     ) : (
                       <p style={{ display: "none" }}>Hello</p>
                     )}
-
-                    {/* <p id="resetPasswordErrorMessage">
-                      {this.state.errors.otp}
-                    </p> */}
 
                     <button onClick={this.verifyOTP} id="resetPasswordButton">
                       Register

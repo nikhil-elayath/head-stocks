@@ -59,6 +59,7 @@ export const getIndustries = sector => dispatch => {
     });
 };
 
+// GET Gainers and Losers by Sector
 export const getGainersLosers = sector => dispatch => {
   return axios
     .get(url + "gainers-and-losers/" + sector)

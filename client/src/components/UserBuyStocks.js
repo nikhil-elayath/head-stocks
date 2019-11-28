@@ -28,6 +28,7 @@ export class UserBuyStocks extends Component {
     var rand;
     return (
       <div>
+        {/* Buy STocks Main Container */}
         <div id="buyStocksContainer">
           <UserNavigation selected="buy" />
           <div id="userStocksContainer">
@@ -42,18 +43,22 @@ export class UserBuyStocks extends Component {
                   {/* <th>Date</th> */}
                   <th></th>
                 </thead>
+                {/* Mapping of stocks bought by user */}
                 {this.props.users.map(hist => (
                   <>
                     {hist.company.map((stocks, index) => (
                       <tr>
+                        {/* ticker_name */}
                         <td id={"tickerName" + index}>{stocks.ticker_name}</td>
+                        {/* Current Price */}
                         <td id={"tickerPrice" + index}>
                           {stocks.current_price}
                         </td>
-
+                        {/* Buying Quantity */}
                         <td id={"tickerQty" + index}>
                           {stocks.buying_quantity}
                         </td>
+                        {/* Generating random no betwenn tye stock price of company */}
                         <td>
                           {" "}
                           {""}
@@ -68,6 +73,7 @@ export class UserBuyStocks extends Component {
                           }
                         </td>
                         <td>
+                          {/* Checking the random no is less than current price , if yes then show red tick */}
                           {stocks.current_price > rand ? (
                             <span
                               class="fa fa-caret-down"
@@ -86,6 +92,7 @@ export class UserBuyStocks extends Component {
                           ).toFixed(2)}{" "}
                           %
                         </td>
+                        {/* Button to Pop up */}
                         <td>
                           <div class="sellStocksBox">
                             <a
@@ -95,19 +102,22 @@ export class UserBuyStocks extends Component {
                               Sell
                             </a>
                           </div>
+                          {/* Pop up ocuurs when clicked pon above sell button */}
 
                           <div
                             class="sellStocksoverlay"
                             id={"sellStockspopup1" + stocks.ticker_name}
                           >
                             <div class="sellStockspopup">
+                              {/* ticker name on pop up */}
                               <h2>{stocks.ticker_name}</h2>
-                              {console.log(stocks.ticker_name)}
                               <a class="sellStocksclose" href="#">
                                 &times;
                               </a>
+                              {/* Random no / Current price */}
                               <div class="sellStockscontent">
                                 <p>Current Price : ${rand}</p>
+                                {/* Input Quantity */}
                                 <p>
                                   Quantity :{" "}
                                   <input
@@ -126,6 +136,7 @@ export class UserBuyStocks extends Component {
                                     }
                                   />
                                 </p>
+                                {/* Checking if the quantty entered by user exceeds */}
                                 {Number(this.state.qty) >
                                 stocks.buying_quantity ? (
                                   <p style={{ color: "#ff4d4d" }}>
@@ -134,6 +145,7 @@ export class UserBuyStocks extends Component {
                                   </p>
                                 ) : null}
                                 <p>Total Price : ${this.state.total}</p>
+                                {/* Sending it to server on click */}
                                 <a
                                   id="sellSpecificStock"
                                   href="#"

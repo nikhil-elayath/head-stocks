@@ -66,18 +66,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                             pathname: "/companydetail/" + coms.id
                           }}
                         >
-                          <span
-                            id="company-detail-overview-click"
-                            // onClick={() => {
-                            //   // changing the values of the state while clicking, the clicked component will be set to true others will be false
-                            //   // this.setState({
-                            //   //   overview: true,
-                            //   //   financial: false,
-                            //   //   analysis: false,
-                            //   // });
-                            //   console.log("Overview clicked");
-                            // }}
-                          >
+                          <span id="company-detail-overview-click">
                             <li
                               id="comapany-detail-overview-li"
                               // different css properties based on the value of the state
@@ -101,16 +90,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                               pathname: "/financial/" + coms.id
                             }}
                           >
-                            <span
-                              id="company-financial-click"
-                              // onClick={() => {
-                              //   this.setState({
-                              //     overview: false,
-                              //     financial: true,
-                              //     analysis: false,
-                              //   });
-                              // }}
-                            >
+                            <span id="company-financial-click">
                               <li
                                 id="company-detail-financial-li"
                                 className={
@@ -132,16 +112,7 @@ export class CompanyDetailSecondaryNavbar extends Component {
                               pathname: "/analysis/" + coms.id
                             }}
                           >
-                            <span
-                              id="company-analysis-click"
-                              // onClick={() => {
-                              //   this.setState({
-                              //     overview: false,
-                              //     financial: false,
-                              //     analysis: true
-                              //   });
-                              // }}
-                            >
+                            <span id="company-analysis-click">
                               <li
                                 id="company-detail-analysis-li"
                                 className={

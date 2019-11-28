@@ -11,11 +11,14 @@ import Loader from "react-loader-spinner";
 
 export class IndicesProfile extends Component {
   componentDidMount() {
+    // Get Indices Header
     this.props.getIndicesById(this.props.match.params.id);
+    // Get Indices Graph
     this.props.getOhlcChartIndex(this.props.match.params.id);
     let time = {
       time: "1w"
     };
+    // Get Historic Prices
     this.props.getOhlcIndicesById(this.props.match.params.id, time);
   }
 
@@ -23,26 +26,7 @@ export class IndicesProfile extends Component {
     week: true
   };
 
-  // downloadReportForIndices = reports => {
-  //   console.log(reports);
-  //   fetch("http://localhost:2001/api/download/report", {
-  //     method: "POST",
-  //     body: reports,
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "appication/json"
-  //     }
-  //   }).then(response => {
-  //     response.blob().then(blob => {
-  //       let url = window.URL.createObjectURL(blob);
-  //       let a = document.createElement("a");
-  //       a.href = url;
-  //       a.download = "file.csv";
-  //       a.click();
-  //     });
-  //   });
-  // };
-
+  // Sending range of 1w
   weekClick = () => {
     let time = {
       time: "1w"
@@ -53,6 +37,7 @@ export class IndicesProfile extends Component {
     });
   };
 
+  // Sending range of 1m
   monthClick = () => {
     let time = {
       time: "1m"
@@ -64,21 +49,19 @@ export class IndicesProfile extends Component {
   };
 
   render() {
-    console.log(this.props.ohlcChart);
-
     return (
       <div>
+        {/* Start of Main Cotainer */}
         <div id="indicesMainContainer">
           {this.props.singleIndex.map(index => (
             <>
               <div id="indicesLeftContainer">
                 <div id="indicesTopLeft">
+                  {/* Mapping Ticker Name */}
                   <h1>{index.ticker_name}</h1>
+                  {/* Checking token if exists then display download button */}
                   {localStorage.getItem("token") ? (
                     <div>
-                      {/* <button id="downloadButton">
-                      <i class="fa fa-download" /> Download
-                    </button> */}
                       <button
                         id="downloadButton"
                         type="button"
@@ -94,7 +77,6 @@ export class IndicesProfile extends Component {
                               a.download = index.ticker_name + ".csv";
                               a.click();
                             });
-                            //window.location.href = response.url;
                           });
                           // this.props.downloadOHLC("AAPL");
                         }}
@@ -128,15 +110,19 @@ export class IndicesProfile extends Component {
                     <div style={{ display: "none" }}></div>
                   )}
                 </div>
-
+                {/* Mapping Closed Price */}
                 <div id="indicesNav">
                   <a id="indexClose">
                     {index.close} <sub>USD</sub>
                   </a>
+                  {/* Open Price */}
                   <a id="indexOpen">{index.open}</a>
+                  {/* High */}
                   <a id="indexOpen">{index.high}</a>
+                  {/* Low */}
                   <a id="indexOpen">{index.adjclose}</a>
                 </div>
+                {/* Mapping Date */}
                 <div id="indicesNavName">
                   <a id="indexCloseName">
                     CLOSE (
@@ -152,6 +138,7 @@ export class IndicesProfile extends Component {
                   <a id="indexOpenName">ADJCLOSE</a>
                 </div>
               </div>
+              {/* Mapping Stock Chart */}
               <h3 id="indicesHeaderLabel">Stock Chart</h3>
               <div id="indicesGraphContainer">
                 {this.props.isLoading ? (
@@ -179,10 +166,11 @@ export class IndicesProfile extends Component {
                   </div>
                 )}
               </div>
+              {/* Mapping Historice Prices */}
               <h3 id="indicesHeaderLabel">Historic Prices</h3>
               <div id="losersGainersContainer">
                 <div id="indicesButtonContainer">
-                  <b>Range : </b>{" "}
+                  <b>Range : </b> {/* Sending range */}
                   <button
                     id={
                       this.state.week === true
@@ -217,6 +205,7 @@ export class IndicesProfile extends Component {
                       <th>Volume</th>
                     </tr>
                   </thead>
+                  {/* Mapping Data range */}
                   {this.props.ohlcdata.map((data, index) => (
                     <tbody>
                       {data.map((value, index1) => (
