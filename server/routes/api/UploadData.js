@@ -10,32 +10,33 @@ const fs = require("fs");
 const multer = require("multer");
 // // to access the values stored in the file
 const csv = require("csv-parse");
-// // converts csv data to independent string values
-// const csvtojson = require("csvtojson");
 
 // // uploads the file to the directory
-// var upload = multer({ dest: "uploadedFiles/" });
 var storage = multer.diskStorage({
+  // stores the file in the folder
   destination: function(req, file, cb) {
     cb(null, "uploadedFiles/");
   },
+  // renaming the recieved file
   filename: function(req, file, cb) {
     cb(null, "File" + Date.now());
   }
 });
-
 var upload = multer({ storage: storage });
 
+// Uploading the csv file and inserting the data
 router.post("/updateCompany/:id", upload.single("file"), async (req, res) => {
   // stores the Id of the Company that is recieved from params
   let id = req.params.id;
-  // console.log(id);
-
+  // finds the data for the recieved Id
   let idResult = await stocksData.find({ ticker_id: +id });
-  // console.log(idResult.length);
-
+  // checks if result found or not
   if (idResult.length !== 0) {
+    // executes if result found
+
+    // stores the recieved file
     var file = req.file;
+    // checks file type is csv is not
     if (file.originalname.split(".")[1] !== "csv") {
       return callback(new Error("Only csv files allowed!"));
     }
@@ -43,29 +44,26 @@ router.post("/updateCompany/:id", upload.single("file"), async (req, res) => {
     var newObj = {};
     var countOfData = 0;
 
-    // console.log("Start");
+    // reading the recieved csv file
     fs.createReadStream(file.path)
       .pipe(csv())
       .on("data", async function(data) {
+        // checks the count of data for dates present in the file
         if (data[0] === "date") {
-          // console.log("fs 1");
           countOfData = data.length;
-          // console.log(countOfData);
         }
       })
+      // inserting the data in database
       .on("end", () => {
+        // iterates through all the data available in file
         for (let i = 1; i < countOfData; i++) {
-          // console.log("fs 2");
-
+          // reads the file again to access the  data and values
           fs.createReadStream(file.path)
             .pipe(csv())
             .on("data", async function(data) {
-              // console.log(data.length);
-
               if (data[0] === "date") {
                 // to check if data is present for the given date
                 var dateFormated = new Date(data[i]);
-                // console.log(dateFormated);
 
                 // query to search data for date in database
                 let datefound = await stocksData.aggregate([
@@ -73,13 +71,16 @@ router.post("/updateCompany/:id", upload.single("file"), async (req, res) => {
                   {
                     $match: {
                       $and: [
+                        // search by ticker_id
                         { ticker_id: +id },
+                        // search by date found in file
                         {
                           "ticker_dates.date": dateFormated
                         }
                       ]
                     }
                   },
+                  // get only the data of ticker_dates from the database
                   {
                     $project: { ticker_dates: 1 }
                   },
@@ -101,30 +102,33 @@ router.post("/updateCompany/:id", upload.single("file"), async (req, res) => {
                   }
                 ]);
 
-                // console.log(datefound);
                 if (datefound.length > 0) {
                   // if date present
                   date_present = true;
                   console.log("Data already exists for " + dateFormated);
                 }
               }
+              // if data for date not present
               if (date_present == false) {
+                // stores the indicator name
                 let mykey = data[0];
+
                 let myvalue = null;
 
+                // stores the indicator value
                 if (data[0] === "date") {
+                  // converts date
                   myvalue = new Date(data[i]);
                 } else {
+                  // converts value to float
                   myvalue = parseFloat(data[i]);
                 }
 
+                // adds key value pairs to the declared object
                 newObj[`${mykey}`] = myvalue;
               }
+              // checks if the property date present
               if (newObj.hasOwnProperty("date")) {
-                // console.log("Created Object");
-                // console.log(newObj);
-                // console.log("CSV file successfully processed");
-
                 // Updates the data in the database
                 stocksData.updateOne(
                   { ticker_id: +id },
@@ -142,13 +146,14 @@ router.post("/updateCompany/:id", upload.single("file"), async (req, res) => {
             });
         }
       });
-
+    // on successfull execution of route
     res.status(200).json({
       status: 200,
       data: null,
       message: "Updated Data Successfully"
     });
   } else {
+    // if Error occured in route
     res.status(400).json({
       status: 400,
       data: null,

@@ -86,7 +86,12 @@ export class UpdateCompany extends Component {
           onClick={this.onClickHandler}
         >
           <i className="fa fa-upload" style={{ marginRight: "5px" }}></i>
-          Upload
+          <a
+            href="#stocks_main_grid_container"
+            style={{ textDecoration: "none" }}
+          >
+            Upload
+          </a>
         </button>
       </div>
     );
