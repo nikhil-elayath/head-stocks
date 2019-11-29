@@ -2,7 +2,7 @@
 
 A web app for all investors.
 Here you can view all companies based on sector and their respective industries.
-A screener search feature is available to registered users where they can see the stocks based on various parameters with a visually appealing polar chart. To make it more interesting ,You can also use an Virtual Trading Feature where you can buy and sell stocks based on real world changes . You can see news and different indices on home page . A comparison between companies is avaible based on sector.
+A screener search feature is available to registered users where they can see the stocks based on various parameters with a visually appealing polar chart. To make it more interesting ,You can also use an Virtual Trading Feature where you can buy and sell stocks based on real world changes . You can see news and different indices on home page . A visual comparison between companies is avaible based on sector.
 
 ## Technology Stack:
 
