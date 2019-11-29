@@ -1,7 +1,7 @@
 const express = require("express");
 
 const cors = require("cors");
-const logger = require("morgan");
+// const logger = require("morgan");
 const bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var mongodb =
@@ -28,7 +28,7 @@ app.use(
   })
 );
 
-app.use(logger("common"));
+// app.use(logger("common"));
 //Bhavana
 app.use("/api/users/", users);
 app.use("/api/indicesprofile/", indexProfile);
@@ -49,7 +49,7 @@ app.use("/api/sector/", company);
 app.use("/api/navbar/", navbar);
 app.use("/api/upload/", upload);
 
-const port = process.env.port || 2001;
+const port = process.env.PORT || 2001;
 
 // if (process.env.NODE_ENV !== "test")
 app.listen(port, () => console.log(`Server is listening on port ${port}`));
