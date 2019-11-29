@@ -10,7 +10,7 @@ const users_info = mongoose.Schema({
   company: { type: mongoose.Schema.Types.Mixed }
 });
 
-const User = mongoose.model("User", users_info);
+const User = mongoose.model("headStocksUsers", users_info);
 
 function Validation(user) {
   const userschema = Joi.object().keys({
