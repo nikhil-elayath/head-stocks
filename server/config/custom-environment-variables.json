@@ -1,3 +1,4 @@
 {
-    "privatekey": "user_key"
+  "mongourl": "stocksurl",
+  "privatekey": "user_key"
 }
