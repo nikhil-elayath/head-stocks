@@ -27,10 +27,11 @@ export class Register extends Component {
         email: this.state.email
       };
       this.props.sendOtp(user);
+
+      this.setState({
+        show_otp_field: true
+      });
     }
-    this.setState({
-      show_otp_field: true
-    });
   };
 
   register = e => {

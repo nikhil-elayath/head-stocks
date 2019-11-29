@@ -9,8 +9,10 @@ import jwt_decode from "jwt-decode";
 export class UserNavigation extends Component {
   componentDidMount() {
     if (localStorage.getItem("token")) {
+      var decode = jwt_decode(localStorage.getItem("token"));
+      console.log(decode);
       let email = {
-        email: "admin@gmail.com"
+        email: decode.email
       };
       this.props.getWallet(email);
     }
@@ -33,7 +35,7 @@ export class UserNavigation extends Component {
             )}
             <img src={wallet} id="wallet" /> {/* Mapping wallet amount */}
             <span id="walletPrice">
-              ${Number(this.props.wallet).toFixed(2)}
+              ${Number(this.props.wallet ? this.props.wallet : 0.0).toFixed(2)}
             </span>
             {/* Redirect to profile */}
             <div id="userNavigationButtonContainer">
