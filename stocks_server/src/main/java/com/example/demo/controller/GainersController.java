@@ -35,10 +35,10 @@ public class GainersController {
     public List<Double> monteCarlo(@PathVariable String ticker_name) throws UnknownHostException {
 
         MongoClientURI uri = new MongoClientURI(
-                "mongodb+srv://headstrait_1:headstrait_1@cluster0-lxitk.mongodb.net/stocks_data_2?retryWrites=true&w=majority");
+                "mongodb+srv://headstrait_1:headstrait_1@cluster0-lxitk.mongodb.net/stockbazaar?retryWrites=true&w=majority");
 
         MongoClient mongoClient = new MongoClient(uri);
-        com.mongodb.client.MongoDatabase database = mongoClient.getDatabase("stocks_data_2");
+        com.mongodb.client.MongoDatabase database = mongoClient.getDatabase("stockbazaar");
         MongoOperations mongoOps = new MongoTemplate(mongoClient, DB_NAME);
         stocks_data_2 p1 = mongoOps.findOne(new Query(Criteria.where("ticker_name").is(ticker_name)),
                 stocks_data_2.class, stocks_data_2_COLLECTION);
