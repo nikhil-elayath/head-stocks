@@ -278,7 +278,7 @@ def compnay_indices(ticker_name):
 # Comparison between Two comapnies (Monte Carlo Prediction)
 @app.route("/monteCarloCompany1/<ticker1>",methods=["GET"])
 def monte_carlo(ticker1):
-    response = requests.get("https://head-stocks-python.herokuapp.com/api/stocks/predict/"+int(ticker1))
+    response = requests.get("https://headstocksmontecarlobhavana.herokuapp.com/api/stocks/predict/"+int(ticker1))
     monteCarlo = pd.DataFrame();
     monteCarlo=response.json();
     sliced_arr=[]
@@ -321,7 +321,7 @@ def monte_carlo(ticker1):
 
 @app.route("/monteCarloCompany2/<ticker1>",methods=["GET"])
 def monte_carlo1(ticker1):
-    response = requests.get("https://head-stocks-python.herokuapp.com/api/stocks/predict/"+ticker1)
+    response = requests.get("https://headstocksmontecarlobhavana.herokuapp.com/api/stocks/predict/"+ticker1)
     monteCarlo=pd.DataFrame();
     monteCarlo=response.json();
     sliced_arr=[]
@@ -464,7 +464,7 @@ def assets_Liabilities1(ticker):
 
 
 # Recommendations Graph for Comparison fro both companies
-@app.route("/gaugeCompany1/<ticker>")
+@app.route("/gaugeCompany1/<ticker>",methods=["GET"])
 def gaugeCompany1(ticker):
     netProfit=[]
     dividend=[]
@@ -598,7 +598,7 @@ def gauge(labels=['LOW','MEDIUM','HIGH','VERY HIGH','EXTREME'],           colors
         fig.savefig(fname, dpi=200)
         
 
-@app.route("/gaugeCompany2/<ticker>")
+@app.route("/gaugeCompany2/<ticker>",methods=["GET"])
 def gaugeCompany2(ticker):
     netProfit=[]
     dividend=[]
