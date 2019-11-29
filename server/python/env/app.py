@@ -464,7 +464,7 @@ def assets_Liabilities1(ticker):
 
 
 # Recommendations Graph for Comparison fro both companies
-@app.route("/gaugeCompany1/<ticker>")
+@app.route("/gaugeCompany1/<ticker>",methods=["GET"])
 def gaugeCompany1(ticker):
     netProfit=[]
     dividend=[]
@@ -598,7 +598,7 @@ def gauge(labels=['LOW','MEDIUM','HIGH','VERY HIGH','EXTREME'],           colors
         fig.savefig(fname, dpi=200)
         
 
-@app.route("/gaugeCompany2/<ticker>")
+@app.route("/gaugeCompany2/<ticker>",methods=["GET"])
 def gaugeCompany2(ticker):
     netProfit=[]
     dividend=[]
@@ -610,7 +610,7 @@ def gaugeCompany2(ticker):
     liabilities=[]
     cashFlow=[]
     points = 0
-    indices = pd.DataFrame(list(collection.find({"ticker_name":ticker)},{"ticker_dates"}))
+    indices = pd.DataFrame(list(collection.find({"ticker_name":ticker},{"ticker_dates"})))
     for val in indices['ticker_dates'][0]:
         if('Net Profit' in val):
             netProfit.append(val['Net Profit'])
