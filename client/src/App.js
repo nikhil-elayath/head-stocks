@@ -55,8 +55,6 @@ function App() {
         <Route exact path="/indexProfile/:id" component={IndicesProfile} />
       </div>
       {/* <Footer /> */}
-
-      <Route exact path="/slider" component={Slider} />
     </Router>
   );
 }

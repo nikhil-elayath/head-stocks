@@ -1,8 +1,5 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
-var mongodb = "mongodb://localhost:27017/stocks";
-mongoose.connect(mongodb);
-console.log("Connection to mongoStocks Established");
 
 var stocks = new Schema(
   {
@@ -14,7 +11,7 @@ var stocks = new Schema(
     industry: String,
     ticker_dates: Schema.Types.Mixed,
     ohlc_data: Schema.Types.Mixed,
-    isIndex: Boolean,
+    isIndex: Boolean
   },
   { collection: "stocks_data_2" }
 );

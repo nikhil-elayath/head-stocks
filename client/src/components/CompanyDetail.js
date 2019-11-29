@@ -15,12 +15,10 @@ export class CompanyDetail extends Component {
     // storing the id in the params into a variable which will be passed along with the action
     const id = this.props.match.params.id;
     this.props.getCompanyDetailById(id);
-    this.props.getOhlcChart("AAPL");
-    this.props.getGaugeCompany1("AAPL");
+    this.props.getGaugeCompany1(id);
   }
   render() {
-    console.log(this.props.gauge1);
-    // console.log(this.props.company.tname);
+    console.log(this.props);
     return (
       <div>
         {/* CALLING SECONDARY NAVBAR  */}

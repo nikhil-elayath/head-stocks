@@ -21,7 +21,7 @@ import axios from "axios";
 export const getCompanyDetail = () => dispatch => {
   try {
     return axios
-      .get("http://localhost:2001/api/companydetail/all")
+      .get("https://headstocksbhavana.herokuapp.com/api/companydetail/all")
       .then(res => {
         dispatch({
           type: COMPANY_DETAIL,
@@ -38,7 +38,7 @@ export const getCompanyDetailById = id => dispatch => {
   console.log("get companydetails by id from actions", id);
   try {
     return axios
-      .get("http://localhost:2001/api/companydetail/" + id)
+      .get("https://headstocksbhavana.herokuapp.com/api/companydetail/" + id)
       .then(res => {
         dispatch({
           type: COMPANY_DETAIL_BY_ID,
@@ -65,7 +65,7 @@ export const getDropDownData = sector => dispatch => {
   console.log("actions of dropdown", sector);
   try {
     return axios
-      .post("http://localhost:2001/api/dropdown", sector)
+      .post("https://headstocksbhavana.herokuapp.com/api/dropdown", sector)
       .then(res => {
         dispatch({
           type: GET_DROP_DOWN,
@@ -84,7 +84,10 @@ export const getSimilarTable = sector => dispatch => {
   console.log("get analysis by id from actions", sector);
   try {
     return axios
-      .post("http://localhost:2001/api/analysis/analysis", sector)
+      .post(
+        "https://headstocksbhavana.herokuapp.com/api/analysis/analysis",
+        sector
+      )
       .then(res => {
         dispatch({
           type: GET_SIMILAR_TABLE,
@@ -104,14 +107,16 @@ export const getOhlcChart = id => dispatch => {
   console.log(id);
   dispatch(startLoading());
   try {
-    return axios.get("http://localhost:5000/companyindices/" + id).then(res => {
-      dispatch(stopLoading());
-      dispatch({
-        type: OHLC_CHART,
+    return axios
+      .get("https://pythonserverbhavana.herokuapp.com/companyindices/" + id)
+      .then(res => {
+        dispatch(stopLoading());
+        dispatch({
+          type: OHLC_CHART,
 
-        payload: res.data
+          payload: res.data
+        });
       });
-    });
   } catch (err) {
     dispatch(startLoading());
     console.log(err);
@@ -123,7 +128,8 @@ export const getOhlcChart = id => dispatch => {
 export const downloadOhlcDataCompany = ohlc => {
   try {
     return axios.get(
-      "http://localhost:2001/api/companydetail/downloadohlc/" + ohlc
+      "https://headstocksbhavana.herokuapp.com/api/companydetail/downloadohlc/" +
+        ohlc
     );
   } catch (err) {
     console.log(err);
@@ -138,7 +144,8 @@ export const getCompanyDatesById = (id, yearSelected) => dispatch => {
     if (yearSelected.yearInput !== "All") {
       return axios
         .post(
-          "http://localhost:2001/api/companydetail/financial/" + id,
+          "https://headstocksbhavana.herokuapp.com/api/companydetail/financial/" +
+            id,
           yearSelected
         )
         .then(res => {
@@ -149,7 +156,10 @@ export const getCompanyDatesById = (id, yearSelected) => dispatch => {
         });
     } else {
       return axios
-        .post("http://localhost:2001/api/companydetail/financial/" + id)
+        .post(
+          "https://headstocksbhavana.herokuapp.com/api/companydetail/financial/" +
+            id
+        )
         .then(res => {
           dispatch({
             type: COMPANY_DATES_BY_ID,
@@ -167,7 +177,7 @@ export const getGaugeCompany1 = ticker => dispatch => {
   dispatch(startLoading());
   try {
     return axios
-      .get("http://localhost:5000/gaugeCompany1/" + ticker)
+      .get("https://pythonserverbhavana.herokuapp.com/gaugeCompany1/" + ticker)
       .then(res => {
         dispatch(stopLoading());
         dispatch({
@@ -187,7 +197,7 @@ export const getGaugeCompany2 = ticker => dispatch => {
   dispatch(startLoading());
   try {
     return axios
-      .get("http://localhost:5000/gaugeCompany2/" + ticker)
+      .get("https://pythonserverbhavana.herokuapp.com/gaugeCompany2/" + ticker)
       .then(res => {
         dispatch(stopLoading());
         dispatch({
@@ -207,7 +217,9 @@ export const getmonteCarloCompany1 = ticker => dispatch => {
   dispatch(startLoading());
   try {
     return axios
-      .get("http://localhost:5000/monteCarloCompany1/" + ticker)
+      .get(
+        "https://pythonserverbhavana.herokuapp.com/monteCarloCompany1/" + ticker
+      )
       .then(res => {
         dispatch(stopLoading());
         dispatch({
@@ -227,7 +239,9 @@ export const getmonteCarloCompany2 = ticker => dispatch => {
   dispatch(startLoading());
   try {
     return axios
-      .get("http://localhost:5000/monteCarloCompany2/" + ticker)
+      .get(
+        "https://pythonserverbhavana.herokuapp.com/monteCarloCompany2/" + ticker
+      )
       .then(res => {
         dispatch(stopLoading());
         dispatch({
@@ -246,7 +260,7 @@ export const getAssetsCompany1 = ticker => dispatch => {
   dispatch(startLoading());
   try {
     return axios
-      .get("http://localhost:5000/assetsCompany1/" + ticker)
+      .get("https://pythonserverbhavana.herokuapp.com/assetsCompany1/" + ticker)
       .then(res => {
         dispatch(stopLoading());
         dispatch({
@@ -265,7 +279,7 @@ export const getAssetsCompany2 = ticker => dispatch => {
   dispatch(startLoading());
   try {
     return axios
-      .get("http://localhost:5000/assetsCompany2/" + ticker)
+      .get("https://pythonserverbhavana.herokuapp.com/assetsCompany2/" + ticker)
       .then(res => {
         dispatch(stopLoading());
         dispatch({
@@ -283,14 +297,16 @@ export const getAssetsCompany2 = ticker => dispatch => {
 export const getVolatility = ticker => dispatch => {
   dispatch(startLoading());
   try {
-    return axios.get("http://localhost:5000/voltality/" + ticker).then(res => {
-      dispatch(stopLoading());
-      dispatch({
-        type: VOLATILITY,
+    return axios
+      .get("https://pythonserverbhavana.herokuapp.com/voltality/" + ticker)
+      .then(res => {
+        dispatch(stopLoading());
+        dispatch({
+          type: VOLATILITY,
 
-        payload: res.data
+          payload: res.data
+        });
       });
-    });
   } catch (err) {
     dispatch(startLoading());
   }
@@ -301,7 +317,12 @@ export const sharePriceComparison = (ticker1, ticker2) => dispatch => {
   dispatch(startLoading());
   try {
     return axios
-      .get("http://localhost:5000/shareprice/" + ticker1 + "/" + ticker2)
+      .get(
+        "https://pythonserverbhavana.herokuapp.com/shareprice/" +
+          ticker1 +
+          "/" +
+          ticker2
+      )
       .then(res => {
         dispatch(stopLoading());
         dispatch({

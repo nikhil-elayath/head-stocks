@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import com.example.demo.model.stocks_data_2;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.async.client.MongoDatabase;
 
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,16 +28,18 @@ import org.springframework.data.mongodb.core.query.Query;
 @RequestMapping("/api/stocks")
 public class GainersController {
     static DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-    public static final String DB_NAME = "stocks";
+    public static final String DB_NAME = "stockbazaar";
     public static final String stocks_data_2_COLLECTION = "stocks_data_2";
-    public static final String MONGO_HOST = "localhost";
-    public static final int MONGO_PORT = 27017;
 
     @GetMapping("/predict/{ticker_name}")
     public List<Double> monteCarlo(@PathVariable String ticker_name) throws UnknownHostException {
-        long startTime = System.nanoTime();
-        MongoClient mongo = new MongoClient(MONGO_HOST, MONGO_PORT);
-        MongoOperations mongoOps = new MongoTemplate(mongo, DB_NAME);
+
+        MongoClientURI uri = new MongoClientURI(
+                "mongodb+srv://headstrait_1:headstrait_1@cluster0-lxitk.mongodb.net/stockbazaar?retryWrites=true&w=majority");
+
+        MongoClient mongoClient = new MongoClient(uri);
+        com.mongodb.client.MongoDatabase database = mongoClient.getDatabase("stockbazaar");
+        MongoOperations mongoOps = new MongoTemplate(mongoClient, DB_NAME);
         stocks_data_2 p1 = mongoOps.findOne(new Query(Criteria.where("ticker_name").is(ticker_name)),
                 stocks_data_2.class, stocks_data_2_COLLECTION);
         List<Date> stack = new ArrayList<>();
