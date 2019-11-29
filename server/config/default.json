@@ -1,4 +1,5 @@
 {
   "mongourl": "",
-  "privatekey": ""
+  "privatekey": "",
+  "password": ""
 }

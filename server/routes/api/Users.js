@@ -2,6 +2,7 @@ const express = require("express");
 const nodemailer = require("nodemailer");
 const bcrypt = require("bcrypt");
 const generateToken = require("../../middleware/generateToken");
+const config = require("config");
 const router = express.Router();
 const { User, validate } = require("../../model/Users");
 var otp = Math.floor(Math.random() * 1000 + 9999);
@@ -126,7 +127,7 @@ router.post("/send_otp", async (req, res, next) => {
       service: "Gmail",
       auth: {
         user: "bhavanagupta250@gmail.com ",
-        pass: "guptabhavana250"
+        pass: config.get("password")
       }
     });
 
