@@ -4,8 +4,8 @@ const cors = require("cors");
 // const logger = require("morgan");
 const bodyParser = require("body-parser");
 var mongoose = require("mongoose");
-var mongodb =
-  "mongodb+srv://headstrait_1:headstrait_1@cluster0-lxitk.mongodb.net/stockbazaar";
+const config = require("config");
+var mongodb = config.get("mongourl");
 mongoose.connect(mongodb);
 const app = express();
 const users = require("./routes/api/Users");
