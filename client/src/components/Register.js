@@ -22,13 +22,16 @@ export class Register extends Component {
 
   // SendOTP
   sendOTP = () => {
-    let user = {
-      email: this.state.email
-    };
-    this.props.sendOtp(user);
-    this.setState({
-      show_otp_field: true
-    });
+    if (this.validateForm()) {
+      let user = {
+        email: this.state.email
+      };
+      this.props.sendOtp(user);
+
+      this.setState({
+        show_otp_field: true
+      });
+    }
   };
 
   register = e => {
@@ -202,7 +205,7 @@ export class Register extends Component {
               <p>
                 <input
                   id="registerInput"
-                  placeholder="Name"
+                  placeholder="Name (6 to 8 characters)"
                   type="text"
                   name="name"
                   onChange={this.onChange}
@@ -237,7 +240,7 @@ export class Register extends Component {
               <p>
                 <input
                   id="registerInput"
-                  placeholder="Password"
+                  placeholder="Password (6 to 8 characters)"
                   type="password"
                   name="password"
                   onChange={this.onChange}
@@ -269,7 +272,7 @@ export class Register extends Component {
                   <>
                     <input
                       id="resetPasswordInput"
-                      placeholder="Enter Otp"
+                      placeholder="Enter OTP (4 digit)"
                       type="password"
                       name="otp"
                       value={this.state.otp}
@@ -280,12 +283,13 @@ export class Register extends Component {
                     {this.props.error ? (
                       <p>{this.props.error}</p>
                     ) : (
-                      <p style={{ display: "none" }}>Hello</p>
+                      <p style={{ color: "#2c3e50" }}>Hello</p>
                     )}
-
-                    <button onClick={this.verifyOTP} id="resetPasswordButton">
-                      Register
-                    </button>
+                    <p>
+                      <button onClick={this.verifyOTP} id="resetPasswordButton">
+                        Register
+                      </button>
+                    </p>
                   </>
                 ) : (
                   <button onClick={this.sendOTP} id="registerFormButton">
