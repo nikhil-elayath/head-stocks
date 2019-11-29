@@ -19,7 +19,7 @@ public class consumer1 {
     private SimpMessagingTemplate smt;
 
     public void runSingleWorker() {
-        String topicName = "kafka_stocks";
+        String topicName = "9shbhrme-kafka_stocks";
         String groupName = "stck123";
         Properties props = new Properties();
         props.put("bootstrap.servers", "localhost:9093");
