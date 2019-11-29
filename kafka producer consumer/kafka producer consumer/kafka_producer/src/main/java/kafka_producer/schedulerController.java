@@ -32,7 +32,7 @@ public class schedulerController {
     @Value("${ktopic}")
     String ktopic;
 
-    @Value("${username}")
+    @Value("${username_k}")
     String username;
 
     @Value("${password}")
@@ -41,7 +41,7 @@ public class schedulerController {
     @Value("${server}")
     String server;
 
-    @Scheduled(fixedRate = 7000)
+    @Scheduled(fixedRate = 500)
 
     public void scheduleTaskWithFixedRate() throws JsonProcessingException {
 
@@ -56,24 +56,24 @@ public class schedulerController {
         ObjectMapper oMapper = new ObjectMapper();
         String map = oMapper.writeValueAsString(value);
         System.out.println(map);
-        String topicName = ktopic;
-        String jaasTemplate = "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"" + username
-                + "\" password=\"" + password + "\";";
+        String topicName = "9shbhrme-mytopic";
+        String jaasTemplate = "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"%s\" password=\"%s\";";
+
         String jaasCfg = String.format(jaasTemplate, username, password);
+        System.out.println(jaasCfg);
 
         Properties props = new Properties();
         props.put("max.in.flight.requests.per.connection", 20);
-        props.put("key.serializer", "org.apache.kafka.common.serialization.IntegerSerializer");
+        props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         props.put("bootstrap.servers", server);
-        props.put("session.timeout.ms", "30000");
         props.put("security.protocol", "SASL_SSL");
         props.put("sasl.mechanism", "SCRAM-SHA-256");
         props.put("sasl.jaas.config", jaasCfg);
 
-        Producer<Integer, Object> producer = new KafkaProducer<>(props);
+        Producer<String, Object> producer = new KafkaProducer<>(props);
         for (int i = 1; i < 4; i++) {
-            ProducerRecord<Integer, Object> record = new ProducerRecord<>(topicName, 0, i, map);
+            ProducerRecord<String, Object> record = new ProducerRecord<>(topicName, 0, "i", map);
             producer.send(record, new MyProducerCallback());
         }
         producer.close();
