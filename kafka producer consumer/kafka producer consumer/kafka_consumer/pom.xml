@@ -76,7 +76,7 @@
 				<artifactId>heroku-maven-plugin</artifactId>
 				<version>2.0.13</version>
 				<configuration>
-				<appName>java-kafka-server</appName>
+				<appName>java-kafka-consumer</appName>
 				<includeTarget>false</includeTarget>
 				<includes>
 				<include>${basedir}/${full-artifact-name}</include>
