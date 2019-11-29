@@ -7,7 +7,8 @@ export const updateCompany = (data, id) => dispatch => {
   try {
     return axios
       .post(
-        "https://haedstockserver.herokuapp.com/api/upload/updateCompany/" + id,
+        "https://headstocksbhavana.herokuapp.com/api/upload/updateCompany/" +
+          id,
         data
       )
       .then(res => {

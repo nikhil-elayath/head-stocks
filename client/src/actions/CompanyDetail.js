@@ -21,7 +21,7 @@ import axios from "axios";
 export const getCompanyDetail = () => dispatch => {
   try {
     return axios
-      .get("https://haedstockserver.herokuapp.com/api/companydetail/all")
+      .get("https://headstocksbhavana.herokuapp.com/api/companydetail/all")
       .then(res => {
         dispatch({
           type: COMPANY_DETAIL,
@@ -38,7 +38,7 @@ export const getCompanyDetailById = id => dispatch => {
   console.log("get companydetails by id from actions", id);
   try {
     return axios
-      .get("https://haedstockserver.herokuapp.com/api/companydetail/" + id)
+      .get("https://headstocksbhavana.herokuapp.com/api/companydetail/" + id)
       .then(res => {
         dispatch({
           type: COMPANY_DETAIL_BY_ID,
@@ -65,7 +65,7 @@ export const getDropDownData = sector => dispatch => {
   console.log("actions of dropdown", sector);
   try {
     return axios
-      .post("https://haedstockserver.herokuapp.com/api/dropdown", sector)
+      .post("https://headstocksbhavana.herokuapp.com/api/dropdown", sector)
       .then(res => {
         dispatch({
           type: GET_DROP_DOWN,
@@ -85,7 +85,7 @@ export const getSimilarTable = sector => dispatch => {
   try {
     return axios
       .post(
-        "https://haedstockserver.herokuapp.com/api/analysis/analysis",
+        "https://headstocksbhavana.herokuapp.com/api/analysis/analysis",
         sector
       )
       .then(res => {
@@ -126,7 +126,7 @@ export const getOhlcChart = id => dispatch => {
 export const downloadOhlcDataCompany = ohlc => {
   try {
     return axios.get(
-      "https://haedstockserver.herokuapp.com/api/companydetail/downloadohlc/" +
+      "https://headstocksbhavana.herokuapp.com/api/companydetail/downloadohlc/" +
         ohlc
     );
   } catch (err) {
@@ -142,7 +142,7 @@ export const getCompanyDatesById = (id, yearSelected) => dispatch => {
     if (yearSelected.yearInput !== "All") {
       return axios
         .post(
-          "https://haedstockserver.herokuapp.com/api/companydetail/financial/" +
+          "https://headstocksbhavana.herokuapp.com/api/companydetail/financial/" +
             id,
           yearSelected
         )
@@ -155,7 +155,7 @@ export const getCompanyDatesById = (id, yearSelected) => dispatch => {
     } else {
       return axios
         .post(
-          "https://haedstockserver.herokuapp.com/api/companydetail/financial/" +
+          "https://headstocksbhavana.herokuapp.com/api/companydetail/financial/" +
             id
         )
         .then(res => {
