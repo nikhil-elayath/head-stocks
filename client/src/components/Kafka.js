@@ -14,7 +14,7 @@ export default class Kafka extends Component {
 
   componentDidMount() {
     //here we did the connection with consumer with the help of stockjs
-    SockJS = new SockJS("http://192.168.0.30:7007/ws");
+    SockJS = new SockJS("https://head-stocks-kafka-consumer.herokuapp.com/ws");
 
     stompClient = Stomp.over(SockJS);
 

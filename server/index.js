@@ -1,6 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-// const logger = require("morgan");
 const bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 const config = require("config");
@@ -27,7 +26,6 @@ app.use(
   })
 );
 
-// app.use(logger("common"));
 //Bhavana
 app.use("/api/users/", users);
 app.use("/api/indicesprofile/", indexProfile);
