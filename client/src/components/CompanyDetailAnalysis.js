@@ -24,13 +24,13 @@ export class CompanyDetailAnalysis extends Component {
   componentDidMount() {
     const id = this.props.match.params.id;
     this.props.getCompanyDetailById(id);
-    this.props.getGaugeCompany1("AAPL");
+    this.props.getGaugeCompany1(this.props.match.params.id);
     this.props.getGaugeCompany2("ACN");
-    // this.props.getAssetsCompany1("AAPL");
-    // this.props.getAssetsCompany2("ACN");
-    // this.props.getmonteCarloCompany1("AAPL");
-    // this.props.getmonteCarloCompany2("ACN");
-    // this.props.sharePriceComparison("AAPL", "ACN");
+    this.props.getAssetsCompany1(this.props.match.params.id);
+    this.props.getAssetsCompany2("ACN");
+    this.props.getmonteCarloCompany1("AAPL");
+    this.props.getmonteCarloCompany2("ACN");
+    this.props.sharePriceComparison(this.props.match.params.id, "ACN");
   }
 
   //function that would change the state value with the value selected and inside which the action function will be called and that ticker name will passed
@@ -40,12 +40,13 @@ export class CompanyDetailAnalysis extends Component {
       ticker_name: e.target.value
     });
     this.props.getGaugeCompany2(e.target.value);
-    // this.props.getAssetsCompany2(e.target.value);
-    // this.props.getmonteCarloCompany2(e.target.value);
-    // this.props.sharePriceComparison("AAPL", e.target.value);
+    this.props.getAssetsCompany2(e.target.value);
+    this.props.getmonteCarloCompany2(e.target.value);
+    this.props.sharePriceComparison("AAPL", e.target.value);
   };
 
   render() {
+    console.log(this.props);
     return (
       <div>
         {/* checking whether the data has been loaded into the reducer and if it is then getSimilarTabl which will have a parameter sector from the data loaded in the reducer  */}
@@ -106,7 +107,7 @@ export class CompanyDetailAnalysis extends Component {
                 <p id="analysis_graph_title">Share Price Comparision</p>
                 <iframe
                   id="assets1"
-                  src="https://plot.ly/~nikhile/436.embed"
+                  src={this.props.sharePriceComparison}
                   style={{
                     width: "100%",
                     height: "500px",

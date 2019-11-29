@@ -11,10 +11,13 @@ import "../../styles/CompanyDetailSecondaryNavbar.css";
 import { Link } from "react-router-dom";
 
 export class CompanyDetailSecondaryNavbar extends Component {
-  componentDidMount() {
-    this.props.getVolatility("AAPL");
-  }
+  componentDidMount() {}
   render() {
+    {
+      this.props.company["0"]
+        ? this.props.getVolatility(this.props.company["0"].id)
+        : console.log(null);
+    }
     return (
       <div>
         <div id="parent">

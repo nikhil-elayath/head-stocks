@@ -25,7 +25,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 from matplotlib.patches import Circle, Wedge, Rectangle
 # py.sign_in('nikhile' ,'OkrregXQ8kgWtuZEcuOI')
-py.sign_in('nikhilnikhil','9qEyahleVGoflQq6YbTe')
+py.sign_in('ittigupta05','EqFUc2BNxT1mB3wfNvrR')
 
 
 # In[ ]:
@@ -33,7 +33,7 @@ py.sign_in('nikhilnikhil','9qEyahleVGoflQq6YbTe')
 # Establishing connection with MongoDB with specified database
 app = Flask(__name__)
 CORS(app)
-app.config['MONGO_URI'] ="mongodb+srv://headstrait_1:headstrait_1@cluster0-lxitk.mongodb.net/stocks_data_2?retryWrites=true&w=majority"
+app.config['MONGO_URI'] ="mongodb+srv://headstrait_1:headstrait_1@cluster0-lxitk.mongodb.net/stockbazaar?retryWrites=true&w=majority"
 mongo = PyMongo(app)
 # Specifying the collection name
 collection = mongo.db.stocks_data_2
@@ -105,7 +105,7 @@ def ohlc_indices(ticker_id):
 
 @app.route("/shareprice/<ticker1>/<ticker2>",methods=["GET"])
 def stock_chart(ticker1,ticker2):
-    company = pd.DataFrame(list(collection.find({"ticker_name":ticker1},{"ticker_dates"})))
+    company = pd.DataFrame(list(collection.find({"ticker_id":int(ticker1)},{"ticker_dates"})))
     company1 = pd.DataFrame(list(collection.find({"ticker_name":ticker2},{"ticker_dates"})))
     stockDate=[]
     stockDate1=[]
@@ -278,7 +278,7 @@ def compnay_indices(ticker_name):
 # Comparison between Two comapnies (Monte Carlo Prediction)
 @app.route("/monteCarloCompany1/<ticker1>",methods=["GET"])
 def monte_carlo(ticker1):
-    response = requests.get("http://192.168.0.63:2002/api/stocks/predict/"+ticker1)
+    response = requests.get("http://192.168.0.63:2002/api/stocks/predict/"+int(ticker1))
     monteCarlo = pd.DataFrame();
     monteCarlo=response.json();
     sliced_arr=[]
@@ -374,7 +374,7 @@ def assets_Liabilities(ticker):
     longTerm=[]
     noncurrent=[]
     equity=[]
-    indices = pd.DataFrame(list(collection.find({"ticker_name":ticker},{"ticker_dates"})))
+    indices = pd.DataFrame(list(collection.find({"ticker_id":int(ticker)},{"ticker_dates"})))
     for val in indices['ticker_dates'][0]:
         if('Current Assets' in val):
             currentAssets.append(val['Current Assets'])
@@ -406,7 +406,7 @@ def assets_Liabilities(ticker):
     fig.add_trace(go.Pie(labels=labels1, values=values1, name=""), 1, 2)
     fig.update_traces(hole=.5, hoverinfo="label+percent+name")
     fig.update_layout(showlegend=False,
-        title_text=ticker+"Assets to Liabilities",
+        title_text="Selected Assets to Liabilities",
         annotations=[dict(text='Total Assets', x=0.18, y=0.5, font_size=12, showarrow=False),
                      dict(text='Total Liabilities', x=0.85, y=0.5, font_size=12, showarrow=False)])
     url=py.iplot(fig)
@@ -476,7 +476,7 @@ def gaugeCompany1(ticker):
     liabilities=[]
     cashFlow=[]
     points = 0
-    indices = pd.DataFrame(list(collection.find({"ticker_name":ticker},{"ticker_dates"})))
+    indices = pd.DataFrame(list(collection.find({"ticker_id":int(ticker)},{"ticker_dates"})))
     for val in indices['ticker_dates'][0]:
         if('Net Profit' in val):
             netProfit.append(val['Net Profit'])
@@ -610,7 +610,7 @@ def gaugeCompany2(ticker):
     liabilities=[]
     cashFlow=[]
     points = 0
-    indices = pd.DataFrame(list(collection.find({"ticker_name":ticker},{"ticker_dates"})))
+    indices = pd.DataFrame(list(collection.find({"ticker_name":ticker)},{"ticker_dates"}))
     for val in indices['ticker_dates'][0]:
         if('Net Profit' in val):
             netProfit.append(val['Net Profit'])
@@ -735,7 +735,7 @@ def gauge(labels=['LOW','MEDIUM','HIGH','VERY HIGH','EXTREME'],           colors
 def  voltality(ticker):
     share=[]
     date=[]
-    indices = pd.DataFrame(list(collection.find({"ticker_name":"AAPL"},{"ticker_dates"})))
+    indices = pd.DataFrame(list(collection.find({"ticker_id":int(ticker)},{"ticker_dates"})))
     for val in indices['ticker_dates'][0]:
         if ('Share Price' in val) :
                 share.append(val['Share Price'])
@@ -762,28 +762,6 @@ if __name__ == '__main__':
     app.run(debug=False,port=5000)
 
 
-# In[ ]:
-
-
-get_ipython().system('pip install flask_cors')
-
-
-# In[ ]:
-
-
-
-
-# In[ ]:
-
-
-
-
-# In[ ]:
-
-
-
-
-# In[ ]:
 
 
 
