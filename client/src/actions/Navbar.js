@@ -6,7 +6,10 @@ import axios from "axios";
 
 export const searchContent = searchInput => dispatch => {
   return axios
-    .post("https://headstocksbhavana.herokuapp.com/api/navbar/search", searchInput)
+    .post(
+      "https://haedstockserver.herokuapp.com/api/navbar/search",
+      searchInput
+    )
     .then(res => {
       dispatch({
         type: SEARCH_CONTENT,
