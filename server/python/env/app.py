@@ -33,7 +33,7 @@ py.sign_in('nikhilnikhil','9qEyahleVGoflQq6YbTe')
 # Establishing connection with MongoDB with specified database
 app = Flask(__name__)
 CORS(app)
-app.config['MONGO_URI'] ="mongodb+srv://headstrait_1:headstrait_1@cluster0-lxitk.mongodb.net/stocks_data_2?retryWrites=true&w=majority"
+app.config['MONGO_URI'] ="mongodb+srv://headstrait_1:headstrait_1@cluster0-lxitk.mongodb.net/stockbazaar"
 mongo = PyMongo(app)
 # Specifying the collection name
 collection = mongo.db.stocks_data_2
@@ -765,7 +765,7 @@ if __name__ == '__main__':
 # In[ ]:
 
 
-get_ipython().system('pip install flask_cors')
+
 
 
 # In[ ]:
