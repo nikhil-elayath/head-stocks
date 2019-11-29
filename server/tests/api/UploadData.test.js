@@ -29,16 +29,3 @@ describe('POST /api/upload/updateCompany/" + id - upload a new data file', () =>
       );
     }));
 });
-
-describe("DELETE /api/upload/updateCompany/ - delete an existing file", () => {
-  it("should delete existing file successfully", () => {
-    return request(app)
-      .delete(`/api/upload/updateCompany/${testFilePath}`)
-      .then(res => {
-        const { success, message } = res.body;
-        expect(success).toBeTruthy();
-        expect(message).toBe("Delete successfully");
-      })
-      .catch(err => console.log(err));
-  });
-});

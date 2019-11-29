@@ -279,6 +279,7 @@ export const getAssetsCompany2 = ticker => dispatch => {
   }
 };
 
+// Get Volatility
 export const getVolatility = ticker => dispatch => {
   dispatch(startLoading());
   try {
@@ -295,6 +296,7 @@ export const getVolatility = ticker => dispatch => {
   }
 };
 
+// Share Price Comparison
 export const sharePriceComparison = (ticker1, ticker2) => dispatch => {
   dispatch(startLoading());
   try {

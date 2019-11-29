@@ -23,16 +23,19 @@ export class UserNavigation extends Component {
     return (
       <div>
         <div id="userNavigationContainer">
+          {/* Start of Navigation */}
           <div id="userNavigation">
+            {/* Mapping User name */}
             {localStorage.getItem("token") ? (
               <h1>Hi {decode.name} !</h1>
             ) : (
               <h1>Hi User !</h1>
             )}
-            <img src={wallet} id="wallet" />{" "}
+            <img src={wallet} id="wallet" /> {/* Mapping wallet amount */}
             <span id="walletPrice">
               ${Number(this.props.wallet).toFixed(2)}
             </span>
+            {/* Redirect to profile */}
             <div id="userNavigationButtonContainer">
               <Link to="/profile">
                 <button
@@ -45,6 +48,7 @@ export class UserNavigation extends Component {
                   Buy Stocks
                 </button>
               </Link>
+              {/* Redirect to buystockks */}
               <Link to="/buyStocks">
                 <button
                   id={
@@ -56,6 +60,7 @@ export class UserNavigation extends Component {
                   My Stocks
                 </button>
               </Link>
+              {/* Redirect to history */}
               <Link to="/userhistory">
                 <button
                   id={

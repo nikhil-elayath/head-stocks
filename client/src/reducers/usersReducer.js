@@ -16,6 +16,7 @@ const initialstate = {
   users: [],
   error: "",
   userhistory: [],
+  sell: [],
   wallet: []
 };
 
@@ -38,7 +39,7 @@ export default function(state = initialstate, action) {
     case ALL_STOCKS_BOUGHT:
       return { ...state, users: action.payload };
     case SELL_STOCKS:
-      return { ...state, users: action.payload };
+      return state;
     case BUY_STOCKS:
       return { ...state, users: action.payload };
     case ERROR_TYPE:

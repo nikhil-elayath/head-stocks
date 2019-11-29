@@ -78,7 +78,6 @@ export class Home extends Component {
           ) : (
             <div style={{ margin: "200px 500px" }}>
               <Loader type={Loader} color="#2c3e50" height="100" width="400" />
-              {/* <img src={loader} alt="loading..." /> */}
             </div>
           )}
         </div>

@@ -7,6 +7,7 @@ export class TickerTable extends Component {
   render() {
     return (
       <div className="table__container">
+        {/* Mapping Table Headers */}
         <table className="ticker__table">
           <thead className="ticker__tableHeader">
             <tr>
@@ -15,8 +16,10 @@ export class TickerTable extends Component {
               ))}
             </tr>
           </thead>
+          {/* Mapping Table Data */}
           {this.props.tableData.map((current, index) => (
             <tr>
+              {/* Maping Ticker name */}
               {this.props.isIndex == true ? (
                 <Link
                   to={{ pathname: "/indexProfile/" + current.ticker_id }}

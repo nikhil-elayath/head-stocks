@@ -43,12 +43,9 @@ export default class Kafka extends Component {
 
   onMessageReceived = msg => {
     var body = JSON.parse(msg.body);
-    // console.log(msg.body);
     this.setState({
       data: body
     });
-
-    // console.log("Payload is", msg);
   };
 
   render() {
@@ -67,6 +64,8 @@ export default class Kafka extends Component {
               id="kafka_index_price"
               className="w3-container w3-center w3-animate-top"
             >
+              {" "}
+              {/*here we are checking for first character in closing on that below condition will work */}
               {Number(i.closing).toFixed(2)}{" "}
               <span
                 id={
@@ -77,6 +76,7 @@ export default class Kafka extends Component {
               >
                 ({Number(i.changePercentage).toFixed(2)}%)
               </span>
+              {/*here we are checking for first character in change percentge on that below condition will work */}
               {String(i.changePercentage).charAt(0) == "-" ? (
                 <span
                   className="fa fa-caret-down"

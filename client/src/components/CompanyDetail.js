@@ -16,7 +16,7 @@ export class CompanyDetail extends Component {
     const id = this.props.match.params.id;
     this.props.getCompanyDetailById(id);
     this.props.getOhlcChart("AAPL");
-    // this.props.getGaugeCompany1("AAPL");
+    this.props.getGaugeCompany1("AAPL");
   }
   render() {
     console.log(this.props.gauge1);
@@ -87,7 +87,7 @@ export class CompanyDetail extends Component {
             }}
           >
             <iframe
-              src={this.props.ohlc_chart}
+              src="https://plot.ly/~nikhilnikhil/236.embed"
               style={{
                 width: "100%",
                 height: "550px",

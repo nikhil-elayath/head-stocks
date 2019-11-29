@@ -22,6 +22,7 @@ export const getIndicesById = index => dispatch => {
     });
 };
 
+// Get Ohlc Indices BY ID
 export const getOhlcIndicesById = (index, range) => dispatch => {
   console.log(range);
   return axios
@@ -51,6 +52,7 @@ export const getOhlcChartIndex = id => dispatch => {
   }
 };
 
+// Download Report for Indices
 export const download = report => dispatch => {
   return axios
     .post("http://localhost:2001/api/download/report", report)
