@@ -1,5 +1,4 @@
 const express = require("express");
-
 const cors = require("cors");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
@@ -48,7 +47,7 @@ app.use("/api/upload/", upload);
 
 const port = process.env.port || 2001;
 
-// if (process.env.NODE_ENV !== "test")
-app.listen(port, () => console.log(`Server is listening on port ${port}`));
+if (process.env.NODE_ENV !== "test")
+  app.listen(port, () => console.log(`Server is listening on port ${port}`));
 
 module.exports = app;

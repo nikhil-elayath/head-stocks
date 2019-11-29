@@ -16,8 +16,6 @@ export class UserProfile extends Component {
     total: 0
   };
 
-  // onchange for serch component
-
   OnChange = event => {
     {
       this.state.searchInputChanged
@@ -34,7 +32,6 @@ export class UserProfile extends Component {
     this.props.searchContent(searchString);
   };
 
-  // function to be called on change
   onSearch = e => {
     e.preventDefault();
 
@@ -51,7 +48,6 @@ export class UserProfile extends Component {
     }
     return (
       <div>
-        {/* checking if the token exists , if yes then show component otehrwise blur it out */}
         <div
           id={
             localStorage.getItem("token")
@@ -60,12 +56,10 @@ export class UserProfile extends Component {
           }
         >
           <div id="userProfileContainer">
-            {/* sending wallet price  */}
             <UserNavigation wallet={this.props.users} selected="profile" />
 
             <div id="userSearch">
               <h1>Welcome to HeadStocks</h1>
-              {/* Textbox for Search */}
               <input
                 type="text"
                 placeholder="Search for Stocks you want to buy (E.g . AAPL)"
@@ -74,19 +68,15 @@ export class UserProfile extends Component {
                 value={this.state.searchInput}
                 onChange={this.OnChange}
               />
-              {/* Search Icon */}
               <button type="submit" id="userProfileSearchButton">
                 <i class="fa fa-search"></i>
               </button>
 
-              {/* MApping Search result */}
               {this.state.searchInput == "" ? null : (
-                // Checking input in search bar
                 <div className="search-result">
                   {this.props.results.length != 0 ? (
                     this.props.results.map((stocks, index) => (
                       <div id="search_map">
-                        {/* mapping Ticker based on search */}
                         <div
                           id={"tickerName" + index}
                           style={{
@@ -98,14 +88,12 @@ export class UserProfile extends Component {
                         >
                           {stocks.ticker_name}
                         </div>
-                        {/* Stock Price */}
                         <div>
                           <p id={"tickerPrice" + index}>
                             <b>${stocks.price}</b>
                           </p>
                           <p style={{ color: "#707070" }}>Current Price</p>
                         </div>
-                        {/* Buy button for every search result */}
                         <div>
                           <div class="buyStocksBox">
                             <a class="buy" href="#buyStockspopup1">
@@ -113,15 +101,13 @@ export class UserProfile extends Component {
                             </a>
                           </div>
 
-                          {/* Pop up for buying stocks */}
                           <div id="buyStockspopup1" class="buyStocksoverlay">
                             <div class="buyStockspopup">
-                              {/* ticker Name */}
                               <h2>{stocks.ticker_name}</h2>
                               <a class="buyStocksclose" href="#">
                                 &times;
                               </a>
-                              {/* <div class="buyStockscontent">Current price */}
+                              <div class="buyStockscontent">
                                 <p>Current Price : ${stocks.price}</p>
                                 <p>
                                   Quantity :{" "}
@@ -131,7 +117,6 @@ export class UserProfile extends Component {
                                     id="buyingQuantity"
                                     name="qty"
                                     value={this.state.qty}
-                                    // Changing value onchange
                                     onChange={e =>
                                       this.setState({
                                         [e.target.name]: e.target.value,
@@ -142,7 +127,6 @@ export class UserProfile extends Component {
                                     }
                                   />
                                 </p>
-                                {/* Mapping total price */}
                                 <p>
                                   Total Price : $
                                   {Number(this.state.total).toFixed(2)}
@@ -150,7 +134,6 @@ export class UserProfile extends Component {
                                 <a
                                   id="buySpecificStock"
                                   href="#"
-                                  // sending dat onclick
                                   onClick={() => {
                                     {
                                       let user = {
