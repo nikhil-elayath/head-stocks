@@ -29,22 +29,21 @@ public class indicesService {
                 if (i == 0) {
                     changePercentage = null;
                 } else {
-                    double new_val;
-                    double val;
+                    double new_val = 0.0;
+                    double val = 0.0;
                     if (index.get(i).get("closing").getClass().getName().equals("java.lang.Integer")) {
                         new_val = (double) ((Integer) index.get(i).get("closing"));
-                    } else {
-                        new_val = (double) index.get(i).get("closing");
-
+                    } else if (index.get(i).get("closing").getClass().getName().equals("java.lang.Double")) {
+                        new_val = Double.parseDouble(index.get(i).get("closing").toString());
                     }
 
                     if (index.get(i - 1).get("closing").getClass().getName().equals("java.lang.Integer")) {
                         val = (double) ((Integer) index.get(i - 1).get("closing"));
                         System.out.println("val is " + val);
-                    } else {
-                        val = (double) index.get(i - 1).get("closing");
+                    } else if (index.get(i - 1).get("closing").getClass().getName().equals("java.lang.Double")) {
+                        val = Double.parseDouble(index.get(i - 1).get("closing").toString());
                     }
-
+                    // if (val)
                     changePercentage = ((new_val - val) / val) * 100;
                 }
 
