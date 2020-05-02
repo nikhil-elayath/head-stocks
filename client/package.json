@@ -2,6 +2,8 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://demogorgon666.github.io/head-stocks",
+
   "dependencies": {
     "@babel/core": "7.6.0",
     "@svgr/webpack": "4.3.2",
@@ -85,17 +87,15 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
+    "production": [">0.2%", "not dead", "not op_mini all"],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
@@ -103,21 +103,11 @@
     ]
   },
   "jest": {
-    "roots": [
-      "<rootDir>/src"
-    ],
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}",
-      "!src/**/*.d.ts"
-    ],
+    "roots": ["<rootDir>/src"],
+    "collectCoverageFrom": ["src/**/*.{js,jsx,ts,tsx}", "!src/**/*.d.ts"],
     "resolver": "jest-pnp-resolver",
-    "setupFiles": [
-      "react-app-polyfill/jsdom",
-      "<rootDir>/src/setupTests.js"
-    ],
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ],
+    "setupFiles": ["react-app-polyfill/jsdom", "<rootDir>/src/setupTests.js"],
+    "snapshotSerializers": ["enzyme-to-json/serializer"],
     "setupFilesAfterEnv": [],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
@@ -156,8 +146,9 @@
     ]
   },
   "babel": {
-    "presets": [
-      "react-app"
-    ]
+    "presets": ["react-app"]
+  },
+  "devDependencies": {
+    "gh-pages": "^2.2.0"
   }
 }
