@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://demogorgon666.github.io//head-stocks",
+  "homepage": "https://demogorgon666.github.io/head-stocks",
   "dependencies": {
     "@babel/core": "7.6.0",
     "@svgr/webpack": "4.3.2",
